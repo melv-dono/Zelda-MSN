@@ -23,12 +23,12 @@ public class Environnement {
     }
     public Personnage getPersonnage(int id){
         for(Personnage p:lesPerso){
-            return p;
+
         }
         return null;
     }
     public void addPerso(Personnage p){
-        if(p.getX()>width || p.getX()<0){
+        if(p.getX()>width || p.getX()<0|| p.getY()>height||p.getY()<0){
             return ;
         }
         lesPerso.add(p);
@@ -38,7 +38,7 @@ public class Environnement {
     }
     private void collisionEmplacement(Personnage p){
         for (Personnage persoEnPlace:lesPerso){
-            if(p.getX()==persoEnPlace.getX()){
+            if(p.getX()==persoEnPlace.getX()&& p.getY()==persoEnPlace.getY()){
 
             }
         }

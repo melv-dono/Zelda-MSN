@@ -9,7 +9,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Vue/Vue.fxml"));
-        Scene scene=new Scene(root, 600, 550);
+        Scene scene=new Scene(root, 480, 480);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Zelda");
         primaryStage.show();
