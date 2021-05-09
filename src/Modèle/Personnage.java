@@ -19,21 +19,29 @@ public abstract class Personnage {
         //this.env = new Environnement();
     }
 
-    public void setxProperty(int n) {
+    public final void setX(int n) {
         this.xProperty.setValue(n);
     }
 
-    public int getX() {
+    public final int getX() {
         return this.xProperty.getValue();
     }
 
+    public final IntegerProperty getXProperty() {
+        return this.xProperty;
+    }
 
-
-    public void setY(int n) {
+    public final void setY(int n) {
         this.yProperty.setValue(n);
     }
 
+    public final int getY() {
+        return this.yProperty.getValue();
+    }
 
+    public final IntegerProperty getYProperty() {
+        return this.yProperty;
+    }
 
 
 }
