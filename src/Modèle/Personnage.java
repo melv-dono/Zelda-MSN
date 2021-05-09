@@ -1,45 +1,45 @@
 package Modèle;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 public abstract class Personnage {
     private String nom;
     private int id;
-    private IntegerProperty xProperty;
-    private IntegerProperty yProperty;
+    private DoubleProperty xProperty;
+    private DoubleProperty yProperty;
     private Environnement env;
     private static int numId=0;
 
     public Personnage(String n) {
         this.nom =n;
         this.id = numId++;
-        this.xProperty = new SimpleIntegerProperty(0);
-        this.yProperty = new SimpleIntegerProperty(0);
+        this.xProperty = new SimpleDoubleProperty(0);
+        this.yProperty = new SimpleDoubleProperty(0);
         //this.env = new Environnement();
     }
 
-    public final void setX(int n) {
+    public final void setX(double n) {
         this.xProperty.setValue(n);
     }
 
-    public final int getX() {
+    public final double getX() {
         return this.xProperty.getValue();
     }
 
-    public final IntegerProperty getXProperty() {
+    public final DoubleProperty getXProperty() {
         return this.xProperty;
     }
 
-    public final void setY(int n) {
+    public final void setY(double n) {
         this.yProperty.setValue(n);
     }
 
-    public final int getY() {
+    public final double getY() {
         return this.yProperty.getValue();
     }
 
-    public final IntegerProperty getYProperty() {
+    public final DoubleProperty getYProperty() {
         return this.yProperty;
     }
 
