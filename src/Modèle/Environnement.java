@@ -28,12 +28,19 @@ public class Environnement {
         return null;
     }
     public void addPerso(Personnage p){
+        if(p.getX()>width || p.getX()<0){
+            return ;
+        }
         lesPerso.add(p);
     }
     public void deletePerso(Personnage p){
         lesPerso.remove(p);
     }
-    public void zummmm{
+    private void collisionEmplacement(Personnage p){
+        for (Personnage persoEnPlace:lesPerso){
+            if(p.getX()==persoEnPlace.getX()){
 
+            }
+        }
     }
 }
