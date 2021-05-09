@@ -33,4 +33,7 @@ public class Environnement {
     public void deletePerso(Personnage p){
         lesPerso.remove(p);
     }
+    public void zummmm{
+
+    }
 }
