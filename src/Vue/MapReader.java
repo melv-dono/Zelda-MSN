@@ -5,7 +5,7 @@ import javafx.scene.layout.TilePane;
 import java.io.*;
 
 public class MapReader {
-    @FXML
+    /*@FXML
     private TilePane plateau;
     public static void lireFichier() throws Exception {
         File fichier=new File("C:/Users/jujus/IdeaProjects/ZeldaProject/src/sample/tileTry.txt");
@@ -23,5 +23,5 @@ public class MapReader {
         System.out.println("Contenu du fichier: ");
         System.out.println(sb);
     }
-
+*/
 }
