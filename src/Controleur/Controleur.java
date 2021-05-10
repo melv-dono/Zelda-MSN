@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.event.EventHandler;
@@ -21,6 +22,9 @@ public class Controleur implements Initializable {
 
     @FXML
     private Pane plateau; // Attention remettre tilePane
+
+    @FXML
+    private TilePane tile = new TilePane();
 
     public Circle creeSprite(Personnage p) {
         Circle c = new Circle(3);
@@ -82,7 +86,7 @@ public class Controleur implements Initializable {
                 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
         MapModele spawn = new MapModele(1,coordoneesCarte);
-        MapReader m  = new MapReader(1);
+        MapReader m  = new MapReader(plateau);
         m.chargerMap(spawn.getTableau());
     }
 

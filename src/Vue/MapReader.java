@@ -3,17 +3,17 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.Pane;
+
 
 import java.io.*;
 
 public class MapReader {
     @FXML
-    private TilePane map;
+    private Pane map;
 
-    private int id;
-
-    public MapReader(int id){
-        this.id = id;
+    public MapReader(Pane t){
+        this.map = t;
     }
     /*
     public static void lireFichier() throws Exception {
@@ -35,17 +35,18 @@ public class MapReader {
 */
 
     public void chargerMap(int[] coordoneesCarte){
-        map = new TilePane();
         for (int i=0; i<coordoneesCarte.length; i++){
-            switch (coordoneesCarte[i]){
-                case 1:
-                    Image herbe = new Image("Vue/herbe.png");
-                    ImageView affichage = new ImageView();
-                    affichage.setImage(herbe);
-                    map.getChildren().add(affichage);
-                    break;
-                default:
-                    break;
+            for (int j=0; j<coordoneesCarte.length; j++) {
+                switch (coordoneesCarte[i]){
+                    case 1:
+                        ImageView affichage = new ImageView("Vue/herbe.png");
+                        affichage.setX(j*16);
+                        affichage.setY(i*16);
+                        map.getChildren().add(affichage);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
