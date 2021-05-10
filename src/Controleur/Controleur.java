@@ -1,7 +1,9 @@
 package Controleur;
 
 import Modèle.Link;
+import Modèle.MapModele;
 import Modèle.Personnage;
+import Vue.MapReader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,13 +39,15 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("ici");
+        /*System.out.println("ici");
+        //MapReader map = new MapReader("1");
+        //map.chargerMap();
         this.plateau.setFocusTraversable(true);
         System.out.println("ici");
-        /*Link p = new Link();
+        Link p = new Link();
         Circle c = creeSprite(p);
         ArrowGestion a = new ArrowGestion(c);
-        plateau.setOnKeyPressed(a);*/
+        plateau.setOnKeyPressed(a);
         this.plateau.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 System.out.println("ici");
@@ -59,8 +63,29 @@ public class Controleur implements Initializable {
                 }
             }
         });
-        System.out.println("ok");
+        System.out.println("ok");*/
+        int[] coordoneesCarte = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+
+        MapModele spawn = new MapModele(1,coordoneesCarte);
+        MapReader m  = new MapReader(1);
+        m.chargerMap(spawn.getTableau());
     }
+
 
 
 }
