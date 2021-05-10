@@ -59,7 +59,7 @@ public class Controleur implements Initializable {
                 }
             }
         });
-
+        System.out.println("ok");
     }
 
 
