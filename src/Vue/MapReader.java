@@ -35,18 +35,26 @@ public class MapReader {
 */
 
     public void chargerMap(int[] coordoneesCarte){
-        for (int i=0; i<(coordoneesCarte.length/8); i++){
-            for (int j=0; j<(coordoneesCarte.length/8); j++) {
-                switch (coordoneesCarte[i]){
+        int cases =0;
+        for (int i=0; i<(coordoneesCarte.length/40); i++){
+            for (int j=0; j<(coordoneesCarte.length/23); j++) {
+                switch (coordoneesCarte[cases]){
                     case 1:
-                        ImageView affichage = new ImageView("Vue/herbe.png");
-                        affichage.setX(j*16);
-                        affichage.setY(i*16);
+                        ImageView affichage = new ImageView("Vue/herbe32x32.png");
+                        affichage.setX(j*32);
+                        affichage.setY(i*32);
                         map.getChildren().add(affichage);
+                        break;
+                    case 2:
+                        ImageView affichage2 = new ImageView("Vue/terre32x32.png");
+                        affichage2.setX(j*32);
+                        affichage2.setY(i*32);
+                        map.getChildren().add(affichage2);
                         break;
                     default:
                         break;
                 }
+                cases++;
             }
         }
     }

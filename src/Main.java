@@ -14,7 +14,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(getClass().getResource("Vue/Vue.fxml"));
-        Scene scene=new Scene(root, 480, 480);
+        Scene scene=new Scene(root, 1280, 720);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Zelda");
         primaryStage.show();
