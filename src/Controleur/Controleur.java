@@ -29,8 +29,8 @@ public class Controleur implements Initializable {
     public Circle creeSprite(Personnage p) {
         Circle c = new Circle(3);
         c.setFill(Color.RED);
-        p.getXProperty().addListener((old, ol, nouv) -> p.setX(c.getCenterX()));
-        p.getYProperty().addListener((old, ol, nouv) -> p.setY(c.getCenterY()));
+        c.translateXProperty().bind(p.getXProperty());
+        c.translateYProperty().bind(p.getYProperty());
         plateau.getChildren().add(c);
         return c;
 
@@ -73,8 +73,9 @@ public class Controleur implements Initializable {
         System.out.println("ici");
         Link p = new Link();
         Circle c = creeSprite(p);
-        ArrowGestion a = new ArrowGestion(c);
+        ArrowGestion a = new ArrowGestion(p);
         plateau.setOnKeyPressed(a);
+        /*
         this.plateau.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 System.out.println("ici");
@@ -89,7 +90,7 @@ public class Controleur implements Initializable {
                         System.out.println("ok"); break;
                 }
             }
-        });
+        });*/
     }
 
 
