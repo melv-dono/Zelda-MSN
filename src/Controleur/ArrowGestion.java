@@ -20,23 +20,23 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent keyEvent) {
         System.out.println(keyEvent.getCode());
-        if (keyEvent.getCode() == KeyCode.UP) {
-            this.perso.setY(this.perso.getY() - 1);
+        if (keyEvent.getCode() == KeyCode.UP || keyEvent.getCode() == KeyCode.Z) {
+            this.perso.setY(this.perso.getY() - 2);
             System.out.println(perso.getY());
         }
-        if (keyEvent.getCode().equals(KeyCode.DOWN)) {
+        if (keyEvent.getCode().equals(KeyCode.DOWN) || keyEvent.getCode() == KeyCode.S) {
             System.out.println("sheesh");
-            this.perso.setY(this.perso.getY() + 1);
+            this.perso.setY(this.perso.getY() + 2);
             System.out.println(perso.getY());
 
         }
-        if (keyEvent.getCode() == KeyCode.LEFT) {
-            this.perso.setX(this.perso.getX() - 1);
+        if (keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.Q) {
+            this.perso.setX(this.perso.getX() - 2);
             System.out.println(perso.getX());
 
         }
-        if (keyEvent.getCode() == KeyCode.RIGHT) {
-            this.perso.setX(this.perso.getX() + 1);
+        if (keyEvent.getCode() == KeyCode.RIGHT || keyEvent.getCode() == KeyCode.D) {
+            this.perso.setX(this.perso.getX() + 2);
             System.out.println(perso.getX());
         }
     }

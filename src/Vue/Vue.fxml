@@ -4,9 +4,9 @@
 
 <BorderPane fx:id="ecran" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#click" prefHeight="480.0" prefWidth="480.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur.Controleur">
     <center>
-        <Pane fx:id="plateau" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <Pane fx:id="plateau" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <TilePane fx:id="map" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" />
+                <TilePane fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" />
             </children>
         </Pane>
     </center>

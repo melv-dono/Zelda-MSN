@@ -7,6 +7,7 @@ import Vue.MapReader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -26,13 +27,12 @@ public class Controleur implements Initializable {
     @FXML
     private TilePane tile = new TilePane();
 
-    public Circle creeSprite(Personnage p) {
-        Circle c = new Circle(3);
-        c.setFill(Color.RED);
-        c.translateXProperty().bind(p.getXProperty());
-        c.translateYProperty().bind(p.getYProperty());
-        plateau.getChildren().add(c);
-        return c;
+    public ImageView creeSprite(Personnage p) {
+        ImageView link = new ImageView("Vue/link-bouclier-de-base.png");
+        link.translateXProperty().bind(p.getXProperty());
+        link.translateYProperty().bind(p.getYProperty());
+        plateau.getChildren().add(link);
+        return link;
 
     }
 
@@ -69,10 +69,10 @@ public class Controleur implements Initializable {
         System.out.println("ici");
         //MapReader map = new MapReader("1");
         //map.chargerMap();
-        this.plateau.setFocusTraversable(true);
+        //this.plateau.setFocusTraversable(true);
         System.out.println("ici");
         Link p = new Link();
-        Circle c = creeSprite(p);
+        ImageView personnage = creeSprite(p);
         ArrowGestion a = new ArrowGestion(p);
         plateau.setOnKeyPressed(a);
         /*
