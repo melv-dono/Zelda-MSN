@@ -9,13 +9,13 @@ public abstract class Personnage {
     private DoubleProperty xProperty;
     private DoubleProperty yProperty;
     private Environnement env;
-    private static int numId=0;
+    private static int numId=0; // permettra d'instancier l'id du personnage
 
     public Personnage(String n) {
         this.nom =n;
         this.id = numId++;
-        this.xProperty = new SimpleDoubleProperty(0);
-        this.yProperty = new SimpleDoubleProperty(0);
+        this.xProperty = new SimpleDoubleProperty(50); // les valeurs rentrées définissent l'endroit ou apparait le personnage dans la map
+        this.yProperty = new SimpleDoubleProperty(50);
         //this.env = new Environnement();
     }
 
@@ -42,6 +42,7 @@ public abstract class Personnage {
     public final DoubleProperty getYProperty() {
         return this.yProperty;
     }
+    public int getId(){return id; }
 
 
 }
