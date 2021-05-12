@@ -22,10 +22,11 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
 
     @FXML
-    private Pane plateau; // Attention remettre tilePane
+    private Pane plateau;
 
     @FXML
     private TilePane tile = new TilePane();
+
 
     public ImageView creeSprite(Personnage p) {
         ImageView link = new ImageView("Vue/Link64x64.png");
@@ -36,15 +37,9 @@ public class Controleur implements Initializable {
 
     }
 
-    @FXML
-    public void click(MouseEvent me) {
-        System.out.println(me.getX());
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        System.out.println("ok");
         int[] coordoneesCarte = {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
                 2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
                 2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
@@ -72,32 +67,11 @@ public class Controleur implements Initializable {
         MapModele spawn = new MapModele(1,coordoneesCarte);
         MapReader m  = new MapReader(plateau);
         m.chargerMap(spawn.getTableau());
-
-        System.out.println("ici");
-        //MapReader map = new MapReader("1");
-        //map.chargerMap();
-        //this.plateau.setFocusTraversable(true);
-        System.out.println("ici");
         Link p = new Link();
         ImageView personnage = creeSprite(p);
         ArrowGestion a = new ArrowGestion(p);
         plateau.setOnKeyPressed(a);
-        /*
-        this.plateau.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent event) {
-                System.out.println("ici");
-                switch(event.getCode()) {
-                    case Z :
-                        System.out.println("ok"); break;
-                    case Q :
-                        System.out.println("ok"); break;
-                    case S :
-                        System.out.println("ok"); break;
-                    case D :
-                        System.out.println("ok"); break;
-                }
-            }
-        });*/
+
     }
 
 

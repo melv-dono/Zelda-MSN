@@ -7,6 +7,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 
+/*
+ * Cette classe est un gestionnaire d'éveènement permettant de gerer des déplacements via le clavier.
+ * Chaque déplacement change les coordonnées du personnage dans le modèle et cela se répercute dans la vue.
+ */
 
 public class ArrowGestion implements EventHandler<KeyEvent> {
 
@@ -19,25 +23,22 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
-        System.out.println(keyEvent.getCode());
-        if (keyEvent.getCode() == KeyCode.UP || keyEvent.getCode() == KeyCode.Z) {
-            this.perso.setY(this.perso.getY() - 8);
-            System.out.println(perso.getY());
-        }
-        if (keyEvent.getCode().equals(KeyCode.DOWN) || keyEvent.getCode() == KeyCode.S) {
-            System.out.println("sheesh");
-            this.perso.setY(this.perso.getY() + 8);
-            System.out.println(perso.getY());
-
-        }
-        if (keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.Q) {
-            this.perso.setX(this.perso.getX() - 8);
-            System.out.println(perso.getX());
-
-        }
-        if (keyEvent.getCode() == KeyCode.RIGHT || keyEvent.getCode() == KeyCode.D) {
-            this.perso.setX(this.perso.getX() + 8);
-            System.out.println(perso.getX());
+        // Attention les coordonnées des y sont inversés.
+        switch (keyEvent.getCode()) {
+            case UP:
+                this.perso.setY(this.perso.getY() - 4);
+                break;
+            case DOWN:
+                this.perso.setY(this.perso.getY() + 4);
+                break;
+            case LEFT:
+                this.perso.setX(this.perso.getX() - 4);
+                break;
+            case RIGHT:
+                this.perso.setX(this.perso.getX() + 4);
+                break;
+            default:
+                break;
         }
     }
 }
