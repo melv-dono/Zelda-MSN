@@ -1,5 +1,6 @@
 package Controleur;
 
+import Modèle.Link;
 import Modèle.Personnage;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
     @FXML
     private Personnage perso;
 
-    public ArrowGestion(Personnage p) {
+    public ArrowGestion(Link p) {
         this.perso = p;
     }
 

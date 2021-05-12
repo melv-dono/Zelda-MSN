@@ -25,7 +25,7 @@ public class Controleur implements Initializable {
     private Pane plateau;
 
     @FXML
-    private TilePane tile = new TilePane();
+    private TilePane map = new TilePane();
 
 
     public ImageView creeSprite(Personnage p) {
@@ -65,7 +65,7 @@ public class Controleur implements Initializable {
                 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2};
 
         MapModele spawn = new MapModele(1,coordoneesCarte);
-        MapReader m  = new MapReader(plateau);
+        MapReader m  = new MapReader(map);
         m.chargerMap(spawn.getTableau());
         Link p = new Link();
         ImageView personnage = creeSprite(p);
