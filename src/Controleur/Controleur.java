@@ -4,6 +4,7 @@ import Modèle.Link;
 import Modèle.MapModele;
 import Modèle.Personnage;
 import Vue.MapReader;
+import Vue.VueLink;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,20 +32,8 @@ public class Controleur implements Initializable {
     private TilePane map = new TilePane();
 
 
-    public ImageView creeSprite(Personnage p) {
-        ImageView link = new ImageView("Vue/Link64x64.png");
-        link.translateXProperty().bind(p.getXProperty());
-        link.translateYProperty().bind(p.getYProperty());
-        plateau.getChildren().add(link);
-        return link;
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-
         MapModele spawn = new MapModele("testMap");
         MapReader m  = new MapReader(map);
         try {
@@ -55,10 +44,11 @@ public class Controleur implements Initializable {
             e.printStackTrace();
         }
         Link p = new Link();
-        ImageView personnage = creeSprite(p);
+        VueLink vue = new VueLink(p);
         ArrowGestion a = new ArrowGestion(p);
+        ImageView personnage = vue.creeSprite();
+        plateau.getChildren().add(personnage);
         plateau.setOnKeyPressed(a);
-
     }
 
 
