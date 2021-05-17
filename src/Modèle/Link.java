@@ -1,7 +1,7 @@
 package Modèle;
 
 public class Link extends Personnage{
-    public Link() {
-        super("Link");
+    public Link(Environnement e) {
+        super("Link", e);
     }
 }

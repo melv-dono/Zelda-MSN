@@ -1,5 +1,6 @@
 package Controleur;
 
+import Modèle.Environnement;
 import Modèle.Link;
 import Modèle.MapModele;
 import Modèle.Personnage;
@@ -25,6 +26,10 @@ import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
 
+    //Attention on a du retirer 2 tile (64) par rapport aux valeurs initials, afin de rester dans le cadre.
+    public static int LARGEUR = 1216;
+    public static int HAUTEUR = 672;
+
     @FXML
     private Pane plateau;
 
@@ -43,7 +48,8 @@ public class Controleur implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Link p = new Link();
+        Environnement env = new Environnement(LARGEUR, HAUTEUR);
+        Link p = new Link(env);
         VueLink vue = new VueLink(p);
         ArrowGestion a = new ArrowGestion(p);
         ImageView personnage = vue.creeSprite();
