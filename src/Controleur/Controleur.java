@@ -16,6 +16,9 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.event.EventHandler;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,7 +47,13 @@ public class Controleur implements Initializable {
 
         MapModele spawn = new MapModele("testMap");
         MapReader m  = new MapReader(map);
-        m.chargerMap(spawn.getTableau());
+        try {
+            m.chargerMap(spawn.getTableau());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Link p = new Link();
         ImageView personnage = creeSprite(p);
         ArrowGestion a = new ArrowGestion(p);

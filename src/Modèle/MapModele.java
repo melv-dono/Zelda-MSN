@@ -1,52 +1,77 @@
 package Modèle;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.util.StringTokenizer;
 
 public class MapModele { // on associera à chaque map un id qui nous permettra de charger une map en fonction de son id
     private String nomMap;
     private int[] tableau;
     private StringBuilder s;
-    private static int resolutionEcran = 40*23;
+    private static int resolutionEcran = 40 * 23;
 
-    public MapModele(String nom){
-        this.nomMap=nom;
+    public MapModele(String nom) {
+        this.nomMap = nom;
         tableau = new int[resolutionEcran];
         s = null;
     }
 
-    public void lectureCoordonnees() {
+    private String csv = "2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,\n" +
+            "2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,\n" +
+            "2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,\n" +
+            "2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,\n" +
+            "2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,\n" +
+            "2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,\n" +
+            "2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2";
+
+    //public int[] getTableau(String nomMap) throws IOException {
+    public int[] getTableau() throws IOException {
         //File fichier=new File("Modèle/testMap.txt");
+        int[] donnee = new int[resolutionEcran];
+        BufferedReader br;
+        StringTokenizer line;
+        int i = 0;
         try {
-            FileReader fr = new FileReader("testMap.txt"); // va permettre d'obtenir les caractères d'un fichier dans le système de fichiers
-            BufferedReader br = new BufferedReader(fr); // permet à un autre lecteur de mettre les caractères en mémoire tampon(données utilisé pr un certains laps de temps). Btw bufferReader ne peut que lire des données à partir d'un autre lecteur de données ici fileReader
-            String line;
-            while((line = br.readLine()) != null)
-            {
-                // ajoute la ligne au buffer
-                s.append(line);
+
+            br = new BufferedReader(new FileReader("C:/Users/Minh-Tri/IdeaProjects/ZeldaMSN/src/Modèle/testMap.txt")); // problème avec le chemin relatif
+            String ligneLue = "";
+
+            do {
+                ligneLue = br.readLine();
+                if (ligneLue != null) {
+                    line = new StringTokenizer(ligneLue, ",");
+                    while (line.hasMoreTokens()) {
+                        donnee[i] = Integer.parseInt(line.nextToken());
+                        i++;
+                    }
+                }
             }
-            fr.close();
-        }
-        catch (Exception e) {
+            while (ligneLue != null);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
-    public void convertionTab() {
-        lectureCoordonnees();
-        int cpt=0;
-        for (int i=0;i<resolutionEcran;i+=2){
-            tableau[cpt]=(int)s.charAt(i);
-            cpt++;
-        }
-    }
-
-    public int[] getTableau() {
-        convertionTab();
-        return tableau;
+        /*while((line = br.readLine()) != null)
+        {
+            // ajoute la ligne au buffer
+            s.append(line);
+        }*/
+        return donnee;
     }
 
 
