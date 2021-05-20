@@ -1,74 +1,70 @@
 package Modèle;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
-// Les coordonnés X et Y ont une valeur max pour ne pas sortir du cadre.
 public abstract class Personnage {
     private String nom;
     private int id;
-    private DoubleProperty deplacementLargeur; // on doit avoir : X >= 0 ET X <= largeur de l'environnement
-    private DoubleProperty deplacementHauteur; // on doit avoir : Y >= 0 ET Y <= hauteur de l'environnement
-    private Environnement env; // permet de délimiter le personnage dans sur la map et aussi l'interaction avec les autres perso
-    private static int numId=0; // permet d'auto incrémenter l'attribut id pour chaque personnage que l'on crée
+    private DoubleProperty xProperty;
+    private DoubleProperty yProperty;
+    private Environnement env;
+    private IntegerProperty pv;
+    private IntegerProperty niveau;
+    private DoubleProperty exp; // intervalle [0;1]avec 2 chiffres après virgules
+    private static int numId=0;
 
-    public Personnage(String n, Environnement e) {
+    public Personnage(String n) {
         this.nom =n;
         this.id = numId++;
-        this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
-        this.deplacementHauteur = new SimpleDoubleProperty();
-        this.env = e;
+        this.xProperty = new SimpleDoubleProperty(620);
+        this.yProperty = new SimpleDoubleProperty(250);
+        pv=new SimpleIntegerProperty(100);
+        niveau=new SimpleIntegerProperty(1);
+        exp=new SimpleDoubleProperty(0);
     }
 
-    public final void setDeplacementLargeur(double n) {
-        if (n<0) {
-            this.deplacementLargeur.setValue(0);
-        }
-        else if (n>env.getWidth()) {
-            this.deplacementLargeur.setValue(this.env.getWidth());
-        }
-        else {
-            this.deplacementLargeur.setValue(n);
-        }
+    public final void setX(double n) {
+        this.xProperty.setValue(n);
     }
 
-    public final double getDeplacementLargeur() {
-        return this.deplacementLargeur.getValue();
+    public final double getX() {
+        return this.xProperty.getValue();
     }
 
-    public final DoubleProperty getDeplacementLargeurProperty() {
-        return this.deplacementLargeur;
+    public final DoubleProperty getXProperty() {
+        return this.xProperty;
     }
 
-    public final void setDeplacementHauteur(double n) {
-        if (n<0) {
-            this.deplacementHauteur.setValue(0);
-        }
-        else if (n>env.getHeight()) {
-            this.deplacementHauteur.setValue(this.env.getHeight());
-        }
-        else {
-            this.deplacementHauteur.setValue(n);
-        }
+    public final void setY(double n) {
+        this.yProperty.setValue(n);
     }
 
-    public final double getDeplacementHauteur() {
-        return this.deplacementHauteur.getValue();
+    public final double getY() {
+        return this.yProperty.getValue();
     }
 
-    public final DoubleProperty getDeplacementHauteurProperty() {
-        return this.deplacementHauteur;
+    public final DoubleProperty getYProperty() {
+        return this.yProperty;
     }
 
+    public final void setPv(int pv){ this.pv.setValue(pv);}
+
+    public final IntegerProperty pv(){return pv;}
+
+    public final IntegerProperty niveau(){return niveau;}
+    public final DoubleProperty exp(){return exp;}
+    public final void setExp(double xp){exp.setValue(exp.getValue()+xp);}
+    public final double getExp(){return exp.getValue();}
     public int getId(){return id; }
 
-    public Environnement getEnv() {
-        return env;
+    public void decrementerPv(int pointEnMoins){
+        if(pv.getValue()<=pointEnMoins){
+            pv.setValue(0);
+        }else {
+            pv.setValue(pv.getValue()-pointEnMoins);
+        }
     }
-
-    public abstract void monter();
-    public abstract void descendre();
-    public abstract void gauche();
-    public abstract void droite();
-
 }

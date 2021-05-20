@@ -5,22 +5,22 @@ import java.util.StringTokenizer;
 
 public class MapModele { // on associera à chaque map un id qui nous permettra de charger une map en fonction de son id
     private String nomMap;
-    private int[][] tableau;
+    private int[] tableau;
     private StringBuilder s;
     private static int resolutionEcran = 40 * 23;
 
     public MapModele(String nom) {
         this.nomMap = nom;
-        this.tableau = new int[23][40];
+        tableau = new int[resolutionEcran];
         s = null;
     }
 
-    public int[][] getTableau() {
+    public int[] getTableau(){
         //File fichier=new File("Modèle/testMap.txt");
+        int[] donnee = new int[resolutionEcran];
         BufferedReader br;
         StringTokenizer line;
-        int hauteur=0;
-        int largeur=0;
+        int i = 0;
         try {
 
             br = new BufferedReader(new FileReader("src/Modèle/"+this.nomMap+".txt"));
@@ -31,11 +31,9 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
                 if (ligneLue != null) {
                     line = new StringTokenizer(ligneLue, ",");
                     while (line.hasMoreTokens()) {
-                        this.tableau[hauteur][largeur] = Integer.parseInt(line.nextToken());
-                        largeur++;
+                        donnee[i] = Integer.parseInt(line.nextToken());
+                        i++;
                     }
-                    largeur=0;
-                    hauteur++;
                 }
             }
             while (ligneLue != null);
@@ -48,12 +46,9 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
             // ajoute la ligne au buffer
             s.append(line);
         }*/
-        return this.tableau;
+        return donnee;
     }
 
-    public String getNomMap() {
-        return nomMap;
-    }
 
     //int[] coordoneesCarte = {};
 }

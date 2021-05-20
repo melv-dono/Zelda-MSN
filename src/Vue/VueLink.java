@@ -1,14 +1,9 @@
 package Vue;
 
 import Modèle.Personnage;
-import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
 public class VueLink {
-
-    @FXML
-    private Pane plateau;
 
     private Personnage p;
 
@@ -17,9 +12,9 @@ public class VueLink {
     }
 
     public ImageView creeSprite() {
-        ImageView link = new ImageView("Vue/link_front2.gif");
-        link.translateXProperty().bind(p.getDeplacementLargeurProperty());
-        link.translateYProperty().bind(p.getDeplacementHauteurProperty());
+        ImageView link = new ImageView("Vue/Link32x32.png");
+        link.translateXProperty().bind(p.getXProperty());
+        link.translateYProperty().bind(p.getYProperty());
         return link;
     }
 }
