@@ -2,6 +2,7 @@ package Modèle;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.input.KeyEvent;
 
 // Les coordonnés X et Y ont une valeur max pour ne pas sortir du cadre.
 public abstract class Personnage {
@@ -15,8 +16,8 @@ public abstract class Personnage {
     public Personnage(String n, Environnement e) {
         this.nom =n;
         this.id = numId++;
-        this.xProperty = new SimpleDoubleProperty(620);
-        this.yProperty = new SimpleDoubleProperty(250);
+        this.xProperty = new SimpleDoubleProperty(0);
+        this.yProperty = new SimpleDoubleProperty(0);
         this.env = e;
     }
 
@@ -61,4 +62,14 @@ public abstract class Personnage {
     }
 
     public int getId(){return id; }
+
+    public Environnement getEnv() {
+        return env;
+    }
+
+    public abstract void monter();
+    public abstract void descendre();
+    public abstract void gauche();
+    public abstract void droite();
+
 }
