@@ -15,7 +15,7 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
         s = null;
     }
 
-    public int[] getTableau() throws IOException {
+    public int[] getTableau(){
         //File fichier=new File("Modèle/testMap.txt");
         int[] donnee = new int[resolutionEcran];
         BufferedReader br;

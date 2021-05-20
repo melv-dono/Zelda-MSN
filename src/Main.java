@@ -17,9 +17,9 @@ public class Main extends Application{
         Scene scene=new Scene(root, 1280, 736);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Zelda");
+        primaryStage.setResizable(false);
         primaryStage.show();
 
-        //test new branch
     }
     public static void main(String[] args) {
         launch(args);

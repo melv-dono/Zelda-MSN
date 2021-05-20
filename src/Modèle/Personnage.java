@@ -1,7 +1,9 @@
 package Modèle;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Personnage {
     private String nom;
@@ -9,6 +11,9 @@ public abstract class Personnage {
     private DoubleProperty xProperty;
     private DoubleProperty yProperty;
     private Environnement env;
+    private IntegerProperty pv;
+    private IntegerProperty niveau;
+    private DoubleProperty exp; // intervalle [0;1]avec 2 chiffres après virgules
     private static int numId=0;
 
     public Personnage(String n) {
@@ -16,7 +21,9 @@ public abstract class Personnage {
         this.id = numId++;
         this.xProperty = new SimpleDoubleProperty(620);
         this.yProperty = new SimpleDoubleProperty(250);
-        //this.env = new Environnement();
+        pv=new SimpleIntegerProperty(100);
+        niveau=new SimpleIntegerProperty(1);
+        exp=new SimpleDoubleProperty(0);
     }
 
     public final void setX(double n) {
@@ -43,5 +50,21 @@ public abstract class Personnage {
         return this.yProperty;
     }
 
+    public final void setPv(int pv){ this.pv.setValue(pv);}
+
+    public final IntegerProperty pv(){return pv;}
+
+    public final IntegerProperty niveau(){return niveau;}
+    public final DoubleProperty exp(){return exp;}
+    public final void setExp(double xp){exp.setValue(exp.getValue()+xp);}
+    public final double getExp(){return exp.getValue();}
     public int getId(){return id; }
+
+    public void decrementerPv(int pointEnMoins){
+        if(pv.getValue()<=pointEnMoins){
+            pv.setValue(0);
+        }else {
+            pv.setValue(pv.getValue()-pointEnMoins);
+        }
+    }
 }
