@@ -19,6 +19,14 @@ public abstract class Personnage {
         //this.env = new Environnement();
     }
 
+    public Personnage(String n, int x, int y){
+        this.nom =n;
+        this.id = numId++;
+        this.xProperty = new SimpleDoubleProperty(x);
+        this.yProperty = new SimpleDoubleProperty(y);
+        //this.env = new Environnement();
+    }
+
     public final void setX(double n) {
         this.xProperty.setValue(n);
     }
@@ -44,4 +52,5 @@ public abstract class Personnage {
     }
 
     public int getId(){return id; }
+
 }

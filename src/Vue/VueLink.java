@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class VueLink {
+public class VueLink implements VuePersonnage{
 
     @FXML
     private Pane plateau;
@@ -18,7 +18,7 @@ public class VueLink {
     }
 
     public ImageView creeSprite() {
-        ImageView link = new ImageView("Vue/Link64x64.png");
+        ImageView link = new ImageView("Vue/Link32x32.png");
         link.translateXProperty().bind(p.getXProperty());
         link.translateYProperty().bind(p.getYProperty());
         return link;
