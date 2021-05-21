@@ -73,7 +73,7 @@ public class Controleur implements Initializable {
 
         Link p = new Link();
         VueLink vue = new VueLink(p);
-        ArrowGestion a = new ArrowGestion(p);
+        ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
         ImageView personnage = vue.creeSprite();
         plateau.getChildren().add(personnage);
         plateau.setOnKeyPressed(a);
