@@ -55,9 +55,9 @@ public class Controleur implements Initializable {
                     }
 				    else if(cpt >=150){
 				        s.descendre();
-				        if(cpt==300){
-				            cpt=0;
-                        }
+                    }
+                    if(cpt==298){
+                        cpt=0;
                     }
                     cpt++;
 				})
