@@ -69,18 +69,18 @@ public class Controleur implements Initializable {
         gameLoop = new Timeline();
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
         KeyFrame kf = new KeyFrame(
-				Duration.seconds(0.01),
+				Duration.seconds(0.02),
 				(ev ->{
 				    if(cpt < 150) {
                         s.monter();
                     }
 				    else if(cpt >=150){
 				        s.descendre();
-				        if(cpt==300){
-				            cpt=0;
-                        }
                     }
                     cpt++;
+                    if(cpt==299){
+                        cpt=0;
+                    }
 				})
 				);
 		gameLoop.getKeyFrames().add(kf);
