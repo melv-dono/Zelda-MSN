@@ -16,7 +16,7 @@ public abstract class Personnage {
     public Personnage(String n, Environnement e) {
         this.nom =n;
         this.id = numId++;
-        this.xProperty = new SimpleDoubleProperty(0);
+        this.xProperty = new SimpleDoubleProperty(544);
         this.yProperty = new SimpleDoubleProperty(0);
         this.env = e;
     }

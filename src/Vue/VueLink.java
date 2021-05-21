@@ -17,7 +17,7 @@ public class VueLink {
     }
 
     public ImageView creeSprite() {
-        ImageView link = new ImageView("Vue/Link32x32.png");
+        ImageView link = new ImageView("Vue/link_32.gif");
         link.translateXProperty().bind(p.getXProperty());
         link.translateYProperty().bind(p.getYProperty());
         return link;

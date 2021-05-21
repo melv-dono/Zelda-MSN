@@ -23,31 +23,52 @@ public class Link extends Personnage{
 
     public void monter() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if (carte[(int) (getX()/40)][(int) (getY()/23)-1] == 1) {//deplacement vers le haut bloquer
+        if (carte[(int) (getX()/32)][(int) (getY()/32)] == 1) {//deplacement vers le haut bloquer
             setY(getY() - 4);
-            System.out.println("case du tableau: " + carte[(int) (getX()/40)][(int) (getY()/23)]);
+            System.out.println("case du tableau: " + carte[(int) (getX()/32)][(int) (getY()/32)]);
             System.out.println("coordonées réels: " + getX() + " " + getY());
+        }
+        else {
+            System.out.println("Collision en "+ getX()/32 + " " + getY()/32);
+           // System.out.println("pas de recul");
+            //descendre();
         }
     }
     public void descendre() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if (carte[(int) (getX()/40)][(int) (getY()/23)+1] == 1) {//deplacement vers le bas bloquer
+        if (carte[(int) (getX()/32)][(int) (getY()/32)+1] == 1) {//deplacement vers le bas bloquer
             setY(getY() + 4);
-            System.out.println("case du tableau: " + carte[(int) (getX()/40)][(int) (getY()/23)]);
+            System.out.println("case du tableau: " + carte[(int) (getX()/32)][(int) (getY()/32)]);
             System.out.println("coordonées réels: " + getX() + " " + getY());
         }
+        else {
+            System.out.println("Collision en "+ getX()/32 + " " + getY()/32);
+            // System.out.println("pas de recul");
+            //descendre();
+        }
+
 
     }
     public void gauche() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if (carte[(int) (getX()/40)-1][(int) (getY()/23)] == 1) {//deplacement vers la gauche bloquer
+        if (carte[(int) (getX()/32)][(int) (getY()/32)] == 1) {//deplacement vers la gauche bloquer
             setX(getX() - 4);
+        }
+        else {
+            System.out.println("Collision en "+ getX()/32 + " " + getY()/32);
+            //System.out.println("pas de recul");
+            //droite();
         }
     }
     public void droite() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if (carte[(int) (getX()/40)+1][(int) (getY()/23)] == 1) {//deplacement vers droite bloquer
+        if (carte[(int) (getX()/32)+1][(int) (getY()/32)] == 1) {//deplacement vers droite bloquer
             setX(getX() + 4);
+        }
+        else {
+            System.out.println("Collision en "+ getX()/32 + " " + getY()/32);
+            // System.out.println("pas de recul");
+            //descendre();
         }
     }
 
