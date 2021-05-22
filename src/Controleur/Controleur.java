@@ -3,33 +3,22 @@ package Controleur;
 import Modèle.Environnement;
 import Modèle.Link;
 import Modèle.MapModele;
-import Modèle.Personnage;
 import Modèle.Squelette;
 import Vue.MapReader;
 import Vue.VueLink;
-import Vue.VuePersonnage;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.event.EventHandler;
-import javafx.util.Duration;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -97,10 +86,6 @@ public class Controleur implements Initializable {
         MapModele spawn = new MapModele("testMap");
         MapReader m  = new MapReader(map);
         m.chargerMap(spawn.getTableau());
-
-
-        Link p = new Link();
-        m.chargerMap(spawn.getTableau());
         Environnement env = new Environnement(LARGEUR, HAUTEUR,spawn);
         Link p = new Link(env);
         VueLink vue = new VueLink(p);
@@ -111,8 +96,7 @@ public class Controleur implements Initializable {
         ProgressBarExp.setProgress(0.7);
         plateau.getChildren().add(personnage);
         plateau.setOnKeyPressed(a);
-
-        Squelette s = new Squelette("Squelette");
+        Squelette s = new Squelette("Squelette",env);
         VueSquelette vueS = new VueSquelette(s);
         ImageView imageSquelette = vueS.creeSprite();
         plateau.getChildren().add(imageSquelette);

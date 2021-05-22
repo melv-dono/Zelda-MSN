@@ -28,11 +28,12 @@ public abstract class Personnage {
         exp=new SimpleDoubleProperty(0);
     }
 
-    public Personnage(String n, int x, int y){
+    public Personnage(String n, int x, int y,Environnement e){
         this.nom =n;
         this.id = numId++;
         this.deplacementLargeur = new SimpleDoubleProperty(x);
         this.deplacementHauteur = new SimpleDoubleProperty(y);
+        env=e;
         //this.env = new Environnement();
     }
 
