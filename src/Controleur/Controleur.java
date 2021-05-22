@@ -1,5 +1,6 @@
 package Controleur;
 
+import Modèle.Environnement;
 import Modèle.Link;
 import Modèle.MapModele;
 import Modèle.Personnage;
@@ -50,6 +51,11 @@ public class Controleur implements Initializable {
     @FXML
     private VBox menuPause;
 
+    //Attention on a du retirer 2 tile (64) par rapport aux valeurs initials, afin de rester dans le cadre.
+    //Attention la bonne résolution a été rétabli
+    static int LARGEUR = 1280;
+    static int HAUTEUR = 736;
+
     @FXML
     private Pane plateau;
 
@@ -94,6 +100,9 @@ public class Controleur implements Initializable {
 
 
         Link p = new Link();
+        m.chargerMap(spawn.getTableau());
+        Environnement env = new Environnement(LARGEUR, HAUTEUR,spawn);
+        Link p = new Link(env);
         VueLink vue = new VueLink(p);
         ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
         ImageView personnage = vue.creeSprite();

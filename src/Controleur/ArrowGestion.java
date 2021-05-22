@@ -37,16 +37,16 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
         // Attention les coordonnées des y sont inversés.
         switch (keyEvent.getCode()) {
             case UP:
-                this.perso.setY(this.perso.getY() - 4);
+                this.perso.monter();
                 break;
             case DOWN:
-                this.perso.setY(this.perso.getY() + 4);
+                this.perso.descendre();
                 break;
             case LEFT:
-                this.perso.setX(this.perso.getX() - 4);
+                this.perso.gauche();
                 break;
             case RIGHT:
-                this.perso.setX(this.perso.getX() + 4);
+                this.perso.droite();
                 break;
             case I:
                 menuPause.setVisible(true);

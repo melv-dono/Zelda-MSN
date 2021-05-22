@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class MapReader {
     @FXML
@@ -16,10 +17,11 @@ public class MapReader {
         this.map = t;
     }
 
-    public void chargerMap(int[] coordoneesCarte){
+    public void chargerMap(int[][] coordoneesCarte){
         int tuiles =0;
-        for (int i=0; i<(coordoneesCarte.length); i++){
-            switch (coordoneesCarte[tuiles]){
+        for (int i=0; i<23; i++){
+            for (int j=0; j<40; j++) {
+                switch (coordoneesCarte[i][j]) {
                     case 1:
                         ImageView affichageHerbe = new ImageView("Vue/herbe32x32.png");
                         map.getChildren().add(affichageHerbe);
@@ -30,8 +32,8 @@ public class MapReader {
                         break;
                     default:
                         break;
+                }
             }
-            tuiles++;
         }
     }
 }
