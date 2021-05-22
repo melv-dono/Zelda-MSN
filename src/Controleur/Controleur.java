@@ -1,34 +1,24 @@
 package Controleur;
 
+import Modèle.Environnement;
 import Modèle.Link;
 import Modèle.MapModele;
-import Modèle.Personnage;
 import Modèle.Squelette;
 import Vue.MapReader;
 import Vue.VueLink;
-import Vue.VuePersonnage;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.event.EventHandler;
-import javafx.util.Duration;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -50,6 +40,11 @@ public class Controleur implements Initializable {
     @FXML
     private VBox menuPause;
 
+    //Attention on a du retirer 2 tile (64) par rapport aux valeurs initials, afin de rester dans le cadre.
+    //Attention la bonne résolution a été rétabli
+    static int LARGEUR = 1280;
+    static int HAUTEUR = 736;
+
     @FXML
     private Pane plateau;
 
@@ -69,7 +64,7 @@ public class Controleur implements Initializable {
         gameLoop = new Timeline();
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
         KeyFrame kf = new KeyFrame(
-				Duration.seconds(0.02),
+				Duration.seconds(0.01),
 				(ev ->{
 				    if(cpt < 150) {
                         s.monter();
@@ -77,10 +72,10 @@ public class Controleur implements Initializable {
 				    else if(cpt >=150){
 				        s.descendre();
                     }
-                    cpt++;
-                    if(cpt==299){
+                    if(cpt==298){
                         cpt=0;
                     }
+                    cpt++;
 				})
 				);
 		gameLoop.getKeyFrames().add(kf);
@@ -91,9 +86,8 @@ public class Controleur implements Initializable {
         MapModele spawn = new MapModele("testMap");
         MapReader m  = new MapReader(map);
         m.chargerMap(spawn.getTableau());
-
-
-        Link p = new Link();
+        Environnement env = new Environnement(LARGEUR, HAUTEUR,spawn);
+        Link p = new Link(env);
         VueLink vue = new VueLink(p);
         ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
         ImageView personnage = vue.creeSprite();
@@ -102,8 +96,7 @@ public class Controleur implements Initializable {
         ProgressBarExp.setProgress(0.7);
         plateau.getChildren().add(personnage);
         plateau.setOnKeyPressed(a);
-
-        Squelette s = new Squelette("Squelette");
+        Squelette s = new Squelette("Squelette",env);
         VueSquelette vueS = new VueSquelette(s);
         ImageView imageSquelette = vueS.creeSprite();
         plateau.getChildren().add(imageSquelette);
