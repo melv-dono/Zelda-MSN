@@ -1,7 +1,5 @@
 package Modèle;
 
-import javafx.scene.input.KeyEvent;
-
 public class Link extends Personnage{
     public Link(Environnement e) {
         super("Link", e);
@@ -14,62 +12,94 @@ public class Link extends Personnage{
      */
     public void position() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        int positionX = (int) (getX()/32);
-        int positionY = (int) (getY()/32);
-        if (carte[positionX+1][positionY] == 2) {//deplacement vers la droite bloquer
+        int positionX = (int) (getDeplacementHauteur()/32);
+        int positionY = (int) (getDeplacementLargeur()/32);
+/*        if (carte[positionX+1][positionY] == 2) {//deplacement vers la droite bloquer
 
-        }
+        }*/
     }
 
     public void monter() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if (carte[(int) (getX()/32)][(int) (getY()/32)] == 1) {//deplacement vers le haut bloquer
-            setY(getY() - 4);
-            System.out.println("case du tableau: " + carte[(int) (getX()/32)][(int) (getY()/32)]);
-            System.out.println("coordonées réels: " + getX() + " " + getY());
+        if((getDeplacementHauteur()/32)-1<0){
+            System.out.println("bordure de map");
+            collisionAffCoord(carte);
+        }else if (carte[(int) ((getDeplacementHauteur()/32)-1)][(int) (getDeplacementLargeur()/32)] == 1) {//deplacement vers le haut bloquer
+            setDeplacementHauteur(getDeplacementHauteur() - 32);
+            depAffCoord(carte);
         }
         else {
-            System.out.println("Collision en "+ getX()/32 + " " + getY()/32);
-           // System.out.println("pas de recul");
-            //descendre();
+            collisionAffCoord(carte);
         }
     }
     public void descendre() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if (carte[(int) (getX()/32)][(int) (getY()/32)+1] == 1) {//deplacement vers le bas bloquer
-            setY(getY() + 4);
-            System.out.println("case du tableau: " + carte[(int) (getX()/32)][(int) (getY()/32)]);
-            System.out.println("coordonées réels: " + getX() + " " + getY());
+        if(((getDeplacementHauteur()/32)+1)>=23){
+            System.out.println("bordure de map");
+            collisionAffCoord(carte);
+        }else if (carte[(int) ((getDeplacementHauteur()/32)+1)][(int) (getDeplacementLargeur()/32)] == 1)  {//deplacement vers le bas bloquer
+            setDeplacementHauteur(getDeplacementHauteur() + 32);
+            depAffCoord(carte);
         }
         else {
-            System.out.println("Collision en "+ getX()/32 + " " + getY()/32);
-            // System.out.println("pas de recul");
-            //descendre();
+            collisionAffCoord(carte);
         }
-
-
     }
     public void gauche() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if (carte[(int) (getX()/32)][(int) (getY()/32)] == 1) {//deplacement vers la gauche bloquer
-            setX(getX() - 4);
+        if((getDeplacementLargeur()/32)-1<0){
+            System.out.println("bordure de map");
+            collisionAffCoord(carte);
+        }else if (carte[(int) (getDeplacementHauteur()/32)][(int) ((getDeplacementLargeur()/32)-1)] == 1) {
+            setDeplacementLargeur(getDeplacementLargeur() - 32);
+            depAffCoord(carte);
         }
         else {
-            System.out.println("Collision en "+ getX()/32 + " " + getY()/32);
-            //System.out.println("pas de recul");
-            //droite();
+            collisionAffCoord(carte);
         }
     }
     public void droite() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if (carte[(int) (getX()/32)+1][(int) (getY()/32)] == 1) {//deplacement vers droite bloquer
-            setX(getX() + 4);
+        if(((getDeplacementLargeur()/32)+1)>=40){
+            System.out.println("bordure de map");
+            collisionAffCoord(carte);
+        }else if (carte[(int) (getDeplacementHauteur()/32)][(int) ((getDeplacementLargeur()/32)+1)] == 1) {
+            setDeplacementLargeur(getDeplacementLargeur() + 32);
+            depAffCoord(carte);
         }
         else {
-            System.out.println("Collision en "+ getX()/32 + " " + getY()/32);
-            // System.out.println("pas de recul");
-            //descendre();
+            collisionAffCoord(carte);
         }
+    }
+    private void depAffCoord(int[][]carte){
+        System.out.println("case du tableau: " + carte[(int) (getDeplacementHauteur()/32)][(int) (getDeplacementLargeur()/32)]);
+        System.out.println("coordonées réels: " + getDeplacementHauteur() + " " + getDeplacementLargeur());
+        System.out.println();
+    }
+    private void collisionAffCoord(int [][]carte){
+        System.out.println("Collision en "+ getDeplacementHauteur()/32 + " " + getDeplacementLargeur()/32);
+        System.out.println("case du tableau: " + carte[(int) (getDeplacementHauteur()/32)][(int) (getDeplacementLargeur()/32)]);
+        System.out.println("coordonées réels: " + getDeplacementHauteur() + " " + getDeplacementLargeur());
+        System.out.println();
+    }
+    private void posTab(int [][]carte){
+        int cmptX=-1;
+        int cmptY;
+        for(int i=0;i<23;i++){
+            cmptX++;
+            cmptY=0;
+            System.out.print("Ligne"+(cmptX+1)+" : ");
+            for(int j=0;j<40;j++){
+                if((getDeplacementHauteur()/32)==cmptX&&(getDeplacementLargeur()/32)==cmptY){
+                    System.out.print("*");
+                }else{
+                    System.out.print(carte[i][j]);
+                }
+                cmptY++;
+            }
+            System.out.println();
+        }
+        System.out.println("---------");
     }
 
 }

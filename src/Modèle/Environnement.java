@@ -1,10 +1,9 @@
 package Modèle;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Environnement { // Toutes les méthodes de cette classe ne sont pas encore utilisé dans le code
-    private int width,height;
+    private int width,height; // largeur == width - hauteur == height
     private ArrayList<Personnage> lesPerso;
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
     private MapModele mapActuelle; // La mapActuelle contient les données concrenant la map courante sur laquelle se tient le prso c'est à dire celle du TilePane.
@@ -34,7 +33,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
     public void addPerso(Personnage p){ // méthode non utilisé pour l'instant
-        if(p.getX()>width || p.getX()<0|| p.getY()>height||p.getY()<0){
+        if(p.getDeplacementLargeur()>width || p.getDeplacementLargeur()<0|| p.getDeplacementHauteur()>height||p.getDeplacementHauteur()<0){
             return ;
         }
         lesPerso.add(p);
@@ -46,7 +45,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     private void collisionEmplacement(Personnage p){ // méthode pas codée et pas encore utile dans le code
         for (Personnage persoEnPlace:lesPerso){
-            if(p.getX()==persoEnPlace.getX()&& p.getY()==persoEnPlace.getY()){
+            if(p.getDeplacementLargeur()==persoEnPlace.getDeplacementLargeur()&& p.getDeplacementHauteur()==persoEnPlace.getDeplacementHauteur()){
 
             }
         }
