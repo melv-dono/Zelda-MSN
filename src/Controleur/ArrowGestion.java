@@ -4,8 +4,11 @@ import Modèle.Link;
 import Modèle.Personnage;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
 /*
@@ -16,10 +19,17 @@ import javafx.scene.shape.Circle;
 public class ArrowGestion implements EventHandler<KeyEvent> {
 
     @FXML
+    private VBox menuPause;
+    @FXML
     private Personnage perso;
+    @FXML
+    private Pane plateau;
 
-    public ArrowGestion(Link p) {
+    public ArrowGestion(Link p,Pane pane,VBox vb) {
         this.perso = p;
+        plateau=pane;
+        menuPause=vb;
+        menuPause.setVisible(false);
     }
 
     @Override
@@ -27,16 +37,22 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
         // Attention les coordonnées des y sont inversés.
         switch (keyEvent.getCode()) {
             case UP:
-                this.perso.setY(this.perso.getY() - 4);
+                this.perso.monter();
                 break;
             case DOWN:
-                this.perso.setY(this.perso.getY() + 4);
+                this.perso.descendre();
                 break;
             case LEFT:
-                this.perso.setX(this.perso.getX() - 4);
+                this.perso.gauche();
                 break;
             case RIGHT:
-                this.perso.setX(this.perso.getX() + 4);
+                this.perso.droite();
+                break;
+            case I:
+                menuPause.setVisible(true);
+                break;
+            case Q:
+                menuPause.setVisible(false);
                 break;
             default:
                 break;
