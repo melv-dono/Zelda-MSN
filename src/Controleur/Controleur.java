@@ -102,7 +102,7 @@ public class Controleur implements Initializable {
         ProgressBarExp.setProgress(0.7);
         plateau.getChildren().add(personnage);
         plateau.setOnKeyPressed(a);
-        Squelette s = new Squelette("Squelette",env);
+        Squelette s = new Squelette("Squelette",env,"a");
         VueSquelette vueS = new VueSquelette(s);
         ImageView imageSquelette = vueS.creeSprite();
         plateau.getChildren().add(imageSquelette);
