@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 // Attention il faut mettre un invariant pour que les pv ne puissent dépasser les pv max
-// Attention l'exp uniquement pour Link ?
 public abstract class Personnage {
     private String nom;
     private int id; // numéro unique pour chaque personnage
