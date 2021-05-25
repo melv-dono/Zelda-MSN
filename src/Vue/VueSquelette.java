@@ -23,7 +23,7 @@ public class VueSquelette implements VuePersonnage{
      */
     public ImageView creeSprite() {
         ImageView squelette = new ImageView("Vue/bad_skeleton.gif");
-        squelette.translateXProperty().bind(s.getDeplacementHauteurProperty());
+        squelette.translateXProperty().bind(s.getDeplacementLargeurProperty());
         squelette.translateYProperty().bind(s.getDeplacementHauteurProperty());
         return squelette;
     }
