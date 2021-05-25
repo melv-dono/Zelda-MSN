@@ -1,12 +1,7 @@
-import Controleur.ArrowGestion;
-import Vue.MapReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -17,8 +12,8 @@ public class Main extends Application{
         Scene scene=new Scene(root, 1280, 736);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Zelda");
+        primaryStage.setResizable(false);
         primaryStage.show();
-
 
     }
     public static void main(String[] args) {
