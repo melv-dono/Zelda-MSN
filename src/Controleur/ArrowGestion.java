@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
 /*
- * Cette classe est un gestionnaire d'éveènement permettant de gerer des déplacements via le clavier.
+ * Cette classe est un gestionnaire d'éveènement permettant de gerer des évènements via le clavier.
  * Chaque déplacement change les coordonnées du personnage dans le modèle et cela se répercute dans la vue.
  */
 

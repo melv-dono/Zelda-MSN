@@ -14,10 +14,16 @@ public class Squelette extends Personnage{
         super(n,0,600, env);
     }
 
+    /**
+     * Déplace le squelette vers le haut
+     */
     public void monter(){
         this.setDeplacementHauteur(this.getDeplacementHauteur()-1);
     }
 
+    /**
+     * Déplace le squelette vers le bas
+     */
     public void descendre(){
         this.setDeplacementHauteur(this.getDeplacementHauteur()+1);
     }

@@ -17,6 +17,10 @@ public class VueLink implements VuePersonnage{
         this.p=perso;
     }
 
+    /**
+     * Crée l'image de Link et l'associe au modèle.
+     * @return
+     */
     public ImageView creeSprite() {
         ImageView link = new ImageView("Vue/Link32x32.png");
         link.translateXProperty().bind(p.getXProperty());

@@ -17,6 +17,10 @@ public class VueSquelette implements VuePersonnage{
         this.s=squelette;
     }
 
+    /**
+     * Crée l'image du squelette et l'associe au modèle.
+     * @return
+     */
     public ImageView creeSprite() {
         ImageView squelette = new ImageView("Vue/bad_skeleton.gif");
         squelette.translateXProperty().bind(s.getDeplacementHauteurProperty());

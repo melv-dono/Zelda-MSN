@@ -40,8 +40,6 @@ public class Controleur implements Initializable {
     @FXML
     private VBox menuPause;
 
-    //Attention on a du retirer 2 tile (64) par rapport aux valeurs initials, afin de rester dans le cadre.
-    //Attention la bonne résolution a été rétabli
     static int LARGEUR = 1280;
     static int HAUTEUR = 736;
 
@@ -58,7 +56,10 @@ public class Controleur implements Initializable {
     private int cpt;
 
 
-
+    /**
+     * Rend automatique le déplacement du squelette au sein de l'environnement.
+     * @param s
+     */
     private void animation(Squelette s){
         cpt=0;
         gameLoop = new Timeline();
@@ -81,6 +82,11 @@ public class Controleur implements Initializable {
 		gameLoop.getKeyFrames().add(kf);
 	}
 
+    /**
+     * Charge tous les éléments présent sur la map de départ.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MapModele spawn = new MapModele("testMap");
