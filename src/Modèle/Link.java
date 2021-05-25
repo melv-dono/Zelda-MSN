@@ -6,19 +6,10 @@ public class Link extends Personnage{
     }
 
     /**
-     * Cette méthode permet de connaître la position du personnage sur une map
-     * En fonction de si le personnage est sur un obstacle @Deplacement peut être true ou false
-     * @return boolean
+     * Déplace Link vers le haut
+     * Affiche les collisions si besoin
+     * Affiche les déplacements
      */
-    public void position() {
-        int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        int positionX = (int) (getDeplacementHauteur()/32);
-        int positionY = (int) (getDeplacementLargeur()/32);
-/*        if (carte[positionX+1][positionY] == 2) {//deplacement vers la droite bloquer
-
-        }*/
-    }
-
     public void monter() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
         if((getDeplacementHauteur()/32)-1<0){
@@ -32,6 +23,12 @@ public class Link extends Personnage{
             collisionAffCoord(carte);
         }
     }
+
+    /**
+     * Déplace Link vers le bas
+     * Affiche les collisions si besoin
+     * Affiche les déplacements
+     */
     public void descendre() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
         if(((getDeplacementHauteur()/32)+1)>=23){
@@ -45,6 +42,12 @@ public class Link extends Personnage{
             collisionAffCoord(carte);
         }
     }
+
+    /**
+     * Déplace Link vers la gauche
+     * Affiche les collisions si besoin
+     * Affiche les déplacements
+     */
     public void gauche() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
         if((getDeplacementLargeur()/32)-1<0){
@@ -58,6 +61,12 @@ public class Link extends Personnage{
             collisionAffCoord(carte);
         }
     }
+
+    /**
+     * Déplace Link vers la droite
+     * Affiche les collisions si besoin
+     * Affiche les déplacements
+     */
     public void droite() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
         if(((getDeplacementLargeur()/32)+1)>=40){
@@ -71,17 +80,32 @@ public class Link extends Personnage{
             collisionAffCoord(carte);
         }
     }
+
+    /**
+     * Affiche la position de Link sur le tableau mais aussi dans l'environnement.
+     * @param carte
+     */
     private void depAffCoord(int[][]carte){
         System.out.println("case du tableau: " + carte[(int) (getDeplacementHauteur()/32)][(int) (getDeplacementLargeur()/32)]);
         System.out.println("coordonées réels: " + getDeplacementHauteur() + " " + getDeplacementLargeur());
         System.out.println();
     }
+
+    /**
+     * Affiche la position d'un point de collision (tableau de donnée + envirionnement).
+     * @param carte
+     */
     private void collisionAffCoord(int [][]carte){
         System.out.println("Collision en "+ getDeplacementHauteur()/32 + " " + getDeplacementLargeur()/32);
         System.out.println("case du tableau: " + carte[(int) (getDeplacementHauteur()/32)][(int) (getDeplacementLargeur()/32)]);
         System.out.println("coordonées réels: " + getDeplacementHauteur() + " " + getDeplacementLargeur());
         System.out.println();
     }
+
+    /**
+     * Affiche la position de link sur le tableau de donnée.
+     * @param carte
+     */
     private void posTab(int [][]carte){
         int cmptX=-1;
         int cmptY;

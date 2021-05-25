@@ -17,6 +17,10 @@ public class MapReader {
         this.map = t;
     }
 
+    /**
+     * Charge les tuiles du TilePane avec les images de la vue.
+     * @param coordoneesCarte
+     */
     public void chargerMap(int[][] coordoneesCarte){
         int tuiles =0;
         for (int i=0; i<23; i++){
