@@ -1,9 +1,6 @@
 package Controleur;
 
-import Modèle.Environnement;
-import Modèle.Link;
-import Modèle.MapModele;
-import Modèle.Squelette;
+import Modèle.*;
 import Vue.MapReader;
 import Vue.VueLink;
 import Vue.VueSquelette;
@@ -39,9 +36,6 @@ public class Controleur implements Initializable {
 
     @FXML
     private VBox menuPause;
-
-    static int LARGEUR = 1280;
-    static int HAUTEUR = 736;
 
     @FXML
     private Pane plateau;
@@ -92,7 +86,7 @@ public class Controleur implements Initializable {
         MapModele spawn = new MapModele("testMap");
         MapReader m  = new MapReader(map);
         m.chargerMap(spawn.getTableau());
-        Environnement env = new Environnement(LARGEUR, HAUTEUR,spawn);
+        Environnement env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,spawn);
         Link p = new Link(env);
         VueLink vue = new VueLink(p);
         ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
