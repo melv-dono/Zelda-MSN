@@ -10,6 +10,8 @@ public class ObjetVue {
     }
     public ImageView CreerSpriteObjet(){
         ImageView spriteObj=new ImageView("Vue/inventory_potionblue.gif");
+        spriteObj.translateXProperty().bind(objet.getPositionLargeur());
+        spriteObj.translateYProperty().bind(objet.getPositionHauteur());
         return spriteObj;
     }
 }

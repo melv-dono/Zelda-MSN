@@ -1,10 +1,8 @@
 package Controleur;
 
-import Modèle.Environnement;
-import Modèle.Link;
-import Modèle.MapModele;
-import Modèle.Squelette;
+import Modèle.*;
 import Vue.MapReader;
+import Vue.ObjetVue;
 import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
@@ -106,7 +104,10 @@ public class Controleur implements Initializable {
         VueSquelette vueS = new VueSquelette(s);
         ImageView imageSquelette = vueS.creeSprite();
         plateau.getChildren().add(imageSquelette);
-
+        Objet potion=new Objet("potion",520,615,15,env);
+        ObjetVue vuePotion=new ObjetVue(potion);
+        ImageView imgPotion=vuePotion.CreerSpriteObjet();
+        plateau.getChildren().add(imgPotion);
         animation(s);
         gameLoop.play();
 
