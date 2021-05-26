@@ -1,4 +1,5 @@
 package Vue;
+import Modèle.Parametre;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,8 +24,8 @@ public class MapReader {
      */
     public void chargerMap(int[][] coordoneesCarte){
         int tuiles =0;
-        for (int i=0; i<23; i++){
-            for (int j=0; j<40; j++) {
+        for (int i = 0; i< Parametre.LIGNE; i++){
+            for (int j=0; j<Parametre.COLONNE; j++) {
                 switch (coordoneesCarte[i][j]) {
                     case 1:
                         ImageView affichageHerbe = new ImageView("Vue/herbe32x32.png");

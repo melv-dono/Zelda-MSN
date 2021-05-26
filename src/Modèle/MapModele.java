@@ -7,11 +7,11 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
     private String nomMap;
     private int[][] tableau; // Contient les données de la map chargées par ce modèle.
     private StringBuilder s; // Contient les lignes du ficher dont les données sont chargées par le modèle.
-    private static int resolutionEcran = 40 * 23; // Taile de la fenêtre de jeu.
+    private static int resolutionEcran = Parametre.COLONNE * Parametre.LIGNE; // Taile de la fenêtre de jeu.
 
     public MapModele(String nom) {
         this.nomMap = nom;
-        this.tableau = new int[23][40];
+        this.tableau = new int[Parametre.LIGNE][Parametre.COLONNE];
         s = null;
     }
 
