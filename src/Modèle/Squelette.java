@@ -8,7 +8,7 @@ import javafx.util.Duration;
 import Modèle.Environnement;
 public class Squelette extends Personnage{
 
-    public Squelette(String n,Environnement env,String a) {
+    public Squelette(String n,Environnement env) {
         super(n,1000,300, env);
     }
 

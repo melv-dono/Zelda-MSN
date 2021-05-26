@@ -27,4 +27,5 @@ public class VueLink {
         link.translateYProperty().bind(p.getDeplacementHauteurProperty());
         return link;
     }
+
 }

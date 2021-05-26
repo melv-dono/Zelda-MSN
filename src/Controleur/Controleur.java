@@ -89,7 +89,8 @@ public class Controleur implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        MapModele spawn = new MapModele("testMap");
+        //MapModele spawn = new MapModele("testMap");
+        MapModele spawn = new MapModele("map1");
         MapReader m  = new MapReader(map);
         m.chargerMap(spawn.getTableau());
         Environnement env = new Environnement(LARGEUR, HAUTEUR,spawn);
@@ -102,7 +103,7 @@ public class Controleur implements Initializable {
         ProgressBarExp.setProgress(0.7);
         plateau.getChildren().add(personnage);
         plateau.setOnKeyPressed(a);
-        Squelette s = new Squelette("Squelette",env,"a");
+        Squelette s = new Squelette("Squelette",env);
         VueSquelette vueS = new VueSquelette(s);
         ImageView imageSquelette = vueS.creeSprite();
         plateau.getChildren().add(imageSquelette);

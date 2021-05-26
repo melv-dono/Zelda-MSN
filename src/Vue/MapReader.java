@@ -1,5 +1,6 @@
 package Vue;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -22,7 +23,7 @@ public class MapReader {
      * @param coordoneesCarte
      */
     public void chargerMap(int[][] coordoneesCarte){
-        int tuiles =0;
+        /*int tuiles =0;
         for (int i=0; i<23; i++){
             for (int j=0; j<40; j++) {
                 switch (coordoneesCarte[i][j]) {
@@ -37,6 +38,22 @@ public class MapReader {
                     default:
                         break;
                 }
+            }
+        }*/
+
+
+
+        Image tileset = new Image("Vue/Tuile.png");
+        ImageView image;
+
+        for (int i=0; i<23; i++){
+            for(int j=0; j<40;j++){
+                image = new ImageView(tileset);
+                int ligne = ((coordoneesCarte[i][j] - (coordoneesCarte[i][j] % 10)) /10 ) * 32;
+                int colonne = ((coordoneesCarte[i][j] % 10)-1) * 32;
+                Rectangle2D r = new Rectangle2D(colonne,ligne,32,32);
+                image.setViewport(r);
+                map.getChildren().add(image);
             }
         }
     }

@@ -22,6 +22,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
+
     }
 
     /**
