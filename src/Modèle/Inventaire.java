@@ -1,40 +1,41 @@
 package Modèle;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Inventaire {
-    private Objet[][] listeObjets;
+    private ObservableList<String> listeObjets;
+    private int tailleInventaire;
 
     public Inventaire(){
-        listeObjets=new Objet[4][4];
+        listeObjets= FXCollections.observableArrayList();
+        tailleInventaire=15;
+    }
+    public ObservableList<String> getListeObjets(){
+        return listeObjets;
+    }
+    public int getTailleInventaire(){
+        return tailleInventaire;
     }
 
     public void addObjet(Objet obj){
         if(restePlaceInventaire()==false){
             System.out.println("L'inventaire ne peut plus stocker d'objet");
         }else{
-            for(int ligne=0;ligne<4;ligne++){
-                for(int colonne=0;colonne<4;colonne++){
-                    if(!(listeObjets[ligne][colonne] instanceof Objet)) {
-                        listeObjets[ligne][colonne] = obj;
-                    }
-                }
-            }
+            listeObjets.add(obj.getNom());
         }
 
     }
 
     private boolean restePlaceInventaire(){
         int placeUse=0;
-        for(int ligne=0;ligne<4;ligne++){
-            for(int colonne=0;colonne<4;colonne++){
-                if(listeObjets[ligne][colonne] instanceof Objet){
-                    placeUse++;
-                }else{
-                    return true;
-                }
-            }
+        for(String h:listeObjets){
+            placeUse++;
         }
-        return false;
+        if(placeUse>15){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

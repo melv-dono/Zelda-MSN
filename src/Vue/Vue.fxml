@@ -57,23 +57,9 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="INVENTAIRE" />
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="640.0" style="-fx-border-color: white; -fx-border-radius: 15;">
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="640.0" style="-fx-border-color: white; -fx-border-radius: 15;">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </HBox>
+                              <ListView fx:id="listViewMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="627.0" style="-fx-background-color: grey;" />
                            </children>
                            <VBox.margin>
                               <Insets top="20.0" />

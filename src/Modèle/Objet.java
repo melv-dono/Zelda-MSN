@@ -17,6 +17,10 @@ public class Objet {
         pointsRegeneration=ptRegen;
         env=e;
     }
+    public Objet(String nom,Environnement e){
+        this.nom=nom;
+        this.env=e;
+    }
     public String getNom(){
         return nom;
     }
@@ -28,6 +32,14 @@ public class Objet {
     }
     public int getPointsRegeneration(){
         return pointsRegeneration;
+    }
+    public boolean ramasserObjet(double posLargeurLink,double posHauteurLink){
+        if(positionLargeur.getValue()-posLargeurLink<=32 && positionHauteur.getValue()==posHauteurLink){
+            return true;
+        }else{
+            System.out.println("vous ne pouvez ramassez aucun objet");
+            return false;
+        }
     }
 
 

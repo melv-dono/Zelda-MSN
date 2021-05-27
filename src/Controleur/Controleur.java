@@ -10,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -50,6 +51,9 @@ public class Controleur implements Initializable {
     private VBox LinkLife;
 
     private Timeline gameLoop;
+
+    @FXML
+    private ListView<String> listViewMenu;
 
     private int cpt;
 
@@ -93,21 +97,22 @@ public class Controleur implements Initializable {
         Environnement env = new Environnement(LARGEUR, HAUTEUR,spawn);
         Link p = new Link(env);
         VueLink vue = new VueLink(p);
-        ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
+        Objet potion=new Objet("potion",520,615,15,env);
+        ObjetVue vuePotion=new ObjetVue(potion);
+        ImageView imgPotion=vuePotion.CreerSpriteObjet();
+        SceneEventGestion a = new SceneEventGestion(p,plateau,menuPause,potion);
         ImageView personnage = vue.creeSprite();
         this.ptVie.textProperty().bind(p.pv().asString());
         labelNiveau.textProperty().bind(p.niveau().asString());
         ProgressBarExp.setProgress(0.7);
-        plateau.getChildren().add(personnage);
         plateau.setOnKeyPressed(a);
         Squelette s = new Squelette("Squelette",env,"a");
         VueSquelette vueS = new VueSquelette(s);
         ImageView imageSquelette = vueS.creeSprite();
-        plateau.getChildren().add(imageSquelette);
-        Objet potion=new Objet("potion",520,615,15,env);
-        ObjetVue vuePotion=new ObjetVue(potion);
-        ImageView imgPotion=vuePotion.CreerSpriteObjet();
-        plateau.getChildren().add(imgPotion);
+        Inventaire inventaire=new Inventaire();
+        inventaire.addObjet(new Objet("test",env));
+        listViewMenu.setItems(inventaire.getListeObjets());
+        plateau.getChildren().addAll(imageSquelette,imgPotion,personnage);
         animation(s);
         gameLoop.play();
 

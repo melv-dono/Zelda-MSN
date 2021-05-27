@@ -1,6 +1,8 @@
 package Controleur;
 
+import Modèle.Environnement;
 import Modèle.Link;
+import Modèle.Objet;
 import Modèle.Personnage;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,7 +18,7 @@ import javafx.scene.shape.Circle;
  * Chaque déplacement change les coordonnées du personnage dans le modèle et cela se répercute dans la vue.
  */
 
-public class ArrowGestion implements EventHandler<KeyEvent> {
+public class SceneEventGestion implements EventHandler<KeyEvent> {
 
     @FXML
     private VBox menuPause;
@@ -24,12 +26,15 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
     private Personnage perso;
     @FXML
     private Pane plateau;
+    @FXML
+    private Objet potion;
 
-    public ArrowGestion(Link p,Pane pane,VBox vb) {
-        this.perso = p;
+    public SceneEventGestion(Link p, Pane pane, VBox vb, Objet potion) {
+        perso = p;
         plateau=pane;
         menuPause=vb;
         menuPause.setVisible(false);
+        this.potion=potion;
     }
 
     @Override
@@ -54,6 +59,11 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
             case Q:
                 menuPause.setVisible(false);
                 break;
+            case R:
+                /*if(potion.ramasserObjet(perso.getDeplacementLargeur(),perso.getDeplacementHauteur())==true){
+                    plateau.se
+                }*/
+
             default:
                 break;
         }
