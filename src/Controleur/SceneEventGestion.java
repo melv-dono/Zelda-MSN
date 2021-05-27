@@ -31,7 +31,6 @@ public class SceneEventGestion implements EventHandler<KeyEvent> {
 
     public SceneEventGestion(Link p, Pane pane, VBox vb, Objet potion) {
         perso = p;
-        plateau=pane;
         menuPause=vb;
         menuPause.setVisible(false);
         this.potion=potion;

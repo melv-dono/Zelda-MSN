@@ -10,14 +10,14 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -52,10 +52,12 @@ public class Controleur implements Initializable {
     @FXML
     private VBox LinkLife;
 
+    @FXML
+    private GridPane gridPaneInventaire;
+
     private Timeline gameLoop;
 
-    @FXML
-    private ListView<String> listViewMenu;
+
 
     private int cpt;
 
@@ -112,14 +114,6 @@ public class Controleur implements Initializable {
         VueSquelette vueS = new VueSquelette(s);
         ImageView imageSquelette = vueS.creeSprite();
         Inventaire inventaire=new Inventaire();
-        inventaire.addObjet(new Objet("test",env));
-        listViewMenu.setItems(inventaire.getListeObjets());
-        listViewMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println("il a cliqué le djo");
-            }
-        });
         plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
         animation(s);
         gameLoop.play();
