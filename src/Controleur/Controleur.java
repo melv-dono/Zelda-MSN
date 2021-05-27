@@ -7,12 +7,14 @@ import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -112,7 +114,13 @@ public class Controleur implements Initializable {
         Inventaire inventaire=new Inventaire();
         inventaire.addObjet(new Objet("test",env));
         listViewMenu.setItems(inventaire.getListeObjets());
-        plateau.getChildren().addAll(imageSquelette,imgPotion,personnage);
+        listViewMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("il a cliqué le djo");
+            }
+        });
+        plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
         animation(s);
         gameLoop.play();
 
