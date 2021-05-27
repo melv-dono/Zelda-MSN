@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -90,18 +91,22 @@ public class Controleur implements Initializable {
         Link p = new Link(env);
         env.addPerso(p);
         VueLink vue = new VueLink(p);
-        ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
+        ArrowGestion a = new ArrowGestion(p);
+        LettreTyped l = new LettreTyped(p, menuPause);
         ImageView personnage = vue.creeSprite();
         this.ptVie.textProperty().bind(p.pvProperty().asString());
         labelNiveau.textProperty().bind(p.niveau().asString());
         ProgressBarExp.setProgress(0.7);
         plateau.getChildren().add(personnage);
+        plateau.setOnKeyTyped(l);
         plateau.setOnKeyPressed(a);
+
         Squelette s = new Squelette("Squelette",env);
         VueSquelette vueS = new VueSquelette(s);
         env.addPerso(s);
         ImageView imageSquelette = vueS.creeSprite();
         plateau.getChildren().add(imageSquelette);
+
 
         animation(s);
         gameLoop.play();
