@@ -22,9 +22,9 @@ public class VueLink implements VuePersonnage{
      * @return
      */
     public ImageView creeSprite() {
-        ImageView link = new ImageView("Vue/Link32x32.png");
-        link.translateXProperty().bind(p.getXProperty());
-        link.translateYProperty().bind(p.getYProperty());
+        ImageView link = new ImageView("Vue/ani_link_spin.gif");
+        link.translateXProperty().bind(p.getDeplacementLargeurProperty());
+        link.translateYProperty().bind(p.getDeplacementHauteurProperty());
         return link;
     }
 }

@@ -88,16 +88,18 @@ public class Controleur implements Initializable {
         m.chargerMap(spawn.getTableau());
         Environnement env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,spawn);
         Link p = new Link(env);
+        env.addPerso(p);
         VueLink vue = new VueLink(p);
         ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
         ImageView personnage = vue.creeSprite();
-        this.ptVie.textProperty().bind(p.pv().asString());
+        this.ptVie.textProperty().bind(p.pvProperty().asString());
         labelNiveau.textProperty().bind(p.niveau().asString());
         ProgressBarExp.setProgress(0.7);
         plateau.getChildren().add(personnage);
         plateau.setOnKeyPressed(a);
         Squelette s = new Squelette("Squelette",env);
         VueSquelette vueS = new VueSquelette(s);
+        env.addPerso(s);
         ImageView imageSquelette = vueS.creeSprite();
         plateau.getChildren().add(imageSquelette);
 

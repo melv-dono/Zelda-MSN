@@ -11,7 +11,7 @@ public class Squelette extends Personnage{
     private DoubleProperty yProperty;
 
     public Squelette(String n,Environnement env) {
-        super(n,0,600, env);
+        super(n,423,600, env, 100, 5, 5);
     }
 
     /**
@@ -35,5 +35,8 @@ public class Squelette extends Personnage{
     @Override
     public void droite() {
 
+    }
+
+    public void attaquer() {
     }
 }

@@ -54,6 +54,9 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
             case Q:
                 menuPause.setVisible(false);
                 break;
+            case A:
+                this.perso.attaquer();
+                break;
             default:
                 break;
         }

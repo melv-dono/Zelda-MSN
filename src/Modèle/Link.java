@@ -1,9 +1,16 @@
 package Modèle;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+
 public class Link extends Personnage{
+    private Epe armePrincipale;
+
     public Link(Environnement e) {
-        super("Link", e);
+        super("Link", e, 100, 10, 0);
+        this.armePrincipale = new Epe("Bâton", 30);
     }
+
 
     /**
      * Déplace Link vers le haut
@@ -124,6 +131,25 @@ public class Link extends Personnage{
             System.out.println();
         }
         System.out.println("---------");
+    }
+
+    public boolean cibleAtteignable(Personnage perso) {
+        if(		(this.getDeplacementHauteur()-32<= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()+32) &&
+                (this.getDeplacementLargeur()-32<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur()+32)
+        )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void attaquer() {
+        double dommage = getPointAttaque() + this.armePrincipale.getPointAttaque();
+        for (Personnage p : getEnv().getPerso()) {
+            if (p instanceof Squelette && cibleAtteignable(p)) {
+                p.perteDePv(dommage);
+            }
+        }
     }
 
 }
