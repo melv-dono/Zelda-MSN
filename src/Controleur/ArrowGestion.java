@@ -2,8 +2,10 @@ package Controleur;
 
 import Modèle.Link;
 import Modèle.Personnage;
+import Vue.VueLink;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -16,7 +18,7 @@ import javafx.scene.shape.Circle;
  * Chaque déplacement change les coordonnées du personnage dans le modèle et cela se répercute dans la vue.
  */
 
-public class ArrowGestion implements EventHandler<KeyEvent> {
+public class ArrowGestion implements EventHandler<KeyEvent>{
 
     @FXML
     private VBox menuPause;

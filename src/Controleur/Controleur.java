@@ -1,9 +1,6 @@
 package Controleur;
 
-import Modèle.Environnement;
-import Modèle.Link;
-import Modèle.MapModele;
-import Modèle.Squelette;
+import Modèle.*;
 import Vue.MapReader;
 import Vue.VueLink;
 import Vue.VueSquelette;
@@ -13,7 +10,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -55,7 +54,6 @@ public class Controleur implements Initializable {
 
     private int cpt;
 
-
     /**
      * Rend automatique le déplacement du squelette au sein de l'environnement.
      * @param s
@@ -95,9 +93,11 @@ public class Controleur implements Initializable {
         m.chargerMap(spawn.getTableau());
         Environnement env = new Environnement(LARGEUR, HAUTEUR,spawn);
         Link p = new Link(env);
-        VueLink vue = new VueLink(p);
         ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
-        ImageView personnage = vue.creeSprite();
+
+        ImageView personnage = null;
+        VueLink vue = new VueLink(p,personnage);
+
         this.ptVie.textProperty().bind(p.pv().asString());
         labelNiveau.textProperty().bind(p.niveau().asString());
         ProgressBarExp.setProgress(0.7);
@@ -110,10 +110,6 @@ public class Controleur implements Initializable {
 
         animation(s);
         gameLoop.play();
-
-
     }
-
-
 
 }

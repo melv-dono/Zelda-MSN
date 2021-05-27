@@ -1,8 +1,17 @@
 package Modèle;
 
 public class Link extends Personnage{
+
+    private String orientation;
+
     public Link(Environnement e) {
         super("Link", e);
+        //this.orientation.equals("descendre");
+        orientation="descendre";
+    }
+
+    public String getOrientation(){
+        return this.orientation;
     }
 
     /**
@@ -22,7 +31,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
-
+        this.orientation.equals("monter");
     }
 
     /**
@@ -42,6 +51,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
+        this.orientation.equals("descendre");
     }
 
     /**
@@ -61,6 +71,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
+        this.orientation.equals("gauche");
     }
 
     /**
@@ -80,6 +91,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
+        this.orientation.equals("droite");
     }
 
     /**

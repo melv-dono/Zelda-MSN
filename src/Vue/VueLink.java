@@ -3,18 +3,23 @@ package Vue;
 import Modèle.Link;
 import Modèle.Personnage;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class VueLink {
+public class VueLink extends ImageView{
 
     @FXML
     private Pane plateau;
 
-    private Personnage p;
+    private Link p;
 
-    public VueLink(Personnage perso){
+    private ImageView image;
+
+    public VueLink(Link perso, ImageView i){
         this.p=perso;
+        i=creeSprite();
+        this.image=i;
     }
 
     /**
@@ -22,10 +27,30 @@ public class VueLink {
      * @return
      */
     public ImageView creeSprite() {
-        ImageView link = new ImageView("Vue/link_front2.gif");
-        link.translateXProperty().bind(p.getDeplacementLargeurProperty());
-        link.translateYProperty().bind(p.getDeplacementHauteurProperty());
-        return link;
+        //ImageView link = new ImageView("Vue/link_front2.gif");
+        super.setImage(new Image("Vue/link_front2.gif"));
+        super.translateXProperty().bind(p.getDeplacementLargeurProperty());
+        super.translateYProperty().bind(p.getDeplacementHauteurProperty());
+        return this;
     }
 
+    public void orientation(){
+        switch (p.getOrientation()){
+            case "monter" :
+                super.setImage(new Image("Vue/link_back.gif"));
+                break;
+
+            case "descendre" :
+                super.setImage(new Image("Vue/link_front2.gif"));
+                break;
+
+            case "gauche" :
+                super.setImage(new Image("Vue/link_left.gif"));
+                break;
+
+            case "droite" :
+                super.setImage(new Image("Vue/link_right.gif"));
+                break;
+        }
+    }
 }
