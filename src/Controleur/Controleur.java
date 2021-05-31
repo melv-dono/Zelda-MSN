@@ -53,12 +53,11 @@ public class Controleur implements Initializable {
     private Timeline gameLoop;
 
     private int cpt;
-
     /**
      * Rend automatique le déplacement du squelette au sein de l'environnement.
      * @param s
      */
-    private void animation(Squelette s){
+    private void animation(Squelette s, VueLink vue){
         cpt=0;
         gameLoop = new Timeline();
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
@@ -67,6 +66,7 @@ public class Controleur implements Initializable {
 				(ev ->{
 				    if(cpt < 150) {
                         s.monter();
+
                     }
 				    else if(cpt >=150){
 				        s.descendre();
@@ -75,6 +75,7 @@ public class Controleur implements Initializable {
                         cpt=0;
                     }
                     cpt++;
+                    vue.orientation();
 				})
 				);
 		gameLoop.getKeyFrames().add(kf);
@@ -95,8 +96,10 @@ public class Controleur implements Initializable {
         Link p = new Link(env);
         ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
 
-        ImageView personnage = null;
-        VueLink vue = new VueLink(p,personnage);
+        //ImageView personnage = new ImageView("Vue/link_front2.gif");
+
+        VueLink vue = new VueLink(p);
+        ImageView personnage = vue.creeSprite();
 
         this.ptVie.textProperty().bind(p.pv().asString());
         labelNiveau.textProperty().bind(p.niveau().asString());
@@ -108,8 +111,10 @@ public class Controleur implements Initializable {
         ImageView imageSquelette = vueS.creeSprite();
         plateau.getChildren().add(imageSquelette);
 
-        animation(s);
+        animation(s,vue);
         gameLoop.play();
     }
+
+
 
 }

@@ -23,7 +23,7 @@ public class ArrowGestion implements EventHandler<KeyEvent>{
     @FXML
     private VBox menuPause;
     @FXML
-    private Personnage perso;
+    private Link perso;
     @FXML
     private Pane plateau;
 
@@ -40,15 +40,19 @@ public class ArrowGestion implements EventHandler<KeyEvent>{
         switch (keyEvent.getCode()) {
             case UP:
                 this.perso.monter();
+                this.perso.sens("monter");
                 break;
             case DOWN:
                 this.perso.descendre();
+                this.perso.sens("descendre");
                 break;
             case LEFT:
                 this.perso.gauche();
+                this.perso.sens("gauche");
                 break;
             case RIGHT:
                 this.perso.droite();
+                this.perso.sens("droite");
                 break;
             case I:
                 menuPause.setVisible(true);

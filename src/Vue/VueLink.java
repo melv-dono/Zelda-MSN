@@ -16,10 +16,10 @@ public class VueLink extends ImageView{
 
     private ImageView image;
 
-    public VueLink(Link perso, ImageView i){
+    public VueLink(Link perso){
         this.p=perso;
-        i=creeSprite();
-        this.image=i;
+        //i=creeSprite();
+        //this.image=i;
     }
 
     /**

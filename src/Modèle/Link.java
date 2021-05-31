@@ -14,6 +14,10 @@ public class Link extends Personnage{
         return this.orientation;
     }
 
+    public void sens(String s){
+        this.orientation = s;
+    }
+
     /**
      * Déplace Link vers le haut
      * Affiche les collisions si besoin
@@ -31,7 +35,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
-        this.orientation.equals("monter");
+        this.orientation = "monter";
     }
 
     /**
@@ -51,7 +55,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
-        this.orientation.equals("descendre");
+        this.orientation = "descendre";
     }
 
     /**
@@ -71,7 +75,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
-        this.orientation.equals("gauche");
+        this.orientation = "gauche";
     }
 
     /**
@@ -91,7 +95,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
-        this.orientation.equals("droite");
+        this.orientation = "droite";
     }
 
     /**
