@@ -14,4 +14,7 @@ public class ObjetVue {
         spriteObj.translateYProperty().bind(objet.getPositionHauteur());
         return spriteObj;
     }
+    public Objet contenuImage(){
+        return objet;
+    }
 }

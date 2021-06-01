@@ -1,9 +1,6 @@
 package Controleur;
 
-import Modèle.Environnement;
-import Modèle.Link;
-import Modèle.Objet;
-import Modèle.Personnage;
+import Modèle.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -28,17 +25,22 @@ public class SceneEventGestion implements EventHandler<KeyEvent> {
     private Pane plateau;
     @FXML
     private Objet potion;
+    @FXML
+    private Environnement e;
+    @FXML
+    private Inventaire inventaire;
 
-    public SceneEventGestion(Link p, Pane pane, VBox vb, Objet potion) {
-        perso = p;
+    public SceneEventGestion(Pane p, Link pers, VBox vb, Objet potion, Inventaire i) {
+        plateau=p;
+        perso = pers;
         menuPause=vb;
         menuPause.setVisible(false);
         this.potion=potion;
+        inventaire=i;
     }
 
     @Override
     public void handle(KeyEvent keyEvent) {
-        // Attention les coordonnées des y sont inversés.
         switch (keyEvent.getCode()) {
             case UP:
                 this.perso.monter();
@@ -59,10 +61,8 @@ public class SceneEventGestion implements EventHandler<KeyEvent> {
                 menuPause.setVisible(false);
                 break;
             case R:
-                /*if(potion.ramasserObjet(perso.getDeplacementLargeur(),perso.getDeplacementHauteur())==true){
-                    plateau.se
-                }*/
 
+                inventaire.addObjet(potion);
             default:
                 break;
         }

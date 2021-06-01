@@ -42,5 +42,9 @@ public class Objet {
         }
     }
 
+    public String toString(){
+        return nom;
+    }
+
 
 }

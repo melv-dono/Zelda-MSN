@@ -7,6 +7,8 @@ import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,7 +55,7 @@ public class Controleur implements Initializable {
     private VBox LinkLife;
 
     @FXML
-    private GridPane gridPaneInventaire;
+    private ListView<String> listViewInventaire;
 
     private Timeline gameLoop;
 
@@ -104,17 +106,35 @@ public class Controleur implements Initializable {
         Objet potion=new Objet("potion",520,615,15,env);
         ObjetVue vuePotion=new ObjetVue(potion);
         ImageView imgPotion=vuePotion.CreerSpriteObjet();
-        SceneEventGestion a = new SceneEventGestion(p,plateau,menuPause,potion);
+        Inventaire inventaire=new Inventaire();
+        Objet objBon=new Objet("potion",env);
         ImageView personnage = vue.creeSprite();
         this.ptVie.textProperty().bind(p.pv().asString());
         labelNiveau.textProperty().bind(p.niveau().asString());
         ProgressBarExp.setProgress(0.7);
-        plateau.setOnKeyPressed(a);
         Squelette s = new Squelette("Squelette",env,"a");
         VueSquelette vueS = new VueSquelette(s);
         ImageView imageSquelette = vueS.creeSprite();
-        Inventaire inventaire=new Inventaire();
+        p.decrementerPv(50);
+
+        listViewInventaire.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                if(inventaire.getTailleInventaire()>=1){
+                    if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& p.pv().getValue()<100) {
+                        p.augmenterPv(10);
+                        inventaire.removeObjet(objBon);
+                    }else{
+                        System.out.println("ra");
+                    }
+                }
+            }
+        });
+        listViewInventaire.setItems(inventaire.getListeObjets());
         plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
+        SceneEventGestion a = new SceneEventGestion(plateau,p,menuPause,potion,inventaire);
+        plateau.setOnKeyPressed(a);
         animation(s);
         gameLoop.play();
 

@@ -6,6 +6,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private int width,height; // largeur == width - hauteur == height
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
+    private ArrayList<Objet>elementDecor; // potion et autre
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
 
     public Environnement(int width, int height, MapModele background){
@@ -114,6 +115,10 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      */
     public void retirerDecors(MapModele m) {
         this.decors.remove(m);
+    }
+
+    public void ajouterObjet(Objet obj){
+        elementDecor.add(obj);
     }
 
 }
