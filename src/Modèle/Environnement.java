@@ -128,6 +128,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.utilisateur = new Link(this);
         addPerso(this.utilisateur);
         BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30, this.utilisateur);
+        Epe epe = new Epe("Excalibur", 10);
+        this.utilisateur.setArmePrincipale(epe);
         this.utilisateur.setArmeSecondaire(baguette);
         creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
     }

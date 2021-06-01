@@ -47,6 +47,9 @@ public class LettreTyped implements EventHandler<KeyEvent> {
             case Q:
                 menuPause.setVisible(false);
                 break;
+            case D:
+                this.perso.attaquer();
+                break;
             case A:
 //                Timeline chargementAttaque = new Timeline( à conserver surement utile pour l'animation de l'attaque
 //                        new KeyFrame(Duration.millis(500),
