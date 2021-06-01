@@ -1,16 +1,29 @@
 package Modèle;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class Link extends Personnage{
-    private Epe armePrincipale;
+    private Arme armePrincipale;
+    private BaguetteMagique armeSecondaire;
 
     public Link(Environnement e) {
         super("Link", e, 100, 10, 0);
-        this.armePrincipale = new Epe("Bâton", 30);
     }
 
+    public Arme getArmePrincipale() {
+        return armePrincipale;
+    }
+
+    public BaguetteMagique getarmeSecondaire() {return armeSecondaire;}
+
+    public void setArmePrincipale(Arme armePrincipale) {
+        this.armePrincipale = armePrincipale;
+    }
+
+    public void setArmeSecondaire(BaguetteMagique b) {this.armeSecondaire = b;}
 
     /**
      * Déplace Link vers le haut
@@ -143,7 +156,7 @@ public class Link extends Personnage{
         return false;
     }
 
-    public void attaquer() {
+    public void attaquer() {// Attaque de zone
         double dommage = getPointAttaque() + this.armePrincipale.getPointAttaque();
         for (Personnage p : getEnv().getPerso()) {
             if (p instanceof Squelette && cibleAtteignable(p)) {

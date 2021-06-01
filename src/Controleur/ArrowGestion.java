@@ -21,7 +21,7 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
     @FXML
     private Personnage perso;
 
-    public ArrowGestion(Link p) {
+    public ArrowGestion(Personnage p) {
         this.perso = p;
     }
 

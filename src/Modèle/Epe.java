@@ -1,19 +1,15 @@
 package Modèle;
 
-public class Epe {
+public class Epe extends Arme{
     private String nom;
     private double pointAttaque;
 
     public Epe(String nom, double degat) {
-        this.nom = nom;
-        this.pointAttaque = degat;
+        super(nom, degat);
     }
 
-    public String getNom() {
-        return nom;
-    }
+    @Override
+    public void attaquer() {
 
-    public double getPointAttaque() {
-        return pointAttaque;
     }
 }

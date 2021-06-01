@@ -39,4 +39,8 @@ public class Squelette extends Personnage{
 
     public void attaquer() {
     }
+
+    public void agir() {
+
+    }
 }

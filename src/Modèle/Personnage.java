@@ -50,6 +50,10 @@ public abstract class Personnage {
     public abstract void droite();
     public abstract void attaquer();
 
+    public String getNom() {
+        return nom;
+    }
+
     public double getPointAttaque() {
         return pointAttaque.get();
     }

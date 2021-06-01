@@ -11,9 +11,9 @@ public class VueSquelette implements VuePersonnage{
     @FXML
     private Pane plateau;
 
-    private Squelette s;
+    private Personnage s;
 
-    public VueSquelette(Squelette squelette){
+    public VueSquelette(Personnage squelette){
         this.s=squelette;
     }
 

@@ -2,6 +2,7 @@ package Controleur;
 
 import Modèle.*;
 import Vue.MapReader;
+import Vue.VueBouleDeFeu;
 import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
@@ -50,17 +51,20 @@ public class Controleur implements Initializable {
 
     private int cpt;
 
+    private Environnement env;
+
+    private ArrowGestion arrow;
+
+    private LettreTyped action;
 
     /**
      * Rend automatique le déplacement du squelette au sein de l'environnement.
      * @param s
      */
-    private void animation(Squelette s){
+    private void animation(Squelette s, Timeline gameLoop){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
         cpt=0;
-        gameLoop = new Timeline();
-		gameLoop.setCycleCount(Timeline.INDEFINITE);
         KeyFrame kf = new KeyFrame(
-				Duration.seconds(0.01),
+				Duration.seconds(0.017),
 				(ev ->{
 				    if(cpt < 150) {
                         s.monter();
@@ -72,6 +76,7 @@ public class Controleur implements Initializable {
                         cpt=0;
                     }
                     cpt++;
+                    this.env.faireUntour();
 				})
 				);
 		gameLoop.getKeyFrames().add(kf);
@@ -84,36 +89,54 @@ public class Controleur implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        MapModele spawn = new MapModele("testMap");
+        gameLoop = new Timeline();
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+        this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR);
+        this.env.init();
         MapReader m  = new MapReader(map);
-        m.chargerMap(spawn.getTableau());
-        Environnement env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,spawn);
-        Link p = new Link(env);
-        env.addPerso(p);
-        VueLink vue = new VueLink(p);
-        ArrowGestion a = new ArrowGestion(p);
-        LettreTyped l = new LettreTyped(p, menuPause);
-        ImageView personnage = vue.creeSprite();
-        this.ptVie.textProperty().bind(p.pvProperty().asString());
-        labelNiveau.textProperty().bind(p.niveau().asString());
-        ProgressBarExp.setProgress(0.7);
-        plateau.getChildren().add(personnage);
-        plateau.setOnKeyTyped(l);
-        plateau.setOnKeyPressed(a);
+        m.chargerMap(env.getMapActuelle().getTableau());
+        affichage();
+        connexion();
+        gestionBouleDeFeu();
+        plateau.setOnKeyReleased(action);
+        plateau.setOnKeyPressed(arrow);
 
-        Squelette s = new Squelette("Squelette",env);
-        VueSquelette vueS = new VueSquelette(s);
-        env.addPerso(s);
-        ImageView imageSquelette = vueS.creeSprite();
-        plateau.getChildren().add(imageSquelette);
+//        Squelette s = new Squelette("Squelette",env);
+//        VueSquelette vueS = new VueSquelette(s);
+//        env.addPerso(s);
+//        ImageView imageSquelette = vueS.creeSprite();
+//        plateau.getChildren().add(imageSquelette);
 
-
-        animation(s);
+        animation((Squelette) env.getPerso().get(1), gameLoop);
         gameLoop.play();
 
 
     }
 
+    public void affichage() {
+        for (Personnage p : this.env.getPerso()) {
+            if (p instanceof Link) {
+                VueLink l = new VueLink(p);
+                plateau.getChildren().add(l.creeSprite());
+            }
+            if (p instanceof Squelette) {
+                VueSquelette s = new VueSquelette(p);
+                plateau.getChildren().add(s.creeSprite());
+            }
+        }
+    }
 
+    public void connexion() {
+        arrow = new ArrowGestion(env.getLink());
+        action = new LettreTyped(env.getLink(), menuPause, plateau, gameLoop);
+        this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
+        labelNiveau.textProperty().bind(env.getLink().niveau().asString());
+        ProgressBarExp.setProgress(0.7);
+    }
+
+    public void gestionBouleDeFeu() {
+        ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau);
+        this.env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
+    }
 
 }

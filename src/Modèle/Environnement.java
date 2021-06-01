@@ -7,13 +7,14 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
+    private Link utilisateur;
 
-    public Environnement(int width, int height, MapModele background){
+    public Environnement(int width, int height){
         this.width=width;
         this.height=height;
         this.lesPerso=new ArrayList<>();
         this.decors = new ArrayList<>();
-        this.mapActuelle=background;
+        this.mapActuelle= new MapModele("testMap");
         this.decors.add(mapActuelle);
     }
 
@@ -73,11 +74,18 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         return null;
     }
 
+    public MapModele getMapActuelle() {
+        return mapActuelle;
+    }
+
+    public Link getLink() {
+        return this.utilisateur;
+    }
     /**
      * Permet d'ajouter un personnage à la liste de ceux présents dans l'envrionnement.
      * @param p
      */
-    public void addPerso(Personnage p){ // méthode non utilisé pour l'instant
+    public void addPerso(Personnage p){
         if(p.getDeplacementLargeur()>width || p.getDeplacementLargeur()<0|| p.getDeplacementHauteur()>height||p.getDeplacementHauteur()<0){
             return ;
         }
@@ -116,5 +124,41 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.decors.remove(m);
     }
 
+    public void init() {
+        this.utilisateur = new Link(this);
+        addPerso(this.utilisateur);
+        BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30, this.utilisateur);
+        this.utilisateur.setArmeSecondaire(baguette);
+        creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
+    }
 
+    public void creeEnnemi() {
+        Squelette s = new Squelette("Squelette", this);
+        addPerso(s);
+    }
+
+    public void faireUntour() {
+        this.utilisateur.getarmeSecondaire().lancerBouleDeFeu();
+        cibleTouche();
+        retirerBouleDeFeu();
+    }
+
+    public void retirerBouleDeFeu() {
+        this.utilisateur.getarmeSecondaire().getBoules().removeIf(BouleDeFeu::seDesintegre);
+    }
+
+    public void cibleTouche() { // Boucle For each ne marche pas
+        for (Personnage ennemi : lesPerso) {
+            for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
+                if(		(ennemi.getDeplacementHauteur() >= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16 && ennemi.getDeplacementHauteur() <= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16) &&
+                        (ennemi.getDeplacementLargeur() >= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()-5 && ennemi.getDeplacementLargeur() <= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()+5) &&
+                        ennemi instanceof Squelette
+                )
+                {
+                    ennemi.perteDePv(this.utilisateur.getPointAttaque()+ this.utilisateur.getarmeSecondaire().getPointAttaque());
+                    this.utilisateur.getarmeSecondaire().getBoules().remove(this.utilisateur.getarmeSecondaire().getBoules().get(i));
+                }
+            }
+        }
+    }
 }
