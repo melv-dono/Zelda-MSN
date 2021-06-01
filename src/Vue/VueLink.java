@@ -18,8 +18,6 @@ public class VueLink extends ImageView{
 
     public VueLink(Link perso){
         this.p=perso;
-        //i=creeSprite();
-        //this.image=i;
     }
 
     /**
@@ -27,7 +25,6 @@ public class VueLink extends ImageView{
      * @return
      */
     public ImageView creeSprite() {
-        //ImageView link = new ImageView("Vue/link_front2.gif");
         super.setImage(new Image("Vue/link_front2.gif"));
         super.translateXProperty().bind(p.getDeplacementLargeurProperty());
         super.translateYProperty().bind(p.getDeplacementHauteurProperty());

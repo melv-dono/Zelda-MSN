@@ -86,19 +86,14 @@ public class Controleur implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //MapModele spawn = new MapModele("testMap");
         MapModele spawn = new MapModele("map1");
         MapReader m  = new MapReader(map);
         m.chargerMap(spawn.getTableau());
         Environnement env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,spawn);
         Link p = new Link(env);
         ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
-
-        //ImageView personnage = new ImageView("Vue/link_front2.gif");
-
         VueLink vue = new VueLink(p);
         ImageView personnage = vue.creeSprite();
-
         this.ptVie.textProperty().bind(p.pv().asString());
         labelNiveau.textProperty().bind(p.niveau().asString());
         ProgressBarExp.setProgress(0.7);
@@ -108,7 +103,6 @@ public class Controleur implements Initializable {
         VueSquelette vueS = new VueSquelette(s);
         ImageView imageSquelette = vueS.creeSprite();
         plateau.getChildren().add(imageSquelette);
-
         animation(s,vue);
         gameLoop.play();
     }
