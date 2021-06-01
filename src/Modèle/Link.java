@@ -29,7 +29,7 @@ public class Link extends Personnage{
             System.out.println("bordure de map");
             collisionAffCoord(carte);
         }else if (carte[(int) ((getDeplacementHauteur()/32)-1)][(int) (getDeplacementLargeur()/32)] == 1) {//deplacement vers le haut bloquer
-            setDeplacementHauteur(getDeplacementHauteur() - 32);
+            setDeplacementHauteur(getDeplacementHauteur() - Parametre.PAS);
             depAffCoord(carte);
         }
         else {
@@ -45,11 +45,11 @@ public class Link extends Personnage{
      */
     public void descendre() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if(((getDeplacementHauteur()/32)+1)>=23){
+        if(((getDeplacementHauteur()/Parametre.TUILE_SIZE)+1)>=Parametre.LIGNE){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) ((getDeplacementHauteur()/32)+1)][(int) (getDeplacementLargeur()/32)] == 1)  {//deplacement vers le bas bloquer
-            setDeplacementHauteur(getDeplacementHauteur() + 32);
+        }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)+1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] == 1)  {//deplacement vers le bas bloquer
+            setDeplacementHauteur(getDeplacementHauteur() + Parametre.PAS);
             depAffCoord(carte);
         }
         else {
@@ -65,11 +65,11 @@ public class Link extends Personnage{
      */
     public void gauche() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if((getDeplacementLargeur()/32)-1<0){
+        if((getDeplacementLargeur()/Parametre.TUILE_SIZE)-1<0){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) (getDeplacementHauteur()/32)][(int) ((getDeplacementLargeur()/32)-1)] == 1) {
-            setDeplacementLargeur(getDeplacementLargeur() - 32);
+        }else if (carte[(int) (getDeplacementHauteur()/32)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)-1)] == 1) {
+            setDeplacementLargeur(getDeplacementLargeur() - Parametre.PAS);
             depAffCoord(carte);
         }
         else {
@@ -85,11 +85,11 @@ public class Link extends Personnage{
      */
     public void droite() {
         int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
-        if(((getDeplacementLargeur()/32)+1)>=40){
+        if(((getDeplacementLargeur()/Parametre.TUILE_SIZE)+1)>=40){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) (getDeplacementHauteur()/32)][(int) ((getDeplacementLargeur()/32)+1)] == 1) {
-            setDeplacementLargeur(getDeplacementLargeur() + 32);
+        }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)+1)] == 1) {
+            setDeplacementLargeur(getDeplacementLargeur() + Parametre.PAS);
             depAffCoord(carte);
         }
         else {
@@ -103,7 +103,7 @@ public class Link extends Personnage{
      * @param carte
      */
     private void depAffCoord(int[][]carte){
-        System.out.println("case du tableau: " + carte[(int) (getDeplacementHauteur()/32)][(int) (getDeplacementLargeur()/32)]);
+        System.out.println("case du tableau: " + carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)]);
         System.out.println("coordonées réels: " + getDeplacementHauteur() + " " + getDeplacementLargeur());
         System.out.println();
     }
@@ -113,8 +113,8 @@ public class Link extends Personnage{
      * @param carte
      */
     private void collisionAffCoord(int [][]carte){
-        System.out.println("Collision en "+ getDeplacementHauteur()/32 + " " + getDeplacementLargeur()/32);
-        System.out.println("case du tableau: " + carte[(int) (getDeplacementHauteur()/32)][(int) (getDeplacementLargeur()/32)]);
+        System.out.println("Collision en "+ getDeplacementHauteur()/Parametre.TUILE_SIZE + " " + getDeplacementLargeur()/Parametre.TUILE_SIZE);
+        System.out.println("case du tableau: " + carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)]);
         System.out.println("coordonées réels: " + getDeplacementHauteur() + " " + getDeplacementLargeur());
         System.out.println();
     }
@@ -126,12 +126,12 @@ public class Link extends Personnage{
     private void posTab(int [][]carte){
         int cmptX=-1;
         int cmptY;
-        for(int i=0;i<23;i++){
+        for(int i=0;i<Parametre.LIGNE;i++){
             cmptX++;
             cmptY=0;
             System.out.print("Ligne"+(cmptX+1)+" : ");
-            for(int j=0;j<40;j++){
-                if((getDeplacementHauteur()/32)==cmptX&&(getDeplacementLargeur()/32)==cmptY){
+            for(int j=0;j<Parametre.COLONNE;j++){
+                if((getDeplacementHauteur()/Parametre.TUILE_SIZE)==cmptX&&(getDeplacementLargeur()/32)==cmptY){
                     System.out.print("*");
                 }else{
                     System.out.print(carte[i][j]);

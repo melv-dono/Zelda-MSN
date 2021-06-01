@@ -39,9 +39,6 @@ public class Controleur implements Initializable {
     @FXML
     private VBox menuPause;
 
-    static int LARGEUR = 1280;
-    static int HAUTEUR = 736;
-
     @FXML
     private Pane plateau;
 
@@ -93,7 +90,7 @@ public class Controleur implements Initializable {
         MapModele spawn = new MapModele("map1");
         MapReader m  = new MapReader(map);
         m.chargerMap(spawn.getTableau());
-        Environnement env = new Environnement(LARGEUR, HAUTEUR,spawn);
+        Environnement env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,spawn);
         Link p = new Link(env);
         ArrowGestion a = new ArrowGestion(p,plateau,menuPause);
 
