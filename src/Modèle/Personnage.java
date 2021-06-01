@@ -190,4 +190,13 @@ public abstract class Personnage {
         }
     }
 
+    public boolean collisionExterneEnv(double l,double h){
+        for(int i=0;i<env.nbElementExt();i++){
+            if(env.collisionHauteur(i)==h && env.collisionLargeur(i)==l){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

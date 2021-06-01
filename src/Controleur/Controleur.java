@@ -7,19 +7,15 @@ import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -107,6 +103,7 @@ public class Controleur implements Initializable {
         ObjetVue vuePotion=new ObjetVue(potion);
         ImageView imgPotion=vuePotion.CreerSpriteObjet();
         Inventaire inventaire=new Inventaire();
+        env.ajouterCoordElementExt(potion);
         Objet objBon=new Objet("potion",env);
         ImageView personnage = vue.creeSprite();
         this.ptVie.textProperty().bind(p.pv().asString());
@@ -133,7 +130,7 @@ public class Controleur implements Initializable {
         });
         listViewInventaire.setItems(inventaire.getListeObjets());
         plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
-        SceneEventGestion a = new SceneEventGestion(plateau,p,menuPause,potion,inventaire,imgPotion);
+        SceneEventGestion a = new SceneEventGestion(env,plateau,p,menuPause,potion,inventaire,imgPotion);
         plateau.setOnKeyPressed(a);
         animation(s);
         gameLoop.play();

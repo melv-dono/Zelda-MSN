@@ -28,11 +28,11 @@ public class SceneEventGestion implements EventHandler<KeyEvent> {
     @FXML
     private ImageView lapotion;
     @FXML
-    private Environnement e;
+    private Environnement env;
     @FXML
     private Inventaire inventaire;
 
-    public SceneEventGestion(Pane p, Link pers, VBox vb, Objet potion, Inventaire i,ImageView potionVue) {
+    public SceneEventGestion(Environnement environnement,Pane p, Link pers, VBox vb, Objet potion, Inventaire i,ImageView potionVue) {
         plateau=p;
         perso = pers;
         menuPause=vb;
@@ -40,6 +40,7 @@ public class SceneEventGestion implements EventHandler<KeyEvent> {
         this.potion=potion;
         inventaire=i;
         lapotion=potionVue;
+        env=environnement;
     }
 
     @Override
@@ -68,8 +69,9 @@ public class SceneEventGestion implements EventHandler<KeyEvent> {
                 System.out.println(potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur());
                 System.out.println(potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur());
                 System.out.println(potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur());
-                if(((potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=32 &&potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32||potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
+                if(((potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
                     plateau.getChildren().remove(lapotion);
+                    env.deleteCoordExt(potion.getPositionLargeur().getValue(),potion.getPositionHauteur().getValue());
                     inventaire.addObjet(potion);
                 }
 

@@ -15,7 +15,7 @@ public class Link extends Personnage{
         if((getDeplacementHauteur()/32)-1<0){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) ((getDeplacementHauteur()/32)-1)][(int) (getDeplacementLargeur()/32)] == 1) {//deplacement vers le haut bloquer
+        }else if (carte[(int) ((getDeplacementHauteur()/32)-1)][(int) (getDeplacementLargeur()/32)] == 1&&collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()-32)==true) {//deplacement vers le haut bloquer
             setDeplacementHauteur(getDeplacementHauteur() - 32);
             depAffCoord(carte);
         }
@@ -34,7 +34,7 @@ public class Link extends Personnage{
         if(((getDeplacementHauteur()/32)+1)>=23){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) ((getDeplacementHauteur()/32)+1)][(int) (getDeplacementLargeur()/32)] == 1)  {//deplacement vers le bas bloquer
+        }else if (carte[(int) ((getDeplacementHauteur()/32)+1)][(int) (getDeplacementLargeur()/32)] == 1&&collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()+32)==true)  {//deplacement vers le bas bloquer
             setDeplacementHauteur(getDeplacementHauteur() + 32);
             depAffCoord(carte);
         }
@@ -53,7 +53,7 @@ public class Link extends Personnage{
         if((getDeplacementLargeur()/32)-1<0){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) (getDeplacementHauteur()/32)][(int) ((getDeplacementLargeur()/32)-1)] == 1) {
+        }else if (carte[(int) (getDeplacementHauteur()/32)][(int) ((getDeplacementLargeur()/32)-1)] == 1&&collisionExterneEnv(getDeplacementLargeur()-32,getDeplacementHauteur())==true) {
             setDeplacementLargeur(getDeplacementLargeur() - 32);
             depAffCoord(carte);
         }
@@ -72,7 +72,7 @@ public class Link extends Personnage{
         if(((getDeplacementLargeur()/32)+1)>=40){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) (getDeplacementHauteur()/32)][(int) ((getDeplacementLargeur()/32)+1)] == 1) {
+        }else if (carte[(int) (getDeplacementHauteur()/32)][(int) ((getDeplacementLargeur()/32)+1)] == 1&&collisionExterneEnv(getDeplacementLargeur()+32,getDeplacementHauteur())==true) {
             setDeplacementLargeur(getDeplacementLargeur() + 32);
             depAffCoord(carte);
         }
