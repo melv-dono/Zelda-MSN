@@ -76,6 +76,7 @@ public class Controleur implements Initializable {
                     }
                     cpt++;
                     vue.orientation();
+
 				})
 				);
 		gameLoop.getKeyFrames().add(kf);
