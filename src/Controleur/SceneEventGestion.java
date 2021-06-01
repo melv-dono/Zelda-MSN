@@ -26,17 +26,20 @@ public class SceneEventGestion implements EventHandler<KeyEvent> {
     @FXML
     private Objet potion;
     @FXML
+    private ImageView lapotion;
+    @FXML
     private Environnement e;
     @FXML
     private Inventaire inventaire;
 
-    public SceneEventGestion(Pane p, Link pers, VBox vb, Objet potion, Inventaire i) {
+    public SceneEventGestion(Pane p, Link pers, VBox vb, Objet potion, Inventaire i,ImageView potionVue) {
         plateau=p;
         perso = pers;
         menuPause=vb;
         menuPause.setVisible(false);
         this.potion=potion;
         inventaire=i;
+        lapotion=potionVue;
     }
 
     @Override
@@ -61,8 +64,16 @@ public class SceneEventGestion implements EventHandler<KeyEvent> {
                 menuPause.setVisible(false);
                 break;
             case R:
+                System.out.println(potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur());
+                System.out.println(potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur());
+                System.out.println(potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur());
+                System.out.println(potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur());
+                if(((potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=32 &&potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32||potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
+                    plateau.getChildren().remove(lapotion);
+                    inventaire.addObjet(potion);
+                }
 
-                inventaire.addObjet(potion);
+
             default:
                 break;
         }

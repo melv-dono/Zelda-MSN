@@ -103,7 +103,7 @@ public class Controleur implements Initializable {
         Environnement env = new Environnement(LARGEUR, HAUTEUR,spawn);
         Link p = new Link(env);
         VueLink vue = new VueLink(p);
-        Objet potion=new Objet("potion",520,615,15,env);
+        Objet potion=new Objet("potion",520,608,15,env);
         ObjetVue vuePotion=new ObjetVue(potion);
         ImageView imgPotion=vuePotion.CreerSpriteObjet();
         Inventaire inventaire=new Inventaire();
@@ -133,7 +133,7 @@ public class Controleur implements Initializable {
         });
         listViewInventaire.setItems(inventaire.getListeObjets());
         plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
-        SceneEventGestion a = new SceneEventGestion(plateau,p,menuPause,potion,inventaire);
+        SceneEventGestion a = new SceneEventGestion(plateau,p,menuPause,potion,inventaire,imgPotion);
         plateau.setOnKeyPressed(a);
         animation(s);
         gameLoop.play();
