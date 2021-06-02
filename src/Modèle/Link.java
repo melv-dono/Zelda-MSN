@@ -1,11 +1,19 @@
 package Modèle;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+
 public class Link extends Personnage{
 
     private String orientation;
 
+    private Arme armePrincipale;
+    private BaguetteMagique armeSecondaire;
+
     public Link(Environnement e) {
-        super("Link", e);
+        super("Link", e, 100, 10, 0);
         //this.orientation.equals("descendre");
         orientation="descendre";
     }
@@ -17,6 +25,18 @@ public class Link extends Personnage{
     public void sens(String s){
         this.orientation = s;
     }
+
+    public Arme getArmePrincipale() {
+        return armePrincipale;
+    }
+
+    public BaguetteMagique getarmeSecondaire() {return armeSecondaire;}
+
+    public void setArmePrincipale(Arme armePrincipale) {
+        this.armePrincipale = armePrincipale;
+    }
+
+    public void setArmeSecondaire(BaguetteMagique b) {this.armeSecondaire = b;}
 
     /**
      * Déplace Link vers le haut
@@ -141,6 +161,25 @@ public class Link extends Personnage{
             System.out.println();
         }
         System.out.println("---------");
+    }
+
+    public boolean cibleAtteignable(Personnage perso) {
+        if(		(this.getDeplacementHauteur()-32<= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()+32) &&
+                (this.getDeplacementLargeur()-32<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur()+32)
+        )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void attaquer() {// Attaque de zone
+        double dommage = getPointAttaque() + this.armePrincipale.getPointAttaque();
+        for (Personnage p : getEnv().getPerso()) {
+            if (p instanceof Squelette && cibleAtteignable(p)) {
+                p.perteDePv(dommage);
+            }
+        }
     }
 
 }

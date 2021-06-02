@@ -18,7 +18,7 @@ import javafx.scene.shape.Circle;
  * Chaque déplacement change les coordonnées du personnage dans le modèle et cela se répercute dans la vue.
  */
 
-public class ArrowGestion implements EventHandler<KeyEvent>{
+public class ArrowGestion implements EventHandler<KeyEvent> {
 
     @FXML
     private VBox menuPause;
@@ -53,12 +53,6 @@ public class ArrowGestion implements EventHandler<KeyEvent>{
             case RIGHT:
                 this.perso.droite();
                 this.perso.sens("droite");
-                break;
-            case I:
-                menuPause.setVisible(true);
-                break;
-            case Q:
-                menuPause.setVisible(false);
                 break;
             default:
                 break;

@@ -7,9 +7,11 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.util.Duration;
 import Modèle.Environnement;
 public class Squelette extends Personnage{
+    private DoubleProperty xProperty;
+    private DoubleProperty yProperty;
 
     public Squelette(String n,Environnement env) {
-        super(n,1000,300, env);
+        super(n,423,600, env, 100, 5, 5);
     }
 
     /**
@@ -34,5 +36,8 @@ public class Squelette extends Personnage{
     @Override
     public void droite() {
         this.setDeplacementLargeur(this.getDeplacementLargeur()+1);
+    }
+
+    public void attaquer() {
     }
 }

@@ -12,28 +12,35 @@ public abstract class Personnage {
     private DoubleProperty deplacementLargeur; // on doit avoir : X >= 0 ET X <= largeur de l'environnement
     private DoubleProperty deplacementHauteur; // on doit avoir : Y >= 0 ET Y <= hauteur de l'environnement
     private Environnement env; // permet de délimiter le personnage dans sur la map et aussi l'interaction avec les autres perso
-    private IntegerProperty pv;
+    private DoubleProperty pv;
+    private DoubleProperty pointAttaque;
+    private DoubleProperty pointDefense;
     private IntegerProperty niveau;
     private DoubleProperty exp; // Compteur allant de 0 à 100
     private static int numId=0; // permet d'auto incrémenter l'attribut id pour chaque personnage que l'on crée
 
-    public Personnage(String n, Environnement e) {
+    public Personnage(String n, Environnement e, double pV, double pA, double pDef) {
         this.nom =n;
         this.id = numId++;
         this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
         this.deplacementHauteur = new SimpleDoubleProperty();
         this.env = e;
-        pv=new SimpleIntegerProperty(100);
+        pv=new SimpleDoubleProperty(pV);
+        pointAttaque = new SimpleDoubleProperty(pA);
+        pointDefense = new SimpleDoubleProperty(pDef);
         niveau=new SimpleIntegerProperty(1);
         exp=new SimpleDoubleProperty(0);
     }
 
-    public Personnage(String n, int x, int y,Environnement e){
+    public Personnage(String n, int x, int y,Environnement e, double pV, double pA, double pDef){
         this.nom =n;
         this.id = numId++;
         this.deplacementLargeur = new SimpleDoubleProperty(x);
         this.deplacementHauteur = new SimpleDoubleProperty(y);
         env=e;
+        pv=new SimpleDoubleProperty(pV);
+        pointAttaque = new SimpleDoubleProperty(pA);
+        pointDefense = new SimpleDoubleProperty(pDef);
         //this.env = new Environnement();
     }
 
@@ -41,6 +48,28 @@ public abstract class Personnage {
     public abstract void descendre();
     public abstract void gauche();
     public abstract void droite();
+    public abstract void attaquer();
+
+    public String getNom() {
+        return nom;
+    }
+
+    public double getPointAttaque() {
+        return pointAttaque.get();
+    }
+
+    public DoubleProperty pointAttaqueProperty() {
+        return pointAttaque;
+    }
+
+    public double getPointDefense() {
+        return pointDefense.get();
+    }
+
+    public DoubleProperty pointDefenseProperty() {
+        return pointDefense;
+    }
+
 
     /**
      * Envoie la colonne sur laquelle se trouve le personnage.
@@ -104,7 +133,9 @@ public abstract class Personnage {
      * Envoie la property de pv
      * @return une property
      */
-    public final IntegerProperty pv(){return pv;}
+    public final DoubleProperty pvProperty(){return pv;}
+
+    public final double pv(){return pv.getValue();}
 
     /**
      * Envoie la property de niveau
@@ -151,7 +182,7 @@ public abstract class Personnage {
      * Les pv ne peuvent être supérieur au pv max.
      * @param pv
      */
-    public final void setPv(int pv){ this.pv.setValue(pv);}
+    public final void setPv(double pv){ this.pv.setValue(pv);}
 
     /**
      * Modifie les points d'expérience du personnage.
@@ -170,6 +201,25 @@ public abstract class Personnage {
         }
         else {
             this.exp.setValue(exp.getValue()+xp);
+        }
+    }
+
+    public void setPointAttaque(double pointAttaque) {
+        this.pointAttaque.set(pointAttaque);
+    }
+
+    public void setPointDefense(double pointDefense) {
+        this.pointDefense.set(pointDefense);
+    }
+
+    public void perteDePv(double degat) {
+        double degatReel = getPointDefense() - degat;
+        if (degatReel<0) {
+            setPv(this.pv()+degatReel);
+            System.out.println("attaque subit pv descendu à "  + pv());
+        }
+        else {
+            System.out.println("Defense trop fort aucun dégat");
         }
     }
 
