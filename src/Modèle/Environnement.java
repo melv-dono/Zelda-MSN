@@ -122,13 +122,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         lesPerso.remove(p);
     }
 
-    private void collisionEmplacement(Personnage p){ // méthode pas codée et pas encore utile dans le code
-        for (Personnage persoEnPlace:lesPerso){
-            if(p.getDeplacementLargeur()==persoEnPlace.getDeplacementLargeur()&& p.getDeplacementHauteur()==persoEnPlace.getDeplacementHauteur()){
-
-            }
-        }
-    }
     /**
      * Permet d'ajouter un décros à la liste de ceux présents dans l'envrionnement.
      * @param m
