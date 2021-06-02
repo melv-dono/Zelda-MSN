@@ -124,7 +124,9 @@ public class Controleur implements Initializable {
             public void handle(MouseEvent event) {
 
                 if(inventaire.getTailleInventaire()>=1){
-                    if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& env.getLink().pv()<100) {
+                    if(listViewInventaire.getSelectionModel().getSelectedItem()==null){
+                        System.out.println("erroor");
+                    }else if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& env.getLink().pv()<100) {
                         env.getLink().augmenterPv(10);
                         inventaire.removeObjet(objBon);
                     }else{
