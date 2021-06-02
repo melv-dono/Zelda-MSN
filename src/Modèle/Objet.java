@@ -3,7 +3,7 @@ package Modèle;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Objet {
+public abstract class Objet {
     private String nom;
     private IntegerProperty positionLargeur;
     private IntegerProperty positionHauteur;

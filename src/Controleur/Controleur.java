@@ -111,12 +111,13 @@ public class Controleur implements Initializable {
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
-        Objet potion=new Objet("potion",520,608,15,env);
+        //Objet potion=new Objet("potion",520,608,15,env);
+        Potion potion=new Potion(520,608,env);
         ObjetVue vuePotion=new ObjetVue(potion);
         ImageView imgPotion=vuePotion.CreerSpriteObjet();
         Inventaire inventaire=new Inventaire();
         env.ajouterCoordElementExt(potion);
-        Objet objBon=new Objet("potion",env);
+        Objet objBon=new Potion(env);
         env.getLink().decrementerPv(50);
         listViewInventaire.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
