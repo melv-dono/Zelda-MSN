@@ -42,30 +42,19 @@ public class Controleur implements Initializable {
     private Label ptAtt;
     @FXML
     private Label ptVie;
-
     @FXML
     private VBox menuPause;
-
-    static int LARGEUR = 1280;
-    static int HAUTEUR = 736;
-
     @FXML
     private Pane plateau;
-
     @FXML
     private TilePane map = new TilePane();
     @FXML
     private VBox LinkLife;
-
     @FXML
     private ListView<String> listViewInventaire=new ListView<>();
-
     private Timeline gameLoop;
-
     private Environnement env;
-
     private ArrowGestion arrow;
-
     private LettreTyped action;
 
     /**
@@ -129,24 +118,9 @@ public class Controleur implements Initializable {
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
-
-        //plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
-        //LettreTyped a = new LettreTyped(env.getLink(),menuPause,plateau,gameLoop,env,potion, inventaire,imgPotion );
-        //plateau.setOnKeyPressed(a);
-
-//        Squelette s = new Squelette("Squelette",env);
-//        VueSquelette vueS = new VueSquelette(s);
-//        env.addPerso(s);
-//        ImageView imageSquelette = vueS.creeSprite();
-//        plateau.getChildren().add(imageSquelette);
-
-
         animation((Squelette) env.getPerso().get(1), gameLoop, (VueLink) this.plateau.lookup("#"+this.env.getLink().getNom()));
         gameLoop.play();
-
-
     }
-
     public void affichage() {
         for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
@@ -159,7 +133,6 @@ public class Controleur implements Initializable {
             }
         }
     }
-
     public void connexion(Objet obj,Inventaire inventaire,ImageView imgPotion) {
         arrow = new ArrowGestion(env.getLink());
         action = new LettreTyped(env.getLink(),menuPause,plateau,gameLoop,env,obj, inventaire,imgPotion );
@@ -167,13 +140,8 @@ public class Controleur implements Initializable {
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         ProgressBarExp.setProgress(0.7);
     }
-
-
     public void gestionBouleDeFeu() {
         ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau);
         this.env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
     }
-
-
-
 }

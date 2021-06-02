@@ -40,6 +40,9 @@ public class Squelette extends Personnage{
         this.setDeplacementLargeur(this.getDeplacementLargeur()+1);
     }
 
+    /**
+     * première animation du premier squelette dans la première map qui servira dans la gameloop
+     */
     public void animation1(){
         if(cpt < 150) {
             this.monter();
@@ -54,5 +57,6 @@ public class Squelette extends Personnage{
     }
 
     public void attaquer() {
+
     }
 }

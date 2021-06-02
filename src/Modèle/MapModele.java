@@ -48,12 +48,6 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        /*while((line = br.readLine()) != null)
-        {
-            // ajoute la ligne au buffer
-            s.append(line);
-        }*/
         return this.tableau;
     }
 
@@ -64,5 +58,4 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
     public String getNomMap() {
         return nomMap;
     }
-    //int[] coordoneesCarte = {};
 }
