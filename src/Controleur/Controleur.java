@@ -78,8 +78,8 @@ public class Controleur implements Initializable {
                         cpt=0;
                     }
                     cpt++;
-                    this.env.faireUntour();
                     vue.orientation();
+                    this.env.faireUntour();
 
 				})
 				);
@@ -111,7 +111,8 @@ public class Controleur implements Initializable {
 //        ImageView imageSquelette = vueS.creeSprite();
 //        plateau.getChildren().add(imageSquelette);
 
-        animation((Squelette) env.getPerso().get(1), gameLoop, vue);
+
+        animation((Squelette) env.getPerso().get(1), gameLoop, (VueLink) this.plateau.lookup("#"+this.env.getLink().getNom()));
         gameLoop.play();
 
 
@@ -120,7 +121,7 @@ public class Controleur implements Initializable {
     public void affichage() {
         for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
-                VueLink l = new VueLink(p);
+                VueLink l = new VueLink((Link) p);
                 plateau.getChildren().add(l.creeSprite());
             }
             if (p instanceof Squelette) {

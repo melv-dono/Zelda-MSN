@@ -28,6 +28,7 @@ public class VueLink extends ImageView{
         super.setImage(new Image("Vue/link_front2.gif"));
         super.translateXProperty().bind(p.getDeplacementLargeurProperty());
         super.translateYProperty().bind(p.getDeplacementHauteurProperty());
+        super.setId(this.p.getNom());
         return this;
     }
 

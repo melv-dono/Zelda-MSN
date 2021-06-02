@@ -21,17 +21,10 @@ import javafx.scene.shape.Circle;
 public class ArrowGestion implements EventHandler<KeyEvent> {
 
     @FXML
-    private VBox menuPause;
-    @FXML
     private Link perso;
-    @FXML
-    private Pane plateau;
 
-    public ArrowGestion(Link p,Pane pane,VBox vb) {
+    public ArrowGestion(Link p) {
         this.perso = p;
-        plateau=pane;
-        menuPause=vb;
-        menuPause.setVisible(false);
     }
 
     @Override

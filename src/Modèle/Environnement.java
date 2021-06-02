@@ -14,7 +14,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.height=height;
         this.lesPerso=new ArrayList<>();
         this.decors = new ArrayList<>();
-        this.mapActuelle= new MapModele("testMap");
+        this.mapActuelle= new MapModele("map1");
         this.decors.add(mapActuelle);
     }
 
