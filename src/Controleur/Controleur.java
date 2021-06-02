@@ -139,6 +139,7 @@ public class Controleur implements Initializable {
         gestionBouleDeFeu();
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
+        plateau.getChildren().add(menuPause);
 
         //plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
         //LettreTyped a = new LettreTyped(env.getLink(),menuPause,plateau,gameLoop,env,potion, inventaire,imgPotion );
