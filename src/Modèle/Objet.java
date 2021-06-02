@@ -4,12 +4,18 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Objet {
+    /**
+     * ATTRIBUTS
+     */
     private String nom;
     private IntegerProperty positionLargeur;
     private IntegerProperty positionHauteur;
     private int pointsRegeneration;
     private Environnement env;
 
+    /**
+     * CONSTRUCTEUR
+     */
     public Objet(String nom,int posLargeur,int posHauteur,int ptRegen,Environnement e){
         this.nom=nom;
         positionLargeur=new SimpleIntegerProperty(posLargeur);
@@ -21,12 +27,10 @@ public abstract class Objet {
         this.nom=nom;
         this.env=e;
     }
-    public void setPositionLargeur(double val){
-        positionLargeur.setValue(val);
-    }
-    public void setPositionHauteur(double val){
-        positionHauteur.setValue(val);
-    }
+    /**
+     * GETTERS
+     */
+
     public String getNom(){
         return nom;
     }
@@ -39,6 +43,23 @@ public abstract class Objet {
     public int getPointsRegeneration(){
         return pointsRegeneration;
     }
+    /**
+     * SETTERS
+     */
+    public void setPositionLargeur(double val){
+        positionLargeur.setValue(val);
+    }
+    public void setPositionHauteur(double val){
+        positionHauteur.setValue(val);
+    }
+
+    /**
+     * METHODES
+     */
+
+    /**
+     * FONCTION
+     */
     public boolean ramasserObjet(double posLargeurLink,double posHauteurLink){
         if(positionLargeur.getValue()-posLargeurLink<=32 && positionHauteur.getValue()==posHauteurLink){
             return true;
@@ -47,7 +68,9 @@ public abstract class Objet {
             return false;
         }
     }
-
+    /**
+     * TOSTRING
+     */
     public String toString(){
         return nom;
     }

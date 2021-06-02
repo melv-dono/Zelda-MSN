@@ -11,6 +11,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
     private Link utilisateur;
 
+    /**
+     * CONSTRUCTEUR
+     */
     public Environnement(int width, int height){
         this.width=width;
         this.height=height;
@@ -31,17 +34,19 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }*/
 
     /**
+     * GETTERS
+     */
+
+    /**
      * Envoie la largeur de l'environnement.
      * @return largeur
      */
     public int getWidth(){ return width; }
-
     /**
      * Envoie la hauteur de l'environnement.
      * @return hauteur
      */
     public int getHeight(){ return height; }
-
     /**
      * Envoie la liste de tous les personnages de l'environnement.
      * @return liste de personnage
@@ -49,7 +54,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public ArrayList<Personnage>getPerso(){ // méthode non utilisé pour l'instant
         return lesPerso;
     }
-
     /**
      * Renvoie le personnage dont l'id correspond à celui rentré en paramètre.
      * @param id
@@ -63,7 +67,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
         return null;
     }
-
     /**
      * Envoie le nom de la map sur laquelle se trouve les personnages.
      * @return nom de mapActuelle
@@ -71,7 +74,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public String getNomMapCourante() {
         return this.mapActuelle.getNomMap();
     }
-
     /**
      * Envoie les données (tableau de chiffre) d'un élément du décors de l'envrionnement.
      * @param nomDecors
@@ -93,6 +95,15 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public Link getLink() {
         return this.utilisateur;
     }
+
+    /**
+     * SETTERS
+     */
+
+    /**
+     * METHODES
+     */
+
     /**
      * Permet d'ajouter un personnage à la liste de ceux présents dans l'envrionnement.
      * @param p
@@ -103,7 +114,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
         lesPerso.add(p);
     }
-
     /**
      * Permet de retirer un personnage à la liste de ceux présents dans l'envrionnement.
      * @param p
@@ -119,7 +129,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
             }
         }
     }
-
     /**
      * Permet d'ajouter un décros à la liste de ceux présents dans l'envrionnement.
      * @param m
@@ -139,16 +148,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void ajouterCoordElementExt(Objet obj){
         elementDecorHauteur.add((double)obj.getPositionHauteur().getValue());
         elementDecorLargeur.add((double)obj.getPositionLargeur().getValue());
-    }
-    public double collisionLargeur(int a){
-        return elementDecorLargeur.get(a);
-    }
-
-    public double collisionHauteur(int a){
-        return elementDecorHauteur.get(a);
-    }
-    public double nbElementExt(){
-        return elementDecorHauteur.size();
     }
     public void deleteCoordExt(double l,double h){
         for(int i=0;i<elementDecorLargeur.size();i++){
@@ -201,4 +200,19 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
             }
         }
     }
+    /**
+     * FONCTIONS
+     */
+
+    public double collisionLargeur(int a){
+        return elementDecorLargeur.get(a);
+    }
+    public double collisionHauteur(int a){
+        return elementDecorHauteur.get(a);
+    }
+    public double nbElementExt(){
+        return elementDecorHauteur.size();
+    }
+
+
 }
