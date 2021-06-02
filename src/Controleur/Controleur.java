@@ -3,17 +3,22 @@ package Controleur;
 import Modèle.*;
 import Vue.MapReader;
 import Vue.VueBouleDeFeu;
+import Vue.ObjetVue;
 import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -40,6 +45,9 @@ public class Controleur implements Initializable {
     @FXML
     private VBox menuPause;
 
+    static int LARGEUR = 1280;
+    static int HAUTEUR = 736;
+
     @FXML
     private Pane plateau;
 
@@ -47,6 +55,9 @@ public class Controleur implements Initializable {
     private TilePane map = new TilePane();
     @FXML
     private VBox LinkLife;
+
+    @FXML
+    private ListView<String> listViewInventaire=new ListView<>();
 
     private Timeline gameLoop;
 
@@ -104,6 +115,31 @@ public class Controleur implements Initializable {
         gestionBouleDeFeu();
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
+        Objet potion=new Objet("potion",520,608,15,env);
+        ObjetVue vuePotion=new ObjetVue(potion);
+        ImageView imgPotion=vuePotion.CreerSpriteObjet();
+        Inventaire inventaire=new Inventaire();
+        env.ajouterCoordElementExt(potion);
+        Objet objBon=new Objet("potion",env);
+        env.getLink().decrementerPv(50);
+        listViewInventaire.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                if(inventaire.getTailleInventaire()>=1){
+                    if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& p.pv().getValue()<100) {
+                        env.getLink().augmenterPv(10);
+                        inventaire.removeObjet(objBon);
+                    }else{
+                        System.out.println("ra");
+                    }
+                }
+            }
+        });
+        listViewInventaire.setItems(inventaire.getListeObjets());
+        plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
+        SceneEventGestion a = new SceneEventGestion(env,plateau,p,menuPause,potion,inventaire,imgPotion);
+        plateau.setOnKeyPressed(a);
 
 //        Squelette s = new Squelette("Squelette",env);
 //        VueSquelette vueS = new VueSquelette(s);
@@ -138,6 +174,7 @@ public class Controleur implements Initializable {
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         ProgressBarExp.setProgress(0.7);
     }
+
 
     public void gestionBouleDeFeu() {
         ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau);

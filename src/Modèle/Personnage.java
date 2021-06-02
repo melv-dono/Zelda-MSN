@@ -71,6 +71,23 @@ public abstract class Personnage {
     }
 
 
+    public void augmenterPv(double pv){
+        if(this.pv.getValue()==100){
+            System.out.println("déjà plein de pv");
+        }
+        if(this.pv.getValue()>=91){
+            this.pv.setValue(100);
+        }else{
+            this.pv.setValue(pv+this.pv.getValue());
+        }
+    }
+    public void decrementerPv(double pv){
+        if(this.pv.getValue()==0){
+            System.out.println("die igo");
+        }else{
+            this.pv.setValue(this.pv.getValue()-pv);
+        }
+    }
     /**
      * Envoie la colonne sur laquelle se trouve le personnage.
      * @return l'abscisse du personnage
@@ -221,6 +238,15 @@ public abstract class Personnage {
         else {
             System.out.println("Defense trop fort aucun dégat");
         }
+    }
+
+    public boolean collisionExterneEnv(double l,double h){
+        for(int i=0;i<env.nbElementExt();i++){
+            if(env.collisionHauteur(i)==h && env.collisionLargeur(i)==l){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

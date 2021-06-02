@@ -6,17 +6,29 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private int width,height; // largeur == width - hauteur == height
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
+    private ArrayList<Double>elementDecorLargeur; // potion et autre
+    private ArrayList<Double>elementDecorHauteur;
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
     private Link utilisateur;
 
-    public Environnement(int width, int height){
+    public Environnement(int width, int height, MapModele background){
         this.width=width;
         this.height=height;
         this.lesPerso=new ArrayList<>();
         this.decors = new ArrayList<>();
         this.mapActuelle= new MapModele("map1");
         this.decors.add(mapActuelle);
+        elementDecorHauteur=new ArrayList<>();
+        elementDecorLargeur=new ArrayList<>();
     }
+    /*public Environnement(int width, int height){
+        this.width=width;
+        this.height=height;
+        this.lesPerso=new ArrayList<>();
+        this.decors = new ArrayList<>();
+        this.mapActuelle= new MapModele("map1");
+        this.decors.add(mapActuelle);
+    }*/
 
     /**
      * Envoie la largeur de l'environnement.
@@ -122,6 +134,32 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      */
     public void retirerDecors(MapModele m) {
         this.decors.remove(m);
+    }
+
+    public void ajouterCoordElementExt(Objet obj){
+        elementDecorHauteur.add((double)obj.getPositionHauteur().getValue());
+        elementDecorLargeur.add((double)obj.getPositionLargeur().getValue());
+    }
+    public double collisionLargeur(int a){
+        return elementDecorLargeur.get(a);
+    }
+
+    public double collisionHauteur(int a){
+        return elementDecorHauteur.get(a);
+    }
+    public double nbElementExt(){
+        return elementDecorHauteur.size();
+    }
+    public void deleteCoordExt(double l,double h){
+        for(int i=0;i<elementDecorLargeur.size();i++){
+            if(elementDecorLargeur.get(i)==l){
+                elementDecorLargeur.remove(elementDecorLargeur.get(i));
+            }
+            if(elementDecorHauteur.get(i)==h){
+                elementDecorHauteur.remove(elementDecorHauteur.get(i));
+            }
+        }
+
     }
 
     public void init() {
