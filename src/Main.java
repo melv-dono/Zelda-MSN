@@ -1,3 +1,4 @@
+import Modèle.Parametre;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +10,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(getClass().getResource("Vue/Vue.fxml"));
-        Scene scene=new Scene(root, 1280, 736);
+        Scene scene=new Scene(root, Parametre.LARGEUR, Parametre.HAUTEUR);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Zelda");
         primaryStage.setResizable(false);
