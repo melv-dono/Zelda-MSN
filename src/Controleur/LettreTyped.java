@@ -28,14 +28,27 @@ public class LettreTyped implements EventHandler<KeyEvent> {
     private Pane plateau;
 
     private Timeline gameloop;
+    @FXML
+    private Objet potion;
+    @FXML
+    private ImageView lapotion;
+    @FXML
+    private Environnement env;
+    @FXML
+    private Inventaire inventaire;
 
-
-    public LettreTyped(Link p, VBox vb, Pane map, Timeline t) {
+    public LettreTyped(Link p, VBox vb, Pane map, Timeline t,Environnement environnement,Objet potion, Inventaire i,ImageView potionVue) {
         this.perso = p;
         menuPause=vb;
+        plateau=map;
         menuPause.setVisible(false);
         this.plateau = map;
         this.gameloop = t;
+        this.potion=potion;
+        inventaire=i;
+        lapotion=potionVue;
+        env=environnement;
+        plateau.getChildren().add(potionVue);
     }
 
     @Override
@@ -76,6 +89,19 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 Le plus opti serait que ici on est juste personnage.lancerBouleDeFeu
                  */
                 this.perso.getarmeSecondaire().creeBoule();
+                break;
+            case R:
+                System.out.println(potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur());
+                System.out.println(potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur());
+                System.out.println(potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur());
+                System.out.println(potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur());
+                if(((potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
+                    plateau.getChildren().remove(lapotion);
+                    env.deleteCoordExt(potion.getPositionLargeur().getValue(),potion.getPositionHauteur().getValue());
+                    inventaire.addObjet(potion);
+                    potion.setPositionHauteur(999);
+                    potion.setPositionLargeur(999);
+                }
                 break;
             default:
                 break;

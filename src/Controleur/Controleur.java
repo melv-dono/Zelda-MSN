@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -110,11 +111,6 @@ public class Controleur implements Initializable {
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
-        affichage();
-        connexion();
-        gestionBouleDeFeu();
-        plateau.setOnKeyReleased(action);
-        plateau.setOnKeyPressed(arrow);
         Objet potion=new Objet("potion",520,608,15,env);
         ObjetVue vuePotion=new ObjetVue(potion);
         ImageView imgPotion=vuePotion.CreerSpriteObjet();
@@ -126,8 +122,9 @@ public class Controleur implements Initializable {
 
             @Override
             public void handle(MouseEvent event) {
+
                 if(inventaire.getTailleInventaire()>=1){
-                    if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& p.pv().getValue()<100) {
+                    if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& env.getLink().pv()<100) {
                         env.getLink().augmenterPv(10);
                         inventaire.removeObjet(objBon);
                     }else{
@@ -137,9 +134,15 @@ public class Controleur implements Initializable {
             }
         });
         listViewInventaire.setItems(inventaire.getListeObjets());
-        plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
-        SceneEventGestion a = new SceneEventGestion(env,plateau,p,menuPause,potion,inventaire,imgPotion);
-        plateau.setOnKeyPressed(a);
+        affichage();
+        connexion(potion,inventaire,imgPotion);
+        gestionBouleDeFeu();
+        plateau.setOnKeyReleased(action);
+        plateau.setOnKeyPressed(arrow);
+
+        //plateau.getChildren().addAll(imageSquelette,imgPotion,personnage,menuPause);
+        //LettreTyped a = new LettreTyped(env.getLink(),menuPause,plateau,gameLoop,env,potion, inventaire,imgPotion );
+        //plateau.setOnKeyPressed(a);
 
 //        Squelette s = new Squelette("Squelette",env);
 //        VueSquelette vueS = new VueSquelette(s);
@@ -167,9 +170,9 @@ public class Controleur implements Initializable {
         }
     }
 
-    public void connexion() {
+    public void connexion(Objet obj,Inventaire inventaire,ImageView imgPotion) {
         arrow = new ArrowGestion(env.getLink());
-        action = new LettreTyped(env.getLink(), menuPause, plateau, gameLoop);
+        action = new LettreTyped(env.getLink(),menuPause,plateau,gameLoop,env,obj, inventaire,imgPotion );
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         ProgressBarExp.setProgress(0.7);

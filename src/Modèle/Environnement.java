@@ -11,7 +11,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
     private Link utilisateur;
 
-    public Environnement(int width, int height, MapModele background){
+    public Environnement(int width, int height){
         this.width=width;
         this.height=height;
         this.lesPerso=new ArrayList<>();
