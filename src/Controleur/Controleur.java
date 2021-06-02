@@ -62,8 +62,6 @@ public class Controleur implements Initializable {
 
     private Timeline gameLoop;
 
-    private int cpt;
-
     private Environnement env;
 
     private ArrowGestion arrow;
@@ -76,23 +74,12 @@ public class Controleur implements Initializable {
      */
 //    private void animation(Squelette s, VueLink vue){
     private void animation(Squelette s, Timeline gameLoop, VueLink vue){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
-        cpt=0;
         KeyFrame kf = new KeyFrame(
 				Duration.seconds(0.017),
 				(ev ->{
-				    if(cpt < 150) {
-                        s.monter();
-                    }
-				    else if(cpt >=150){
-				        s.descendre();
-                    }
-                    if(cpt==298){
-                        cpt=0;
-                    }
-                    cpt++;
+                    s.animation1();
                     vue.orientation();
                     this.env.faireUntour();
-
 				})
 				);
 		gameLoop.getKeyFrames().add(kf);
