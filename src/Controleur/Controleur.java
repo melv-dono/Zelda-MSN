@@ -7,12 +7,17 @@ import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -23,6 +28,21 @@ import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
 
+    @FXML
+    private HBox coeursLink;
+    @FXML
+    private ImageView coeur5;
+
+    @FXML
+    private ImageView coeur4;
+
+    @FXML
+    private ImageView coeur3;
+
+    @FXML
+    private ImageView coeur2;
+    @FXML
+    private ImageView coeur1;
     @FXML
     private Label labelNiveau;
     @FXML
@@ -51,7 +71,7 @@ public class Controleur implements Initializable {
     private VBox LinkLife;
 
     @FXML
-    private ListView<String> listViewInventaire;
+    private ListView<String> listViewInventaire=new ListView<>();
 
     private Timeline gameLoop;
 

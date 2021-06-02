@@ -73,6 +73,8 @@ public class SceneEventGestion implements EventHandler<KeyEvent> {
                     plateau.getChildren().remove(lapotion);
                     env.deleteCoordExt(potion.getPositionLargeur().getValue(),potion.getPositionHauteur().getValue());
                     inventaire.addObjet(potion);
+                    potion.setPositionHauteur(999);
+                    potion.setPositionLargeur(999);
                 }
 
 

@@ -21,6 +21,12 @@ public class Objet {
         this.nom=nom;
         this.env=e;
     }
+    public void setPositionLargeur(double val){
+        positionLargeur.setValue(val);
+    }
+    public void setPositionHauteur(double val){
+        positionHauteur.setValue(val);
+    }
     public String getNom(){
         return nom;
     }
