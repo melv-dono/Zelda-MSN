@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public class BaguetteMagique extends Arme{
     private String nom;
     private double pointAttaque;
-    private Personnage perso;
+    private Link perso;
     private ObservableList<BouleDeFeu> boules;
 
-    public BaguetteMagique(String nom, double pointAttaque, Personnage p) {
+    public BaguetteMagique(String nom, double pointAttaque, Link p) {
         super(nom, pointAttaque);
         this.perso = p;
         this.boules = FXCollections.observableArrayList();
@@ -25,7 +25,7 @@ public class BaguetteMagique extends Arme{
     }
 
     public void attaquer() {
-        BouleDeFeu b = new BouleDeFeu(this.perso.getDeplacementLargeur(), this.perso.getDeplacementHauteur());
+        //BouleDeFeu b = new BouleDeFeu(this.perso.getDeplacementLargeur(), this.perso.getDeplacementHauteur());
 
     }
 
@@ -36,7 +36,7 @@ public class BaguetteMagique extends Arme{
     }
 
     public void creeBoule() {
-        BouleDeFeu b = new BouleDeFeu(this.perso.getDeplacementLargeur(), this.perso.getDeplacementHauteur());
+        BouleDeFeu b = new BouleDeFeu(this.perso.getDeplacementLargeur(), this.perso.getDeplacementHauteur(), this.perso.getOrientation());
         this.boules.add(b);
 //        return b;
     }
@@ -44,7 +44,18 @@ public class BaguetteMagique extends Arme{
     public void lancerBouleDeFeu() {
         for (BouleDeFeu b : boules) {
             if (b.getDureeDeVie()>0) {
-                b.gauche();
+                if (b.getDirection() == "gauche") {
+                    b.gauche();
+                }
+                if (b.getDirection() == "droite") {
+                    b.droite();
+                }
+                if (b.getDirection() == "monter") {
+                    b.monter();
+                }
+                if (b.getDirection() == "descendre") {
+                    b.descendre();
+                }
                 b.tpsEcoule();
             }
         }

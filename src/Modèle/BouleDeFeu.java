@@ -12,13 +12,19 @@ public class BouleDeFeu {
     private DoubleProperty xProperty;
     private DoubleProperty yProperty;
     private int dureeDeVie;
+    private String direction;
 
-    public BouleDeFeu(double x, double y) {
+    public BouleDeFeu(double x, double y, String orientation) {
         this.xProperty = new SimpleDoubleProperty(x);
         this.yProperty = new SimpleDoubleProperty(y);
         this.dureeDeVie = 60; // equivaut à 60 action de 17ms
         num++;
         this.id = "b" + num;
+        this.direction = orientation;
+    }
+
+    public String getDirection() {
+        return direction;
     }
 
     public String getId() {
@@ -69,9 +75,26 @@ public class BouleDeFeu {
         }
     }
 
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
     public void gauche() {
         setX(this.xProperty.getValue() - 1);
     }
+
+    public void droite() {
+        setX(this.xProperty.getValue() + 1);
+    }
+
+    public void monter() {
+        setY(this.yProperty.getValue() - 1);
+    }
+
+    public void descendre() {
+        setY(this.yProperty.getValue() + 1);
+    }
+
 
     public void tpsEcoule() {
         this.dureeDeVie--;
