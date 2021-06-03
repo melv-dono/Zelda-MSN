@@ -67,7 +67,6 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 this.perso.getarmeSecondaire().creeBoule();
                 break;
             case R:
-                // d'abord boucle for puis tableau machin
                 for(Objet obj:objetEnvironnement){
                     if(((obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
                         plateau.getChildren().remove(obj);

@@ -58,12 +58,7 @@ public abstract class Objet {
             return false;
         }
     }
-    /**
-     * TOSTRING
-     */
-    public String toString(){
-        return nom;
-    }
+
 
 
 }

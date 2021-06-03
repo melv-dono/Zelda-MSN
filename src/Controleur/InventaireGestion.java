@@ -28,7 +28,7 @@ public class InventaireGestion implements EventHandler<MouseEvent> {
                 System.out.println("erroor");
             }else if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& env.getLink().pv()<100) {
                 env.getLink().augmenterPv(10);
-                /*inventaire.removeObjet(potion);*/
+                inventaire.deleteObjetString("potion");
             }else{
                 System.out.println("ra");
             }

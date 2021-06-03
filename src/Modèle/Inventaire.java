@@ -23,7 +23,7 @@ public class Inventaire {
         if(restePlaceInventaire()==false){
             System.out.println("L'inventaire ne peut plus stocker d'objet");
         }else{
-            listeObjets.add(obj.toString());
+            listeObjets.add(obj.getNom());
         }
 
     }
@@ -40,6 +40,13 @@ public class Inventaire {
             return false;
         }else{
             return true;
+        }
+    }
+    public void deleteObjetString(String str){
+        for(String string:listeObjets){
+            if(string.equals(str)){
+                listeObjets.remove(string);
+            }
         }
     }
 
