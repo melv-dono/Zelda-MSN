@@ -144,7 +144,7 @@ public class Controleur implements Initializable {
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         ProgressBarExp.setProgress(0.0);
-        GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env.getLink().pv(),env,plateau);
+        GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);
         env.getLink().pvProperty().addListener(apparitionCoeur);
     }
     public void gestionBouleDeFeu() {
