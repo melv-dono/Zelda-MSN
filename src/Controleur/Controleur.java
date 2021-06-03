@@ -104,7 +104,7 @@ public class Controleur implements Initializable {
                         System.out.println("erroor");
                     }else if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& env.getLink().pv()<100) {
                         env.getLink().augmenterPv(10);
-                        inventaire.removeObjet(objBon);
+                        inventaire.removeObjet(potion);
                     }else{
                         System.out.println("ra");
                     }
@@ -128,8 +128,8 @@ public class Controleur implements Initializable {
                 plateau.getChildren().add(l.creeSprite());
             }
             if (p instanceof Squelette) {
-                VueSquelette s = new VueSquelette(p);
-                plateau.getChildren().add(s.creeSprite());
+                VueSquelette s = new VueSquelette(p,"Vue/bad_skeleton.gif");
+                plateau.getChildren().add(s.getImgSquelette());
             }
         }
     }

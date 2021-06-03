@@ -6,27 +6,24 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class VueBouleDeFeu implements VuePersonnage{
+public class VueBouleDeFeu {
 
-    @FXML
-    private Pane plateau;
+    private ImageView bouleImg;
 
     private BouleDeFeu b;
 
-    public VueBouleDeFeu(BouleDeFeu boule){
+    public VueBouleDeFeu(BouleDeFeu boule,String url){
         this.b= boule;
+        bouleImg=new ImageView(url);
+        bouleImg.translateXProperty().bind(b.xPropertyProperty());
+        bouleImg.translateYProperty().bind(b.yPropertyProperty());
+        bouleImg.setId(String.valueOf(b.getId()));
     }
+    public ImageView getBouleImg(){return bouleImg;}
 
 
     /**
      * Crée l'image de Link et l'associe au modèle.
      * @return
      */
-    public ImageView creeSprite() {
-        ImageView fire = new ImageView("Vue/item_bomb_boom1.gif");
-        fire.translateXProperty().bind(b.xPropertyProperty());
-        fire.translateYProperty().bind(b.yPropertyProperty());
-        fire.setId(String.valueOf(b.getId()));
-        return fire;
-    }
 }
