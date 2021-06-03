@@ -24,11 +24,6 @@ public class BaguetteMagique extends Arme{
         return boules;
     }
 
-    public void attaquer() {
-        //BouleDeFeu b = new BouleDeFeu(this.perso.getDeplacementLargeur(), this.perso.getDeplacementHauteur());
-
-    }
-
     public void retirerBoule(BouleDeFeu bouleDeFeu) {
         if (boules.contains(bouleDeFeu)) {
             boules.remove(bouleDeFeu);
@@ -38,10 +33,12 @@ public class BaguetteMagique extends Arme{
     public void creeBoule() {
         BouleDeFeu b = new BouleDeFeu(this.perso.getDeplacementLargeur(), this.perso.getDeplacementHauteur(), this.perso.getOrientation());
         this.boules.add(b);
-//        return b;
     }
 
-    public void lancerBouleDeFeu() {
+    /**
+     * Cette méthode permet de lancer une boule de feu.
+     */
+    public void attaquer() {
         for (BouleDeFeu b : boules) {
             if (b.getDureeDeVie()>0) {
                 if (b.getDirection() == "gauche") {

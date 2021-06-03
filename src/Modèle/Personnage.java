@@ -18,6 +18,8 @@ public abstract class Personnage {
     private IntegerProperty niveau;
     private DoubleProperty exp; // Compteur allant de 0 à 100
     private static int numId=0; // permet d'auto incrémenter l'attribut id pour chaque personnage que l'on crée
+    private String orientation;
+
 
     public Personnage(String n, Environnement e, double pV, double pA, double pDef) {
         this.nom =n;
@@ -25,6 +27,7 @@ public abstract class Personnage {
         this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
         this.deplacementHauteur = new SimpleDoubleProperty();
         this.env = e;
+        this.orientation="descendre";
         pv=new SimpleDoubleProperty(pV);
         pointAttaque = new SimpleDoubleProperty(pA);
         pointDefense = new SimpleDoubleProperty(pDef);
@@ -41,6 +44,7 @@ public abstract class Personnage {
         pv=new SimpleDoubleProperty(pV);
         pointAttaque = new SimpleDoubleProperty(pA);
         pointDefense = new SimpleDoubleProperty(pDef);
+        this.orientation="descendre";
         //this.env = new Environnement();
     }
 
@@ -48,7 +52,6 @@ public abstract class Personnage {
     public abstract void descendre();
     public abstract void gauche();
     public abstract void droite();
-    public abstract void attaquer();
 
     public String getNom() {
         return nom;
@@ -60,6 +63,14 @@ public abstract class Personnage {
 
     public double getPointDefense() {
         return pointDefense.get();
+    }
+
+    /**
+     * Méthode pour savoir où est orienté le personnage
+     * @return
+     */
+    public String getOrientation() {
+        return this.orientation;
     }
 
     /**
@@ -88,7 +99,6 @@ public abstract class Personnage {
             this.pv.setValue(this.pv.getValue()-pv);
         }
     }
-
     /**
      * Envoie la colonne sur laquelle se trouve le personnage.
      * @return l'abscisse du personnage
@@ -228,6 +238,14 @@ public abstract class Personnage {
 
     public void setPointDefense(double pointDefense) {
         this.pointDefense.set(pointDefense);
+    }
+
+    /**
+     * Méthode pour changer l'orientation du personnage
+     * @param s
+     */
+    public void setOrientation(String s) {
+        this.orientation = s;
     }
 
     public void perteDePv(double degat) {
