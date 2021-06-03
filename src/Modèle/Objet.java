@@ -10,22 +10,17 @@ public abstract class Objet {
     private String nom;
     private IntegerProperty positionLargeur;
     private IntegerProperty positionHauteur;
-    private int pointsRegeneration;
-    private Environnement env;
 
     /**
      * CONSTRUCTEUR
      */
-    public Objet(String nom,int posLargeur,int posHauteur,int ptRegen,Environnement e){
+    public Objet(String nom,int posLargeur,int posHauteur){
         this.nom=nom;
         positionLargeur=new SimpleIntegerProperty(posLargeur);
         positionHauteur=new SimpleIntegerProperty(posHauteur);
-        pointsRegeneration=ptRegen;
-        env=e;
     }
     public Objet(String nom,Environnement e){
         this.nom=nom;
-        this.env=e;
     }
     /**
      * GETTERS
@@ -39,9 +34,6 @@ public abstract class Objet {
     }
     public IntegerProperty getPositionHauteur(){
         return positionHauteur;
-    }
-    public int getPointsRegeneration(){
-        return pointsRegeneration;
     }
     /**
      * SETTERS

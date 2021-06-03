@@ -81,7 +81,7 @@ public class Controleur implements Initializable {
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
-        Potion potion=new Potion(520,608,env);
+        Potion potion=new Potion(520,608);
         ObjetVue vuePotion=new ObjetVue(potion,"Vue/inventory_potionblue.gif");
         env.ajouterCoordElementExt(potion);
         Inventaire inventaire=new Inventaire();
