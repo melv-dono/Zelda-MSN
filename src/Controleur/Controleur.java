@@ -125,6 +125,8 @@ public class Controleur implements Initializable {
         for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
                 VueLink l = new VueLink((Link) p);
+                AnimationGestion anim = new AnimationGestion(l);
+                ((Link) p).animationPropertyProperty().addListener(anim);
                 plateau.getChildren().add(l.creeSprite());
             }
             if (p instanceof Squelette) {

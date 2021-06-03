@@ -32,6 +32,25 @@ public class VueLink extends ImageView{
         return this;
     }
 
+    public void animation() {
+        if (this.p.getOrientation() == "gauche") {
+            super.setImage(new Image("Vue/link_swing8.gif"));
+        }
+        if (this.p.getOrientation() == "droite") {
+            super.setImage(new Image("Vue/link_swing4.gif"));
+        }
+        if (this.p.getOrientation() == "monter") {
+            super.setImage(new Image("Vue/link_swing5.gif"));
+        }
+        if (this.p.getOrientation() == "descendre") {
+            super.setImage(new Image("Vue/link_swing.gif"));
+        }
+    }
+
+    public void desAniamtion() {
+        super.setImage(new Image("Vue/link_front2.gif"));
+    }
+
     public void orientation(){
         switch (p.getOrientation()){
             case "monter" :

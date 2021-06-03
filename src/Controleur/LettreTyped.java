@@ -63,6 +63,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 break;
             case D:
                 this.perso.attaquer();
+                this.perso.setMoving(true);
                 break;
             case A:
 //                Timeline chargementAttaque = new Timeline( à conserver surement utile pour l'animation de l'attaque

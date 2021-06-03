@@ -171,6 +171,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     public void faireUntour() {
         this.utilisateur.getarmeSecondaire().lancerBouleDeFeu();
+        this.utilisateur.declencherAnimation();
         cibleTouche();
         retirerBouleDeFeu();
     }
