@@ -22,10 +22,11 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
 
     @FXML
     private Link perso;
-    private boolean b=false;
+    private int orientation;
 
     public ArrowGestion(Link p) {
         this.perso = p;
+        orientation=0;
     }
 
     @Override
@@ -33,8 +34,9 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
         // Attention les coordonnées des y sont inversés.
         switch (keyEvent.getCode()) {
             case UP:
-                if(b==true){
+                if(orientation!=1){ // bouge sur toi même monte
                     this.perso.setOrientation("monter");
+                    orientation=1;
                 }
                 else{
                     this.perso.monter();
@@ -42,8 +44,9 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
                 }
                 break;
             case DOWN:
-                if(b==true){
+                if(orientation!=2){
                     this.perso.setOrientation("descendre");
+                    orientation=2;
                 }
                 else{
                     this.perso.descendre();
@@ -51,8 +54,9 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
                 }
                 break;
             case LEFT:
-                if(b==true){
+                if(orientation!=3){
                     this.perso.setOrientation("gauche");
+                    orientation=3;
                 }
                 else{
                     this.perso.gauche();
@@ -60,19 +64,14 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
                 }
                 break;
             case RIGHT:
-                if(b==true){
+                if(orientation!=4){
                     this.perso.setOrientation("droite");
+                    orientation=4;
                 }
                 else{
                     this.perso.droite();
                     this.perso.setOrientation("droite");
                 }
-                break;
-            case W:
-                b=true;
-                break;
-            case X:
-                b=false;
                 break;
             default:
                 break;
