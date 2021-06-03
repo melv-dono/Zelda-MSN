@@ -58,17 +58,13 @@ public abstract class Personnage {
         return pointAttaque.get();
     }
 
-    public DoubleProperty pointAttaqueProperty() {
-        return pointAttaque;
-    }
+
 
     public double getPointDefense() {
         return pointDefense.get();
     }
 
-    public DoubleProperty pointDefenseProperty() {
-        return pointDefense;
-    }
+
 
 
     public void augmenterPv(double pv){
