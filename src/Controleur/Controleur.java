@@ -27,13 +27,10 @@ public class Controleur implements Initializable {
 
     @FXML
     private ImageView coeur5;
-
     @FXML
     private ImageView coeur4;
-
     @FXML
     private ImageView coeur3;
-
     @FXML
     private ImageView coeur2;
     @FXML
@@ -56,8 +53,6 @@ public class Controleur implements Initializable {
     private Pane plateau;
     @FXML
     private TilePane map = new TilePane();
-    @FXML
-    private VBox LinkLife;
     @FXML
     private ListView<String> listViewInventaire=new ListView<>();
     private Timeline gameLoop;

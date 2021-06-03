@@ -4,7 +4,6 @@ import Modèle.Environnement;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
 public class GestionCoeur implements ChangeListener<Number> {
     private ImageView coeur1;
