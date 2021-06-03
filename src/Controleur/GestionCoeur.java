@@ -1,5 +1,6 @@
-package Modèle;
+package Controleur;
 
+import Modèle.Environnement;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.ImageView;
