@@ -22,6 +22,7 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
 
     @FXML
     private Link perso;
+    private boolean b=false;
 
     public ArrowGestion(Link p) {
         this.perso = p;
@@ -32,20 +33,46 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
         // Attention les coordonnées des y sont inversés.
         switch (keyEvent.getCode()) {
             case UP:
-                this.perso.monter();
-                this.perso.sens("monter");
+                if(b==true){
+                    this.perso.setOrientation("monter");
+                }
+                else{
+                    this.perso.monter();
+                    this.perso.setOrientation("monter");
+                }
                 break;
             case DOWN:
-                this.perso.descendre();
-                this.perso.sens("descendre");
+                if(b==true){
+                    this.perso.setOrientation("descendre");
+                }
+                else{
+                    this.perso.descendre();
+                    this.perso.setOrientation("descendre");
+                }
                 break;
             case LEFT:
-                this.perso.gauche();
-                this.perso.sens("gauche");
+                if(b==true){
+                    this.perso.setOrientation("gauche");
+                }
+                else{
+                    this.perso.gauche();
+                    this.perso.setOrientation("gauche");
+                }
                 break;
             case RIGHT:
-                this.perso.droite();
-                this.perso.sens("droite");
+                if(b==true){
+                    this.perso.setOrientation("droite");
+                }
+                else{
+                    this.perso.droite();
+                    this.perso.setOrientation("droite");
+                }
+                break;
+            case W:
+                b=true;
+                break;
+            case X:
+                b=false;
                 break;
             default:
                 break;
