@@ -31,26 +31,22 @@ public class LettreTyped implements EventHandler<KeyEvent> {
 
     private Timeline gameloop;
     private ArrayList<Objet> objetEnvironnement;
-    @FXML
-    private ImageView lapotion;
+
     @FXML
     private Environnement env;
     @FXML
     private Inventaire inventaire;
 
 
-    public LettreTyped(Link p, VBox vb, Pane map, Timeline t, Environnement environnement, Inventaire i, ObjetVue potionVue) {
-        this.perso = p;
+    public LettreTyped(VBox vb, Pane map, Timeline t, Environnement environnement) {
+        this.perso = environnement.getLink();
         menuPause=vb;
         plateau=map;
         menuPause.setVisible(false);
-        this.plateau = map;
         this.gameloop = t;
         objetEnvironnement=environnement.getObjetEnvironnement();
-        inventaire=i;
-        lapotion=potionVue.objetVue();
+        inventaire=environnement.getInventaire();
         env=environnement;
-        plateau.getChildren().add(potionVue.objetVue());
 
     }
 
@@ -74,7 +70,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 // d'abord boucle for puis tableau machin
                 for(Objet obj:objetEnvironnement){
                     if(((obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
-                        plateau.getChildren().remove(lapotion);
+                        plateau.getChildren().remove(obj);
                         env.deleteCoordExt(obj.getPositionLargeur().getValue(),obj.getPositionHauteur().getValue());
                         inventaire.addObjet(obj);
                         obj.setPositionHauteur(999);

@@ -82,12 +82,12 @@ public class Controleur implements Initializable {
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
         miseEnPlaceObjet();
-        ObjetVue vuePotion=new ObjetVue("Vue/inventory_potionblue.gif");
+
         InventaireGestion inventaireGestion=new InventaireGestion(listViewInventaire,env);
         listViewInventaire.setOnMouseClicked(inventaireGestion);
         listViewInventaire.setItems(env.getInventaire().getListeObjets());
         affichage();
-        connexion(env.getInventaire(),vuePotion);
+        connexion();
         gestionBouleDeFeu();
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
@@ -108,10 +108,18 @@ public class Controleur implements Initializable {
                 plateau.getChildren().add(s.getImgSquelette());
             }
         }
+        for(Objet obj:env.getObjetEnvironnement()){
+            if(obj instanceof Potion){
+                ObjetVue vuePotion=new ObjetVue("Vue/inventory_potionblue.gif");
+                vuePotion.objetVue().translateXProperty().bind(obj.getPositionLargeur());
+                vuePotion.objetVue().translateYProperty().bind(obj.getPositionHauteur());
+                plateau.getChildren().add(vuePotion.objetVue());
+            }
+        }
     }
-    public void connexion(Inventaire inventaire,ObjetVue imgPotion) {
+    public void connexion() {
         arrow = new ArrowGestion(env.getLink());
-        action = new LettreTyped(env.getLink(),menuPause,plateau,gameLoop,env, inventaire,imgPotion );
+        action = new LettreTyped(menuPause,plateau,gameLoop,env);
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         ProgressBarExp.setProgress(0.0);
