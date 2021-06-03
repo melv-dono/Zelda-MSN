@@ -19,25 +19,8 @@ public class Link extends Personnage{
     public Link(Environnement e) {
         super("Link", e, 100, 10, 0);
         //this.orientation.equals("descendre");
-        orientation="descendre";
         this.isMoving = false;
-        this.animationProperty = new SimpleIntegerProperty(15);
-    }
-
-    /**
-     * Méthode pour savoir où est orienté le personnage
-     * @return
-     */
-    public String getOrientation() {
-        return this.orientation;
-    }
-
-    /**
-     * Méthode pour changer l'orientation du personnage
-     * @param s
-     */
-    public void setOrientation(String s) {
-        this.orientation = s;
+        this.animationProperty = new SimpleIntegerProperty(Parametre.ATTAQUE_ANIMATION);
     }
 
     /**
@@ -68,9 +51,7 @@ public class Link extends Personnage{
         this.armePrincipale = armePrincipale;
     }
 
-    public void setArmeSecondaire(BaguetteMagique b) {
-        this.armeSecondaire = b;
-    }
+    public void setArmeSecondaire(BaguetteMagique b) {this.armeSecondaire = b;}
 
     public void setMoving(boolean moving) {
         isMoving = moving;
@@ -86,7 +67,7 @@ public class Link extends Personnage{
         }
         if (this.animationProperty.getValue() == 0) {
             this.isMoving = false;
-            setAnimationProperty(15);
+            setAnimationProperty(Parametre.ATTAQUE_ANIMATION);
         }
     }
 
@@ -107,7 +88,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
-        this.orientation = "monter";
+        super.setOrientation("monter");
     }
 
     /**
@@ -127,7 +108,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
-        this.orientation = "descendre";
+        super.setOrientation("descendre");
     }
 
     /**
@@ -147,7 +128,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
-        this.orientation = "gauche";
+        super.setOrientation("gauche");
     }
 
     /**
@@ -167,7 +148,7 @@ public class Link extends Personnage{
         else {
             collisionAffCoord(carte);
         }
-        this.orientation = "droite";
+        super.setOrientation("droite");
     }
 
     /**
@@ -191,113 +172,39 @@ public class Link extends Personnage{
         System.out.println();
     }
 
-    /**
-     * Affiche la position de link sur le tableau de donnée.
-     * @param carte
-     */
-    private void posTab(int [][]carte){
-        int cmptX=-1;
-        int cmptY;
-        for(int i=0;i<Parametre.LIGNE;i++){
-            cmptX++;
-            cmptY=0;
-            System.out.print("Ligne"+(cmptX+1)+" : ");
-            for(int j=0;j<Parametre.COLONNE;j++){
-                if((getDeplacementHauteur()/Parametre.TUILE_SIZE)==cmptX&&(getDeplacementLargeur()/32)==cmptY){
-                    System.out.print("*");
-                }else{
-                    System.out.print(carte[i][j]);
-                }
-                cmptY++;
-            }
-            System.out.println();
-        }
-        System.out.println("---------");
-    }
-
-    public boolean cibleAtteignable(Personnage perso) {
-        if(		(this.getDeplacementHauteur()-32<= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()+32) &&
-                (this.getDeplacementLargeur()-32<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur()+32)
-        )
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean cibleSurLaGauche(Personnage perso) {
-        if(		(this.getDeplacementHauteur()+Parametre.TUILE_SIZE>= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()>=this.getDeplacementHauteur()) &&
-                (this.getDeplacementLargeur()-Parametre.TUILE_SIZE-1<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur())
-        )
-        {
-            return true;
-        }
-        else {return false;}
-    }
-
-    public boolean cibleSurLaDroite(Personnage perso) {
-        if( // Attention on a enlevé 1 car le squelette était pile sur la bordure de la tuile
-                (this.getDeplacementHauteur()+Parametre.TUILE_SIZE>= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()) &&
-                (this.getDeplacementLargeur()+Parametre.TUILE_SIZE-1<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur()+(Parametre.TUILE_SIZE*2)-1)
-        )
-        {
-            return true;
-        }
-        else {return false;}
-    }
-
-    public boolean cibleEnHaut(Personnage perso) {
-        if(
-                (this.getDeplacementHauteur()-Parametre.TUILE_SIZE<= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()) &&
-                (this.getDeplacementLargeur()-Parametre.TUILE_SIZE<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur())
-        )
-        {
-            return true;
-        }
-        else {return false;}
-    }
-
-    public boolean cibleEnBas(Personnage perso) {
-        if( // Attention on a enlevé 1 car le squelette était pile sur la bordure de la tuile
-                (this.getDeplacementHauteur() + Parametre.TUILE_SIZE <= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()+(Parametre.TUILE_SIZE*2)) &&
-                (this.getDeplacementLargeur()-1<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur()+Parametre.TUILE_SIZE-1)
-        )
-        {
-            return true;
-        }
-        else {return false;}
-    }
-
-    public void attaquer() {// Attaque de zone
-        double dommage = getPointAttaque() + this.armePrincipale.getPointAttaque();
-        for (Personnage p : getEnv().getPerso()) {
-            if (p instanceof Squelette && this.orientation =="monter") {
-                if (cibleEnHaut(p)) {
-                    p.perteDePv(dommage);
-                }
-            }
-            if (p instanceof Squelette && this.orientation =="descendre") {
-                System.out.println(this.getDeplacementHauteur() + Parametre.TUILE_SIZE);
-                System.out.println(this.getDeplacementHauteur()+(Parametre.TUILE_SIZE*2));
-
-                System.out.println("y du perso:");
-                System.out.println(p.getDeplacementHauteur());
-                if (cibleEnBas(p)) {
-                    p.perteDePv(dommage);
-                }
-            }
-            if (p instanceof Squelette && this.orientation =="gauche") {
-
-                if (cibleSurLaGauche(p)) {
-                    p.perteDePv(dommage);
-                }
-            }
-            if (p instanceof Squelette && this.orientation =="droite") {
-                if (cibleSurLaDroite(p)) {
-                    p.perteDePv(dommage);
-                }
-            }
-        }
-    }
+//    /**
+//     * Affiche la position de link sur le tableau de donnée.
+//     * @param carte
+//     */
+//    private void posTab(int [][]carte){
+//        int cmptX=-1;
+//        int cmptY;
+//        for(int i=0;i<Parametre.LIGNE;i++){
+//            cmptX++;
+//            cmptY=0;
+//            System.out.print("Ligne"+(cmptX+1)+" : ");
+//            for(int j=0;j<Parametre.COLONNE;j++){
+//                if((getDeplacementHauteur()/Parametre.TUILE_SIZE)==cmptX&&(getDeplacementLargeur()/32)==cmptY){
+//                    System.out.print("*");
+//                }else{
+//                    System.out.print(carte[i][j]);
+//                }
+//                cmptY++;
+//            }
+//            System.out.println();
+//        }
+//        System.out.println("---------");
+//    }
+//
+//    public boolean cibleAtteignable(Personnage perso) {
+//        if(		(this.getDeplacementHauteur()-32<= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()+32) &&
+//                (this.getDeplacementLargeur()-32<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur()+32)
+//        )
+//        {
+//            return true;
+//        }
+//        return false;
+//    }
+//
 
 }

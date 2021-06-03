@@ -7,5 +7,6 @@ public class Parametre {
     public static final int TUILE_SIZE = 32;
     public static final int COLONNE = 40;
     public static final int LIGNE = 23;
+    public static final int ATTAQUE_ANIMATION = 15;
 
 }

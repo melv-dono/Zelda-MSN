@@ -64,34 +64,10 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 menuPause.setVisible(false);
                 break;
             case D:
-                this.perso.attaquer();
+                this.perso.getArmePrincipale().attaquer();
                 this.perso.setMoving(true);
                 break;
             case A:
-//                Timeline chargementAttaque = new Timeline( à conserver surement utile pour l'animation de l'attaque
-//                        new KeyFrame(Duration.millis(500),
-//                            e -> {
-//                                this.perso.attaquer();
-//                                System.out.println("Tentative d'attaque!");
-//                            }
-//                        )
-//                );
-//                chargementAttaque.setCycleCount(1);
-//                chargementAttaque.play();
-
-//                if (this.perso.getarmeSecondaire() instanceof BaguetteMagique) {
-//                    BouleDeFeu b1 = this.perso.getarmeSecondaire().creeBoule();
-//                    ImageView vue;
-//                    VueBouleDeFeu vueBouleDeFeu = new VueBouleDeFeu(b1);
-//                    vue = vueBouleDeFeu.creeSprite();
-//                    plateau.getChildren().add(vue);
-//                    this.perso.getarmeSecondaire().lancerBouleDeFeu(b1, gameloop);
-////                    plateau.getChildren().remove(vue);
-//
-//                }
-                /*
-                Le plus opti serait que ici on est juste personnage.lancerBouleDeFeu
-                 */
                 this.perso.getarmeSecondaire().creeBoule();
                 break;
             case R:
