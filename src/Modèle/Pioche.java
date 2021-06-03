@@ -8,7 +8,7 @@ public class Pioche extends Objet{
      * @param posLargeur
      * @param posHauteur
      */
-    public Pioche(String nom, int posLargeur, int posHauteur) {
+    public Pioche(String nom, double posLargeur, double posHauteur) {
         super(nom, posLargeur, posHauteur);
     }
 }

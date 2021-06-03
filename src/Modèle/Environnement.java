@@ -6,9 +6,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private int width,height; // largeur == width - hauteur == height
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
-    private ArrayList<Objet>objetEnvironnement;
-    private ArrayList<Double>elementDecorLargeur; // potion et autre
-    private ArrayList<Double>elementDecorHauteur;
+    private ArrayList<Objet>objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
+    private ArrayList<Double>elementDecorLargeur; // les coordonnées de la largeur des Objets
+    private ArrayList<Double>elementDecorHauteur;// les coordonnées de la hauteur des Objets
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
     private Link utilisateur;
 
@@ -26,14 +26,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         elementDecorLargeur=new ArrayList<>();
         objetEnvironnement=new ArrayList<>();
     }
-    /*public Environnement(int width, int height){
-        this.width=width;
-        this.height=height;
-        this.lesPerso=new ArrayList<>();
-        this.decors = new ArrayList<>();
-        this.mapActuelle= new MapModele("map1");
-        this.decors.add(mapActuelle);
-    }*/
 
     /**
      * GETTERS
@@ -204,6 +196,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
     public void addObjetDansEnv(Objet objet){
         objetEnvironnement.add(objet);
+    }
+    public void miseEnPlaceObjetFirstMap(){
+        Potion potion=new Potion(520,608);
+        objetEnvironnement.add(potion);
+        elementDecorLargeur.add(potion.getPositionLargeur().getValue());
     }
     /**
      * FONCTIONS

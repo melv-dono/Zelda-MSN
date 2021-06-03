@@ -1,7 +1,7 @@
 package Modèle;
 
 public class Pomme extends ObjetSoin{
-    public Pomme(int posL,int posH){
+    public Pomme(double posL,double posH){
         super(5,posL,posH,"pomme");
     }
 }

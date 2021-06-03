@@ -1,6 +1,7 @@
 package Modèle;
 
-import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Objet {
@@ -8,16 +9,16 @@ public abstract class Objet {
      * ATTRIBUTS
      */
     private String nom;
-    private IntegerProperty positionLargeur;
-    private IntegerProperty positionHauteur;
+    private DoubleProperty positionLargeur;
+    private DoubleProperty positionHauteur;
 
     /**
      * CONSTRUCTEUR
      */
-    public Objet(String nom,int posLargeur,int posHauteur){
+    public Objet(String nom,double posLargeur,double posHauteur){
         this.nom=nom;
-        positionLargeur=new SimpleIntegerProperty(posLargeur);
-        positionHauteur=new SimpleIntegerProperty(posHauteur);
+        positionLargeur=new SimpleDoubleProperty(posLargeur);
+        positionHauteur=new SimpleDoubleProperty(posHauteur);
     }
     /**
      * GETTERS
@@ -26,10 +27,10 @@ public abstract class Objet {
     public String getNom(){
         return nom;
     }
-    public IntegerProperty getPositionLargeur(){
+    public DoubleProperty getPositionLargeur(){
         return positionLargeur;
     }
-    public IntegerProperty getPositionHauteur(){
+    public DoubleProperty getPositionHauteur(){
         return positionHauteur;
     }
     /**

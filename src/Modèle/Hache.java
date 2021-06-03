@@ -9,7 +9,7 @@ public class Hache extends Objet{
      * @param posLargeur
      * @param posHauteur
      */
-    public Hache(String nom, int posLargeur, int posHauteur) {
+    public Hache(String nom, double posLargeur, double posHauteur) {
         super(nom, posLargeur, posHauteur);
     }
 }
