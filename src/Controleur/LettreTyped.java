@@ -71,6 +71,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 this.perso.getarmeSecondaire().creeBoule();
                 break;
             case R:
+                // d'abord boucle for puis tableau machin
                 if(((potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
                     plateau.getChildren().remove(lapotion);
                     env.deleteCoordExt(potion.getPositionLargeur().getValue(),potion.getPositionHauteur().getValue());
