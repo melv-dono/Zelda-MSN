@@ -1,6 +1,7 @@
 package Controleur;
 
 import Modèle.*;
+import Vue.ObjetVue;
 import Vue.VueBouleDeFeu;
 import Vue.VueLink;
 import Vue.VueSquelette;
@@ -37,18 +38,18 @@ public class LettreTyped implements EventHandler<KeyEvent> {
     @FXML
     private Inventaire inventaire;
 
-    public LettreTyped(Link p, VBox vb, Pane map, Timeline t,Environnement environnement,Objet potion, Inventaire i,ImageView potionVue) {
+    public LettreTyped(Link p, VBox vb, Pane map, Timeline t, Environnement environnement, Inventaire i, ObjetVue potionVue) {
         this.perso = p;
         menuPause=vb;
         plateau=map;
         menuPause.setVisible(false);
         this.plateau = map;
         this.gameloop = t;
-        this.potion=potion;
+        this.potion= potionVue.objetImg();
         inventaire=i;
-        lapotion=potionVue;
+        lapotion=potionVue.objetVue();
         env=environnement;
-        plateau.getChildren().add(potionVue);
+        plateau.getChildren().add(potionVue.objetVue());
     }
 
     @Override

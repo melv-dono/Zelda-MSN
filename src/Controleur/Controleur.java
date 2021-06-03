@@ -89,8 +89,7 @@ public class Controleur implements Initializable {
         m.chargerMap(env.getMapActuelle().getTableau());
         //Objet potion=new Objet("potion",520,608,15,env);
         Potion potion=new Potion(520,608,env);
-        ObjetVue vuePotion=new ObjetVue(potion);
-        ImageView imgPotion=vuePotion.CreerSpriteObjet();
+        ObjetVue vuePotion=new ObjetVue(potion,"Vue/inventory_potionblue.gif");
         Inventaire inventaire=new Inventaire();
         env.ajouterCoordElementExt(potion);
         Objet objBon=new Potion(env);
@@ -114,7 +113,7 @@ public class Controleur implements Initializable {
         });
         listViewInventaire.setItems(inventaire.getListeObjets());
         affichage();
-        connexion(potion,inventaire,imgPotion);
+        connexion(potion,inventaire,vuePotion);
         gestionBouleDeFeu();
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
@@ -134,9 +133,9 @@ public class Controleur implements Initializable {
             }
         }
     }
-    public void connexion(Objet obj,Inventaire inventaire,ImageView imgPotion) {
+    public void connexion(Objet obj,Inventaire inventaire,ObjetVue imgPotion) {
         arrow = new ArrowGestion(env.getLink());
-        action = new LettreTyped(env.getLink(),menuPause,plateau,gameLoop,env,obj, inventaire,imgPotion );
+        action = new LettreTyped(env.getLink(),menuPause,plateau,gameLoop,env, inventaire,imgPotion );
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         ProgressBarExp.setProgress(0.7);

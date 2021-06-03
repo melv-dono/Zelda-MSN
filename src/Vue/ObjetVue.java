@@ -5,16 +5,15 @@ import javafx.scene.image.ImageView;
 
 public class ObjetVue {
     private Objet objet;
-    public ObjetVue(Objet obj){
+    private ImageView img;
+    public ObjetVue(Objet obj,String url){
         objet=obj;
+        img=new ImageView(url);
+        img.translateXProperty().bind(objet.getPositionLargeur());
+        img.translateYProperty().bind(objet.getPositionHauteur());
     }
-    public ImageView CreerSpriteObjet(){
-        ImageView spriteObj=new ImageView("Vue/inventory_potionblue.gif");
-        spriteObj.translateXProperty().bind(objet.getPositionLargeur());
-        spriteObj.translateYProperty().bind(objet.getPositionHauteur());
-        return spriteObj;
-    }
-    public Objet contenuImage(){
+    public Objet objetImg(){
         return objet;
     }
+    public ImageView objetVue(){return img;}
 }
