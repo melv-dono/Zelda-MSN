@@ -36,7 +36,7 @@ public class GestionCoeur implements ChangeListener<Number> {
         if(env.getLink().pv()<40){
             coeur3.setVisible(false);
         }else{
-            coeur2.setVisible(true);
+            coeur3.setVisible(true);
         }
         if(env.getLink().pv()<20){
             coeur2.setVisible(false);
