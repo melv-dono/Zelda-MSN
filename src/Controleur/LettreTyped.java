@@ -68,13 +68,23 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 break;
             case R:
                 for(Objet obj:objetEnvironnement){
-                    if(((obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
-                        plateau.getChildren().remove(obj);
-                        env.deleteCoordExt(obj.getPositionLargeur().getValue(),obj.getPositionHauteur().getValue());
-                        inventaire.addObjet(obj);
-                        obj.setPositionHauteur(999);
-                        obj.setPositionLargeur(999);
+                    if(obj instanceof ObjetRamassable){
+                        if(((obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
+                            plateau.getChildren().remove(obj);
+                            env.deleteCoordExt(obj.getPositionLargeur().getValue(),obj.getPositionHauteur().getValue());
+                            inventaire.addObjet(obj);
+                            obj.setPositionHauteur(999);
+                            obj.setPositionLargeur(999);
+                        }
+                    }else if(obj instanceof Rocher){
+                        if(((obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
+                            plateau.getChildren().remove(obj);
+                            env.deleteCoordExt(obj.getPositionLargeur().getValue(),obj.getPositionHauteur().getValue());
+                            obj.setPositionHauteur(999);
+                            obj.setPositionLargeur(999);
+                        }
                     }
+
                 }
                 break;
             case P:
@@ -88,8 +98,4 @@ public class LettreTyped implements EventHandler<KeyEvent> {
         }
     }
 
-//    public void affichageBoule(BouleDeFeu b) {
-//        VueBouleDeFeu vue = new VueBouleDeFeu(b);
-//        plateau.getChildren().add(vue.creeSprite());
-//    }
 }

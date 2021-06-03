@@ -7,14 +7,12 @@ import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -110,9 +108,15 @@ public class Controleur implements Initializable {
         for(Objet obj:env.getObjetEnvironnement()){
             if(obj instanceof Potion){
                 ObjetVue vuePotion=new ObjetVue("Vue/inventory_potionblue.gif");
-                vuePotion.objetVue().translateXProperty().bind(obj.getPositionLargeur());
-                vuePotion.objetVue().translateYProperty().bind(obj.getPositionHauteur());
-                plateau.getChildren().add(vuePotion.objetVue());
+                vuePotion.getImg().translateXProperty().bind(obj.getPositionLargeur());
+                vuePotion.getImg().translateYProperty().bind(obj.getPositionHauteur());
+                plateau.getChildren().add(vuePotion.getImg());
+            }
+            if(obj instanceof Rocher){
+                ObjetVue vueRocher=new ObjetVue("Vue/item_stonefence.gif");
+                vueRocher.getImg().translateXProperty().bind(obj.getPositionLargeur());
+                vueRocher.getImg().translateYProperty().bind(obj.getPositionHauteur());
+                plateau.getChildren().add(vueRocher.getImg());
             }
         }
     }

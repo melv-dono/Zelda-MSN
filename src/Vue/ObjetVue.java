@@ -8,5 +8,5 @@ public class ObjetVue {
     public ObjetVue(String url){
         img=new ImageView(url);
     }
-    public ImageView objetVue(){return img;}
+    public ImageView getImg(){return img;}
 }

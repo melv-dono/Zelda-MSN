@@ -208,6 +208,10 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Potion potion=new Potion(520,608);
         objetEnvironnement.add(potion);
         ajouterCoordElementExt(potion);
+        Rocher rocher =new Rocher(392,608);
+        objetEnvironnement.add(rocher);
+        ajouterCoordElementExt(rocher);
+
     }
 
     /**
