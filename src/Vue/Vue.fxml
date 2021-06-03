@@ -14,29 +14,29 @@
         <Pane fx:id="plateau" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
             <children>
                 <TilePane fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="1280.0" tileAlignment="BOTTOM_LEFT" />
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" prefHeight="50.0" prefWidth="250.0">
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" prefHeight="29.0" prefWidth="146.0">
                <children>
-                  <ImageView fx:id="coeur1" fitHeight="53.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="coeur1" fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@heartC.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="coeur2" fitHeight="53.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="coeur2" fitHeight="29.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@heartC.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="coeur3" fitHeight="53.0" fitWidth="50.0" layoutX="60.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="coeur3" fitHeight="29.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@heartC.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="coeur4" fitHeight="53.0" fitWidth="50.0" layoutX="110.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="coeur4" fitHeight="29.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@heartC.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="coeur5" fitHeight="53.0" fitWidth="50.0" layoutX="160.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="coeur5" fitHeight="29.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@heartC.png" />
                      </image>
