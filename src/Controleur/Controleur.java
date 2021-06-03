@@ -69,7 +69,6 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
 				Duration.seconds(0.017),
 				(ev ->{
-                    s.animation1();
                     vue.orientation();
                     this.env.faireUntour();
 				})

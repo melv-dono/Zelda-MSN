@@ -174,6 +174,12 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.utilisateur.declencherAnimation();
         cibleTouche();
         retirerBouleDeFeu();
+        for (Personnage p : this.lesPerso) {
+            if (p instanceof Squelette) {
+                ((Squelette)p).animation1();
+            }
+        }
+
     }
 
     public void retirerBouleDeFeu() {
