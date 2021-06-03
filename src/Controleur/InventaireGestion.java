@@ -12,6 +12,7 @@ public class InventaireGestion implements EventHandler<MouseEvent> {
     private ListView<String>listViewInventaire;
     private Environnement env;
     private Objet potion;
+
     public InventaireGestion(Inventaire inventaire, ListView<String>list, Environnement e,Objet potion){
         this.inventaire=inventaire;
         listViewInventaire=list;

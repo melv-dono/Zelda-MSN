@@ -38,6 +38,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
     @FXML
     private Inventaire inventaire;
 
+
     public LettreTyped(Link p, VBox vb, Pane map, Timeline t, Environnement environnement, Inventaire i, ObjetVue potionVue) {
         this.perso = p;
         menuPause=vb;
@@ -50,6 +51,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
         lapotion=potionVue.objetVue();
         env=environnement;
         plateau.getChildren().add(potionVue.objetVue());
+
     }
 
     @Override

@@ -24,6 +24,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
+
     @FXML
     private ImageView coeur1, coeur2, coeur3, coeur4, coeur5;
     @FXML
@@ -124,6 +125,9 @@ public class Controleur implements Initializable {
         this.env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
     }
     public void miseEnPlaceObjet(){
+
+    }
+    public void miseEnPlaceInventaire(){
 
     }
 }
