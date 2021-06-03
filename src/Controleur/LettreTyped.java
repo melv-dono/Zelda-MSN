@@ -18,6 +18,7 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.time.Period;
+import java.util.ArrayList;
 
 public class LettreTyped implements EventHandler<KeyEvent> {
 
@@ -29,8 +30,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
     private Pane plateau;
 
     private Timeline gameloop;
-    @FXML
-    private Objet potion;
+    private ArrayList<Objet> objetEnvironnement;
     @FXML
     private ImageView lapotion;
     @FXML
@@ -46,7 +46,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
         menuPause.setVisible(false);
         this.plateau = map;
         this.gameloop = t;
-        this.potion= potionVue.objetImg();
+        objetEnvironnement=environnement.getObjetEnvironnement();
         inventaire=i;
         lapotion=potionVue.objetVue();
         env=environnement;
@@ -72,12 +72,14 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 break;
             case R:
                 // d'abord boucle for puis tableau machin
-                if(((potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&potion.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& potion.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
-                    plateau.getChildren().remove(lapotion);
-                    env.deleteCoordExt(potion.getPositionLargeur().getValue(),potion.getPositionHauteur().getValue());
-                    inventaire.addObjet(potion);
-                    potion.setPositionHauteur(999);
-                    potion.setPositionLargeur(999);
+                for(Objet obj:objetEnvironnement){
+                    if(((obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
+                        plateau.getChildren().remove(lapotion);
+                        env.deleteCoordExt(obj.getPositionLargeur().getValue(),obj.getPositionHauteur().getValue());
+                        inventaire.addObjet(obj);
+                        obj.setPositionHauteur(999);
+                        obj.setPositionLargeur(999);
+                    }
                 }
                 break;
             case P:

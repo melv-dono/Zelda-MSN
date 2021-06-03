@@ -11,13 +11,12 @@ public class InventaireGestion implements EventHandler<MouseEvent> {
     private Inventaire inventaire;
     private ListView<String>listViewInventaire;
     private Environnement env;
-    private Objet potion;
 
-    public InventaireGestion(Inventaire inventaire, ListView<String>list, Environnement e,Objet potion){
-        this.inventaire=inventaire;
+
+    public InventaireGestion(ListView<String>list, Environnement e){
+        this.inventaire=e.getInventaire();
         listViewInventaire=list;
         env=e;
-        this.potion=potion;
     }
     public void ajoutPotion(Objet obj){
         inventaire.addObjet(obj);
@@ -29,7 +28,7 @@ public class InventaireGestion implements EventHandler<MouseEvent> {
                 System.out.println("erroor");
             }else if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& env.getLink().pv()<100) {
                 env.getLink().augmenterPv(10);
-                inventaire.removeObjet(potion);
+                /*inventaire.removeObjet(potion);*/
             }else{
                 System.out.println("ra");
             }

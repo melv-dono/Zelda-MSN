@@ -5,13 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Inventaire {
-    private ObservableList<String> listeObjets;
-    private int tailleInventaire;
+    private ObservableList<String> listeObjets=FXCollections.observableArrayList();
+    private int tailleInventaire=15;
 
-    public Inventaire(){
-        listeObjets= FXCollections.observableArrayList();
-        tailleInventaire=15;
-    }
     public ObservableList<String> getListeObjets(){
         return listeObjets;
     }
@@ -46,4 +42,5 @@ public class Inventaire {
             return true;
         }
     }
+
 }

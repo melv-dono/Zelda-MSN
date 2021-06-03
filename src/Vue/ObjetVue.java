@@ -4,16 +4,11 @@ import Modèle.Objet;
 import javafx.scene.image.ImageView;
 
 public class ObjetVue {
-    private Objet objet;
     private ImageView img;
-    public ObjetVue(Objet obj,String url){
-        objet=obj;
+    public ObjetVue(String url){
         img=new ImageView(url);
-        img.translateXProperty().bind(objet.getPositionLargeur());
-        img.translateYProperty().bind(objet.getPositionHauteur());
-    }
-    public Objet objetImg(){
-        return objet;
+ /*       img.translateXProperty().bind(objet.getPositionLargeur());
+        img.translateYProperty().bind(objet.getPositionHauteur());*/
     }
     public ImageView objetVue(){return img;}
 }

@@ -11,6 +11,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private ArrayList<Double>elementDecorHauteur;// les coordonnées de la hauteur des Objets
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
     private Link utilisateur;
+    private final Inventaire inventaire=new Inventaire();
 
     /**
      * CONSTRUCTEUR
@@ -89,6 +90,12 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public Link getLink() {
         return this.utilisateur;
     }
+    public Inventaire getInventaire(){
+        return inventaire;
+    }
+    public ArrayList<Objet> getObjetEnvironnement(){
+        return objetEnvironnement;
+    }
 
     /**
      * SETTERS
@@ -133,8 +140,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
     public void ajouterCoordElementExt(Objet obj){
-        elementDecorHauteur.add((double)obj.getPositionHauteur().getValue());
-        elementDecorLargeur.add((double)obj.getPositionLargeur().getValue());
+        elementDecorHauteur.add(obj.getPositionHauteur().getValue());
+        elementDecorLargeur.add(obj.getPositionLargeur().getValue());
     }
     public void deleteCoordExt(double l,double h){
         for(int i=0;i<elementDecorLargeur.size();i++){
@@ -200,8 +207,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void miseEnPlaceObjetFirstMap(){
         Potion potion=new Potion(520,608);
         objetEnvironnement.add(potion);
-        elementDecorLargeur.add(potion.getPositionLargeur().getValue());
+        ajouterCoordElementExt(potion);
     }
+
     /**
      * FONCTIONS
      */
