@@ -1,6 +1,6 @@
 package Modèle;
 
-public class Pioche extends Objet{
+public class Pioche extends ObjetRamassable{
     /**
      * CONSTRUCTEUR
      *

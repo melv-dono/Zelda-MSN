@@ -1,6 +1,7 @@
 package Modèle;
 
-public class Hache extends ObjetRamassable{
+public class ObjetRamassable extends Objet{
+
 
     /**
      * CONSTRUCTEUR
@@ -9,7 +10,7 @@ public class Hache extends ObjetRamassable{
      * @param posLargeur
      * @param posHauteur
      */
-    public Hache(String nom, double posLargeur, double posHauteur) {
+    public ObjetRamassable(String nom, double posLargeur, double posHauteur) {
         super(nom, posLargeur, posHauteur);
     }
 }

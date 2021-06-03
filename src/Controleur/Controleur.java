@@ -82,7 +82,6 @@ public class Controleur implements Initializable {
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
         miseEnPlaceObjet();
-
         InventaireGestion inventaireGestion=new InventaireGestion(listViewInventaire,env);
         listViewInventaire.setOnMouseClicked(inventaireGestion);
         listViewInventaire.setItems(env.getInventaire().getListeObjets());

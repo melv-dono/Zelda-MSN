@@ -1,7 +1,6 @@
 package Modèle;
 
-public class Hache extends ObjetRamassable{
-
+public class Coquillage extends ObjetRamassable{
     /**
      * CONSTRUCTEUR
      *
@@ -9,7 +8,7 @@ public class Hache extends ObjetRamassable{
      * @param posLargeur
      * @param posHauteur
      */
-    public Hache(String nom, double posLargeur, double posHauteur) {
+    public Coquillage(String nom, double posLargeur, double posHauteur) {
         super(nom, posLargeur, posHauteur);
     }
 }
