@@ -19,9 +19,6 @@ public abstract class Objet {
         positionLargeur=new SimpleIntegerProperty(posLargeur);
         positionHauteur=new SimpleIntegerProperty(posHauteur);
     }
-    public Objet(String nom,Environnement e){
-        this.nom=nom;
-    }
     /**
      * GETTERS
      */
