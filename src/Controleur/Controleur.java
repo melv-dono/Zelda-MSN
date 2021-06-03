@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -30,6 +31,19 @@ import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
 
+    @FXML
+    private ImageView coeur5;
+
+    @FXML
+    private ImageView coeur4;
+
+    @FXML
+    private ImageView coeur3;
+
+    @FXML
+    private ImageView coeur2;
+    @FXML
+    private ImageView coeur1;
     @FXML
     private Label labelNiveau;
     @FXML
@@ -87,13 +101,10 @@ public class Controleur implements Initializable {
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
-        //Objet potion=new Objet("potion",520,608,15,env);
         Potion potion=new Potion(520,608,env);
         ObjetVue vuePotion=new ObjetVue(potion,"Vue/inventory_potionblue.gif");
         Inventaire inventaire=new Inventaire();
         env.ajouterCoordElementExt(potion);
-        Objet objBon=new Potion(env);
-        env.getLink().decrementerPv(50);
         listViewInventaire.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
@@ -138,7 +149,9 @@ public class Controleur implements Initializable {
         action = new LettreTyped(env.getLink(),menuPause,plateau,gameLoop,env, inventaire,imgPotion );
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
-        ProgressBarExp.setProgress(0.7);
+        ProgressBarExp.setProgress(0.0);
+        GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env.getLink().pv(),env,plateau);
+        env.getLink().pvProperty().addListener(apparitionCoeur);
     }
     public void gestionBouleDeFeu() {
         ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau);

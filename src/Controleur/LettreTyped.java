@@ -104,6 +104,8 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                     potion.setPositionLargeur(999);
                 }
                 break;
+            case P:
+                perso.decrementerPv(5);
             default:
                 break;
         }
