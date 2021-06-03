@@ -58,15 +58,14 @@ public abstract class Personnage {
         return pointAttaque.get();
     }
 
-
-
     public double getPointDefense() {
         return pointDefense.get();
     }
 
-
-
-
+    /**
+     * ajoute des points de vie au personnage Link
+     * @param pv
+     */
     public void augmenterPv(double pv){
         if(this.pv.getValue()==100){
             System.out.println("déjà plein de pv");
@@ -77,6 +76,11 @@ public abstract class Personnage {
             this.pv.setValue(pv+this.pv.getValue());
         }
     }
+
+    /**
+     * retire des points de vie et vérifie si il est mort ou pas
+     * @param pv
+     */
     public void decrementerPv(double pv){
         if(this.pv.getValue()==0){
             System.out.println("die igo");
@@ -84,6 +88,7 @@ public abstract class Personnage {
             this.pv.setValue(this.pv.getValue()-pv);
         }
     }
+
     /**
      * Envoie la colonne sur laquelle se trouve le personnage.
      * @return l'abscisse du personnage

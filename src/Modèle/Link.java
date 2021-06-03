@@ -24,19 +24,37 @@ public class Link extends Personnage{
         this.animationProperty = new SimpleIntegerProperty(15);
     }
 
+    /**
+     * Méthode pour savoir où est orienté le personnage
+     * @return
+     */
     public String getOrientation() {
         return this.orientation;
     }
 
+    /**
+     * Méthode pour changer l'orientation du personnage
+     * @param s
+     */
     public void setOrientation(String s) {
         this.orientation = s;
     }
 
+    /**
+     * Méthode qui retourne l'arme actuelle du personnage Link
+     * @return
+     */
     public Arme getArmePrincipale() {
         return armePrincipale;
     }
 
-    public BaguetteMagique getarmeSecondaire() {return armeSecondaire;}
+    /**
+     * Méthode qui retourne l'arme secondaire
+     * @return
+     */
+    public BaguetteMagique getarmeSecondaire() {
+        return armeSecondaire;
+    }
 
     public int getAnimationProperty() {
         return animationProperty.get();
@@ -50,7 +68,9 @@ public class Link extends Personnage{
         this.armePrincipale = armePrincipale;
     }
 
-    public void setArmeSecondaire(BaguetteMagique b) {this.armeSecondaire = b;}
+    public void setArmeSecondaire(BaguetteMagique b) {
+        this.armeSecondaire = b;
+    }
 
     public void setMoving(boolean moving) {
         isMoving = moving;

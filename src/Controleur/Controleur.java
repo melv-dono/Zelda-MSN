@@ -24,17 +24,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
-
     @FXML
-    private ImageView coeur5;
-    @FXML
-    private ImageView coeur4;
-    @FXML
-    private ImageView coeur3;
-    @FXML
-    private ImageView coeur2;
-    @FXML
-    private ImageView coeur1;
+    private ImageView coeur1, coeur2, coeur3, coeur4, coeur5;
     @FXML
     private Label labelNiveau;
     @FXML

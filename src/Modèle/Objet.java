@@ -61,7 +61,7 @@ public abstract class Objet {
      * FONCTION
      */
     public boolean ramasserObjet(double posLargeurLink,double posHauteurLink){
-        if(positionLargeur.getValue()-posLargeurLink<=32 && positionHauteur.getValue()==posHauteurLink){
+        if(positionLargeur.getValue()-posLargeurLink<=Parametre.PAS && positionHauteur.getValue()==posHauteurLink){
             return true;
         }else{
             System.out.println("vous ne pouvez ramassez aucun objet");

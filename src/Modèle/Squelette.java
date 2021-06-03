@@ -30,11 +30,17 @@ public class Squelette extends Personnage{
         this.setDeplacementHauteur(this.getDeplacementHauteur()+1);
     }
 
+    /**
+     * Déplace le squelette vers la gauche
+     */
     @Override
     public void gauche() {
         this.setDeplacementLargeur(this.getDeplacementLargeur()-1);
     }
 
+    /**
+     * Déplace le squelette vers la droite
+     */
     @Override
     public void droite() {
         this.setDeplacementLargeur(this.getDeplacementLargeur()+1);
@@ -43,7 +49,7 @@ public class Squelette extends Personnage{
     /**
      * première animation du premier squelette dans la première map qui servira dans la gameloop
      */
-    public void animation1(){
+    public void animationSquelette1(){
         if(cpt < 150) {
             this.monter();
         }
