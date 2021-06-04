@@ -43,9 +43,12 @@ public class Inventaire {
         }
     }
     public void deleteObjetString(String str){
-        for(String string:listeObjets){
-            if(string.equals(str)){
-                listeObjets.remove(string);
+        int a=0;
+        for(int i=0;i<listeObjets.size();i++){
+            if(listeObjets.get(i)==str && a==0){
+                listeObjets.remove(str);
+                i--;
+                a=1;
             }
         }
     }

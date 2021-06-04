@@ -79,11 +79,11 @@ public class Controleur implements Initializable {
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
-        miseEnPlaceObjet();
         InventaireGestion inventaireGestion=new InventaireGestion(listViewInventaire,env);
         listViewInventaire.setOnMouseClicked(inventaireGestion);
         listViewInventaire.setItems(env.getInventaire().getListeObjets());
         affichage();
+        miseEnPlaceObjet();
         connexion();
         gestionBouleDeFeu();
         plateau.setOnKeyReleased(action);
@@ -105,20 +105,8 @@ public class Controleur implements Initializable {
                 plateau.getChildren().add(s.getImgSquelette());
             }
         }
-        for(Objet obj:env.getObjetEnvironnement()){
-            if(obj instanceof Potion){
-                ObjetVue vuePotion=new ObjetVue("Vue/inventory_potionblue.gif");
-                vuePotion.getImg().translateXProperty().bind(obj.getPositionLargeur());
-                vuePotion.getImg().translateYProperty().bind(obj.getPositionHauteur());
-                plateau.getChildren().add(vuePotion.getImg());
-            }
-            if(obj instanceof Rocher){
-                ObjetVue vueRocher=new ObjetVue("Vue/item_stonefence.gif");
-                vueRocher.getImg().translateXProperty().bind(obj.getPositionLargeur());
-                vueRocher.getImg().translateYProperty().bind(obj.getPositionHauteur());
-                plateau.getChildren().add(vueRocher.getImg());
-            }
-        }
+        ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
+        env.getObjetEnvironnement().addListener(obsObj);
     }
     public void connexion() {
         arrow = new ArrowGestion(env.getLink());

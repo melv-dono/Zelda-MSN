@@ -7,6 +7,7 @@ import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -30,7 +31,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
     private Pane plateau;
 
     private Timeline gameloop;
-    private ArrayList<Objet> objetEnvironnement;
+    private ObservableList<Objet> objetEnvironnement;
 
     @FXML
     private Environnement env;
@@ -67,25 +68,31 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 this.perso.getarmeSecondaire().creeBoule();
                 break;
             case R:
-                for(Objet obj:objetEnvironnement){
-                    if(obj instanceof ObjetRamassable){
-                        if(((obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
-                            plateau.getChildren().remove(obj);
-                            env.deleteCoordExt(obj.getPositionLargeur().getValue(),obj.getPositionHauteur().getValue());
-                            inventaire.addObjet(obj);
-                            obj.setPositionHauteur(999);
-                            obj.setPositionLargeur(999);
-                        }
-                    }else if(obj instanceof Rocher){
-                        if(((obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&obj.getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& obj.getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
-                            plateau.getChildren().remove(obj);
-                            env.deleteCoordExt(obj.getPositionLargeur().getValue(),obj.getPositionHauteur().getValue());
-                            obj.setPositionHauteur(999);
-                            obj.setPositionLargeur(999);
+                System.out.println("début "+objetEnvironnement);
+                if(objetEnvironnement.size()>=1){
+                    for(int i=0;i<objetEnvironnement.size();i++){
+                        if(((objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
+                            if(objetEnvironnement.get(i) instanceof ObjetRamassable){
+                                env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
+                                /*objetEnvironnement.remove(objetEnvironnement.get(i));
+                                inventaire.addObjet(objetEnvironnement.get(i));
+                                */i--;
+                            /*objetEnvironnement.get(i).setPositionHauteur(999);
+                            obj.setPositionLargeur(999);*/
+                            }
+                            if(objetEnvironnement.get(i) instanceof Rocher){
+                                /*plateau.getChildren().remove(objetEnvironnement.get(i));*/
+                                /*objetEnvironnement.remove(objetEnvironnement.get(i));*/
+                                env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
+
+                                i--;
+                            /*obj.setPositionHauteur(999);
+                            obj.setPositionLargeur(999);*/
+                            }
                         }
                     }
-
                 }
+                System.out.println("end"+objetEnvironnement);
                 break;
             case P:
                 perso.decrementerPv(5);

@@ -23,7 +23,6 @@ public class ObservateaurBouleDeFeu implements ListChangeListener<BouleDeFeu> {
             for (BouleDeFeu nouvelle : change.getAddedSubList()) {
                 affichageBoule(nouvelle);
             }
-
             for (BouleDeFeu desintegree : change.getRemoved()) {
                 retirer(desintegree);
             }
