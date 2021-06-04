@@ -23,22 +23,22 @@ public class GestionCoeur implements ChangeListener<Number> {
     }
     @Override
     public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-        if(env.getLink().pv()<80){
+        if(env.getLink().pv()<=80){
             coeur5.setVisible(false);
         }else{
             coeur5.setVisible(true);
         }
-        if(env.getLink().pv()<60){
+        if(env.getLink().pv()<=60){
             coeur4.setVisible(false);
         }else{
             coeur4.setVisible(true);
         }
-        if(env.getLink().pv()<40){
+        if(env.getLink().pv()<=40){
             coeur3.setVisible(false);
         }else{
             coeur3.setVisible(true);
         }
-        if(env.getLink().pv()<20){
+        if(env.getLink().pv()<=20){
             coeur2.setVisible(false);
         }else{
             coeur2.setVisible(true);

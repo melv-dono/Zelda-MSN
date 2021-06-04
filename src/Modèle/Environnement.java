@@ -147,12 +147,15 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         elementDecorLargeur.add(obj.getPositionLargeur().getValue());
     }
     public void deleteCoordExt(double l,double h){
-        for(int i=0;i<elementDecorLargeur.size();i++){
+        int k=elementDecorHauteur.size();
+        System.out.println(k);
+        for(int i=0;i<k;i++){
             if(elementDecorLargeur.get(i)==l){
                 elementDecorLargeur.remove(elementDecorLargeur.get(i));
             }
             if(elementDecorHauteur.get(i)==h){
                 elementDecorHauteur.remove(elementDecorHauteur.get(i));
+                k--;
             }
         }
 

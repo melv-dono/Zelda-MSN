@@ -69,6 +69,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 break;
             case R:
                 System.out.println("début "+objetEnvironnement);
+                System.out.println(objetEnvironnement.size());
                 if(objetEnvironnement.size()>=1){
                     for(int i=0;i<objetEnvironnement.size();i++){
                         System.out.println("var I="+i);

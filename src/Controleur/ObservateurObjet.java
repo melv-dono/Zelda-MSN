@@ -58,11 +58,17 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
 
     }
     public void retirerObjet(int id){
-        for(ObjetVue o:listeObjetVue){
+  /*      for(ObjetVue o:listeObjetVue){
             if(o.getId()==id){
-                System.out.println("okkk");
-                listeObjetVue.remove(o);
                 plateau.getChildren().remove(o.getImg());
+                listeObjetVue.remove(o);
+            }
+        }*/
+        for(int i=0;i<listeObjetVue.size();i++){
+            if(listeObjetVue.get(i).getId()==id){
+                plateau.getChildren().remove(listeObjetVue.get(i).getImg());
+                listeObjetVue.remove(listeObjetVue.get(i));
+                i--;
             }
         }
     }
