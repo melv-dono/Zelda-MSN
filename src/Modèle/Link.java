@@ -83,7 +83,7 @@ public class Link extends Personnage{
             collisionAffCoord(carte);
         }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)-1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] == 1&&collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()-Parametre.TUILE_SIZE)==true) {//deplacement vers le haut bloquer
             setDeplacementHauteur(getDeplacementHauteur() - Parametre.TUILE_SIZE);
-            depAffCoord(carte);
+            //depAffCoord(carte);
         }
         else {
             collisionAffCoord(carte);
@@ -103,7 +103,7 @@ public class Link extends Personnage{
             collisionAffCoord(carte);
         }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)+1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] == 1&&collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()+Parametre.TUILE_SIZE)==true)  {//deplacement vers le bas bloquer
             setDeplacementHauteur(getDeplacementHauteur() + Parametre.TUILE_SIZE);
-            depAffCoord(carte);
+            //depAffCoord(carte);
         }
         else {
             collisionAffCoord(carte);
@@ -123,7 +123,7 @@ public class Link extends Personnage{
             collisionAffCoord(carte);
         }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)-1)] == 1&&collisionExterneEnv(getDeplacementLargeur()-Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
             setDeplacementLargeur(getDeplacementLargeur() - Parametre.TUILE_SIZE);
-            depAffCoord(carte);
+            //depAffCoord(carte);
         }
         else {
             collisionAffCoord(carte);
@@ -143,7 +143,7 @@ public class Link extends Personnage{
             collisionAffCoord(carte);
         }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)+1)] == 1&&collisionExterneEnv(getDeplacementLargeur()+Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
             setDeplacementLargeur(getDeplacementLargeur() + Parametre.TUILE_SIZE);
-            depAffCoord(carte);
+            //depAffCoord(carte);
         }
         else {
             collisionAffCoord(carte);

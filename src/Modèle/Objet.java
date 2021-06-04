@@ -8,9 +8,12 @@ public abstract class Objet {
     /**
      * ATTRIBUTS
      */
+
     private String nom;
     private DoubleProperty positionLargeur;
     private DoubleProperty positionHauteur;
+    private int id;
+    static int num=0;
 
     /**
      * CONSTRUCTEUR
@@ -19,10 +22,16 @@ public abstract class Objet {
         this.nom=nom;
         positionLargeur=new SimpleDoubleProperty(posLargeur);
         positionHauteur=new SimpleDoubleProperty(posHauteur);
+        id=num;
+        num++;
+
     }
     /**
      * GETTERS
      */
+    public int getId(){
+        return id;
+    }
 
     public String getNom(){
         return nom;

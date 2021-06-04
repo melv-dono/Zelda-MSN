@@ -71,28 +71,24 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 System.out.println("début "+objetEnvironnement);
                 if(objetEnvironnement.size()>=1){
                     for(int i=0;i<objetEnvironnement.size();i++){
+                        System.out.println("var I="+i);
                         if(((objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
                             if(objetEnvironnement.get(i) instanceof ObjetRamassable){
                                 env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
-                                /*objetEnvironnement.remove(objetEnvironnement.get(i));
                                 inventaire.addObjet(objetEnvironnement.get(i));
-                                */i--;
-                            /*objetEnvironnement.get(i).setPositionHauteur(999);
-                            obj.setPositionLargeur(999);*/
-                            }
-                            if(objetEnvironnement.get(i) instanceof Rocher){
-                                /*plateau.getChildren().remove(objetEnvironnement.get(i));*/
-                                /*objetEnvironnement.remove(objetEnvironnement.get(i));*/
+                                objetEnvironnement.remove(objetEnvironnement.get(i));
+                                System.out.println("potion I="+i);
+                            }else if(objetEnvironnement.get(i) instanceof Rocher){
                                 env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
-
-                                i--;
-                            /*obj.setPositionHauteur(999);
-                            obj.setPositionLargeur(999);*/
+                                objetEnvironnement.remove(objetEnvironnement.get(i));
+                                System.out.println("rocher I="+i);
                             }
                         }
+
+                        System.out.println("end"+objetEnvironnement);
+                        System.out.println("");
                     }
                 }
-                System.out.println("end"+objetEnvironnement);
                 break;
             case P:
                 perso.decrementerPv(5);
