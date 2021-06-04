@@ -28,6 +28,8 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
                     ajoutObjet(objAdded,"Vue/item_stonefence.gif");
                 }else if(objAdded instanceof Pioche){
                     ajoutObjet(objAdded,"Vue/pelle.gif");
+                }else if(objAdded instanceof Arbre){
+                    ajoutObjet(objAdded,"Vue/liltree.gif");
                 }
             }
             for(Objet objRemoved: change.getRemoved()){
@@ -36,6 +38,8 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
                 }else if(objRemoved instanceof Rocher) {
                     retirerObjet(objRemoved.getId());
                 }else if(objRemoved instanceof Pioche){
+                    retirerObjet(objRemoved.getId());
+                }else if(objRemoved instanceof Arbre){
                     retirerObjet(objRemoved.getId());
                 }
             }
@@ -60,6 +64,12 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
             vuePioche.getImg().translateYProperty().bind(obj.getPositionHauteur());
             plateau.getChildren().add(vuePioche.getImg());
             listeObjetVue.add(vuePioche);
+        }else if(obj instanceof Arbre){
+            ObjetVue vueArbre=new ObjetVue(url, obj.getId());
+            vueArbre.getImg().translateXProperty().bind(obj.getPositionLargeur());
+            vueArbre.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            plateau.getChildren().add(vueArbre.getImg());
+            listeObjetVue.add(vueArbre);
         }
 
 

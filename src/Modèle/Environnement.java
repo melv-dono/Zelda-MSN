@@ -217,7 +217,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         ajouterCoordElementExt(rocher);
         Pioche pioche=new Pioche(840,160);
         ajouterCoordElementExt(pioche);
-        objetEnvironnement.addAll(potion,rocher,pioche);
+        Pomme pomme=new Pomme(488,160);
+        Arbre arbre=new Arbre(488,160,pomme);
+        ajouterCoordElementExt(arbre);
+        objetEnvironnement.addAll(potion,rocher,pioche,arbre);
+
 
     }
 
