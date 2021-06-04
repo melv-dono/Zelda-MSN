@@ -52,5 +52,13 @@ public class Inventaire {
             }
         }
     }
+    public boolean inventairePossede(String nomObj){
+        for(String obj:listeObjets){
+            if(obj.equals(nomObj)){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

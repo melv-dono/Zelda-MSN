@@ -1,9 +1,6 @@
 package Controleur;
 
-import Modèle.Environnement;
-import Modèle.Objet;
-import Modèle.Potion;
-import Modèle.Rocher;
+import Modèle.*;
 import Vue.ObjetVue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -29,12 +26,16 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
                     ajoutObjet(objAdded,"Vue/inventory_potionblue.gif");
                 }else if(objAdded instanceof Rocher) {
                     ajoutObjet(objAdded,"Vue/item_stonefence.gif");
+                }else if(objAdded instanceof Pioche){
+                    ajoutObjet(objAdded,"Vue/pelle.gif");
                 }
             }
             for(Objet objRemoved: change.getRemoved()){
                 if(objRemoved instanceof Potion){
                     retirerObjet(objRemoved.getId());
                 }else if(objRemoved instanceof Rocher) {
+                    retirerObjet(objRemoved.getId());
+                }else if(objRemoved instanceof Pioche){
                     retirerObjet(objRemoved.getId());
                 }
             }
@@ -53,6 +54,12 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
             vueRocher.getImg().translateYProperty().bind(obj.getPositionHauteur());
             plateau.getChildren().add(vueRocher.getImg());
             listeObjetVue.add(vueRocher);
+        }else if(obj instanceof Pioche){
+            ObjetVue vuePioche=new ObjetVue(url,obj.getId());
+            vuePioche.getImg().translateXProperty().bind(obj.getPositionLargeur());
+            vuePioche.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            plateau.getChildren().add(vuePioche.getImg());
+            listeObjetVue.add(vuePioche);
         }
 
 

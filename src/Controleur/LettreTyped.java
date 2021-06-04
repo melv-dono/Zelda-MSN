@@ -78,11 +78,16 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                 env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
                                 inventaire.addObjet(objetEnvironnement.get(i));
                                 objetEnvironnement.remove(objetEnvironnement.get(i));
-                                System.out.println("potion I="+i);
                             }else if(objetEnvironnement.get(i) instanceof Rocher){
+                                if(env.getInventaire().inventairePossede("pioche")){
+                                    env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
+                                    objetEnvironnement.remove(objetEnvironnement.get(i));
+                                }
+
+                            }else if(objetEnvironnement.get(i) instanceof Pioche){
                                 env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
+                                inventaire.addObjet(objetEnvironnement.get(i));
                                 objetEnvironnement.remove(objetEnvironnement.get(i));
-                                System.out.println("rocher I="+i);
                             }
                         }
 
