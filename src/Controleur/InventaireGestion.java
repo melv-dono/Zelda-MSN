@@ -25,11 +25,15 @@ public class InventaireGestion implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         if(inventaire.getTailleInventaire()>=1){
             if(listViewInventaire.getSelectionModel().getSelectedItem()==null){
-                System.out.println("erroor");
+                System.out.println("");
             }else if(listViewInventaire.getSelectionModel().getSelectedItem().equals("potion")&& env.getLink().pv()<100) {
                 env.getLink().augmenterPv(10);
                 inventaire.deleteObjetString("potion");
-            }else{
+            }else if(listViewInventaire.getSelectionModel().getSelectedItem().equals("pomme")&& env.getLink().pv()<100){
+                env.getLink().augmenterPv(5);
+                inventaire.deleteObjetString("pomme");
+            }
+            else{
                 System.out.println("ra");
             }
         }

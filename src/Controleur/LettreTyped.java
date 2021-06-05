@@ -110,7 +110,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 }
                 break;
             case P:
-                perso.decrementerPv(5);
+                perso.decrementerPv(10);
             break;
             case O:
                 perso.augmenterPv(10);
