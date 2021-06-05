@@ -75,17 +75,14 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                         System.out.println("var I="+i);
                         if(((objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
                             if(objetEnvironnement.get(i) instanceof ObjetRamassable){
-                                env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
                                 inventaire.addObjet(objetEnvironnement.get(i));
                                 objetEnvironnement.remove(objetEnvironnement.get(i));
                             }else if(objetEnvironnement.get(i) instanceof Rocher){
                                 if(env.getInventaire().inventairePossede("pioche")){
-                                    env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
                                     objetEnvironnement.remove(objetEnvironnement.get(i));
                                 }
 
                             }else if(objetEnvironnement.get(i) instanceof Pioche){
-                                env.deleteCoordExt(objetEnvironnement.get(i).getPositionLargeur().getValue(),objetEnvironnement.get(i).getPositionHauteur().getValue());
                                 inventaire.addObjet(objetEnvironnement.get(i));
                                 objetEnvironnement.remove(objetEnvironnement.get(i));
                             }

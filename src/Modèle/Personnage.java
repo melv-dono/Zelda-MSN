@@ -261,7 +261,7 @@ public abstract class Personnage {
 
     public boolean collisionExterneEnv(double l,double h){
         for(int i=0;i<env.nbElementExt();i++){
-            if(env.collisionHauteur(i)==h && env.collisionLargeur(i)==l){
+            if(env.getObjetEnvironnement().get(i).getPositionHauteur().getValue()==h && env.getObjetEnvironnement().get(i).getPositionLargeur().getValue()==l){
                 return false;
             }
         }

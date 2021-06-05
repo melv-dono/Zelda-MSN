@@ -10,8 +10,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
     private ObservableList<Objet> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
-    private ArrayList<Double>elementDecorLargeur; // les coordonnées de la largeur des Objets
-    private ArrayList<Double>elementDecorHauteur;// les coordonnées de la hauteur des Objets
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
     private Link utilisateur;
     private final Inventaire inventaire=new Inventaire();
@@ -26,8 +24,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.decors = new ArrayList<>();
         this.mapActuelle= new MapModele("map1");
         this.decors.add(mapActuelle);
-        elementDecorHauteur=new ArrayList<>();
-        elementDecorLargeur=new ArrayList<>();
         objetEnvironnement= FXCollections.observableArrayList();
     }
 
@@ -142,24 +138,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.decors.remove(m);
     }
 
-    public void ajouterCoordElementExt(Objet obj){
-        elementDecorHauteur.add(obj.getPositionHauteur().getValue());
-        elementDecorLargeur.add(obj.getPositionLargeur().getValue());
-    }
-    public void deleteCoordExt(double l,double h){
-        int k=elementDecorHauteur.size();
-        System.out.println(k);
-        for(int i=0;i<k;i++){
-            if(elementDecorLargeur.get(i)==l){
-                elementDecorLargeur.remove(elementDecorLargeur.get(i));
-            }
-            if(elementDecorHauteur.get(i)==h){
-                elementDecorHauteur.remove(elementDecorHauteur.get(i));
-                k--;
-            }
-        }
-
-    }
 
     public void init() {
         this.utilisateur = new Link(this);
@@ -211,15 +189,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         objetEnvironnement.add(objet);
     }
     public void miseEnPlaceObjetFirstMap(){
-        Potion potion=new Potion(520,608);
-        ajouterCoordElementExt(potion);
+        Potion potion=new Potion(520,608);;
         Rocher rocher =new Rocher(392,608);
-        ajouterCoordElementExt(rocher);
         Pioche pioche=new Pioche(840,160);
-        ajouterCoordElementExt(pioche);
         Pomme pomme=new Pomme(488,160);
         Arbre arbre=new Arbre(488,160,pomme);
-        ajouterCoordElementExt(arbre);
         objetEnvironnement.addAll(potion,rocher,pioche,arbre);
 
 
@@ -228,15 +202,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     /**
      * FONCTIONS
      */
-
-    public double collisionLargeur(int a){
-        return elementDecorLargeur.get(a);
-    }
-    public double collisionHauteur(int a){
-        return elementDecorHauteur.get(a);
-    }
     public double nbElementExt(){
-        return elementDecorHauteur.size();
+        return objetEnvironnement.size();
     }
 
 
