@@ -55,6 +55,10 @@ public abstract class Objet {
     /**
      * METHODES
      */
+    public void changeCoord(double posL,double posH){
+        positionLargeur.setValue(posL);
+        positionHauteur.setValue(posH);
+    }
 
     /**
      * FONCTION
@@ -67,6 +71,7 @@ public abstract class Objet {
             return false;
         }
     }
+
 
 
 

@@ -81,10 +81,26 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                 if(env.getInventaire().inventairePossede("pioche")){
                                     objetEnvironnement.remove(objetEnvironnement.get(i));
                                 }
-
-                            }else if(objetEnvironnement.get(i) instanceof Pioche){
-                                inventaire.addObjet(objetEnvironnement.get(i));
-                                objetEnvironnement.remove(objetEnvironnement.get(i));
+                            }else if(objetEnvironnement.get(i) instanceof Arbre){
+                                if(((Arbre) objetEnvironnement.get(i)).getNbPomme()>0){
+                                    if(objetEnvironnement.get(i).getPositionLargeur().getValue()- perso.getDeplacementLargeur()==32){
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()+32, objetEnvironnement.get(i).getPositionHauteur().getValue());
+                                        env.getObjetEnvironnement().add(pomme);
+                                        ((Arbre) objetEnvironnement.get(i)).retirerPomme();
+                                    }else if(objetEnvironnement.get(i).getPositionLargeur().getValue()- perso.getDeplacementLargeur()==-32){
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()-32, objetEnvironnement.get(i).getPositionHauteur().getValue());
+                                        env.getObjetEnvironnement().add(pomme);
+                                        ((Arbre) objetEnvironnement.get(i)).retirerPomme();
+                                    }else if(objetEnvironnement.get(i).getPositionHauteur().getValue()- perso.getDeplacementHauteur()==32){
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(), objetEnvironnement.get(i).getPositionHauteur().getValue()+32);
+                                        env.getObjetEnvironnement().add(pomme);
+                                        ((Arbre) objetEnvironnement.get(i)).retirerPomme();
+                                    }else{
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(), objetEnvironnement.get(i).getPositionHauteur().getValue()-32);
+                                        env.getObjetEnvironnement().add(pomme);
+                                        ((Arbre) objetEnvironnement.get(i)).retirerPomme();
+                                    }
+                                }
                             }
                         }
 

@@ -30,6 +30,8 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
                     ajoutObjet(objAdded,"Vue/pelle.gif");
                 }else if(objAdded instanceof Arbre){
                     ajoutObjet(objAdded,"Vue/liltree.gif");
+                }else if(objAdded instanceof Pomme){
+                    ajoutObjet(objAdded,"Vue/pomme.gif");
                 }
             }
             for(Objet objRemoved: change.getRemoved()){
@@ -40,6 +42,8 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
                 }else if(objRemoved instanceof Pioche){
                     retirerObjet(objRemoved.getId());
                 }else if(objRemoved instanceof Arbre){
+                    retirerObjet(objRemoved.getId());
+                }else if(objRemoved instanceof Pomme){
                     retirerObjet(objRemoved.getId());
                 }
             }
@@ -70,6 +74,13 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
             vueArbre.getImg().translateYProperty().bind(obj.getPositionHauteur());
             plateau.getChildren().add(vueArbre.getImg());
             listeObjetVue.add(vueArbre);
+        }else if(obj instanceof Pomme){
+            ObjetVue vuePomme=new ObjetVue(url,obj.getId());
+            vuePomme.getImg().translateXProperty().bind(obj.getPositionLargeur());
+            vuePomme.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            plateau.getChildren().add(vuePomme.getImg());
+            listeObjetVue.add(vuePomme);
+
         }
 
 

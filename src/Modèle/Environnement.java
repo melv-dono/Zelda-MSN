@@ -192,8 +192,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Potion potion=new Potion(520,608);;
         Rocher rocher =new Rocher(392,608);
         Pioche pioche=new Pioche(840,160);
-        Pomme pomme=new Pomme(488,160);
-        Arbre arbre=new Arbre(488,160,pomme);
+        //Pomme pomme=new Pomme(488,160);
+        Arbre arbre=new Arbre(488,160,3);
         objetEnvironnement.addAll(potion,rocher,pioche,arbre);
 
 
