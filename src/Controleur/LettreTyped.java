@@ -90,6 +90,15 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     }
                                 }
                             }else if(objetEnvironnement.get(i) instanceof PersoNonJouable){
+                                if(objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==32){
+                                    ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(4);
+                                }else if(objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==-32){
+                                    ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(3);
+                                }else if(objetEnvironnement.get(i).getPositionHauteur().getValue()- perso.getDeplacementHauteur()==32){
+                                    ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(1);
+                                }else{
+                                    ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(2);
+                                }
                                 if(((PersoNonJouable) objetEnvironnement.get(i)).persoTiensObjet()){
                                     System.out.println("salut prends donc cette arme");
                                     inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());

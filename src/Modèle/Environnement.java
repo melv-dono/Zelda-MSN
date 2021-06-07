@@ -1,5 +1,6 @@
 package Modèle;
 
+import Controleur.OrientationPnj;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

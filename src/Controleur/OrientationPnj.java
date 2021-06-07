@@ -1,11 +1,17 @@
 package Controleur;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import Modèle.Environnement;
+import Vue.VuePnj;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
-public class OrientationPnj implements ChangeListener {
+public class OrientationPnj implements ChangeListener<Number> {
+    private VuePnj vuePnj;
+    public OrientationPnj(VuePnj vuePnj){
+        this.vuePnj=vuePnj;
+    }
     @Override
-    public void stateChanged(ChangeEvent e) {
-
+    public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+        vuePnj.setOrientation((Integer) t1);
     }
 }

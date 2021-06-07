@@ -2,6 +2,7 @@ package Controleur;
 
 import Modèle.*;
 import Vue.ObjetVue;
+import Vue.VuePnj;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
@@ -88,10 +89,12 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
             listeObjetVue.add(vuePomme);
 
         }else if(obj instanceof PersoNonJouable){
-            ObjetVue vuePnj=new ObjetVue(url,obj.getId());
+            VuePnj vuePnj=new VuePnj(url,obj.getId());
             vuePnj.getImg().translateXProperty().bind(obj.getPositionLargeur());
             vuePnj.getImg().translateYProperty().bind(obj.getPositionHauteur());
             plateau.getChildren().add(vuePnj.getImg());
+            OrientationPnj orientationPnj=new OrientationPnj(vuePnj);
+            ((PersoNonJouable) obj).getOrientation().addListener(orientationPnj);
             listeObjetVue.add(vuePnj);
         }else if(obj instanceof Key){
             ObjetVue vueKey=new ObjetVue(url, obj.getId());

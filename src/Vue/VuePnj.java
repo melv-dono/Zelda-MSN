@@ -3,24 +3,23 @@ package Vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class VuePnj {
+public class VuePnj extends ObjetVue{
     private int orientation;
-    private ImageView imgPnj;
-    public VuePnj(String url){
-        imgPnj=new ImageView(url);
+    public VuePnj(String url,int id){
+        super(url,id);
         orientation=1;
     }
 
     public void setOrientation(int orientation) {
         this.orientation = orientation;
         if(this.orientation==1){
-            imgPnj.setImage(new Image("Vue/pnjFace.png"));
+            super.getImg().setImage(new Image("Vue/pnjFace.png"));
         }else if(this.orientation==2){
-            imgPnj.setImage(new Image());
+            super.getImg().setImage(new Image("Vue/pnj-back.png"));
         }else if(this.orientation==3){
-            imgPnj.setImage();
+            super.getImg().setImage(new Image("Vue/pnj-right.png"));
         }else{
-            imgPnj.setImage();
+            super.getImg().setImage(new Image("Vue/pnj-left.png"));
         }
     }
 }
