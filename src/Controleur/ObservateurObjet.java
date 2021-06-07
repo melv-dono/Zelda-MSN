@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 
-public class ObservateurObjet implements ListChangeListener<Objet> {
+public class ObservateurObjet implements ListChangeListener<ElementMap> {
     @FXML
     private Pane plateau;
     private Environnement environnement;
@@ -19,9 +19,9 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
         listeObjetVue=new ArrayList<>();
     }
     @Override
-    public void onChanged(Change<? extends Objet> change) {
+    public void onChanged(Change<? extends ElementMap> change) {
         while(change.next())
-            for(Objet objAdded:change.getAddedSubList()){
+            for(ElementMap objAdded:change.getAddedSubList()){
                 if(objAdded instanceof Potion){
                     ajoutObjet(objAdded,"Vue/inventory_potionblue.gif");
                 }else if(objAdded instanceof Rocher) {
@@ -32,9 +32,13 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
                     ajoutObjet(objAdded,"Vue/liltree.gif");
                 }else if(objAdded instanceof Pomme){
                     ajoutObjet(objAdded,"Vue/pomme.gif");
+                }else if(objAdded instanceof PersoNonJouable){
+                    ajoutObjet(objAdded,"Vue/pnjFace.png");
+                }else if(objAdded instanceof Key){
+                    ajoutObjet(objAdded,"Vue/keyTile.png");
                 }
             }
-            for(Objet objRemoved: change.getRemoved()){
+            for(ElementMap objRemoved: change.getRemoved()){
                 if(objRemoved instanceof Potion){
                     retirerObjet(objRemoved.getId());
                 }else if(objRemoved instanceof Rocher) {
@@ -45,11 +49,13 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
                     retirerObjet(objRemoved.getId());
                 }else if(objRemoved instanceof Pomme){
                     retirerObjet(objRemoved.getId());
+                }else if(objRemoved instanceof Key){
+                    retirerObjet(objRemoved.getId());
                 }
             }
     }
 
-    public void ajoutObjet(Objet obj,String url){
+    public void ajoutObjet(ElementMap obj, String url){
         if(obj instanceof Potion) {
             ObjetVue vuePotion=new ObjetVue(url,obj.getId());
             vuePotion.getImg().translateXProperty().bind(obj.getPositionLargeur());
@@ -81,6 +87,18 @@ public class ObservateurObjet implements ListChangeListener<Objet> {
             plateau.getChildren().add(vuePomme.getImg());
             listeObjetVue.add(vuePomme);
 
+        }else if(obj instanceof PersoNonJouable){
+            ObjetVue vuePnj=new ObjetVue(url,obj.getId());
+            vuePnj.getImg().translateXProperty().bind(obj.getPositionLargeur());
+            vuePnj.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            plateau.getChildren().add(vuePnj.getImg());
+            listeObjetVue.add(vuePnj);
+        }else if(obj instanceof Key){
+            ObjetVue vueKey=new ObjetVue(url, obj.getId());
+            vueKey.getImg().translateXProperty().bind(obj.getPositionLargeur());
+            vueKey.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            plateau.getChildren().add(vueKey.getImg());
+            listeObjetVue.add(vueKey);
         }
 
 

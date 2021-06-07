@@ -1,6 +1,5 @@
 package Modèle;
 
-import Vue.ObjetVue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -19,7 +18,7 @@ public class Inventaire {
         return tailleActuel;
     }
 
-    public void addObjet(Objet obj){
+    public void addObjet(ElementMap obj){
         if(restePlaceInventaire()==false){
             System.out.println("L'inventaire ne peut plus stocker d'objet");
         }else{
@@ -27,7 +26,7 @@ public class Inventaire {
         }
 
     }
-    public void removeObjet(Objet obj){
+    public void removeObjet(ElementMap obj){
         listeObjets.remove(obj.toString());
     }
 

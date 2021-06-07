@@ -1,25 +1,13 @@
 package Controleur;
 
 import Modèle.*;
-import Vue.ObjetVue;
-import Vue.VueBouleDeFeu;
-import Vue.VueLink;
-import Vue.VueSquelette;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.util.Duration;
-
-import java.time.Period;
-import java.util.ArrayList;
 
 public class LettreTyped implements EventHandler<KeyEvent> {
 
@@ -31,7 +19,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
     private Pane plateau;
 
     private Timeline gameloop;
-    private ObservableList<Objet> objetEnvironnement;
+    private ObservableList<ElementMap> objetEnvironnement;
 
     @FXML
     private Environnement env;
@@ -100,6 +88,11 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                         env.getObjetEnvironnement().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }
+                                }
+                            }else if(objetEnvironnement.get(i) instanceof PersoNonJouable){
+                                if(((PersoNonJouable) objetEnvironnement.get(i)).persoTiensObjet()){
+                                    System.out.println("salut prends donc cette arme");
+                                    inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
                                 }
                             }
                         }

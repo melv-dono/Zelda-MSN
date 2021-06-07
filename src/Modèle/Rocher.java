@@ -1,6 +1,6 @@
 package Modèle;
 
-public class Rocher extends Objet {
+public class Rocher extends ElementMap {
 
 
     /**

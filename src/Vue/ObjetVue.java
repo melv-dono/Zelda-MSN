@@ -1,6 +1,5 @@
 package Vue;
 
-import Modèle.Objet;
 import javafx.scene.image.ImageView;
 
 public class ObjetVue {
