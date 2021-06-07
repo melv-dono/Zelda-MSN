@@ -16,6 +16,4 @@ public abstract class Arme {
     public double getPointAttaque() {
         return pointAttaque;
     }
-
-    public abstract void attaquer();
 }

@@ -10,12 +10,10 @@ import java.util.ArrayList;
 public class BaguetteMagique extends Arme{
     private String nom;
     private double pointAttaque;
-    private Link perso;
     private ObservableList<BouleDeFeu> boules;
 
-    public BaguetteMagique(String nom, double pointAttaque, Link p) {
+    public BaguetteMagique(String nom, double pointAttaque) {
         super(nom, pointAttaque);
-        this.perso = p;
         this.boules = FXCollections.observableArrayList();
 
     }
@@ -30,15 +28,15 @@ public class BaguetteMagique extends Arme{
         }
     }
 
-    public void creeBoule() {
-        BouleDeFeu b = new BouleDeFeu(this.perso.getDeplacementLargeur(), this.perso.getDeplacementHauteur(), this.perso.getOrientation());
+    public void creeBoule(double x, double y, String o) {
+        BouleDeFeu b = new BouleDeFeu(x, y, o);
         this.boules.add(b);
     }
 
     /**
      * Cette méthode permet de lancer une boule de feu.
      */
-    public void attaquer() {
+    public void lancerBouleDeFeu() {
         for (BouleDeFeu b : boules) {
             if (b.getDureeDeVie()>0) {
                 if (b.getDirection() == "gauche") {

@@ -142,7 +142,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void init() {
         this.utilisateur = new Link(this);
         addPerso(this.utilisateur);
-        BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30, this.utilisateur);
+        BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
         Epe epe = new Epe("Excalibur", 10, this.utilisateur);
         this.utilisateur.setArmePrincipale(epe);
         this.utilisateur.setArmeSecondaire(baguette);
@@ -155,7 +155,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
     public void faireUntour() {
-        this.utilisateur.getarmeSecondaire().attaquer();
+        this.utilisateur.getarmeSecondaire().lancerBouleDeFeu();
         this.utilisateur.declencherAnimation();
         cibleTouche();
         retirerBouleDeFeu();
@@ -172,14 +172,20 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
     public void cibleTouche() { // Boucle For each ne marche pas
+        double haut, bas, gauche, droite;
         for (Personnage ennemi : lesPerso) {
             for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
-                if(		(ennemi.getDeplacementHauteur() >= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16 && ennemi.getDeplacementHauteur() <= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16) &&
-                        (ennemi.getDeplacementLargeur() >= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()-5 && ennemi.getDeplacementLargeur() <= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()+5) &&
+                haut= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
+                bas= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
+                gauche= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
+                droite= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
+
+                if(		(ennemi.getDeplacementHauteur() >= haut && ennemi.getDeplacementHauteur() <= bas) &&
+                        (ennemi.getDeplacementLargeur() >= gauche && ennemi.getDeplacementLargeur() <= droite) &&
                         ennemi instanceof Squelette
                 )
                 {
-                    ennemi.perteDePv(this.utilisateur.getPointAttaque()+ this.utilisateur.getarmeSecondaire().getPointAttaque());
+                    ennemi.perteDePv(this.utilisateur.getDommageArmeSecondaire());
                     this.utilisateur.getarmeSecondaire().getBoules().remove(this.utilisateur.getarmeSecondaire().getBoules().get(i));
                 }
             }

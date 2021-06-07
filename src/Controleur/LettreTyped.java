@@ -53,6 +53,9 @@ public class LettreTyped implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
+        double x = this.perso.getDeplacementLargeur();
+        double y = this.perso.getDeplacementHauteur();
+        String o = this.perso.getOrientation();
         switch (keyEvent.getCode()) {
             case I:
                 menuPause.setVisible(true);
@@ -61,11 +64,11 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 menuPause.setVisible(false);
                 break;
             case D:
-                this.perso.getArmePrincipale().attaquer();
+                this.perso.coupEpe();
                 this.perso.setMoving(true);
                 break;
             case A:
-                this.perso.getarmeSecondaire().creeBoule();
+                this.perso.getarmeSecondaire().creeBoule(x,y,o);
                 break;
             case R:
                 System.out.println("début "+objetEnvironnement);
