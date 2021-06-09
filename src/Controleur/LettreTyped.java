@@ -5,6 +5,10 @@ import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -56,11 +60,9 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 this.perso.getarmeSecondaire().creeBoule();
                 break;
             case R:
-                System.out.println("début "+objetEnvironnement);
                 System.out.println(objetEnvironnement.size());
                 if(objetEnvironnement.size()>=1){
                     for(int i=0;i<objetEnvironnement.size();i++){
-                        System.out.println("var I="+i);
                         if(((objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
                             if(objetEnvironnement.get(i) instanceof ObjetRamassable){
                                 inventaire.addObjet(objetEnvironnement.get(i));
@@ -100,16 +102,21 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(1);
                                 }
                                 if(((PersoNonJouable) objetEnvironnement.get(i)).persoTiensObjet()){
-                                    System.out.println("salut prends donc cette arme");
+                                    Alert alerte=new Alert(Alert.AlertType.INFORMATION);
+                                    alerte.setHeaderText("Bob le paysan");
+                                    alerte.setContentText("salut prends donc cette clé elle te sera utile");
+                                    alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                    alerte.show();
                                     inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
                                 }else{
-                                    System.out.println("écoute ... je n'ai plus rien à te donner");
+                                    Alert alerte=new Alert(Alert.AlertType.INFORMATION);
+                                    alerte.setHeaderText("Bob le paysan");
+                                    alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                    alerte.setContentText("écoute ... je n'ai plus rien à te donner");
+                                    alerte.show();
                                 }
                             }
                         }
-
-                        System.out.println("end"+objetEnvironnement);
-                        System.out.println("");
                     }
                 }
                 break;
