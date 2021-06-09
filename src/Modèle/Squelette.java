@@ -14,6 +14,7 @@ public class Squelette extends Personnage{
     public Squelette(String n,Environnement env) {
         super(n,423,600, env, 100, 5, 5);
         orientation=1;
+        cpt=0;
     }
 
     /**
@@ -129,7 +130,12 @@ public class Squelette extends Personnage{
 
     public void attaquer(Environnement e) {
         if(e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()>-32 && e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()<32&& e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()>-32 && e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()<32 ){
-            e.getLink().decrementerPv(1);
+            if(cpt!=60){
+                cpt++;
+            }else{
+                cpt=0;
+                e.getLink().decrementerPv(5);
+            }
         }
 
     }
