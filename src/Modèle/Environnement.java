@@ -162,7 +162,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         retirerBouleDeFeu();
         for (Personnage p : this.lesPerso) {
             if (p instanceof Squelette) {
-                ((Squelette)p).animationSquelette1();
+                ((Squelette)p).animationSquelette1(this);
             }
         }
 
