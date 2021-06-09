@@ -127,7 +127,10 @@ public class Squelette extends Personnage{
         return true;
     }
 
-    public void attaquer() {
+    public void attaquer(Environnement e) {
+        if(e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()>-32 && e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()<32&& e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()>-32 && e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()<32 ){
+            e.getLink().decrementerPv(1);
+        }
 
     }
 }

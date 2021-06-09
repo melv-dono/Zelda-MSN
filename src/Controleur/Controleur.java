@@ -57,9 +57,10 @@ public class Controleur implements Initializable {
 //    private void animation(Squelette s, VueLink vue){
     private void animation(Squelette s, Timeline gameLoop, VueLink vue){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
         KeyFrame kf = new KeyFrame(
-				Duration.seconds(0.0099), // 0.017
+				Duration.seconds(0.017), // 0.017
 				(ev ->{
                     vue.orientation();
+
                     this.env.faireUntour();
 				})
 				);

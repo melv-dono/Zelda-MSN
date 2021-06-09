@@ -110,9 +110,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      * @param p
      */
     public void addPerso(Personnage p){
-        if(p.getDeplacementLargeur()>width || p.getDeplacementLargeur()<0|| p.getDeplacementHauteur()>height||p.getDeplacementHauteur()<0){
-            return ;
-        }
         lesPerso.add(p);
     }
     /**
@@ -163,6 +160,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         for (Personnage p : this.lesPerso) {
             if (p instanceof Squelette) {
                 ((Squelette)p).animationSquelette1(this);
+            }
+        }
+        for(Personnage p:lesPerso){
+            if(p instanceof Squelette){
+                ((Squelette) p).attaquer(this);
             }
         }
 
