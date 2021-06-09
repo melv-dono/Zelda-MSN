@@ -4,7 +4,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public abstract class Objet {
+public abstract class ElementMap {
     /**
      * ATTRIBUTS
      */
@@ -18,7 +18,7 @@ public abstract class Objet {
     /**
      * CONSTRUCTEUR
      */
-    public Objet(String nom,double posLargeur,double posHauteur){
+    public ElementMap(String nom, double posLargeur, double posHauteur){
         this.nom=nom;
         positionLargeur=new SimpleDoubleProperty(posLargeur);
         positionHauteur=new SimpleDoubleProperty(posHauteur);

@@ -8,12 +8,12 @@ import javafx.util.Duration;
 import Modèle.Environnement;
 
 public class Squelette extends Personnage{
-    private DoubleProperty xProperty;
-    private DoubleProperty yProperty;
+    private int orientation;
     private int cpt;
 
     public Squelette(String n,Environnement env) {
         super(n,423,600, env, 100, 5, 5);
+        orientation=1;
     }
 
     /**
@@ -49,17 +49,82 @@ public class Squelette extends Personnage{
     /**
      * première animation du premier squelette dans la première map qui servira dans la gameloop
      */
-    public void animationSquelette1(){
-        if(cpt < 150) {
-            this.monter();
+    public void animationSquelette1(Environnement environnement){
+            if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==1){ // 1=NO
+                orientation=1;
+                this.monter();
+                this.gauche();
+            }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==2){ // 2=NE
+                orientation=2;
+                this.monter();
+                this.droite();
+            }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==3){ // 3=SE
+                orientation=3;
+                this.descendre();
+                this.droite();
+            }else{ // 4=SO
+                orientation=4;
+                this.gauche();
+                this.descendre();
+            }
+    }
+    public int deplacementPossible(double coordHaut,double coordLarge,Environnement environnement,int orientationActuelle){
+        if(orientationActuelle==1){
+            if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge-32)/32,environnement)==true){
+                System.out.println(" 1 - 1");
+                return 1;
+            }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge+32)/32,environnement)==true){
+                System.out.println(" 1 - 2");
+                return 2;
+            }else{
+                System.out.println(" 1 - 4");
+                return 4;
+            }
         }
-        else if(cpt >=150){
-            this.descendre();
+        if(orientationActuelle==2){
+            if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge+32)/32,environnement)==true){
+                System.out.println(" 2 - 2");
+                return 2;
+            }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge-32)/32,environnement)==true){
+                System.out.println(" 2 - 1");
+                return 1;
+            }else{
+                System.out.println(" 2 - 3");
+                return 3;
+            }
         }
-        if(cpt==298){
-            cpt=0;
+        if(orientationActuelle==3){
+            if(prochainDepPossible((int)(coordHaut+32)/32,(int)(coordLarge+32)/32,environnement)==true){
+                System.out.println(" 3 - 3");
+                return 3;
+            }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge+32)/32,environnement)==true){
+                System.out.println(" 3 - 2");
+                return 2;
+            }else{
+                System.out.println(" 3 - 4");
+                return 4;
+            }
         }
-        cpt++;
+        if(orientationActuelle==4){
+            if(prochainDepPossible((int)(coordHaut+32)/32,(int)(coordLarge-32)/32,environnement)==true){
+                System.out.println(" 4 - 4");
+                return 4;
+            }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge-32)/32,environnement)==true) {
+                System.out.println(" 4 - 1");
+                return 1;
+            }else{
+                System.out.println(" 4 - 3");
+                return 3;
+            }
+        }
+        System.out.println("je return 0");
+        return 0;
+    }
+    public boolean prochainDepPossible(int depHaut,int depLarge,Environnement environnement){
+        if(environnement.getMapActuelle().getTableau()[depHaut][depLarge]!=1){
+            return false;
+        }
+        return true;
     }
 
     public void attaquer() {

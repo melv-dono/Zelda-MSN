@@ -2,7 +2,7 @@ package Controleur;
 
 import Modèle.Environnement;
 import Modèle.Inventaire;
-import Modèle.Objet;
+import Modèle.ElementMap;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -18,7 +18,7 @@ public class InventaireGestion implements EventHandler<MouseEvent> {
         listViewInventaire=list;
         env=e;
     }
-    public void ajoutPotion(Objet obj){
+    public void ajoutPotion(ElementMap obj){
         inventaire.addObjet(obj);
     }
     @Override

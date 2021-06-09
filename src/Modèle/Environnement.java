@@ -1,5 +1,6 @@
 package Modèle;
 
+import Controleur.OrientationPnj;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -9,7 +10,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private int width,height; // largeur == width - hauteur == height
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
-    private ObservableList<Objet> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
+    private ObservableList<ElementMap> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
     private Link utilisateur;
     private final Inventaire inventaire=new Inventaire();
@@ -92,7 +93,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public Inventaire getInventaire(){
         return inventaire;
     }
-    public ObservableList<Objet> getObjetEnvironnement(){
+    public ObservableList<ElementMap> getObjetEnvironnement(){
         return objetEnvironnement;
     }
 
@@ -161,7 +162,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         retirerBouleDeFeu();
         for (Personnage p : this.lesPerso) {
             if (p instanceof Squelette) {
-                ((Squelette)p).animationSquelette1();
+                ((Squelette)p).animationSquelette1(this);
             }
         }
 
@@ -191,16 +192,17 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
             }
         }
     }
-    public void addObjetDansEnv(Objet objet){
+    public void addObjetDansEnv(ElementMap objet){
         objetEnvironnement.add(objet);
     }
     public void miseEnPlaceObjetFirstMap(){
         Potion potion=new Potion(520,608);;
         Rocher rocher =new Rocher(392,608);
         Pioche pioche=new Pioche(840,160);
-        //Pomme pomme=new Pomme(488,160);
         Arbre arbre=new Arbre(488,160,3);
-        objetEnvironnement.addAll(potion,rocher,pioche,arbre);
+        Key key=new Key(1000,480);
+        PersoNonJouable pnj=new PersoNonJouable(1000,480,key);
+        objetEnvironnement.addAll(potion,rocher,pioche,arbre,pnj);
 
 
     }

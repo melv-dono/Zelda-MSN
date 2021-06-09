@@ -1,6 +1,6 @@
 package Modèle;
 
-public class ObjetRamassable extends Objet{
+public class ObjetRamassable extends ElementMap {
 
 
     /**
