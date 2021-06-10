@@ -3,7 +3,10 @@ package Modèle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Queue;
 
 public class Environnement { // Toutes les méthodes de cette classe ne sont pas encore utilisé dans le code
     private int width,height; // largeur == width - hauteur == height
@@ -151,7 +154,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     public void creeEnnemi() {
         Squelette s = new Squelette("Squelette", this);
+        Breteur b = new Breteur("Gardes", this);
         addPerso(s);
+        addPerso(b);
     }
 
     public void faireUntour() {
@@ -161,9 +166,13 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         retirerBouleDeFeu();
         for (Personnage p : this.lesPerso) {
             if (p instanceof Squelette) {
-                ((Squelette)p).animationSquelette1();
+                ((Squelette)p).agir();
+            }
+            if (p instanceof Breteur) {
+                ((Breteur)p).agir();
             }
         }
+
 
     }
 
@@ -212,5 +221,36 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         return objetEnvironnement.size();
     }
 
+    public HashMap<Coordonnees, Coordonnees> bfs(Coordonnees depart) {
+        Queue<Coordonnees> frontiere = new ArrayDeque<Coordonnees>();
+        ArrayList<Coordonnees> marquer = new ArrayList<Coordonnees>();
+//        Coordonnees.setTree(depart);
+        frontiere.add(depart);
+        HashMap<Coordonnees, Coordonnees> antecedent =new HashMap<Coordonnees, Coordonnees>();
+        antecedent.put(depart, null);
+        marquer.add(depart);
+
+        while (!frontiere.isEmpty()) {
+            Coordonnees pointCourant = frontiere.poll();
+//            pointCourant.marked();
+
+//            if (pointCourant.isEqual(arrive)) {
+//                System.out.println("Trouvé");
+//                return antecedent;
+//            }
+
+
+                for (Coordonnees voisins : pointCourant.voisins()) {
+                    if ( !marquer.contains(voisins)  /*&& this.mapActuelle.getTableau()[voisins.getLigne()][voisins.getColonne()]==1*/) {
+                        frontiere.add(voisins);
+//                        lien.put(voisins, pointCourant);
+                        antecedent.put(voisins, pointCourant);
+                        marquer.add(voisins);
+                    }
+                }
+            }
+        System.out.println(antecedent.size());
+        return antecedent;
+    }
 
 }

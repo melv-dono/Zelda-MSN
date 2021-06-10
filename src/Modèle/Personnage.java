@@ -25,7 +25,7 @@ public abstract class Personnage {
         this.nom =n;
         this.id = numId++;
         this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
-        this.deplacementHauteur = new SimpleDoubleProperty();
+        this.deplacementHauteur = new SimpleDoubleProperty(250);
         this.env = e;
         this.orientation="descendre";
         pv=new SimpleDoubleProperty(pV);

@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.util.Duration;
 import Modèle.Environnement;
 
-public class Squelette extends Personnage{
+public class Squelette extends Ennemi{
     private DoubleProperty xProperty;
     private DoubleProperty yProperty;
     private int cpt;
@@ -49,7 +49,7 @@ public class Squelette extends Personnage{
     /**
      * première animation du premier squelette dans la première map qui servira dans la gameloop
      */
-    public void animationSquelette1(){
+    public void agir(){
         if(cpt < 150) {
             this.monter();
         }

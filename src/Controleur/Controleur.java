@@ -1,10 +1,7 @@
 package Controleur;
 
 import Modèle.*;
-import Vue.MapReader;
-import Vue.ObjetVue;
-import Vue.VueLink;
-import Vue.VueSquelette;
+import Vue.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -103,6 +100,10 @@ public class Controleur implements Initializable {
             if (p instanceof Squelette) {
                 VueSquelette s = new VueSquelette(p,"Vue/bad_skeleton.gif");
                 plateau.getChildren().add(s.getImgSquelette());
+            }
+            if (p instanceof Breteur) {
+                VueBreteur b = new VueBreteur(p,"Vue/bad_soldgreen_front1.gif");
+                plateau.getChildren().add(b.getImgBretteur());
             }
         }
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
