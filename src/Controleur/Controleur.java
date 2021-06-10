@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -40,6 +41,8 @@ public class Controleur implements Initializable {
     @FXML
     private VBox menuPause;
     @FXML
+    private VBox menuAide;
+    @FXML
     private Pane plateau;
     @FXML
     private TilePane map = new TilePane();
@@ -49,19 +52,28 @@ public class Controleur implements Initializable {
     private Environnement env;
     private ArrowGestion arrow;
     private LettreTyped action;
+    private ArrayList<Environnement> listeEnv=new ArrayList<>();
+    private int autoIncrementation = 1;
+    private String nom = "map";
+    private String nomMapActu = nom + autoIncrementation;
 
     /**
      * Rend automatique le déplacement du squelette au sein de l'environnement.
      * @param s
      */
 //    private void animation(Squelette s, VueLink vue){
-    private void animation(Squelette s, Timeline gameLoop, VueLink vue){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
+    private void animation(Squelette s, Timeline gameLoop, VueLink vue, Link l, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
         KeyFrame kf = new KeyFrame(
-				Duration.seconds(0.017), // 0.017
+				Duration.seconds(0.017),
 				(ev ->{
                     vue.orientation();
-
                     this.env.faireUntour();
+                    if(((l.getDeplacementHauteur()>=320 && l.getDeplacementHauteur()<=448) && l.getDeplacementLargeur()==8)){
+                        chargerNouvelleMap(l, m);
+                    }
+                    if((l.getDeplacementHauteur()>=320 && l.getDeplacementHauteur()<=448) && l.getDeplacementLargeur()==1256){
+                        chargerAncienneMap(l,m);
+                    }
 				})
 				);
 		gameLoop.getKeyFrames().add(kf);
@@ -76,7 +88,8 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-        this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR);
+        this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,autoIncrementation,nomMapActu);
+        this.listeEnv.add(this.env);
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
@@ -90,9 +103,17 @@ public class Controleur implements Initializable {
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
-        animation((Squelette) env.getPerso().get(1), gameLoop, (VueLink) this.plateau.lookup("#"+this.env.getLink().getNom()));
+        animation((Squelette) env.getPerso().get(1), gameLoop, (VueLink) this.plateau.lookup("#"+this.env.getLink().getNom()), this.env.getLink(), m);
         gameLoop.play();
     }
+
+    public void chargement(){
+        this.env.init();
+        miseEnPlaceObjet();
+        connexion();
+        gestionBouleDeFeu();
+    }
+
     public void affichage() {
         for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
@@ -106,12 +127,12 @@ public class Controleur implements Initializable {
                 plateau.getChildren().add(s.getImgSquelette());
             }
         }
-        ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
+        ObservateurObjet obsObj=new ObservateurObjet(plateau,env, listeEnv);
         env.getObjetEnvironnement().addListener(obsObj);
     }
     public void connexion() {
         arrow = new ArrowGestion(env.getLink());
-        action = new LettreTyped(menuPause,plateau,gameLoop,env);
+        action = new LettreTyped(menuPause,plateau,gameLoop,env,menuAide);
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         ProgressBarExp.setProgress(0.0);
@@ -123,6 +144,46 @@ public class Controleur implements Initializable {
         this.env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
     }
     public void miseEnPlaceObjet(){
-        env.miseEnPlaceObjetFirstMap();
+        if(this.nomMapActu.equals("map1")){
+            env.miseEnPlaceObjetFirstMap();
+        }
+    }
+
+    public void chargerNouvelleMap(Link l, MapReader m){
+        autoIncrementation++;
+        nomMapActu = nom + autoIncrementation;
+        if(this.listeEnv.size() < autoIncrementation){
+            this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,autoIncrementation, nomMapActu, l);
+            this.listeEnv.add(this.env);
+        }
+        else{
+            for (Environnement e : this.listeEnv) {
+                if(e.getId()==autoIncrementation){
+                    this.env = e;
+                }
+            }
+        }
+        l.setEnv(this.env);
+        chargement();
+        l.setDeplacementHauteur(352);
+        l.setDeplacementLargeur(1224);
+        m.reset();
+        m.chargerMap(env.getMapActuelle().getTableau());
+    }
+
+    public void chargerAncienneMap(Link l, MapReader m){
+        autoIncrementation--;
+        nomMapActu = nom + autoIncrementation;
+        for (Environnement e : this.listeEnv) {
+            if(e.getId()==autoIncrementation){
+                this.env = e;
+            }
+        }
+        l.setEnv(this.env);
+        chargement();
+        l.setDeplacementHauteur(352);
+        l.setDeplacementLargeur(40);
+        m.reset();
+        m.chargerMap(env.getMapActuelle().getTableau());
     }
 }

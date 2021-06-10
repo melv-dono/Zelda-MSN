@@ -13,6 +13,19 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
         this.nomMap = nom;
         this.tableau = new int[Parametre.LIGNE][Parametre.COLONNE];
         s = null;
+        chargerTableau();
+    }
+
+    /**
+     * Envoie le nom de la map que contient le modèle.
+     * @return nom d'une map
+     */
+    public String getNomMap() {
+        return nomMap;
+    }
+
+    public void setNomMap(String nom){
+        this.nomMap=nom;
     }
 
     /**
@@ -20,7 +33,7 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
      * Envoie un tableau avec les données chargées d'une map.
      * @return tableau 2D de donnée d'une map
      */
-    public int[][] getTableau() {
+    public void chargerTableau() {
         //File fichier=new File("Modèle/testMap.txt");
         int[] donnee = new int[resolutionEcran];
         BufferedReader br;
@@ -30,6 +43,8 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
         try {
 
             br = new BufferedReader(new FileReader("src/Modèle/"+this.nomMap+".txt"));
+            System.out.println("bbb");
+            System.out.println(this.nomMap);
             String ligneLue = "";
 
             do {
@@ -48,14 +63,10 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public int[][] getTableau(){
         return this.tableau;
     }
 
-    /**
-     * Envoie le nom de la map que contient le modèle.
-     * @return nom d'une map
-     */
-    public String getNomMap() {
-        return nomMap;
-    }
 }

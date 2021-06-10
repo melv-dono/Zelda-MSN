@@ -2,15 +2,12 @@ package Modèle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 
 public class Link extends Personnage{
 
     private String orientation;
-
+    private StringProperty direction;
     private Arme armePrincipale;
     private BaguetteMagique armeSecondaire;
     private boolean isMoving; // Dit si le perso est en cours d'animation ou pas
@@ -85,11 +82,12 @@ public class Link extends Personnage{
      * Affiche les déplacements
      */
     public void monter() {
-        int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
+        //int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
+        int[][] carte = getEnv().getMapActuelle().getTableau();
         if((getDeplacementHauteur()/Parametre.TUILE_SIZE)-1<0){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)-1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] == 1&&collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()-Parametre.TUILE_SIZE)==true) {//deplacement vers le haut bloquer
+        }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)-1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] <= 10 && collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()-Parametre.TUILE_SIZE)==true) {//deplacement vers le haut bloquer
             setDeplacementHauteur(getDeplacementHauteur() - Parametre.TUILE_SIZE);
             //depAffCoord(carte);
         }
@@ -105,11 +103,12 @@ public class Link extends Personnage{
      * Affiche les déplacements
      */
     public void descendre() {
-        int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
+        //int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
+        int[][] carte = getEnv().getMapActuelle().getTableau();
         if(((getDeplacementHauteur()/Parametre.TUILE_SIZE)+1)>=Parametre.LIGNE){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)+1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] == 1&&collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()+Parametre.TUILE_SIZE)==true)  {//deplacement vers le bas bloquer
+        }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)+1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] <= 10&&collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()+Parametre.TUILE_SIZE)==true)  {//deplacement vers le bas bloquer
             setDeplacementHauteur(getDeplacementHauteur() + Parametre.TUILE_SIZE);
             //depAffCoord(carte);
         }
@@ -125,11 +124,16 @@ public class Link extends Personnage{
      * Affiche les déplacements
      */
     public void gauche() {
-        int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
+        System.out.println("ccc");
+        System.out.println(getEnv().getNomMapCourante());
+
+        //int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
+        int[][] carte = getEnv().getMapActuelle().getTableau();
+
         if((getDeplacementLargeur()/Parametre.TUILE_SIZE)-1<0){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)-1)] == 1&&collisionExterneEnv(getDeplacementLargeur()-Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
+        }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)-1)] <= 10&&collisionExterneEnv(getDeplacementLargeur()-Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
             setDeplacementLargeur(getDeplacementLargeur() - Parametre.TUILE_SIZE);
             //depAffCoord(carte);
         }
@@ -145,11 +149,12 @@ public class Link extends Personnage{
      * Affiche les déplacements
      */
     public void droite() {
-        int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
+        //int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
+        int[][] carte = getEnv().getMapActuelle().getTableau();
         if(((getDeplacementLargeur()/Parametre.TUILE_SIZE)+1)>=40){
             System.out.println("bordure de map");
             collisionAffCoord(carte);
-        }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)+1)] == 1&&collisionExterneEnv(getDeplacementLargeur()+Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
+        }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)+1)] <= 10&&collisionExterneEnv(getDeplacementLargeur()+Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
             setDeplacementLargeur(getDeplacementLargeur() + Parametre.TUILE_SIZE);
             //depAffCoord(carte);
         }

@@ -38,4 +38,10 @@ public class MapReader {
             }
         }
     }
+
+    public void reset(){
+        for(int i= map.getChildren().size()-1; i>=0;i--){
+            map.getChildren().remove(i);
+        }
+    }
 }

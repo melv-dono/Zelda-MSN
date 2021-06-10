@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 public class Environnement { // Toutes les méthodes de cette classe ne sont pas encore utilisé dans le code
-    private int width,height; // largeur == width - hauteur == height
+    private int width,height,id; // largeur == width - hauteur == height
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
     private ObservableList<ElementMap> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
@@ -18,14 +18,27 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     /**
      * CONSTRUCTEUR
      */
-    public Environnement(int width, int height){
+    public Environnement(int width, int height, int id, String nomMap){
         this.width=width;
         this.height=height;
+        this.id=id;
         this.lesPerso=new ArrayList<>();
         this.decors = new ArrayList<>();
-        this.mapActuelle= new MapModele("map1");
+        this.mapActuelle= new MapModele(nomMap);
+        this.decors.add(mapActuelle);
+        objetEnvironnement = FXCollections.observableArrayList();
+    }
+
+    public Environnement(int width, int height, int id, String nomMap, Link utilisateur){
+        this.width=width;
+        this.height=height;
+        this.id=id;
+        this.lesPerso=new ArrayList<>();
+        this.decors = new ArrayList<>();
+        this.mapActuelle= new MapModele(nomMap);
         this.decors.add(mapActuelle);
         objetEnvironnement= FXCollections.observableArrayList();
+        this.utilisateur=utilisateur;
     }
 
     /**
@@ -96,10 +109,17 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public ObservableList<ElementMap> getObjetEnvironnement(){
         return objetEnvironnement;
     }
+    public int getId(){
+        return this.id;
+    }
 
     /**
      * SETTERS
      */
+
+    public void setMapActuelle(String nomMap){
+        this.mapActuelle = new MapModele(nomMap);
+    }
 
     /**
      * METHODES
@@ -138,7 +158,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
 
     public void init() {
-        this.utilisateur = new Link(this);
+        if(id==1){
+            this.utilisateur = new Link(this);
+        }
         addPerso(this.utilisateur);
         BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
         Epe epe = new Epe("Excalibur", 10, this.utilisateur);
@@ -205,7 +227,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Key key=new Key(1000,480);
         PersoNonJouable pnj=new PersoNonJouable(1000,480,key);
         objetEnvironnement.addAll(potion,rocher,pioche,arbre,pnj);
-
 
     }
 

@@ -14,10 +14,13 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
     private Pane plateau;
     private Environnement environnement;
     private ArrayList<ObjetVue>listeObjetVue;
-    public ObservateurObjet(Pane pane, Environnement environnement){
+    private ArrayList<Environnement> listeEnv;
+
+    public ObservateurObjet(Pane pane, Environnement environnement, ArrayList<Environnement> listeE){
         plateau=pane;
         this.environnement=environnement;
         listeObjetVue=new ArrayList<>();
+        this.listeEnv=listeE;
     }
     @Override
     public void onChanged(Change<? extends ElementMap> change) {
@@ -28,7 +31,7 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                 }else if(objAdded instanceof Rocher) {
                     ajoutObjet(objAdded,"Vue/item_stonefence.gif");
                 }else if(objAdded instanceof Pioche){
-                    ajoutObjet(objAdded,"Vue/pelle.gif");
+                    ajoutObjet(objAdded,"Vue/pioche.png");
                 }else if(objAdded instanceof Arbre){
                     ajoutObjet(objAdded,"Vue/liltree.gif");
                 }else if(objAdded instanceof Pomme){
@@ -107,11 +110,11 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
 
     }
     public void retirerObjet(int id){
-  /*      for(ObjetVue o:listeObjetVue){
+        /*for(ObjetVue o:listeObjetVue){
             if(o.getId()==id){
-                plateau.getChildren().remove(o.getImg());
-                listeObjetVue.remove(o);
-            }
+            plateau.getChildren().remove(o.getImg());
+            listeObjetVue.remove(o);
+        }
         }*/
         for(int i=0;i<listeObjetVue.size();i++){
             if(listeObjetVue.get(i).getId()==id){

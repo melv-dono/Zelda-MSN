@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.media.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="ecran" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur.Controleur">
+<BorderPane fx:id="ecran" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur.Controleur">
     <center>
         <Pane fx:id="plateau" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
             <children>
@@ -180,4 +177,40 @@
          </BorderPane.margin>
       </VBox>
    </bottom>
+   <right>
+      <VBox fx:id="menuAide" layoutY="325.0" prefHeight="1280.0" prefWidth="419.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="AIDE COMMANDES CLAVIER">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label text="La touche &quot;i&quot; pour ouvrir et &quot;q&quot; pour fermer l'inventaire">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label text="La touche &quot;d&quot; pour attaquer à l'épée">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label text="La touche &quot;a&quot; pour lancer des boules de feu">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label text="La touche &quot;r&quot; pour récupérer un objet ">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label text="On se déplace avec les flèches :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="&quot;haut&quot; &quot;bas&quot; &quot;gauche&quot; &quot;droite&quot; du clavier ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

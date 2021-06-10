@@ -6,11 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.image.ImageView;
 
 public class GestionCoeur implements ChangeListener<Number> {
-    private ImageView coeur1;
-    private ImageView coeur2;
-    private ImageView coeur3;
-    private ImageView coeur4;
-    private ImageView coeur5;
+    private ImageView coeur1, coeur2, coeur3, coeur4,coeur5;
     private Environnement env;
 
     public GestionCoeur(ImageView coeur1, ImageView coeur2, ImageView coeur3, ImageView coeur4, ImageView coeur5, Environnement environnement){

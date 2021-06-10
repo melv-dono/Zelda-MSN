@@ -25,7 +25,7 @@ public abstract class Personnage {
         this.nom =n;
         this.id = numId++;
         this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
-        this.deplacementHauteur = new SimpleDoubleProperty();
+        this.deplacementHauteur = new SimpleDoubleProperty(32);
         this.env = e;
         this.orientation="descendre";
         pv=new SimpleDoubleProperty(pV);
@@ -93,12 +93,14 @@ public abstract class Personnage {
      * @param pv
      */
     public void decrementerPv(double pv){
-        if(this.pv.getValue()==0){
+        if(this.pv.getValue()<0){
             System.out.println("die igo");
         }else{
             this.pv.setValue(this.pv.getValue()-pv);
         }
     }
+
+
     /**
      * Envoie la colonne sur laquelle se trouve le personnage.
      * @return l'abscisse du personnage
@@ -246,6 +248,10 @@ public abstract class Personnage {
      */
     public void setOrientation(String s) {
         this.orientation = s;
+    }
+
+    public void setEnv(Environnement env) {
+        this.env = env;
     }
 
     public void perteDePv(double degat) {
