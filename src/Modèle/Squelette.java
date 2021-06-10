@@ -72,49 +72,37 @@ public class Squelette extends Personnage{
     public int deplacementPossible(double coordHaut,double coordLarge,Environnement environnement,int orientationActuelle){
         if(orientationActuelle==1){
             if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge-32)/32,environnement)==true){
-                System.out.println(" 1 - 1");
                 return 1;
             }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge+32)/32,environnement)==true){
-                System.out.println(" 1 - 2");
                 return 2;
             }else{
-                System.out.println(" 1 - 4");
                 return 4;
             }
         }
         if(orientationActuelle==2){
             if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge+32)/32,environnement)==true){
-                System.out.println(" 2 - 2");
                 return 2;
             }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge-32)/32,environnement)==true){
-                System.out.println(" 2 - 1");
                 return 1;
             }else{
-                System.out.println(" 2 - 3");
                 return 3;
             }
         }
         if(orientationActuelle==3){
             if(prochainDepPossible((int)(coordHaut+32)/32,(int)(coordLarge+32)/32,environnement)==true){
-                System.out.println(" 3 - 3");
                 return 3;
             }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge+32)/32,environnement)==true){
-                System.out.println(" 3 - 2");
                 return 2;
             }else{
-                System.out.println(" 3 - 4");
                 return 4;
             }
         }
         if(orientationActuelle==4){
             if(prochainDepPossible((int)(coordHaut+32)/32,(int)(coordLarge-32)/32,environnement)==true){
-                System.out.println(" 4 - 4");
                 return 4;
             }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge-32)/32,environnement)==true) {
-                System.out.println(" 4 - 1");
                 return 1;
             }else{
-                System.out.println(" 4 - 3");
                 return 3;
             }
         }

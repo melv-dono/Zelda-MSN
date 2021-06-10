@@ -1,6 +1,7 @@
 package Vue;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ObjetVue {
@@ -14,5 +15,8 @@ public class ObjetVue {
     public ImageView getImg(){return img;}
     public int getId(){
         return id;
+    }
+    public void setImg(String url){
+        img.setImage(new Image(url));
     }
 }

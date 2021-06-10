@@ -117,9 +117,10 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     alerte.show();
                                     System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());
                                 }
-                            }else if(objetEnvironnement instanceof Coffre){
+                            }else if(objetEnvironnement.get(i) instanceof Coffre){
                                 if(((Coffre) objetEnvironnement.get(i)).tiensObjet()){
                                     inventaire.addObjet(((Coffre) objetEnvironnement.get(i)).donObjet());
+                                    objetEnvironnement.remove(objetEnvironnement.add(new Pomme(800,800)));
                                 }else{
                                     System.out.println("ce coffre à déjà été ouvert");
                                 }

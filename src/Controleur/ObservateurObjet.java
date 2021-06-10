@@ -57,6 +57,17 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                     retirerObjet(objRemoved.getId());
                 }
             }
+            for(ElementMap objChange: environnement.getObjetEnvironnement()){ // méthode de changement de l'image du coffre
+                if(objChange instanceof Coffre){
+                    if(((Coffre) objChange).tiensObjet()==false ){
+                        for(ObjetVue objVue:listeObjetVue){
+                            if(objChange.getId()==objVue.getId()){
+                                objVue.setImg("Vue/coffreOpen.gif");
+                            }
+                        }
+                    }
+                }
+            }
     }
 
     public void ajoutObjet(ElementMap obj, String url){
@@ -127,6 +138,13 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                 plateau.getChildren().remove(listeObjetVue.get(i).getImg());
                 listeObjetVue.remove(listeObjetVue.get(i));
                 i--;
+            }
+        }
+    }
+    public void changerVue(int id){
+        for(ObjetVue o:listeObjetVue){
+            if(o.getId()==id){
+                ObjetVue objetVue=new ObjetVue("Vue/coffreOpen.gif",id);
             }
         }
     }
