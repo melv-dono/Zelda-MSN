@@ -37,6 +37,8 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                     ajoutObjet(objAdded,"Vue/pnjFace.png");
                 }else if(objAdded instanceof Key){
                     ajoutObjet(objAdded,"Vue/keyTile.png");
+                }else if(objAdded instanceof Coffre){
+                    ajoutObjet(objAdded,"Vue/coffre.gif");
                 }
             }
             for(ElementMap objRemoved: change.getRemoved()){
@@ -102,6 +104,7 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
             vueKey.getImg().translateYProperty().bind(obj.getPositionHauteur());
             plateau.getChildren().add(vueKey.getImg());
             listeObjetVue.add(vueKey);
+        }else if(obj instanceof Coffre){
         }
 
 
