@@ -3,9 +3,7 @@ package Modèle;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class PersoNonJouable extends ElementMap{
-    private ElementMap objet;
-    private boolean canGiveObject;
+public class PersoNonJouable extends ObjetContenantObjet{
     private IntegerProperty orientation;
     /**
      * CONSTRUCTEUR
@@ -14,18 +12,10 @@ public class PersoNonJouable extends ElementMap{
      * @param posHauteur
      */
     public PersoNonJouable(double posLargeur, double posHauteur,ElementMap objet) {
-        super("pnj", posLargeur, posHauteur);
-        this.objet=objet;
-        canGiveObject=true;
+        super(objet, posLargeur, posHauteur,"pnj");
         orientation=new SimpleIntegerProperty(1);
     }
-    public ElementMap donObjet(){
-        canGiveObject=false;
-        return objet;
-    }
-    public boolean persoTiensObjet(){
-        return canGiveObject;
-    }
+
     public void setOrientation(int newOrientation){
         orientation.setValue(newOrientation);
     }

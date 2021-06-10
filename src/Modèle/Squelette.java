@@ -14,6 +14,7 @@ public class Squelette extends Personnage{
     public Squelette(String n,Environnement env) {
         super(n,423,600, env, 100, 5, 5);
         orientation=1;
+        cpt=0;
     }
 
     /**
@@ -71,49 +72,37 @@ public class Squelette extends Personnage{
     public int deplacementPossible(double coordHaut,double coordLarge,Environnement environnement,int orientationActuelle){
         if(orientationActuelle==1){
             if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge-32)/32,environnement)==true){
-                System.out.println(" 1 - 1");
                 return 1;
             }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge+32)/32,environnement)==true){
-                System.out.println(" 1 - 2");
                 return 2;
             }else{
-                System.out.println(" 1 - 4");
                 return 4;
             }
         }
         if(orientationActuelle==2){
             if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge+32)/32,environnement)==true){
-                System.out.println(" 2 - 2");
                 return 2;
             }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge-32)/32,environnement)==true){
-                System.out.println(" 2 - 1");
                 return 1;
             }else{
-                System.out.println(" 2 - 3");
                 return 3;
             }
         }
         if(orientationActuelle==3){
             if(prochainDepPossible((int)(coordHaut+32)/32,(int)(coordLarge+32)/32,environnement)==true){
-                System.out.println(" 3 - 3");
                 return 3;
             }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge+32)/32,environnement)==true){
-                System.out.println(" 3 - 2");
                 return 2;
             }else{
-                System.out.println(" 3 - 4");
                 return 4;
             }
         }
         if(orientationActuelle==4){
             if(prochainDepPossible((int)(coordHaut+32)/32,(int)(coordLarge-32)/32,environnement)==true){
-                System.out.println(" 4 - 4");
                 return 4;
             }else if(prochainDepPossible((int)(coordHaut-32)/32,(int)(coordLarge-32)/32,environnement)==true) {
-                System.out.println(" 4 - 1");
                 return 1;
             }else{
-                System.out.println(" 4 - 3");
                 return 3;
             }
         }
@@ -129,7 +118,12 @@ public class Squelette extends Personnage{
 
     public void attaquer(Environnement e) {
         if(e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()>-32 && e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()<32&& e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()>-32 && e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()<32 ){
-            e.getLink().decrementerPv(1);
+            if(cpt!=60){
+                cpt++;
+            }else{
+                cpt=0;
+                e.getLink().decrementerPv(5);
+            }
         }
 
     }

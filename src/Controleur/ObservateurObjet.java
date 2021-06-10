@@ -2,6 +2,7 @@ package Controleur;
 
 import Modèle.*;
 import Vue.ObjetVue;
+import Vue.VueCoffre;
 import Vue.VuePnj;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -40,6 +41,8 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                     ajoutObjet(objAdded,"Vue/pnjFace.png");
                 }else if(objAdded instanceof Key){
                     ajoutObjet(objAdded,"Vue/keyTile.png");
+                }else if(objAdded instanceof Coffre){
+                    ajoutObjet(objAdded,"Vue/coffre.gif");
                 }
             }
             for(ElementMap objRemoved: change.getRemoved()){
@@ -55,6 +58,17 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                     retirerObjet(objRemoved.getId());
                 }else if(objRemoved instanceof Key){
                     retirerObjet(objRemoved.getId());
+                }
+            }
+            for(ElementMap objChange: environnement.getObjetEnvironnement()){ // méthode de changement de l'image du coffre
+                if(objChange instanceof Coffre){
+                    if(((Coffre) objChange).tiensObjet()==false ){
+                        for(ObjetVue objVue:listeObjetVue){
+                            if(objChange.getId()==objVue.getId()){
+                                objVue.setImg("Vue/coffreOpen.gif");
+                            }
+                        }
+                    }
                 }
             }
     }
@@ -105,6 +119,12 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
             vueKey.getImg().translateYProperty().bind(obj.getPositionHauteur());
             plateau.getChildren().add(vueKey.getImg());
             listeObjetVue.add(vueKey);
+        }else if(obj instanceof Coffre){
+            VueCoffre vueCoffre=new VueCoffre(url, obj.getId());
+            vueCoffre.getImg().translateXProperty().bind(obj.getPositionLargeur());
+            vueCoffre.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            plateau.getChildren().add(vueCoffre.getImg());
+            listeObjetVue.add(vueCoffre);
         }
 
 
@@ -121,6 +141,13 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                 plateau.getChildren().remove(listeObjetVue.get(i).getImg());
                 listeObjetVue.remove(listeObjetVue.get(i));
                 i--;
+            }
+        }
+    }
+    public void changerVue(int id){
+        for(ObjetVue o:listeObjetVue){
+            if(o.getId()==id){
+                ObjetVue objetVue=new ObjetVue("Vue/coffreOpen.gif",id);
             }
         }
     }
