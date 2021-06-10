@@ -6,8 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -104,7 +102,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                 }else{
                                     ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(1);
                                 }
-                                if(((PersoNonJouable) objetEnvironnement.get(i)).persoTiensObjet()){
+                                if(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet()){
                                     Alert alerte=new Alert(Alert.AlertType.INFORMATION);
                                     alerte.setHeaderText("Bob le paysan");
                                     alerte.setContentText("salut prends donc cette clé elle te sera utile");
@@ -117,6 +115,13 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
                                     alerte.setContentText("écoute ... je n'ai plus rien à te donner");
                                     alerte.show();
+                                    System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());
+                                }
+                            }else if(objetEnvironnement instanceof Coffre){
+                                if(((Coffre) objetEnvironnement.get(i)).tiensObjet()){
+                                    inventaire.addObjet(((Coffre) objetEnvironnement.get(i)).donObjet());
+                                }else{
+                                    System.out.println("ce coffre à déjà été ouvert");
                                 }
                             }
                         }

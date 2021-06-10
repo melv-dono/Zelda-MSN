@@ -8,7 +8,7 @@ public class ObjetContenantObjet extends ElementMap{
         objet=obj;
         canGiveObject=true;
     }
-    public boolean persoTiensObjet(){
+    public boolean tiensObjet(){
         return canGiveObject;
     }
     public ElementMap donObjet(){

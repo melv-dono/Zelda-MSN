@@ -2,6 +2,7 @@ package Controleur;
 
 import Modèle.*;
 import Vue.ObjetVue;
+import Vue.VueCoffre;
 import Vue.VuePnj;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -105,6 +106,11 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
             plateau.getChildren().add(vueKey.getImg());
             listeObjetVue.add(vueKey);
         }else if(obj instanceof Coffre){
+            VueCoffre vueCoffre=new VueCoffre(url, obj.getId());
+            vueCoffre.getImg().translateXProperty().bind(obj.getPositionLargeur());
+            vueCoffre.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            plateau.getChildren().add(vueCoffre.getImg());
+            listeObjetVue.add(vueCoffre);
         }
 
 
