@@ -4,9 +4,9 @@ public class Bouclier extends ElementMap{
     private double pointDef;
     private boolean hold;
 
-    public Bouclier(double posLarge,double posHaut,double ptDef){
+    public Bouclier(double posLarge,double posHaut){
         super("bouclier",posLarge,posHaut);
-        pointDef=ptDef;
+        pointDef=100;
         hold=false;
     }
     public void setHold(){

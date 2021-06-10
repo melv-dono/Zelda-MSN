@@ -118,11 +118,13 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());
                                 }
                             }else if(objetEnvironnement.get(i) instanceof Coffre){
-                                if(((Coffre) objetEnvironnement.get(i)).tiensObjet()){
-                                    inventaire.addObjet(((Coffre) objetEnvironnement.get(i)).donObjet());
-                                    objetEnvironnement.remove(objetEnvironnement.add(new Pomme(800,800)));
-                                }else{
-                                    System.out.println("ce coffre à déjà été ouvert");
+                                if(env.getInventaire().inventairePossede("key")){
+                                    if(((Coffre) objetEnvironnement.get(i)).tiensObjet()){
+                                        inventaire.addObjet(((Coffre) objetEnvironnement.get(i)).donObjet());
+                                        objetEnvironnement.remove(objetEnvironnement.add(new Pomme(800,800)));
+                                    }else{
+                                        System.out.println("ce coffre à déjà été ouvert");
+                                    }
                                 }
                             }
                         }

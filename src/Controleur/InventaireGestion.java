@@ -33,8 +33,11 @@ public class InventaireGestion implements EventHandler<MouseEvent> {
                 env.getLink().augmenterPv(5);
                 inventaire.deleteObjetString("pomme");
             }
-            else{
-                System.out.println("ra");
+            else if(listViewInventaire.getSelectionModel().getSelectedItem().equals("bouclier")){
+                System.out.println("ekiped");
+                inventaire.deleteObjetString("bouclier");
+            }else{
+                System.out.println("Controleur.InventaireGestion.RAAAAAAAAAAAAAAAAA");
             }
         }
     }

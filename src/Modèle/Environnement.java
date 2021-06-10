@@ -204,7 +204,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Arbre arbre=new Arbre(488,160,3);
         Key key=new Key(1000,480);
         PersoNonJouable pnj=new PersoNonJouable(1000,480,key);
-        Bouclier bouclier=new Bouclier(200,352,100);
+        Bouclier bouclier=new Bouclier(200,352);
         Coffre coffre=new Coffre(bouclier,200,352);
         objetEnvironnement.addAll(potion,rocher,pioche,arbre,pnj,coffre);
 
