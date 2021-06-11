@@ -109,6 +109,7 @@ public class Controleur implements Initializable {
 
     public void chargement(){
         this.env.init();
+        /*a*/
         miseEnPlaceObjet();
         connexion();
         gestionBouleDeFeu();
