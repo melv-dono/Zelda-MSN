@@ -43,8 +43,6 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
         try {
 
             br = new BufferedReader(new FileReader("src/Modèle/"+this.nomMap+".txt"));
-            System.out.println("bbb");
-            System.out.println(this.nomMap);
             String ligneLue = "";
 
             do {
