@@ -14,7 +14,7 @@ public class Link extends Personnage{
     private IntegerProperty animationProperty;
 
     public Link(Environnement e) {
-        super("Link", e, 100, 10, 0);
+        super("Link", e, 100, 0, 0);
         //this.orientation.equals("descendre");
         this.isMoving = false;
         this.animationProperty = new SimpleIntegerProperty(Parametre.ATTAQUE_ANIMATION);
@@ -48,9 +48,17 @@ public class Link extends Personnage{
         return this.getPointAttaque() + this.getArmePrincipale().getPointAttaque();
     }
 
+    public DoubleProperty getDommageArmePrincipaleProperty(){
+        return this.getArmePrincipale().getPointAttaqueProperty();
+    }
+
     public double getDommageArmeSecondaire() {
         return this.getPointAttaque() + this.getarmeSecondaire().getPointAttaque();
     }
+
+    /*public DoubleProperty getDommageArmeSecondaireProperty(){
+        return this.getDommageArmeSecondaire().
+    }*/
 
     public void setArmePrincipale(Arme armePrincipale) {
         this.armePrincipale = armePrincipale;

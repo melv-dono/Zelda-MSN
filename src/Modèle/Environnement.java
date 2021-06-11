@@ -12,7 +12,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
     private ObservableList<ElementMap> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
-    private Link utilisateur;
+    private final Link utilisateur = new Link(this);
     private final Inventaire inventaire=new Inventaire();
 
     /**
@@ -38,7 +38,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.mapActuelle= new MapModele(nomMap);
         this.decors.add(mapActuelle);
         objetEnvironnement= FXCollections.observableArrayList();
-        this.utilisateur=utilisateur;
+        //this.utilisateur=utilisateur;
     }
 
     /**
@@ -159,7 +159,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     public void init() {
         if(id==1){
-            this.utilisateur = new Link(this);
+            //this.utilisateur = new Link(this);
         }
         addPerso(this.utilisateur);
         BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);

@@ -12,9 +12,10 @@ public abstract class Personnage {
     private DoubleProperty deplacementLargeur; // on doit avoir : X >= 0 ET X <= largeur de l'environnement
     private DoubleProperty deplacementHauteur; // on doit avoir : Y >= 0 ET Y <= hauteur de l'environnement
     private Environnement env; // permet de délimiter le personnage dans sur la map et aussi l'interaction avec les autres perso
-    private DoubleProperty pv;
-    private DoubleProperty pointAttaque;
-    private DoubleProperty pointDefense;
+    public static double pvActu = 100;
+    private static DoubleProperty pv=new SimpleDoubleProperty(pvActu);
+    private DoubleProperty pointAttaque = new SimpleDoubleProperty(0);
+    private static DoubleProperty pointDefense = new SimpleDoubleProperty(0);
     private IntegerProperty niveau;
     private DoubleProperty exp; // Compteur allant de 0 à 100
     private static int numId=0; // permet d'auto incrémenter l'attribut id pour chaque personnage que l'on crée
@@ -28,7 +29,7 @@ public abstract class Personnage {
         this.deplacementHauteur = new SimpleDoubleProperty(32);
         this.env = e;
         this.orientation="descendre";
-        pv=new SimpleDoubleProperty(pV);
+        //pv=new SimpleDoubleProperty(pV);
         pointAttaque = new SimpleDoubleProperty(pA);
         pointDefense = new SimpleDoubleProperty(pDef);
         niveau=new SimpleIntegerProperty(1);
@@ -61,8 +62,16 @@ public abstract class Personnage {
         return pointAttaque.get();
     }
 
+    public DoubleProperty getPointAttaqueProperty() {
+        return this.pointAttaque;
+    }
+
     public double getPointDefense() {
         return pointDefense.get();
+    }
+
+    public double getPv() {
+        return pv.get();
     }
 
     /**
@@ -84,7 +93,9 @@ public abstract class Personnage {
         if(this.pv.getValue()>=91){
             this.pv.setValue(100);
         }else{
-            this.pv.setValue(pv+this.pv.getValue());
+            //this.pv.setValue(pv+this.pv.getValue());
+            pvActu += pv;
+            this.pv.setValue(pvActu);
         }
     }
 
@@ -96,7 +107,10 @@ public abstract class Personnage {
         if(this.pv.getValue()<0){
             System.out.println("die igo");
         }else{
-            this.pv.setValue(this.pv.getValue()-pv);
+            pvActu -= pv;
+            this.pv.setValue(pvActu);
+            System.out.println("pvActu: "+pvActu);
+            //System.out.println(pv);
         }
     }
 
@@ -212,7 +226,9 @@ public abstract class Personnage {
      * Les pv ne peuvent être supérieur au pv max.
      * @param pv
      */
-    public final void setPv(double pv){ this.pv.setValue(pv);}
+    public final void setPv(double pv){
+        this.pv.setValue(pv);
+    }
 
     /**
      * Modifie les points d'expérience du personnage.

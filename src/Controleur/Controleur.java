@@ -109,10 +109,16 @@ public class Controleur implements Initializable {
 
     public void chargement(){
         this.env.init();
-        /*a*/
+
         miseEnPlaceObjet();
         connexion();
         gestionBouleDeFeu();
+        System.out.println(this.ptVie);
+
+        env.getLink().decrementerPv(1);
+        env.getLink().augmenterPv(1);
+
+
     }
 
     public void affichage() {
@@ -135,6 +141,8 @@ public class Controleur implements Initializable {
         arrow = new ArrowGestion(env.getLink());
         action = new LettreTyped(menuPause,plateau,gameLoop,env,menuAide);
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
+        this.ptAtt.textProperty().bind((env.getLink().getPointAttaqueProperty().add(env.getLink().getArmePrincipale().getPointAttaqueProperty()).asString()));
+        //this.ptDef.textProperty().bind();
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         ProgressBarExp.setProgress(0.0);
         GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);
