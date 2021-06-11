@@ -241,7 +241,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
 
                 for (Coordonnees voisins : pointCourant.voisins()) {
-                    if ( !marquer.contains(voisins)  /*&& this.mapActuelle.getTableau()[voisins.getLigne()][voisins.getColonne()]==1*/) {
+                    if ( !marquer.contains(voisins)  && this.mapActuelle.getTableau()[voisins.getLigne()][voisins.getColonne()]==1) {
                         frontiere.add(voisins);
 //                        lien.put(voisins, pointCourant);
                         antecedent.put(voisins, pointCourant);

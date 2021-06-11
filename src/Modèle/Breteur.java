@@ -3,10 +3,12 @@ package Modèle;
 import java.util.HashMap;
 
 public class Breteur extends Ennemi{
+    static int deplacementComplet;
     private HashMap<Coordonnees, Coordonnees> chenim;
     public Breteur(String n,Environnement env) {
         super(n,1000,256, env, 100, 5, 5);
         chenim = new HashMap<Coordonnees,Coordonnees>();
+        deplacementComplet=0;
     }
 
     /**
@@ -51,15 +53,19 @@ public class Breteur extends Ennemi{
 //        System.out.println("Coordonne perso:" + depart);
         if (!depart.isEqual(cible)) {
             HashMap<Coordonnees, Coordonnees> chemin = getEnv().bfs(cible);
-            System.out.println(chemin);
-            Coordonnees prochainPas = chemin.get(depart);
-            System.out.println("Point de départ:" + depart);
-            System.out.println(prochainPas);
+            if (deplacementComplet % 16 == 0 ) {
+                Coordonnees prochainPas = chemin.get(depart);
 
-            if (prochainPas != null) {
-                setDeplacementLargeur(prochainPas.getColonne()*Parametre.TUILE_SIZE);
-                setDeplacementHauteur(prochainPas.getLigne()*Parametre.TUILE_SIZE);
+                if (prochainPas != null) {
+                    setDeplacementLargeur((prochainPas.getColonne() * Parametre.TUILE_SIZE) + (Parametre.TUILE_SIZE/16));
+                    setDeplacementHauteur((prochainPas.getLigne() * Parametre.TUILE_SIZE) + (Parametre.TUILE_SIZE/16));
+                }
             }
+            else {
+                setDeplacementLargeur((depart.getColonne() * Parametre.TUILE_SIZE) + (Parametre.TUILE_SIZE/16));
+                setDeplacementHauteur((depart.getLigne() * Parametre.TUILE_SIZE) + (Parametre.TUILE_SIZE/16));
+            }
+            deplacementComplet++;
         }
 
 //        Coordonnees prochaineCase = chemin.get(depart);

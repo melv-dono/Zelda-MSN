@@ -13,6 +13,7 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
         this.nomMap = nom;
         this.tableau = new int[Parametre.LIGNE][Parametre.COLONNE];
         s = null;
+        generationMap();
     }
 
     /**
@@ -20,7 +21,7 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
      * Envoie un tableau avec les données chargées d'une map.
      * @return tableau 2D de donnée d'une map
      */
-    public int[][] getTableau() {
+    public void generationMap() {
         //File fichier=new File("Modèle/testMap.txt");
         int[] donnee = new int[resolutionEcran];
         BufferedReader br;
@@ -48,6 +49,9 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public int[][] getTableau() {
         return this.tableau;
     }
 
