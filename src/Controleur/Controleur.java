@@ -125,7 +125,9 @@ public class Controleur implements Initializable {
                 plateau.getChildren().add(l.creeSprite());
             }
             if (p instanceof Squelette) {
-                VueSquelette s = new VueSquelette(p,"Vue/bad_skeleton.gif");
+                VueSquelette s = new VueSquelette("Vue/bad_skeleton.gif",p.getId());
+                s.getImgSquelette().translateXProperty().bind(p.getDeplacementLargeurProperty());
+                s.getImgSquelette().translateYProperty().bind(p.getDeplacementHauteurProperty());
                 plateau.getChildren().add(s.getImgSquelette());
             }
         }
