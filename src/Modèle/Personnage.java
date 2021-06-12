@@ -1,9 +1,6 @@
 package Modèle;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 
 // Attention il faut mettre un invariant pour que les pv ne puissent dépasser les pv max
 public abstract class Personnage {
@@ -12,13 +9,14 @@ public abstract class Personnage {
     private DoubleProperty deplacementLargeur; // on doit avoir : X >= 0 ET X <= largeur de l'environnement
     private DoubleProperty deplacementHauteur; // on doit avoir : Y >= 0 ET Y <= hauteur de l'environnement
     private Environnement env; // permet de délimiter le personnage dans sur la map et aussi l'interaction avec les autres perso
-    private DoubleProperty pv;
-    private DoubleProperty pointAttaque;
-    private DoubleProperty pointDefense;
+    public static double pvActu = 100;
+    private static DoubleProperty pv=new SimpleDoubleProperty(pvActu);
+    private DoubleProperty pointAttaque = new SimpleDoubleProperty(0);
+    private static DoubleProperty pointDefense = new SimpleDoubleProperty(0);
     private IntegerProperty niveau;
     private DoubleProperty exp; // Compteur allant de 0 à 100
     private static int numId=0; // permet d'auto incrémenter l'attribut id pour chaque personnage que l'on crée
-    private String orientation;
+    private StringProperty orientation;
 
 
     public Personnage(String n, Environnement e, double pV, double pA, double pDef) {
@@ -27,8 +25,8 @@ public abstract class Personnage {
         this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
         this.deplacementHauteur = new SimpleDoubleProperty(32);
         this.env = e;
-        this.orientation="descendre";
-        pv=new SimpleDoubleProperty(pV);
+        this.orientation = new SimpleStringProperty("descendre");
+        //pv=new SimpleDoubleProperty(pV);
         pointAttaque = new SimpleDoubleProperty(pA);
         pointDefense = new SimpleDoubleProperty(pDef);
         niveau=new SimpleIntegerProperty(1);
@@ -44,7 +42,7 @@ public abstract class Personnage {
         pv=new SimpleDoubleProperty(pV);
         pointAttaque = new SimpleDoubleProperty(pA);
         pointDefense = new SimpleDoubleProperty(pDef);
-        this.orientation="descendre";
+        this.orientation = new SimpleStringProperty("descendre");
         //this.env = new Environnement();
     }
 
@@ -61,8 +59,20 @@ public abstract class Personnage {
         return pointAttaque.get();
     }
 
+    public DoubleProperty getPointAttaqueProperty() {
+        return this.pointAttaque;
+    }
+
     public double getPointDefense() {
         return pointDefense.get();
+    }
+
+    public static DoubleProperty getPointDefenseProperty() {
+        return pointDefense;
+    }
+
+    public double getPv() {
+        return pv.get();
     }
 
     /**
@@ -70,7 +80,27 @@ public abstract class Personnage {
      * @return
      */
     public String getOrientation() {
-        return this.orientation;
+        return orientation.get();
+    }
+
+    public StringProperty orientationProperty() {
+        return orientation;
+    }
+
+    public int getNiveau() {
+        return niveau.get();
+    }
+
+    public IntegerProperty niveauProperty() {
+        return niveau;
+    }
+
+    /**
+     * Méthode pour changer l'orientation du personnage
+     * @param orientation
+     */
+    public void setOrientation(String orientation) {
+        this.orientation.set(orientation);
     }
 
     /**
@@ -84,7 +114,9 @@ public abstract class Personnage {
         if(this.pv.getValue()>=91){
             this.pv.setValue(100);
         }else{
-            this.pv.setValue(pv+this.pv.getValue());
+            //this.pv.setValue(pv+this.pv.getValue());
+            pvActu += pv;
+            this.pv.setValue(pvActu);
         }
     }
 
@@ -96,7 +128,10 @@ public abstract class Personnage {
         if(this.pv.getValue()<0){
             System.out.println("die igo");
         }else{
-            this.pv.setValue(this.pv.getValue()-pv);
+            pvActu -= pv;
+            this.pv.setValue(pvActu);
+            System.out.println("pvActu: "+pvActu);
+            //System.out.println(pv);
         }
     }
 
@@ -212,7 +247,9 @@ public abstract class Personnage {
      * Les pv ne peuvent être supérieur au pv max.
      * @param pv
      */
-    public final void setPv(double pv){ this.pv.setValue(pv);}
+    public final void setPv(double pv){
+        this.pv.setValue(pv);
+    }
 
     /**
      * Modifie les points d'expérience du personnage.
@@ -240,14 +277,6 @@ public abstract class Personnage {
 
     public void setPointDefense(double pointDefense) {
         this.pointDefense.set(pointDefense);
-    }
-
-    /**
-     * Méthode pour changer l'orientation du personnage
-     * @param s
-     */
-    public void setOrientation(String s) {
-        this.orientation = s;
     }
 
     public void setEnv(Environnement env) {

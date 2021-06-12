@@ -138,7 +138,9 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                         System.out.println("ce coffre à déjà été ouvert");
                                     }
                                 }
-                            }
+                            }//else if(objetEnvironnement.get(i) instanceof Bouclier){
+                                //inventaire.addObjet(((Bouclier)objetEnvironnement.get(i)).donObjet());
+                            //}
                         }
 
                         System.out.println("end"+objetEnvironnement);

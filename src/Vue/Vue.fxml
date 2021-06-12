@@ -148,7 +148,7 @@
                                           <HBox alignment="CENTER" prefHeight="15.0" prefWidth="200.0">
                                              <children>
                                                 <Label text="NIV :" />
-                                                <Label fx:id="labelNiveau" text="lvl" />
+                                                <Label fx:id="labelNiveau" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets />

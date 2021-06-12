@@ -2,6 +2,7 @@ package Controleur;
 
 import Modèle.*;
 import Vue.MapReader;
+import Vue.ObjetVue;
 import Vue.VueLink;
 import Vue.VuePerso;
 import javafx.animation.KeyFrame;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -110,12 +112,17 @@ public class Controleur implements Initializable {
         miseEnPlaceObjet();
         connexion();
         gestionBouleDeFeu();
+
+        env.getLink().decrementerPv(1);
+        env.getLink().augmenterPv(1);
     }*/
 
     public void affichage() {
-        /*for (Personnage p : this.env.getPerso()) {
+        for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
                 VueLink l = new VueLink((Link) p);
+                ObservateurVueLink o = new ObservateurVueLink(l);
+                env.getLink().orientationProperty().addListener(o);
                 AnimationGestion anim = new AnimationGestion(l);
                 ((Link) p).animationPropertyProperty().addListener(anim);
                 plateau.getChildren().add(l.creeSprite());
@@ -132,6 +139,9 @@ public class Controleur implements Initializable {
         arrow = new ArrowGestion(env.getLink());
         action = new LettreTyped(menuPause,plateau,gameLoop,env,menuAide);
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
+        this.ptAtt.textProperty().bind((env.getLink().getPointAttaqueProperty().add(env.getLink().getArmePrincipale().getPointAttaqueProperty()).asString()));
+        //if env.getInventaire().inventairePossede
+        this.ptDef.textProperty().bind(env.getLink().getPointDefenseProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         ProgressBarExp.setProgress(0.0);
         GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);

@@ -207,6 +207,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
             }
         }
 
+        if(utilisateur.getExp() > 1){
+            utilisateur.setExp(0);
+            utilisateur.niveau().set(utilisateur.getNiveau()+1);
+        }
+
     }
 
     public void retirerBouleDeFeu() {

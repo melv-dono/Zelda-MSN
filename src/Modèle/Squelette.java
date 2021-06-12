@@ -53,8 +53,9 @@ public class Squelette extends Personnage{
      * première animation du premier squelette dans la première map qui servira dans la gameloop
      */
     public void animationSquelette1(Environnement environnement){
-            if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==1){ // 1=NO
-                orientation=1;
+        if(this.getEnv().getNomMapCourante().equals("map1")) {
+            if (deplacementPossible(getDeplacementHauteur(), getDeplacementLargeur(), environnement, orientation) == 1) { // 1=NO
+                orientation = 1;
                 this.monter();
                 this.gauche();
             }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==2){ // 2=NE
@@ -70,6 +71,7 @@ public class Squelette extends Personnage{
                 this.gauche();
                 this.descendre();
             }
+        }
     }
     public int deplacementPossible(double coordHaut,double coordLarge,Environnement environnement,int orientationActuelle){
         if(orientationActuelle==1){
@@ -111,7 +113,7 @@ public class Squelette extends Personnage{
         return 0;
     }
     public boolean prochainDepPossible(int depHaut,int depLarge,Environnement environnement){
-        if(!(environnement.getMapActuelle().getTableau()[depHaut][depLarge]<10)){
+        if(environnement.getMapActuelle().getTableau()[depHaut][depLarge]>=10){
             return false;
         }
         return true;
