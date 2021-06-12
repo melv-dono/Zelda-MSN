@@ -1,13 +1,16 @@
 package Modèle;
 
 import Controleur.OrientationPnj;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
 public class Environnement { // Toutes les méthodes de cette classe ne sont pas encore utilisé dans le code
-    private int width,height,id; // largeur == width - hauteur == height
+    private int width,height; // largeur == width - hauteur == height
+    private IntegerProperty id;
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
     private ObservableList<ElementMap> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
@@ -21,7 +24,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public Environnement(int width, int height, int id, String nomMap){
         this.width=width;
         this.height=height;
-        this.id=id;
+        this.id=new SimpleIntegerProperty(id);
         this.lesPerso=new ArrayList<>();
         this.decors = new ArrayList<>();
         this.mapActuelle= new MapModele(nomMap);
@@ -32,7 +35,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public Environnement(int width, int height, int id, String nomMap, Link utilisateur){
         this.width=width;
         this.height=height;
-        this.id=id;
+        this.id=new SimpleIntegerProperty(id);
         this.lesPerso=new ArrayList<>();
         this.decors = new ArrayList<>();
         this.mapActuelle= new MapModele(nomMap);
@@ -110,12 +113,19 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         return objetEnvironnement;
     }
     public int getId(){
-        return this.id;
+        return this.id.getValue();
+    }
+    public IntegerProperty getTheID(){
+        return id;
     }
 
     /**
      * SETTERS
      */
+    public void setId(int id){
+        this.id.setValue(id);
+
+    }
 
     public void setMapActuelle(String nomMap){
         this.mapActuelle = new MapModele(nomMap);
@@ -139,6 +149,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void deletePerso(Personnage p){ // méthode non utilisé pour l'instant
         lesPerso.remove(p);
     }
+    public void deleteAllPerso(){
+        for (int i=0;i<lesPerso.size();i++){
+            lesPerso.remove(lesPerso.get(i));
+        }
+    }
 
     /**
      * Permet d'ajouter un décros à la liste de ceux présents dans l'envrionnement.
@@ -158,7 +173,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
 
     public void init() {
-        if(id==1){
+        if(id.getValue()==1){
             this.utilisateur = new Link(this);
         }
         addPerso(this.utilisateur);
@@ -230,6 +245,12 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Coffre coffre=new Coffre(bouclier,200,352);
         objetEnvironnement.addAll(potion,rocher,pioche,arbre,pnj,coffre);
 
+    }
+    public void retirerCollision(){
+        for(int i=0;i<objetEnvironnement.size();i++){
+            objetEnvironnement.remove(objetEnvironnement.get(i));
+            i--;
+        }
     }
 
     /**

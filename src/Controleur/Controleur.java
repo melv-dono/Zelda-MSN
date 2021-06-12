@@ -128,9 +128,9 @@ public class Controleur implements Initializable {
             }
         }
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env, listeEnv);
-        ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj);
-        //env.getId().
-        //env.getObjetEnvironnement().addListener(obsObj);
+        ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,env);
+        env.getObjetEnvironnement().addListener(obsObj);
+        env.getTheID().addListener(obsEnv);
     }
     public void connexion() {
         arrow = new ArrowGestion(env.getLink());
@@ -155,8 +155,10 @@ public class Controleur implements Initializable {
         autoIncrementation++;
         nomMapActu = nom + autoIncrementation;
         if(this.listeEnv.size() < autoIncrementation){
-            this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,autoIncrementation, nomMapActu, l);
-            this.listeEnv.add(this.env);
+            this.env.setId(autoIncrementation);
+            this.env.deleteAllPerso();
+            this.env.setMapActuelle(nomMapActu);
+            env.retirerCollision();
         }
         else{
             for (Environnement e : this.listeEnv) {
