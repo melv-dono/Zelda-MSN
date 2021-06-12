@@ -123,12 +123,14 @@ public class Controleur implements Initializable {
     public void affichage() {
         for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
-                VueLink l = new VueLink((Link) p);
+                VueLink l = new VueLink(p.getId(),"Vue/link_front2.gif");
+                l.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
+                l.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
                 ObservateurVueLink o = new ObservateurVueLink(l);
                 env.getLink().orientationProperty().addListener(o);
-                AnimationGestion anim = new AnimationGestion(l);
+                AnimationGestion anim = new AnimationGestion(l,env);
                 ((Link) p).animationPropertyProperty().addListener(anim);
-                plateau.getChildren().add(l.creeSprite());
+                plateau.getChildren().add(l.getImg());
             }
             if (p instanceof Squelette) {
                 VueSquelette s = new VueSquelette("Vue/bad_skeleton.gif",p.getId());
