@@ -124,8 +124,6 @@ public class Link extends Personnage{
      * Affiche les déplacements
      */
     public void gauche() {
-        System.out.println("ccc");
-        System.out.println(getEnv().getNomMapCourante());
 
         //int[][] carte = getEnv().getCoordonneDecors(getEnv().getNomMapCourante());
         int[][] carte = getEnv().getMapActuelle().getTableau();

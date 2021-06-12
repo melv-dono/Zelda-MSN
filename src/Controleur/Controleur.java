@@ -128,7 +128,9 @@ public class Controleur implements Initializable {
             }
         }
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env, listeEnv);
-        env.getObjetEnvironnement().addListener(obsObj);
+        ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj);
+        //env.getId().
+        //env.getObjetEnvironnement().addListener(obsObj);
     }
     public void connexion() {
         arrow = new ArrowGestion(env.getLink());
@@ -164,7 +166,7 @@ public class Controleur implements Initializable {
             }
         }
         l.setEnv(this.env);
-        chargement();
+        //chargement();
         l.setDeplacementHauteur(352);
         l.setDeplacementLargeur(1224);
         m.reset();
@@ -180,10 +182,11 @@ public class Controleur implements Initializable {
             }
         }
         l.setEnv(this.env);
-        chargement();
+        //chargement();
         l.setDeplacementHauteur(352);
         l.setDeplacementLargeur(40);
         m.reset();
         m.chargerMap(env.getMapActuelle().getTableau());
     }
+
 }
