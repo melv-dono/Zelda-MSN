@@ -6,15 +6,13 @@ import javafx.beans.property.*;
 
 public class Link extends Personnage{
 
-    private String orientation;
-    private StringProperty direction;
     private Arme armePrincipale;
     private BaguetteMagique armeSecondaire;
     private boolean isMoving; // Dit si le perso est en cours d'animation ou pas
     private IntegerProperty animationProperty;
 
     public Link(Environnement e) {
-        super("Link", e, 100, 10, 0);
+        super("Link", e, 100, 0, 0);
         //this.orientation.equals("descendre");
         this.isMoving = false;
         this.animationProperty = new SimpleIntegerProperty(Parametre.ATTAQUE_ANIMATION);

@@ -26,7 +26,6 @@ public abstract class ElementMap {
         interaction=false;
         id=num;
         num++;
-
     }
     /**
      * GETTERS
@@ -78,6 +77,5 @@ public abstract class ElementMap {
     }
 
 
-
-
+    //public abstract ElementMap donObjet();
 }

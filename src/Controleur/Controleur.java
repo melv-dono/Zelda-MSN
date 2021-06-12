@@ -66,7 +66,7 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
 				Duration.seconds(0.017),
 				(ev ->{
-                    vue.orientation();
+                    //vue.orientation();
                     this.env.faireUntour();
                     if(((env.getLink().getDeplacementHauteur()>=320 && env.getLink().getDeplacementHauteur()<=448) && env.getLink().getDeplacementLargeur()==8)){
                         chargerNouvelleMap(m);
@@ -99,6 +99,7 @@ public class Controleur implements Initializable {
         listViewInventaire.setOnMouseClicked(inventaireGestion);
         listViewInventaire.setItems(env.getInventaire().getListeObjets());
         affichage();
+        ProgressBarExp.setProgress(0);
         connexion();
         gestionBouleDeFeu();
         env.chargerTousLesObj();
@@ -124,6 +125,8 @@ public class Controleur implements Initializable {
         for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
                 VueLink l = new VueLink((Link) p);
+                ObservateurVueLink o = new ObservateurVueLink(l);
+                env.getLink().orientationProperty().addListener(o);
                 AnimationGestion anim = new AnimationGestion(l);
                 ((Link) p).animationPropertyProperty().addListener(anim);
                 plateau.getChildren().add(l.creeSprite());
@@ -145,9 +148,11 @@ public class Controleur implements Initializable {
         action = new LettreTyped(menuPause,plateau,gameLoop,env,menuAide);
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         this.ptAtt.textProperty().bind((env.getLink().getPointAttaqueProperty().add(env.getLink().getArmePrincipale().getPointAttaqueProperty()).asString()));
-        //this.ptDef.textProperty().bind();
+        //if env.getInventaire().inventairePossede
+        this.ptDef.textProperty().bind(env.getLink().getPointDefenseProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
-        ProgressBarExp.setProgress(0.0);
+
+        //ProgressBarExp.setProgress(0.0); <- dans initialize
         GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);
         env.getLink().pvProperty().addListener(apparitionCoeur);
     }
@@ -169,8 +174,6 @@ public class Controleur implements Initializable {
         chargementMap(m);
         env.getLink().setDeplacementHauteur(352);
         env.getLink().setDeplacementLargeur(1224);
-        m.reset();
-        m.chargerMap(env.getMapActuelle().getTableau());
     }
 
     public void chargerAncienneMap(MapReader m){
@@ -178,7 +181,6 @@ public class Controleur implements Initializable {
         chargementMap(m);
         env.getLink().setDeplacementHauteur(352);
         env.getLink().setDeplacementLargeur(40);
-
     }
     public void chargementMap(MapReader m){
         this.env.setId(autoIncrementation);

@@ -9,12 +9,7 @@ import javafx.scene.layout.Pane;
 
 public class VueLink extends ImageView{
 
-    @FXML
-    private Pane plateau;
-
     private Link p;
-
-    private ImageView image;
 
     public VueLink(Link perso){
         this.p=perso;
@@ -51,8 +46,9 @@ public class VueLink extends ImageView{
         super.setImage(new Image("Vue/link_front2.gif"));
     }
 
-    public void orientation(){
-        switch (p.getOrientation()){
+    public void orientation(String o){
+        //switch (p.getOrientation()){
+        switch (o){
             case "monter" :
                 super.setImage(new Image("Vue/link_back.gif"));
                 break;

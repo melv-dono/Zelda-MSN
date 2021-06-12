@@ -19,7 +19,9 @@ public class VueBouleDeFeu {
         bouleImg.translateYProperty().bind(b.yPropertyProperty());
         bouleImg.setId(String.valueOf(b.getId()));
     }
-    public ImageView getBouleImg(){return bouleImg;}
+    public ImageView getBouleImg(){
+        return bouleImg;
+    }
 
 
     /**

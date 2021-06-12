@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 public class Epe extends Arme{
     private String nom;
-    //private double pointAttaque;
     private DoubleProperty pointAttaqueProperty = new SimpleDoubleProperty(10);
     private Link perso;
 
