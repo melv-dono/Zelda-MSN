@@ -38,6 +38,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         objEnvAct=FXCollections.observableArrayList();
         objetEnvironnement=new ArrayList<>();
         lesPerso=new ArrayList<>();
+        utilisateur=new Link(this);
     }
 
     public Environnement(int id, String nomMap, Link utilisateur){
@@ -51,6 +52,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.decors.add(mapActuelle);
         this.utilisateur=utilisateur;
         objEnvAct=FXCollections.observableArrayList();
+        utilisateur=new Link(this);
     }
 
     /**
@@ -170,42 +172,23 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
             persoMapActu.remove(persoMapActu.get(i));
         }
     }
+    public void chargerPerso(){
+        for(Personnage p:lesPerso){
+            if(p instanceof Squelette){
+                persoMapActu.add(p);
+            }
+        }
 
-    /**
-     * Permet d'ajouter un décros à la liste de ceux présents dans l'envrionnement.
-     * @param m
-     */
-    public void ajoutDecors(MapModele m) {
-        this.decors.add(m);
     }
 
-    /**
-     * Permet de retirer un décros à la liste de ceux présents dans l'envrionnement.
-     * @param m
-     */
-    public void retirerDecors(MapModele m) {
-        this.decors.remove(m);
-    }
+
 
 
     public void init() {
-        if(id.getValue()==1){
-            this.utilisateur = new Link(this);
-        }
-        addPerso(this.utilisateur);
         BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
         Epe epe = new Epe("Excalibur", 10, this.utilisateur);
         this.utilisateur.setArmePrincipale(epe);
         this.utilisateur.setArmeSecondaire(baguette);
-        //creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
-    }
-
-    public void creeEnnemi() {
-        Squelette s = new Squelette("Squelette", this);
-        addPerso(s);
-    }
-    public void ajoutMap1(ElementMap elementMap){
-        elementMap1.add(elementMap);
     }
 
     public void faireUntour() {
@@ -249,9 +232,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                 }
             }
         }
-    }
-    public void addObjetDansEnv(ElementMap objet){
-        objetEnvironnement.add(objet);
     }
     public void chargerTousLesObj(){
         Potion potion=new Potion(520,608);;
@@ -303,9 +283,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     /**
      * FONCTIONS
      */
-    public double nbElementExt(){
-        return objetEnvironnement.size();
-    }
 
 
 }

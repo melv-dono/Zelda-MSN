@@ -59,12 +59,8 @@ public class Controleur implements Initializable {
      * Rend automatique le déplacement du squelette au sein de l'environnement.
      * @param
      */
-//    private void animation(Squelette s, VueLink vue){
-    private void animation(Timeline gameLoop, VueLink vue, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
-        KeyFrame kf = new KeyFrame(
-				Duration.seconds(0.017),
-				(ev ->{
-                    vue.orientation();
+    private void animation(Timeline gameLoop, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.017), (ev ->{
                     this.env.faireUntour();
                     if(((env.getLink().getDeplacementHauteur()>=320 && env.getLink().getDeplacementHauteur()<=448) && env.getLink().getDeplacementLargeur()==8)){
                         chargerNouvelleMap(m);
@@ -105,7 +101,7 @@ public class Controleur implements Initializable {
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
-        animation(gameLoop, (VueLink) this.plateau.lookup("#"+this.env.getLink().getNom()), m);
+        animation(gameLoop, m);
         gameLoop.play();
     }
 
@@ -117,21 +113,14 @@ public class Controleur implements Initializable {
     }*/
 
     public void affichage() {
-        for (Personnage p : this.env.getPerso()) {
+        /*for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
                 VueLink l = new VueLink((Link) p);
                 AnimationGestion anim = new AnimationGestion(l);
                 ((Link) p).animationPropertyProperty().addListener(anim);
                 plateau.getChildren().add(l.creeSprite());
             }
-            if (p instanceof Squelette) {
-                VuePerso s = new VuePerso("Vue/bad_skeleton.gif",p.getId());
-                ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
-
-
-                plateau.getChildren().add(s.getImg());
-            }
-        }
+        }*/
         ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
         ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,env);
@@ -158,6 +147,13 @@ public class Controleur implements Initializable {
             env.chargerObjMap1();
         }else if(this.nomMapActu.equals("map2")){
             env.setUpSecondMap();
+        }
+    }
+    public void miseEnPlacePerso(){
+        if(this.nomMapActu.equals("map1")){
+            System.out.println("no flex zone");
+        }else if(this.nomMapActu.equals("map2")){
+
         }
     }
 

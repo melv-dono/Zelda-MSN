@@ -29,10 +29,16 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
                 if(persoAdd instanceof Squelette){
                     ajoutPerso(persoAdd,"Vue/bad_skeleton.gif");
                 }
+                if(persoAdd instanceof Link){
+                    ajoutPerso(persoAdd,"Vue/link_back.gif");
+                }
             }
             for(Personnage persoDelete: change.getRemoved()){
                 if(persoDelete instanceof Squelette ){
-
+                    deletePerso(persoDelete);
+                }
+                if(persoDelete instanceof Link){
+                    deletePerso(persoDelete);
                 }
             }
         }
@@ -44,6 +50,13 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             vueSquelette.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
             plateau.getChildren().add(vueSquelette.getImg());
             listePerso.add(vueSquelette);
+        }
+        if(p instanceof Link){
+            VuePerso vueLink=new VuePerso(url,p.getId());
+            vueLink.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
+            vueLink.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
+            plateau.getChildren().add(vueLink.getImg());
+            listePerso.add(vueLink);
         }
     }
     public void deletePerso(Personnage p){
