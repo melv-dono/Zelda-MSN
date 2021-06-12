@@ -10,6 +10,7 @@ public class Link extends Personnage{
     private BaguetteMagique armeSecondaire;
     private boolean isMoving; // Dit si le perso est en cours d'animation ou pas
     private IntegerProperty animationProperty;
+    private int casesSansColisions = 3; //on le met à 4 quand link aura la flute
 
     public Link(Environnement e) {
         super("Link", e, 100, 0, 0);
@@ -34,7 +35,7 @@ public class Link extends Personnage{
         return armeSecondaire;
     }
 
-    public int getAnimationProperty() {
+    public int getAnimation() {
         return animationProperty.get();
     }
 
@@ -89,7 +90,7 @@ public class Link extends Personnage{
         if((getDeplacementHauteur()/Parametre.TUILE_SIZE)-1<0){
             //System.out.println("bordure de map");
             //collisionAffCoord(carte);
-        }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)-1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] <= 10 && collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()-Parametre.TUILE_SIZE)==true) {//deplacement vers le haut bloquer
+        }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)-1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] <= casesSansColisions && collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()-Parametre.TUILE_SIZE)==true) {//deplacement vers le haut bloquer
             setDeplacementHauteur(getDeplacementHauteur() - Parametre.TUILE_SIZE);
             //depAffCoord(carte);
         }
@@ -110,7 +111,7 @@ public class Link extends Personnage{
         if(((getDeplacementHauteur()/Parametre.TUILE_SIZE)+1)>=Parametre.LIGNE){
             //System.out.println("bordure de map");
             //collisionAffCoord(carte);
-        }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)+1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] <= 10&&collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()+Parametre.TUILE_SIZE)==true)  {//deplacement vers le bas bloquer
+        }else if (carte[(int) ((getDeplacementHauteur()/Parametre.TUILE_SIZE)+1)][(int) (getDeplacementLargeur()/Parametre.TUILE_SIZE)] <= casesSansColisions&&collisionExterneEnv(getDeplacementLargeur(),getDeplacementHauteur()+Parametre.TUILE_SIZE)==true)  {//deplacement vers le bas bloquer
             setDeplacementHauteur(getDeplacementHauteur() + Parametre.TUILE_SIZE);
             //depAffCoord(carte);
         }
@@ -133,7 +134,7 @@ public class Link extends Personnage{
         if((getDeplacementLargeur()/Parametre.TUILE_SIZE)-1<0){
             //System.out.println("bordure de map");
             //collisionAffCoord(carte);
-        }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)-1)] <= 10&&collisionExterneEnv(getDeplacementLargeur()-Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
+        }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)-1)] <= casesSansColisions&&collisionExterneEnv(getDeplacementLargeur()-Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
             setDeplacementLargeur(getDeplacementLargeur() - Parametre.TUILE_SIZE);
             //depAffCoord(carte);
         }
@@ -154,7 +155,7 @@ public class Link extends Personnage{
         if(((getDeplacementLargeur()/Parametre.TUILE_SIZE)+1)>=40){
             //System.out.println("bordure de map");
             //collisionAffCoord(carte);
-        }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)+1)] <= 10&&collisionExterneEnv(getDeplacementLargeur()+Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
+        }else if (carte[(int) (getDeplacementHauteur()/Parametre.TUILE_SIZE)][(int) ((getDeplacementLargeur()/Parametre.TUILE_SIZE)+1)] <= casesSansColisions&&collisionExterneEnv(getDeplacementLargeur()+Parametre.TUILE_SIZE,getDeplacementHauteur())==true) {
             setDeplacementLargeur(getDeplacementLargeur() + Parametre.TUILE_SIZE);
             //depAffCoord(carte);
         }

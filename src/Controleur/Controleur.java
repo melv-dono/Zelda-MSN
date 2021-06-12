@@ -4,7 +4,7 @@ import Modèle.*;
 import Vue.MapReader;
 import Vue.ObjetVue;
 import Vue.VueLink;
-import Vue.VuePerso;
+import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -61,8 +61,11 @@ public class Controleur implements Initializable {
      * Rend automatique le déplacement du squelette au sein de l'environnement.
      * @param
      */
+//    private void animation(Squelette s, VueLink vue){
     private void animation(Timeline gameLoop, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.017), (ev ->{
+        KeyFrame kf = new KeyFrame(
+				Duration.seconds(0.017),
+				(ev ->{
                     this.env.faireUntour();
                     if(((env.getLink().getDeplacementHauteur()>=320 && env.getLink().getDeplacementHauteur()<=448) && env.getLink().getDeplacementLargeur()==8)){
                         chargerNouvelleMap(m);
@@ -87,7 +90,7 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-        this.env = new Environnement(autoIncrementation,nomMapActu);
+        this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,autoIncrementation,nomMapActu);
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
@@ -95,11 +98,11 @@ public class Controleur implements Initializable {
         listViewInventaire.setOnMouseClicked(inventaireGestion);
         listViewInventaire.setItems(env.getInventaire().getListeObjets());
         affichage();
+        ProgressBarExp.setProgress(0);
         connexion();
         gestionBouleDeFeu();
         env.chargerTousLesObj();
         miseEnPlaceObjet();
-        env.ajoutGoblalePerso();
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
@@ -120,20 +123,26 @@ public class Controleur implements Initializable {
     public void affichage() {
         for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
-                VueLink l = new VueLink((Link) p);
+                VueLink l = new VueLink(p.getId(),"Vue/link_front2.gif");
+                l.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
+                l.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
                 ObservateurVueLink o = new ObservateurVueLink(l);
                 env.getLink().orientationProperty().addListener(o);
-                AnimationGestion anim = new AnimationGestion(l);
+                AnimationGestion anim = new AnimationGestion(l,env);
                 ((Link) p).animationPropertyProperty().addListener(anim);
-                plateau.getChildren().add(l.creeSprite());
+                plateau.getChildren().add(l.getImg());
             }
-        }*/
-        ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
+            if (p instanceof Squelette) {
+                VueSquelette s = new VueSquelette("Vue/bad_skeleton.gif",p.getId());
+                s.getImgSquelette().translateXProperty().bind(p.getDeplacementLargeurProperty());
+                s.getImgSquelette().translateYProperty().bind(p.getDeplacementHauteurProperty());
+                plateau.getChildren().add(s.getImgSquelette());
+            }
+        }
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
         ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,env);
         env.getObjEnvAct().addListener(obsObj);
         env.getTheID().addListener(obsEnv);
-        env.getPerso().addListener(obsPerso);
     }
     public void connexion() {
         arrow = new ArrowGestion(env.getLink());
@@ -143,7 +152,8 @@ public class Controleur implements Initializable {
         //if env.getInventaire().inventairePossede
         this.ptDef.textProperty().bind(env.getLink().getPointDefenseProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
-        ProgressBarExp.setProgress(0.0);
+
+        //ProgressBarExp.setProgress(0.0); <- dans initialize
         GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);
         env.getLink().pvProperty().addListener(apparitionCoeur);
     }
@@ -159,20 +169,12 @@ public class Controleur implements Initializable {
             env.setUpSecondMap();
         }
     }
-    public void miseEnPlacePerso(){
-        if(this.nomMapActu.equals("map1")){
-            System.out.println("no flex zone");
-        }else if(this.nomMapActu.equals("map2")){
-
-        }
-    }
 
     public void chargerNouvelleMap(MapReader m){
         autoIncrementation++;
         chargementMap(m);
         env.getLink().setDeplacementHauteur(352);
         env.getLink().setDeplacementLargeur(1224);
-
     }
 
     public void chargerAncienneMap(MapReader m){
@@ -180,7 +182,6 @@ public class Controleur implements Initializable {
         chargementMap(m);
         env.getLink().setDeplacementHauteur(352);
         env.getLink().setDeplacementLargeur(40);
-
     }
     public void chargementMap(MapReader m){
         this.env.setId(autoIncrementation);
@@ -192,4 +193,5 @@ public class Controleur implements Initializable {
         m.reset();
         m.chargerMap(env.getMapActuelle().getTableau());
     }
+
 }
