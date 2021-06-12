@@ -88,6 +88,10 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         return null;
     }
 
+    public ObservableList<Personnage> getPersoMapActu() {
+        return persoMapActu;
+    }
+
     /**
      * Envoie le nom de la map sur laquelle se trouve les personnages.
      * @return nom de mapActuelle
@@ -186,7 +190,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         if(id.getValue()==1){
             this.utilisateur = new Link(this);
         }
-        lesPersos.add(utilisateur);
+        /*lesPersos.add(utilisateur);*/
         BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
         Epe epe = new Epe("Excalibur", 10, this.utilisateur);
         this.utilisateur.setArmePrincipale(epe);

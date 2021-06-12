@@ -3,13 +3,14 @@ package Controleur;
 import Modèle.Environnement;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.layout.Pane;
 
 public class ObservateurEnvironnement implements ChangeListener<Number> {
     private ObservateurObjet obsObj;
-    private Environnement e;
-    public ObservateurEnvironnement(ObservateurObjet obsObj, Environnement env){
+    private ObservateurPersonnage obsPerso;
+    public ObservateurEnvironnement(ObservateurObjet obsObj,ObservateurPersonnage obsPerso){
         this.obsObj=obsObj;
-        e=env;
+        this.obsPerso=obsPerso;
     }
 
     @Override
@@ -20,4 +21,6 @@ public class ObservateurEnvironnement implements ChangeListener<Number> {
         }
 
     }
+
+
 }

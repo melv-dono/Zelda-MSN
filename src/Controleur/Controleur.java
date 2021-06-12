@@ -131,7 +131,7 @@ public class Controleur implements Initializable {
         env.getLink().animationPropertyProperty().addListener(anim);
         plateau.getChildren().add(l.getImg());
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
-        ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,env);
+        ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,obsPerso);
         env.getObjEnvAct().addListener(obsObj);
         env.getTheID().addListener(obsEnv);
     }

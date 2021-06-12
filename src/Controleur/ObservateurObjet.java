@@ -133,12 +133,6 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
 
     }
     public void retirerObjet(ElementMap obj){
-        /*for(ObjetVue o:listeObjetVue){
-            if(o.getId()==id){
-            plateau.getChildren().remove(o.getImg());
-            listeObjetVue.remove(o);
-        }
-        }*/
         for(int i=0;i<listeObjetVue.size();i++){
             if(listeObjetVue.get(i).getId()==obj.getId()){
                 plateau.getChildren().remove(listeObjetVue.get(i).getImg());
