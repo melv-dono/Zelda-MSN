@@ -2,7 +2,6 @@ package Controleur;
 
 import Modèle.*;
 import Vue.MapReader;
-import Vue.ObjetVue;
 import Vue.VueLink;
 import Vue.VueSquelette;
 import javafx.animation.KeyFrame;
@@ -19,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -99,9 +97,10 @@ public class Controleur implements Initializable {
         listViewInventaire.setOnMouseClicked(inventaireGestion);
         listViewInventaire.setItems(env.getInventaire().getListeObjets());
         affichage();
-        miseEnPlaceObjet();
         connexion();
         gestionBouleDeFeu();
+        env.chargerTousLesObj();
+        miseEnPlaceObjet();
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
@@ -109,12 +108,12 @@ public class Controleur implements Initializable {
         gameLoop.play();
     }
 
-    public void chargement(){
+/*    public void chargement(){
         this.env.init();
         miseEnPlaceObjet();
         connexion();
         gestionBouleDeFeu();
-    }
+    }*/
 
     public void affichage() {
         for (Personnage p : this.env.getPerso()) {
@@ -133,7 +132,7 @@ public class Controleur implements Initializable {
         }
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
         ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,env);
-        env.getObjetEnvironnement().addListener(obsObj);
+        env.getObjEnvAct().addListener(obsObj);
         env.getTheID().addListener(obsEnv);
     }
     public void connexion() {
@@ -150,34 +149,37 @@ public class Controleur implements Initializable {
         this.env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
     }
     public void miseEnPlaceObjet(){
+        System.out.println("name map "+this.nomMapActu);
         if(this.nomMapActu.equals("map1")){
-            env.miseEnPlaceObjetFirstMap();
+            env.chargerObjMap1();
+        }else if(this.nomMapActu.equals("map2")){
+            env.setUpSecondMap();
         }
     }
 
     public void chargerNouvelleMap(MapReader m){
         autoIncrementation++;
-        nomMapActu = nom + autoIncrementation;
-        this.env.setId(autoIncrementation);
-        this.env.deleteAllPerso();
-        this.env.setMapActuelle(nomMapActu);
-        env.retirerCollision();
+        chargementMap(m);
         env.getLink().setDeplacementHauteur(352);
         env.getLink().setDeplacementLargeur(1224);
-        m.reset();
-        m.chargerMap(env.getMapActuelle().getTableau());
+
     }
 
     public void chargerAncienneMap(MapReader m){
         autoIncrementation--;
-        this.env.setId(autoIncrementation);
-        nomMapActu = nom + autoIncrementation;
-        this.env.setMapActuelle(nomMapActu);
+        chargementMap(m);
         env.getLink().setDeplacementHauteur(352);
         env.getLink().setDeplacementLargeur(40);
+
+    }
+    public void chargementMap(MapReader m){
+        this.env.setId(autoIncrementation);
+        nomMapActu = nom + autoIncrementation;
+        this.env.deleteAllPerso();
+        this.env.setMapActuelle(nomMapActu);
+        env.retirerCollision();
         miseEnPlaceObjet();
         m.reset();
         m.chargerMap(env.getMapActuelle().getTableau());
     }
-
 }

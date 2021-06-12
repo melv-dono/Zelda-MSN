@@ -266,10 +266,13 @@ public abstract class Personnage {
     }
 
     public boolean collisionExterneEnv(double l,double h){
-        for(int i=0;i<env.nbElementExt();i++){
-            if(env.getObjetEnvironnement().get(i).getPositionHauteur().getValue()==h && env.getObjetEnvironnement().get(i).getPositionLargeur().getValue()==l){
-                return false;
+        for(int i=0;i<env.getObjEnvAct().size();i++){
+            if(env.getObjEnvAct().size()>0){
+                if(env.getObjEnvAct().get(i).getPositionHauteur().getValue()==h && env.getObjEnvAct().get(i).getPositionLargeur().getValue()==l){
+                    return false;
+                }
             }
+
         }
         return true;
     }
