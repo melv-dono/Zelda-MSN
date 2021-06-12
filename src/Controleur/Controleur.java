@@ -4,7 +4,7 @@ import Modèle.*;
 import Vue.MapReader;
 import Vue.ObjetVue;
 import Vue.VueLink;
-import Vue.VueSquelette;
+import Vue.VuePerso;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -133,10 +133,10 @@ public class Controleur implements Initializable {
                 plateau.getChildren().add(l.getImg());
             }
             if (p instanceof Squelette) {
-                VueSquelette s = new VueSquelette("Vue/bad_skeleton.gif",p.getId());
-                s.getImgSquelette().translateXProperty().bind(p.getDeplacementLargeurProperty());
-                s.getImgSquelette().translateYProperty().bind(p.getDeplacementHauteurProperty());
-                plateau.getChildren().add(s.getImgSquelette());
+                VuePerso s = new VuePerso("Vue/bad_skeleton.gif",p.getId());
+                s.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
+                s.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
+                plateau.getChildren().add(s.getImg());
             }
         }
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
