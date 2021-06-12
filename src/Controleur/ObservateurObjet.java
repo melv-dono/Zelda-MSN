@@ -4,6 +4,8 @@ import Modèle.*;
 import Vue.ObjetVue;
 import Vue.VueCoffre;
 import Vue.VuePnj;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
@@ -15,13 +17,13 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
     private Pane plateau;
     private Environnement environnement;
     private ArrayList<ObjetVue>listeObjetVue;
-    private ArrayList<Environnement> listeEnv;
+    private IntegerProperty numEnv;
 
-    public ObservateurObjet(Pane pane, Environnement environnement, ArrayList<Environnement> listeE){
+    public ObservateurObjet(Pane pane, Environnement environnement){
         plateau=pane;
         this.environnement=environnement;
         listeObjetVue=new ArrayList<>();
-        this.listeEnv=listeE;
+        numEnv=new SimpleIntegerProperty(environnement.getId());
     }
     @Override
     public void onChanged(Change<? extends ElementMap> change) {
@@ -149,6 +151,16 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
             if(o.getId()==id){
                 ObjetVue objetVue=new ObjetVue("Vue/coffreOpen.gif",id);
             }
+        }
+    }
+    public IntegerProperty getNumEnv(){
+        return numEnv;
+    }
+    public void deleteAll(){
+        for(int i=0;i<listeObjetVue.size();i++){
+            plateau.getChildren().remove(listeObjetVue.get(i).getImg());
+            listeObjetVue.remove(listeObjetVue.get(i));
+            i--;
         }
     }
 }

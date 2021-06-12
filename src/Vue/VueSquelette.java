@@ -9,13 +9,13 @@ import javafx.scene.layout.Pane;
 public class VueSquelette{
 
     private ImageView imgSquelette;
-    private Personnage s;
+    private int id;
 
-    public VueSquelette(Personnage squelette,String url){
-        this.s=squelette;
+    public VueSquelette(String url,int id){
         imgSquelette=new ImageView(url);
-        imgSquelette.translateXProperty().bind(s.getDeplacementLargeurProperty());
-        imgSquelette.translateYProperty().bind(s.getDeplacementHauteurProperty());
+        this.id=id;
+        /*imgSquelette.translateXProperty().bind(s.getDeplacementLargeurProperty());
+        imgSquelette.translateYProperty().bind(s.getDeplacementHauteurProperty());*/
 
     }
 
@@ -25,6 +25,5 @@ public class VueSquelette{
      */
 
     public ImageView getImgSquelette(){return imgSquelette;}
-    public Personnage getS(){return s;}
     
 }

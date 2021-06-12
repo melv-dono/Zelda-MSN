@@ -52,30 +52,33 @@ public class Controleur implements Initializable {
     private Environnement env;
     private ArrowGestion arrow;
     private LettreTyped action;
-    private ArrayList<Environnement> listeEnv=new ArrayList<>();
+    //private ArrayList<Environnement> listeEnv=new ArrayList<>();
     private int autoIncrementation = 1;
     private String nom = "map";
     private String nomMapActu = nom + autoIncrementation;
 
     /**
      * Rend automatique le déplacement du squelette au sein de l'environnement.
-     * @param s
+     * @param
      */
 //    private void animation(Squelette s, VueLink vue){
-    private void animation(Squelette s, Timeline gameLoop, VueLink vue, Link l, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
+    private void animation(Timeline gameLoop, VueLink vue, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
         KeyFrame kf = new KeyFrame(
 				Duration.seconds(0.017),
 				(ev ->{
                     vue.orientation();
                     this.env.faireUntour();
-                    if(((l.getDeplacementHauteur()>=320 && l.getDeplacementHauteur()<=448) && l.getDeplacementLargeur()==8)){
-                        chargerNouvelleMap(l, m);
+                    if(((env.getLink().getDeplacementHauteur()>=320 && env.getLink().getDeplacementHauteur()<=448) && env.getLink().getDeplacementLargeur()==8)){
+                        chargerNouvelleMap(m);
+                        System.out.println("autoincre ->"+autoIncrementation);
                     }
-                    if((l.getDeplacementHauteur()>=320 && l.getDeplacementHauteur()<=448) && l.getDeplacementLargeur()==1256){
-                        chargerAncienneMap(l,m);
+                    if((env.getLink().getDeplacementHauteur()>=320 && env.getLink().getDeplacementHauteur()<=448) && env.getLink().getDeplacementLargeur()==1256){
+                        chargerAncienneMap(m);
+                        System.out.println("autoincre ->"+autoIncrementation);
                     }
 				})
 				);
+
 		gameLoop.getKeyFrames().add(kf);
 	}
 
@@ -89,7 +92,6 @@ public class Controleur implements Initializable {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
         this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,autoIncrementation,nomMapActu);
-        this.listeEnv.add(this.env);
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
@@ -103,7 +105,7 @@ public class Controleur implements Initializable {
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
-        animation((Squelette) env.getPerso().get(1), gameLoop, (VueLink) this.plateau.lookup("#"+this.env.getLink().getNom()), this.env.getLink(), m);
+        animation(gameLoop, (VueLink) this.plateau.lookup("#"+this.env.getLink().getNom()), m);
         gameLoop.play();
     }
 
@@ -130,12 +132,16 @@ public class Controleur implements Initializable {
                 plateau.getChildren().add(l.creeSprite());
             }
             if (p instanceof Squelette) {
-                VueSquelette s = new VueSquelette(p,"Vue/bad_skeleton.gif");
+                VueSquelette s = new VueSquelette("Vue/bad_skeleton.gif",p.getId());
+                s.getImgSquelette().translateXProperty().bind(p.getDeplacementLargeurProperty());
+                s.getImgSquelette().translateYProperty().bind(p.getDeplacementHauteurProperty());
                 plateau.getChildren().add(s.getImgSquelette());
             }
         }
-        ObservateurObjet obsObj=new ObservateurObjet(plateau,env, listeEnv);
+        ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
+        ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,env);
         env.getObjetEnvironnement().addListener(obsObj);
+        env.getTheID().addListener(obsEnv);
     }
     public void connexion() {
         arrow = new ArrowGestion(env.getLink());
@@ -158,41 +164,29 @@ public class Controleur implements Initializable {
         }
     }
 
-    public void chargerNouvelleMap(Link l, MapReader m){
+    public void chargerNouvelleMap(MapReader m){
         autoIncrementation++;
         nomMapActu = nom + autoIncrementation;
-        if(this.listeEnv.size() < autoIncrementation){
-            this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,autoIncrementation, nomMapActu, l);
-            this.listeEnv.add(this.env);
-        }
-        else{
-            for (Environnement e : this.listeEnv) {
-                if(e.getId()==autoIncrementation){
-                    this.env = e;
-                }
-            }
-        }
-        l.setEnv(this.env);
-        chargement();
-        l.setDeplacementHauteur(352);
-        l.setDeplacementLargeur(1224);
+        this.env.setId(autoIncrementation);
+        this.env.deleteAllPerso();
+        this.env.setMapActuelle(nomMapActu);
+        env.retirerCollision();
+        env.getLink().setDeplacementHauteur(352);
+        env.getLink().setDeplacementLargeur(1224);
         m.reset();
         m.chargerMap(env.getMapActuelle().getTableau());
     }
 
-    public void chargerAncienneMap(Link l, MapReader m){
+    public void chargerAncienneMap(MapReader m){
         autoIncrementation--;
+        this.env.setId(autoIncrementation);
         nomMapActu = nom + autoIncrementation;
-        for (Environnement e : this.listeEnv) {
-            if(e.getId()==autoIncrementation){
-                this.env = e;
-            }
-        }
-        l.setEnv(this.env);
-        chargement();
-        l.setDeplacementHauteur(352);
-        l.setDeplacementLargeur(40);
+        this.env.setMapActuelle(nomMapActu);
+        env.getLink().setDeplacementHauteur(352);
+        env.getLink().setDeplacementLargeur(40);
+        miseEnPlaceObjet();
         m.reset();
         m.chargerMap(env.getMapActuelle().getTableau());
     }
+
 }
