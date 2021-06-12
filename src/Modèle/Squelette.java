@@ -10,11 +10,13 @@ import Modèle.Environnement;
 public class Squelette extends Personnage{
     private int orientation;
     private int cpt;
+    private int mapAction;
 
     public Squelette(String n,Environnement env) {
         super(n,423,600, env, 100, 5, 5);
         orientation=1;
         cpt=0;
+        this.mapAction=2;
     }
 
     /**
@@ -108,7 +110,6 @@ public class Squelette extends Personnage{
                 return 3;
             }
         }
-        System.out.println("je return 0");
         return 0;
     }
     public boolean prochainDepPossible(int depHaut,int depLarge,Environnement environnement){
@@ -128,5 +129,8 @@ public class Squelette extends Personnage{
             }
         }
 
+    }
+    public int getMapAction(){
+        return mapAction;
     }
 }

@@ -1,11 +1,6 @@
 package Controleur;
 
 import Modèle.*;
-import Vue.ObjetVue;
-import Vue.VueBouleDeFeu;
-import Vue.VueLink;
-import Vue.VueSquelette;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -15,12 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.util.Duration;
-
-import java.time.Period;
-import java.util.ArrayList;
 
 public class LettreTyped implements EventHandler<KeyEvent> {
 
@@ -50,7 +39,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
         menuPause.setVisible(false);
         menuAide.setVisible(false);
         this.gameloop = t;
-        objetEnvironnement=environnement.getObjetEnvironnement();
+        objetEnvironnement=environnement.getObjEnvAct();
         inventaire=environnement.getInventaire();
         env=environnement;
 
@@ -99,19 +88,19 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                 if(((Arbre) objetEnvironnement.get(i)).getNbPomme()>0){
                                     if(objetEnvironnement.get(i).getPositionLargeur().getValue()- perso.getDeplacementLargeur()==32){
                                         Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()+32, objetEnvironnement.get(i).getPositionHauteur().getValue());
-                                        env.getObjetEnvironnement().add(pomme);
+                                        env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }else if(objetEnvironnement.get(i).getPositionLargeur().getValue()- perso.getDeplacementLargeur()==-32){
                                         Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()-32, objetEnvironnement.get(i).getPositionHauteur().getValue());
-                                        env.getObjetEnvironnement().add(pomme);
+                                        env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }else if(objetEnvironnement.get(i).getPositionHauteur().getValue()- perso.getDeplacementHauteur()==32){
                                         Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(), objetEnvironnement.get(i).getPositionHauteur().getValue()+32);
-                                        env.getObjetEnvironnement().add(pomme);
+                                        env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }else{
                                         Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(), objetEnvironnement.get(i).getPositionHauteur().getValue()-32);
-                                        env.getObjetEnvironnement().add(pomme);
+                                        env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }
                                 }

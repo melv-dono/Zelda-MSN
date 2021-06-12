@@ -13,6 +13,7 @@ public abstract class ElementMap {
     private DoubleProperty positionLargeur;
     private DoubleProperty positionHauteur;
     private int id;
+    private boolean interaction;
     static int num=0;
 
     /**
@@ -22,6 +23,7 @@ public abstract class ElementMap {
         this.nom=nom;
         positionLargeur=new SimpleDoubleProperty(posLargeur);
         positionHauteur=new SimpleDoubleProperty(posHauteur);
+        interaction=false;
         id=num;
         num++;
 
@@ -70,6 +72,9 @@ public abstract class ElementMap {
             System.out.println("vous ne pouvez ramassez aucun objet");
             return false;
         }
+    }
+    public void setInteraction(){
+        interaction=true;
     }
 
 

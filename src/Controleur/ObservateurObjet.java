@@ -49,20 +49,23 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
             }
             for(ElementMap objRemoved: change.getRemoved()){
                 if(objRemoved instanceof Potion){
-                    retirerObjet(objRemoved.getId());
+                    objRemoved.setInteraction();
+                    retirerObjet(objRemoved);
                 }else if(objRemoved instanceof Rocher) {
-                    retirerObjet(objRemoved.getId());
+                    objRemoved.setInteraction();
+                    retirerObjet(objRemoved);
                 }else if(objRemoved instanceof Pioche){
-                    retirerObjet(objRemoved.getId());
+                    objRemoved.setInteraction();
+                    retirerObjet(objRemoved);
                 }else if(objRemoved instanceof Arbre){
-                    retirerObjet(objRemoved.getId());
+                    retirerObjet(objRemoved);
                 }else if(objRemoved instanceof Pomme){
-                    retirerObjet(objRemoved.getId());
+                    retirerObjet(objRemoved);
                 }else if(objRemoved instanceof Key){
-                    retirerObjet(objRemoved.getId());
+                    retirerObjet(objRemoved);
                 }
             }
-            for(ElementMap objChange: environnement.getObjetEnvironnement()){ // méthode de changement de l'image du coffre
+            for(ElementMap objChange: environnement.getObjEnvAct()){ // méthode de changement de l'image du coffre
                 if(objChange instanceof Coffre){
                     if(((Coffre) objChange).tiensObjet()==false ){
                         for(ObjetVue objVue:listeObjetVue){
@@ -131,7 +134,7 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
 
 
     }
-    public void retirerObjet(int id){
+    public void retirerObjet(ElementMap obj){
         /*for(ObjetVue o:listeObjetVue){
             if(o.getId()==id){
             plateau.getChildren().remove(o.getImg());
@@ -139,9 +142,10 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
         }
         }*/
         for(int i=0;i<listeObjetVue.size();i++){
-            if(listeObjetVue.get(i).getId()==id){
+            if(listeObjetVue.get(i).getId()==obj.getId()){
                 plateau.getChildren().remove(listeObjetVue.get(i).getImg());
                 listeObjetVue.remove(listeObjetVue.get(i));
+                environnement.retirerObjEnvAct(obj);
                 i--;
             }
         }

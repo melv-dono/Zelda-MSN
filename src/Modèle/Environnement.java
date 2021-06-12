@@ -12,12 +12,17 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private int width,height; // largeur == width - hauteur == height
     private IntegerProperty id;
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
+
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
-    private ObservableList<ElementMap> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
+
+    private ArrayList<ElementMap> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
+    private ObservableList<ElementMap>objEnvAct; // <liste des objets de la map où on se trouve
+
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
     private Link utilisateur;
     private final Inventaire inventaire=new Inventaire();
 
+    private final ArrayList<ElementMap>elementMap1=new ArrayList<>();
     /**
      * CONSTRUCTEUR
      */
@@ -29,7 +34,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.decors = new ArrayList<>();
         this.mapActuelle= new MapModele(nomMap);
         this.decors.add(mapActuelle);
-        objetEnvironnement = FXCollections.observableArrayList();
+        objEnvAct=FXCollections.observableArrayList();
+        objetEnvironnement=new ArrayList<>();
     }
 
     public Environnement(int width, int height, int id, String nomMap, Link utilisateur){
@@ -40,8 +46,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.decors = new ArrayList<>();
         this.mapActuelle= new MapModele(nomMap);
         this.decors.add(mapActuelle);
-        objetEnvironnement= FXCollections.observableArrayList();
         this.utilisateur=utilisateur;
+        objEnvAct=FXCollections.observableArrayList();
     }
 
     /**
@@ -78,6 +84,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
         return null;
     }
+
     /**
      * Envoie le nom de la map sur laquelle se trouve les personnages.
      * @return nom de mapActuelle
@@ -109,8 +116,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public Inventaire getInventaire(){
         return inventaire;
     }
-    public ObservableList<ElementMap> getObjetEnvironnement(){
-        return objetEnvironnement;
+    public ObservableList<ElementMap> getObjEnvAct(){
+        return objEnvAct;
     }
     public int getId(){
         return this.id.getValue();
@@ -181,12 +188,15 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Epe epe = new Epe("Excalibur", 10, this.utilisateur);
         this.utilisateur.setArmePrincipale(epe);
         this.utilisateur.setArmeSecondaire(baguette);
-        creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
+        //creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
     }
 
     public void creeEnnemi() {
         Squelette s = new Squelette("Squelette", this);
         addPerso(s);
+    }
+    public void ajoutMap1(ElementMap elementMap){
+        elementMap1.add(elementMap);
     }
 
     public void faireUntour() {
@@ -234,7 +244,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void addObjetDansEnv(ElementMap objet){
         objetEnvironnement.add(objet);
     }
-    public void miseEnPlaceObjetFirstMap(){
+    public void chargerTousLesObj(){
         Potion potion=new Potion(520,608);;
         Rocher rocher =new Rocher(392,608);
         Pioche pioche=new Pioche(840,160);
@@ -243,14 +253,42 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         PersoNonJouable pnj=new PersoNonJouable(1000,480,key);
         Bouclier bouclier=new Bouclier(200,352);
         Coffre coffre=new Coffre(bouclier,200,352);
-        objetEnvironnement.addAll(potion,rocher,pioche,arbre,pnj,coffre);
+        objetEnvironnement.add(potion);
+        System.out.println(objetEnvironnement);
+        objetEnvironnement.add(rocher);
+        objetEnvironnement.add(pioche);
+        objetEnvironnement.add(arbre);
+        objetEnvironnement.add(pnj);
+        objetEnvironnement.add(coffre);
+        System.out.println(objetEnvironnement);
+        //objetEnvironnement.addAll(potion,rocher,pioche,arbre,pnj,coffre);
 
     }
+    public void chargerObjMap1(){
+        System.out.println(objetEnvironnement);
+        for(ElementMap elMap: objetEnvironnement){
+            if(!(elMap instanceof Coffre)){
+                objEnvAct.add(elMap);
+            }
+        }
+    }
+    public void setUpSecondMap(){
+        System.out.println(objetEnvironnement);
+        for(ElementMap elMap: objetEnvironnement){
+            if(elMap instanceof Coffre){
+                objEnvAct.add(elMap);
+            }
+        }
+    }
     public void retirerCollision(){
-        for(int i=0;i<objetEnvironnement.size();i++){
-            objetEnvironnement.remove(objetEnvironnement.get(i));
+        for(int i=0;i<objEnvAct.size();i++){
+            objEnvAct.remove(objEnvAct.get(i));
             i--;
         }
+    }
+    public void retirerObjEnvAct(ElementMap obj){
+        objEnvAct.remove(obj);
+        objetEnvironnement.remove(obj);
     }
 
     /**
