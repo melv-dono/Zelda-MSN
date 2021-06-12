@@ -17,14 +17,12 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
     private Pane plateau;
     private Environnement environnement;
     private ArrayList<ObjetVue>listeObjetVue;
-    private ArrayList<Environnement> listeEnv;
     private IntegerProperty numEnv;
 
-    public ObservateurObjet(Pane pane, Environnement environnement, ArrayList<Environnement> listeE){
+    public ObservateurObjet(Pane pane, Environnement environnement){
         plateau=pane;
         this.environnement=environnement;
         listeObjetVue=new ArrayList<>();
-        this.listeEnv=listeE;
         numEnv=new SimpleIntegerProperty(environnement.getId());
     }
     @Override
