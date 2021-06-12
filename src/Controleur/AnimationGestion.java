@@ -16,7 +16,7 @@ public class AnimationGestion implements ChangeListener<Number> {
     @Override
     public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
         if (t1.equals(0)) {
-            vue.desAniamtion();
+            vue.desAnimations();
         }
         else {
             vue.animation();

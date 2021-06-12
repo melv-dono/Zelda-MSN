@@ -9,30 +9,29 @@ import javafx.scene.layout.Pane;
 
 public class VueLink extends ImageView{
 
-    @FXML
-    private Pane plateau;
 
-    private Link p;
+    private int id;
 
     private ImageView image;
 
-    public VueLink(Link perso){
-        this.p=perso;
+    public VueLink(int id,ImageView img){
+        this.id=id;
+        this.image=img;
     }
 
     /**
      * Crée l'image de Link et l'associe au modèle.
      * @return
      */
-    public ImageView creeSprite() {
+/*    public ImageView creeSprite() {
         super.setImage(new Image("Vue/link_front2.gif"));
         super.translateXProperty().bind(p.getDeplacementLargeurProperty());
         super.translateYProperty().bind(p.getDeplacementHauteurProperty());
         super.setId(this.p.getNom());
         return this;
-    }
+    }*/
 
-    public void animation() {
+/*    public void animation() {
         if (this.p.getOrientation() == "gauche") {
             super.setImage(new Image("Vue/link_swing8.gif"));
         }
@@ -47,7 +46,7 @@ public class VueLink extends ImageView{
         }
     }
 
-    public void desAniamtion() {
+    public void desAnimations() {
         super.setImage(new Image("Vue/link_front2.gif"));
     }
 
@@ -69,5 +68,5 @@ public class VueLink extends ImageView{
                 super.setImage(new Image("Vue/link_right.gif"));
                 break;
         }
-    }
+    }*/
 }
