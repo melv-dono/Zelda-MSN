@@ -16,7 +16,6 @@ public class VueSquelette{
         imgSquelette=new ImageView(url);
         imgSquelette.translateXProperty().bind(s.getDeplacementLargeurProperty());
         imgSquelette.translateYProperty().bind(s.getDeplacementHauteurProperty());
-
     }
 
     /**

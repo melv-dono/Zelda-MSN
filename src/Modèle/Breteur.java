@@ -4,11 +4,12 @@ import java.util.HashMap;
 
 public class Breteur extends Ennemi{
     static int deplacementComplet;
-    private HashMap<Coordonnees, Coordonnees> chenim;
+    private int tpsChargement;
+
     public Breteur(String n,Environnement env) {
-        super(n,1000,256, env, 100, 5, 5);
-        chenim = new HashMap<Coordonnees,Coordonnees>();
+        super(n,1000,256, env, 100, 15, 5);
         deplacementComplet=0;
+        this.tpsChargement = 30;
     }
 
     /**
@@ -72,9 +73,82 @@ public class Breteur extends Ennemi{
 //        System.out.println(prochaineCase);
     }
 
+    public boolean cibleSurLaGauche(Personnage perso) {
+        if(		(this.getDeplacementHauteur()+Parametre.TUILE_SIZE>= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()>=this.getDeplacementHauteur()) &&
+                (this.getDeplacementLargeur()-Parametre.TUILE_SIZE-1<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur())
+        )
+        {
+            return true;
+        }
+        else {return false;}
+    }
+
+    public boolean cibleSurLaDroite(Personnage perso) {
+        if( // Attention on a enlevé 1 car le squelette était pile sur la bordure de la tuile
+                (this.getDeplacementHauteur()+Parametre.TUILE_SIZE>= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()) &&
+                        (this.getDeplacementLargeur()+Parametre.TUILE_SIZE-1<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur()+(Parametre.TUILE_SIZE*2)-1)
+        )
+        {
+            return true;
+        }
+        else {return false;}
+    }
+
+    public boolean cibleEnHaut(Personnage perso) {
+        if(
+                (this.getDeplacementHauteur()-Parametre.TUILE_SIZE<= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()) &&
+                        (this.getDeplacementLargeur()-Parametre.TUILE_SIZE<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur())
+        )
+        {
+            return true;
+        }
+        else {return false;}
+    }
+
+    public boolean cibleEnBas(Personnage perso) {
+        if( // Attention on a enlevé 1 car le squelette était pile sur la bordure de la tuile
+                (this.getDeplacementHauteur() + Parametre.TUILE_SIZE <= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()+(Parametre.TUILE_SIZE*2)) &&
+                        (this.getDeplacementLargeur()-1<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur()+Parametre.TUILE_SIZE-1)
+        )
+        {
+            return true;
+        }
+        else {return false;}
+    }
+
+    public void coupEpe() {
+        for (Personnage p : this.getEnv().getPerso()) {
+            if (p instanceof Link && this.getOrientation() =="monter") {
+                if (cibleEnHaut(p)) {
+                    p.perteDePv(getPointAttaque());
+                }
+            }
+            if (p instanceof Link && this.getOrientation() =="descendre") {
+                if (cibleEnBas(p)) {
+                    p.perteDePv(getPointAttaque());
+                }
+            }
+            if (p instanceof Link && this.getOrientation() =="gauche") {
+                if (cibleSurLaGauche(p)) {
+                    p.perteDePv(getPointAttaque());
+                }
+            }
+            if (p instanceof Link && this.getOrientation() =="droite") {
+                if (cibleSurLaDroite(p)) {
+                    p.perteDePv(getPointAttaque());
+                }
+            }
+        }
+    }
+
     @Override
     public void agir() {
         seDeplacer();
+        if (this.tpsChargement == 0) {
+            coupEpe();
+            this.tpsChargement=30;
+        }
+        this.tpsChargement--;
     }
 
 

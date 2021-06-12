@@ -14,7 +14,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
     private ObservableList<Objet> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
-    private Link utilisateur;
+    private Link user;
     private final Inventaire inventaire=new Inventaire();
 
     /**
@@ -90,7 +90,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
     public Link getLink() {
-        return this.utilisateur;
+        return this.user;
     }
     public Inventaire getInventaire(){
         return inventaire;
@@ -143,13 +143,15 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
 
     public void init() {
-        this.utilisateur = new Link(this);
-        addPerso(this.utilisateur);
-        BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
-        Epe epe = new Epe("Excalibur", 10, this.utilisateur);
-        this.utilisateur.setArmePrincipale(epe);
-        this.utilisateur.setArmeSecondaire(baguette);
+        creationLink();
         creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
+    }
+
+    public void creationLink() {
+        BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
+        Epe epe = new Epe("Excalibur", 10);
+        this.user = new Link(this, epe, baguette );
+        addPerso(this.user);
     }
 
     public void creeEnnemi() {
@@ -160,42 +162,37 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
     public void faireUntour() {
-        this.utilisateur.getarmeSecondaire().lancerBouleDeFeu();
-        this.utilisateur.declencherAnimation();
+        this.user.getarmeSecondaire().lancerBouleDeFeu();
+        this.user.declencherAnimation();
         cibleTouche();
         retirerBouleDeFeu();
         for (Personnage p : this.lesPerso) {
-            if (p instanceof Squelette) {
-                ((Squelette)p).agir();
-            }
-            if (p instanceof Breteur) {
-                ((Breteur)p).agir();
+            if (p instanceof Ennemi) {
+                ((Ennemi)p).agir();
             }
         }
-
-
     }
 
     public void retirerBouleDeFeu() {
-        this.utilisateur.getarmeSecondaire().getBoules().removeIf(BouleDeFeu::seDesintegre);
+        this.user.getarmeSecondaire().getBoules().removeIf(BouleDeFeu::seDesintegre);
     }
 
     public void cibleTouche() { // Boucle For each ne marche pas
         double haut, bas, gauche, droite;
-        for (Personnage ennemi : lesPerso) {
-            for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
-                haut= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
-                bas= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
-                gauche= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
-                droite= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
+        for (Personnage mechant : lesPerso) {
+            for (int i=0; i< this.user.getarmeSecondaire().getBoules().size(); i++) {
+                haut= this.user.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
+                bas= this.user.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
+                gauche= this.user.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
+                droite= this.user.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
 
-                if(		(ennemi.getDeplacementHauteur() >= haut && ennemi.getDeplacementHauteur() <= bas) &&
-                        (ennemi.getDeplacementLargeur() >= gauche && ennemi.getDeplacementLargeur() <= droite) &&
-                        ennemi instanceof Squelette
+                if(		(mechant.getDeplacementHauteur() >= haut && mechant.getDeplacementHauteur() <= bas) &&
+                        (mechant.getDeplacementLargeur() >= gauche -1 && mechant.getDeplacementLargeur() <= droite) && // Attention les coordonées des perso sont décalés de 1 sur les colonnes
+                        mechant instanceof Ennemi
                 )
                 {
-                    ennemi.perteDePv(this.utilisateur.getDommageArmeSecondaire());
-                    this.utilisateur.getarmeSecondaire().getBoules().remove(this.utilisateur.getarmeSecondaire().getBoules().get(i));
+                    mechant.perteDePv(this.user.getDommageArmeSecondaire());
+                    this.user.getarmeSecondaire().getBoules().remove(this.user.getarmeSecondaire().getBoules().get(i));
                 }
             }
         }
@@ -210,8 +207,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         //Pomme pomme=new Pomme(488,160);
         Arbre arbre=new Arbre(488,160,3);
         objetEnvironnement.addAll(potion,rocher,pioche,arbre);
-
-
     }
 
     /**
@@ -249,7 +244,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                     }
                 }
             }
-        System.out.println(antecedent.size());
         return antecedent;
     }
 

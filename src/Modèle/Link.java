@@ -11,23 +11,25 @@ public class Link extends Personnage{
 
     private String orientation;
 
-    private Arme armePrincipale;
+    private Epe armePrincipale;
     private BaguetteMagique armeSecondaire;
     private boolean isMoving; // Dit si le perso est en cours d'animation ou pas
     private IntegerProperty animationProperty;
 
-    public Link(Environnement e) {
-        super("Link", e, 100, 10, 0);
+    public Link(Environnement env, Epe e, BaguetteMagique b) {
+        super("Link", env, 100, 10, 0);
         //this.orientation.equals("descendre");
         this.isMoving = false;
         this.animationProperty = new SimpleIntegerProperty(Parametre.ATTAQUE_ANIMATION);
+        this.armePrincipale = e;
+        this.armeSecondaire = b;
     }
 
     /**
      * Méthode qui retourne l'arme actuelle du personnage Link
      * @return
      */
-    public Arme getArmePrincipale() {
+    public Epe getArmePrincipale() {
         return armePrincipale;
     }
 
@@ -54,12 +56,6 @@ public class Link extends Personnage{
     public double getDommageArmeSecondaire() {
         return this.getPointAttaque() + this.getarmeSecondaire().getPointAttaque();
     }
-
-    public void setArmePrincipale(Arme armePrincipale) {
-        this.armePrincipale = armePrincipale;
-    }
-
-    public void setArmeSecondaire(BaguetteMagique b) {this.armeSecondaire = b;}
 
     public void setMoving(boolean moving) {
         isMoving = moving;
@@ -260,23 +256,23 @@ public class Link extends Personnage{
 
     public void coupEpe() {
         for (Personnage p : this.getEnv().getPerso()) {
-            if (p instanceof Squelette && this.getOrientation() =="monter") {
+            if (p instanceof Ennemi && this.getOrientation() =="monter") {
                 if (cibleEnHaut(p)) {
                     p.perteDePv(getDommageArmePrincipale());
                 }
             }
-            if (p instanceof Squelette && this.getOrientation() =="descendre") {
+            if (p instanceof Ennemi && this.getOrientation() =="descendre") {
                 if (cibleEnBas(p)) {
                     p.perteDePv(getDommageArmePrincipale());
                 }
             }
-            if (p instanceof Squelette && this.getOrientation() =="gauche") {
+            if (p instanceof Ennemi && this.getOrientation() =="gauche") {
 
                 if (cibleSurLaGauche(p)) {
                     p.perteDePv(getDommageArmePrincipale());
                 }
             }
-            if (p instanceof Squelette && this.getOrientation() =="droite") {
+            if (p instanceof Ennemi && this.getOrientation() =="droite") {
                 if (cibleSurLaDroite(p)) {
                     p.perteDePv(getDommageArmePrincipale());
                 }

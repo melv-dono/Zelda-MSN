@@ -118,10 +118,12 @@ public class Controleur implements Initializable {
         GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);
         env.getLink().pvProperty().addListener(apparitionCoeur);
     }
+
     public void gestionBouleDeFeu() {
         ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau);
         this.env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
     }
+
     public void miseEnPlaceObjet(){
         env.miseEnPlaceObjetFirstMap();
     }

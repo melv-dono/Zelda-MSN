@@ -9,12 +9,7 @@ import javafx.scene.layout.Pane;
 
 public class VueLink extends ImageView{
 
-    @FXML
-    private Pane plateau;
-
     private Link p;
-
-    private ImageView image;
 
     public VueLink(Link perso){
         this.p=perso;
