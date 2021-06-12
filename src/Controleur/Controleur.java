@@ -69,10 +69,10 @@ public class Controleur implements Initializable {
                     vue.orientation();
                     this.env.faireUntour();
                     if(((l.getDeplacementHauteur()>=320 && l.getDeplacementHauteur()<=448) && l.getDeplacementLargeur()==8)){
-                        chargerNouvelleMap(l, m);
+                        chargerNouvelleMap(m);
                     }
                     if((l.getDeplacementHauteur()>=320 && l.getDeplacementHauteur()<=448) && l.getDeplacementLargeur()==1256){
-                        chargerAncienneMap(l,m);
+                        chargerAncienneMap(m);
                     }
 				})
 				);
@@ -151,7 +151,7 @@ public class Controleur implements Initializable {
         }
     }
 
-    public void chargerNouvelleMap(Link l, MapReader m){
+    public void chargerNouvelleMap(MapReader m){
         autoIncrementation++;
         nomMapActu = nom + autoIncrementation;
         if(this.listeEnv.size() < autoIncrementation){
@@ -167,15 +167,13 @@ public class Controleur implements Initializable {
                 }
             }
         }
-        //l.setEnv(this.env);
-        //chargement();
-        l.setDeplacementHauteur(352);
-        l.setDeplacementLargeur(1224);
+        env.getLink().setDeplacementHauteur(352);
+        env.getLink().setDeplacementLargeur(1224);
         m.reset();
         m.chargerMap(env.getMapActuelle().getTableau());
     }
 
-    public void chargerAncienneMap(Link l, MapReader m){
+    public void chargerAncienneMap(MapReader m){
         autoIncrementation--;
         nomMapActu = nom + autoIncrementation;
         for (Environnement e : this.listeEnv) {
@@ -183,10 +181,8 @@ public class Controleur implements Initializable {
                 this.env = e;
             }
         }
-        //l.setEnv(this.env);
-        //chargement();
-        l.setDeplacementHauteur(352);
-        l.setDeplacementLargeur(40);
+        env.getLink().setDeplacementHauteur(352);
+        env.getLink().setDeplacementLargeur(40);
         m.reset();
         m.chargerMap(env.getMapActuelle().getTableau());
     }
