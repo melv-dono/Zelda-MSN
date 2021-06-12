@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Environnement { // Toutes les méthodes de cette classe ne sont pas encore utilisé dans le code
     private int width,height; // largeur == width - hauteur == height
     private IntegerProperty id;
+
     private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
     
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.

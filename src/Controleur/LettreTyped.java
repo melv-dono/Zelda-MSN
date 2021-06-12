@@ -71,11 +71,8 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 this.perso.getarmeSecondaire().creeBoule(x,y,o);
                 break;
             case R:
-                System.out.println("début "+objetEnvironnement);
-                System.out.println(objetEnvironnement.size());
                 if(objetEnvironnement.size()>=1){
                     for(int i=0;i<objetEnvironnement.size();i++){
-                        System.out.println("var I="+i);
                         if(((objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
                             if(objetEnvironnement.get(i) instanceof ObjetRamassable){
                                 inventaire.addObjet(objetEnvironnement.get(i));
@@ -143,8 +140,6 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                             //}
                         }
 
-                        System.out.println("end"+objetEnvironnement);
-                        System.out.println("");
                     }
                 }
                 break;
