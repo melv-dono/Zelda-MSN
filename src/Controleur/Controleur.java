@@ -170,10 +170,10 @@ public class Controleur implements Initializable {
         autoIncrementation--;
         this.env.setId(autoIncrementation);
         nomMapActu = nom + autoIncrementation;
-        System.out.println("env : "+env.getId());
         this.env.setMapActuelle(nomMapActu);
         env.getLink().setDeplacementHauteur(352);
         env.getLink().setDeplacementLargeur(40);
+        miseEnPlaceObjet();
         m.reset();
         m.chargerMap(env.getMapActuelle().getTableau());
     }
