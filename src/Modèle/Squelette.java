@@ -110,7 +110,7 @@ public class Squelette extends Personnage{
         return 0;
     }
     public boolean prochainDepPossible(int depHaut,int depLarge,Environnement environnement){
-        if(environnement.getMapActuelle().getTableau()[depHaut][depLarge]!=1){
+        if(!(environnement.getMapActuelle().getTableau()[depHaut][depLarge]<10)){
             return false;
         }
         return true;
