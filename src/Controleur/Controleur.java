@@ -2,9 +2,7 @@ package Controleur;
 
 import Modèle.*;
 import Vue.MapReader;
-import Vue.ObjetVue;
 import Vue.VueLink;
-import Vue.VuePerso;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -19,7 +17,6 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -90,19 +87,20 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-        this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,autoIncrementation,nomMapActu);
+        this.env = new Environnement(autoIncrementation,nomMapActu);
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
         InventaireGestion inventaireGestion=new InventaireGestion(listViewInventaire,env);
         listViewInventaire.setOnMouseClicked(inventaireGestion);
         listViewInventaire.setItems(env.getInventaire().getListeObjets());
+        env.miseEnPlaceEnnemi();
         affichage();
         ProgressBarExp.setProgress(0);
         connexion();
         gestionBouleDeFeu();
         env.chargerTousLesObj();
-        miseEnPlaceObjet();
+        miseEnPlaceEnvExt();
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
@@ -120,8 +118,19 @@ public class Controleur implements Initializable {
         env.getLink().augmenterPv(1);
     }*/
 
+
     public void affichage() {
-        for (Personnage p : this.env.getPerso()) {
+        ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
+        env.getPerso().addListener(obsPerso);
+        VueLink l = new VueLink(env.getLink().getId(),"Vue/link_front2.gif");
+        l.getImg().translateXProperty().bind(env.getLink().getDeplacementLargeurProperty());
+        l.getImg().translateYProperty().bind(env.getLink().getDeplacementHauteurProperty());
+        ObservateurVueLink o = new ObservateurVueLink(l);
+        env.getLink().orientationProperty().addListener(o);
+        AnimationGestion anim = new AnimationGestion(l,env);
+        env.getLink().animationPropertyProperty().addListener(anim);
+        plateau.getChildren().add(l.getImg());
+        /*for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
                 VueLink l = new VueLink(p.getId(),"Vue/link_front2.gif");
                 l.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
@@ -138,7 +147,7 @@ public class Controleur implements Initializable {
                 s.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
                 plateau.getChildren().add(s.getImg());
             }
-        }
+        }*/
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
         ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,env);
         env.getObjEnvAct().addListener(obsObj);
@@ -149,11 +158,8 @@ public class Controleur implements Initializable {
         action = new LettreTyped(menuPause,plateau,gameLoop,env,menuAide);
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         this.ptAtt.textProperty().bind((env.getLink().getPointAttaqueProperty().add(env.getLink().getArmePrincipale().getPointAttaqueProperty()).asString()));
-        //if env.getInventaire().inventairePossede
         this.ptDef.textProperty().bind(env.getLink().getPointDefenseProperty().asString());
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
-
-        //ProgressBarExp.setProgress(0.0); <- dans initialize
         GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);
         env.getLink().pvProperty().addListener(apparitionCoeur);
     }
@@ -161,14 +167,16 @@ public class Controleur implements Initializable {
         ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau);
         this.env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
     }
-    public void miseEnPlaceObjet(){
-        System.out.println("name map "+this.nomMapActu);
+    public void miseEnPlaceEnvExt(){
         if(this.nomMapActu.equals("map1")){
             env.chargerObjMap1();
+            env.chargerEnnemiMap();
+
         }else if(this.nomMapActu.equals("map2")){
             env.setUpSecondMap();
         }
     }
+
 
     public void chargerNouvelleMap(MapReader m){
         autoIncrementation++;
@@ -189,7 +197,7 @@ public class Controleur implements Initializable {
         this.env.deleteAllPerso();
         this.env.setMapActuelle(nomMapActu);
         env.retirerCollision();
-        miseEnPlaceObjet();
+        miseEnPlaceEnvExt();
         m.reset();
         m.chargerMap(env.getMapActuelle().getTableau());
     }

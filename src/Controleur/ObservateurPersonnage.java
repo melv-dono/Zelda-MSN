@@ -2,6 +2,7 @@ package Controleur;
 
 import Modèle.*;
 
+import Vue.VueLink;
 import Vue.VuePerso;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -14,11 +15,13 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
     private Pane plateau;
     private Environnement environnement;
     private ArrayList<VuePerso> listePerso;
+    private Link link;
 
     public ObservateurPersonnage(Pane pane, Environnement environnement){
         plateau=pane;
         this.environnement=environnement;
         listePerso=new ArrayList<>();
+        link= environnement.getLink();
     }
 
 
@@ -29,15 +32,12 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
                 if(persoAdd instanceof Squelette){
                     ajoutPerso(persoAdd,"Vue/bad_skeleton.gif");
                 }
-                if(persoAdd instanceof Link){
+            /*    if(persoAdd instanceof Link){
                     ajoutPerso(persoAdd,"Vue/link_back.gif");
-                }
+                }*/
             }
             for(Personnage persoDelete: change.getRemoved()){
                 if(persoDelete instanceof Squelette ){
-                    deletePerso(persoDelete);
-                }
-                if(persoDelete instanceof Link){
                     deletePerso(persoDelete);
                 }
             }
@@ -45,19 +45,22 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
     }
     public void ajoutPerso(Personnage p, String url) {
         if (p instanceof Squelette) {
+            System.out.println("ok");
             VuePerso vueSquelette = new VuePerso(url, p.getId());
             vueSquelette.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
             vueSquelette.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
             plateau.getChildren().add(vueSquelette.getImg());
             listePerso.add(vueSquelette);
         }
-        if(p instanceof Link){
-            VuePerso vueLink=new VuePerso(url,p.getId());
+/*        if(p instanceof Link){
+            VueLink vueLink=new VueLink(p.getId(),url);
             vueLink.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
             vueLink.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
+            ObservateurVueLink o = new ObservateurVueLink(vueLink);
+            environnement.getLink().orientationProperty().addListener(o);
             plateau.getChildren().add(vueLink.getImg());
             listePerso.add(vueLink);
-        }
+        }*/
     }
     public void deletePerso(Personnage p){
         for(int i=0;i<listePerso.size();i++){

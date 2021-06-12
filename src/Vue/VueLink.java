@@ -7,14 +7,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class VueLink{
+public class VueLink extends ImageView{
 
     private int id;
     private ImageView img;
 
     public VueLink(int id,String url){
+        //super(url,id);
         this.id=id;
-        img=new ImageView(new Image(url));
+        this.img=new ImageView(url);
     }
 
     /**

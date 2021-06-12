@@ -1,5 +1,6 @@
 package Vue;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class VuePerso {
@@ -10,8 +11,6 @@ public class VuePerso {
     public VuePerso(String url, int id){
         img =new ImageView(url);
         this.id=id;
-        /*imgSquelette.translateXProperty().bind(s.getDeplacementLargeurProperty());
-        imgSquelette.translateYProperty().bind(s.getDeplacementHauteurProperty());*/
 
     }
 

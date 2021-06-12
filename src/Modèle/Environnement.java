@@ -1,6 +1,5 @@
 package Modèle;
 
-import Controleur.OrientationPnj;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
@@ -12,7 +11,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private int width,height; // largeur == width - hauteur == height
     private IntegerProperty id;
 
-    private ArrayList<Personnage> lesPerso; // Représente la liste des personnages présent dans l'environnement.
+    private ArrayList<Personnage>lesPersos;// Représente la liste de tous les personnages présent dans l'environnement.
+    private ObservableList<Personnage> persoMapActu;
     
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
 
@@ -27,14 +27,15 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     /**
      * CONSTRUCTEUR
      */
-    public Environnement(int width, int height, int id, String nomMap){
-        this.width=width;
-        this.height=height;
+    public Environnement(int id, String nomMap){
+        this.width=Parametre.LARGEUR;
+        this.height=Parametre.HAUTEUR;
         this.id=new SimpleIntegerProperty(id);
-        this.lesPerso=new ArrayList<>();
+        this.persoMapActu =FXCollections.observableArrayList();
         this.decors = new ArrayList<>();
         this.mapActuelle= new MapModele(nomMap);
         this.decors.add(mapActuelle);
+        lesPersos=new ArrayList<>();
         objEnvAct=FXCollections.observableArrayList();
         objetEnvironnement=new ArrayList<>();
     }
@@ -43,10 +44,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.width=width;
         this.height=height;
         this.id=new SimpleIntegerProperty(id);
-        this.lesPerso=new ArrayList<>();
+        this.persoMapActu =FXCollections.observableArrayList();
         this.decors = new ArrayList<>();
         this.mapActuelle= new MapModele(nomMap);
         this.decors.add(mapActuelle);
+        lesPersos=new ArrayList<>();
         this.utilisateur=utilisateur;
         objEnvAct=FXCollections.observableArrayList();
     }
@@ -69,8 +71,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      * Envoie la liste de tous les personnages de l'environnement.
      * @return liste de personnage
      */
-    public ArrayList<Personnage>getPerso(){ // méthode non utilisé pour l'instant
-        return lesPerso;
+    public ObservableList<Personnage>getPerso(){ // méthode non utilisé pour l'instant
+        return persoMapActu;
     }
     /**
      * Renvoie le personnage dont l'id correspond à celui rentré en paramètre.
@@ -78,7 +80,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      * @return un personnage précis
      */
     public Personnage getPersonnage(int id){ // méthode non utilisé pour l'instant
-        for(Personnage p:lesPerso){
+        for(Personnage p: persoMapActu){
             if(p.getId()==id){
                 return p;
             }
@@ -148,18 +150,18 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      * @param p
      */
     public void addPerso(Personnage p){
-        lesPerso.add(p);
+        persoMapActu.add(p);
     }
     /**
      * Permet de retirer un personnage à la liste de ceux présents dans l'envrionnement.
      * @param p
      */
     public void deletePerso(Personnage p){ // méthode non utilisé pour l'instant
-        lesPerso.remove(p);
+        persoMapActu.remove(p);
     }
     public void deleteAllPerso(){
-        for (int i=0;i<lesPerso.size();i++){
-            lesPerso.remove(lesPerso.get(i));
+        for (int i = 0; i< persoMapActu.size(); i++){
+            persoMapActu.remove(persoMapActu.get(i));
         }
     }
 
@@ -184,7 +186,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         if(id.getValue()==1){
             this.utilisateur = new Link(this);
         }
-        addPerso(this.utilisateur);
+        lesPersos.add(utilisateur);
         BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
         Epe epe = new Epe("Excalibur", 10, this.utilisateur);
         this.utilisateur.setArmePrincipale(epe);
@@ -192,25 +194,18 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         //creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
     }
 
-    public void creeEnnemi() {
-        Squelette s = new Squelette("Squelette", this);
-        addPerso(s);
-    }
-    public void ajoutMap1(ElementMap elementMap){
-        elementMap1.add(elementMap);
-    }
 
     public void faireUntour() {
         this.utilisateur.getarmeSecondaire().lancerBouleDeFeu();
         this.utilisateur.declencherAnimation();
         cibleTouche();
         retirerBouleDeFeu();
-        for (Personnage p : this.lesPerso) {
+        for (Personnage p : this.persoMapActu) {
             if (p instanceof Squelette) {
                 ((Squelette)p).animationSquelette1(this);
             }
         }
-        for(Personnage p:lesPerso){
+        for(Personnage p: persoMapActu){
             if(p instanceof Squelette){
                 ((Squelette) p).attaquer(this);
             }
@@ -229,7 +224,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     public void cibleTouche() { // Boucle For each ne marche pas
         double haut, bas, gauche, droite;
-        for (Personnage ennemi : lesPerso) {
+        for (Personnage ennemi : persoMapActu) {
             for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
                 haut= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
                 bas= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
@@ -246,9 +241,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                 }
             }
         }
-    }
-    public void addObjetDansEnv(ElementMap objet){
-        objetEnvironnement.add(objet);
     }
     public void chargerTousLesObj(){
         Potion potion=new Potion(520,608);;
@@ -291,6 +283,18 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
             objEnvAct.remove(objEnvAct.get(i));
             i--;
         }
+    }
+    public void miseEnPlaceEnnemi(){
+        Squelette squelette=new Squelette("squelette",this);
+        lesPersos.add(squelette);
+    }
+    public void chargerEnnemiMap(){
+        if(lesPersos.size()>0){
+            for(int i=0;i<lesPersos.size();i++){
+                persoMapActu.add(lesPersos.get(i));
+            }
+        }
+
     }
     public void retirerObjEnvAct(ElementMap obj){
         objEnvAct.remove(obj);
