@@ -62,11 +62,10 @@ public class Controleur implements Initializable {
      * @param
      */
 //    private void animation(Squelette s, VueLink vue){
-    private void animation(Timeline gameLoop, VueLink vue, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
+    private void animation(Timeline gameLoop, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
         KeyFrame kf = new KeyFrame(
 				Duration.seconds(0.017),
 				(ev ->{
-                    //vue.orientation();
                     this.env.faireUntour();
                     if(((env.getLink().getDeplacementHauteur()>=320 && env.getLink().getDeplacementHauteur()<=448) && env.getLink().getDeplacementLargeur()==8)){
                         chargerNouvelleMap(m);
@@ -107,7 +106,7 @@ public class Controleur implements Initializable {
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
-        animation(gameLoop, (VueLink) this.plateau.lookup("#"+this.env.getLink().getNom()), m);
+        animation(gameLoop, m);
         gameLoop.play();
     }
 

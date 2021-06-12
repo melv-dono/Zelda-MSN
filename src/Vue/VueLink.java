@@ -43,12 +43,13 @@ public class VueLink extends ImageView{
     }
 
     public void desAniamtion() {
-        super.setImage(new Image("Vue/link_front2.gif"));
+        //super.setImage(new Image("Vue/link_front2.gif"));
+        orientation();
+        //System.out.println(p.getOrientation());
     }
 
-    public void orientation(String o){
-        //switch (p.getOrientation()){
-        switch (o){
+    public void orientation(){
+        switch (p.getOrientation()){
             case "monter" :
                 super.setImage(new Image("Vue/link_back.gif"));
                 break;

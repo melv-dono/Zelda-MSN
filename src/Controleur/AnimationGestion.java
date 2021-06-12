@@ -3,6 +3,7 @@ package Controleur;
 import Vue.VueLink;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.image.Image;
 
 
 public class AnimationGestion implements ChangeListener<Number> {
@@ -15,8 +16,10 @@ public class AnimationGestion implements ChangeListener<Number> {
 
     @Override
     public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-        if (t1.equals(0)) {
+        if (number.equals(0)) {
             vue.desAniamtion();
+            //vue.orientation();
+
         }
         else {
             vue.animation();

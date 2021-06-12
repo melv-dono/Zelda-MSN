@@ -14,16 +14,17 @@ public class ObservateurVueLink implements ChangeListener<String> {
     @Override
     public void changed(ObservableValue<? extends String> observableValue, String ancien, String nouv) {
         if(nouv.equals("monter")){
-            vueL.orientation("monter");
+            vueL.orientation();
         }
         else if (nouv.equals("descendre")){
-            vueL.orientation("descendre");
+            System.out.println("on descend");
+            vueL.orientation();
         }
         else if(nouv.equals("gauche")){
-            vueL.orientation("gauche");
+            vueL.orientation();
         }
         else if(nouv.equals("droite")){
-            vueL.orientation("droite");
+            vueL.orientation();
         }
     }
 }
