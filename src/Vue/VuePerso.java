@@ -1,18 +1,14 @@
 package Vue;
 
-import Modèle.Personnage;
-import Modèle.Squelette;
-import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
-public class VueSquelette{
+public class VuePerso {
 
-    private ImageView imgSquelette;
+    private ImageView img;
     private int id;
 
-    public VueSquelette(String url,int id){
-        imgSquelette=new ImageView(url);
+    public VuePerso(String url, int id){
+        img =new ImageView(url);
         this.id=id;
         /*imgSquelette.translateXProperty().bind(s.getDeplacementLargeurProperty());
         imgSquelette.translateYProperty().bind(s.getDeplacementHauteurProperty());*/
@@ -24,6 +20,9 @@ public class VueSquelette{
      * @return
      */
 
-    public ImageView getImgSquelette(){return imgSquelette;}
+    public ImageView getImg(){return img;}
+    public int getId(){
+        return id;
+    }
     
 }

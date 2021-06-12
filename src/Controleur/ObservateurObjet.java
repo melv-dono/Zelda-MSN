@@ -17,13 +17,11 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
     private Pane plateau;
     private Environnement environnement;
     private ArrayList<ObjetVue>listeObjetVue;
-    private IntegerProperty numEnv;
 
     public ObservateurObjet(Pane pane, Environnement environnement){
         plateau=pane;
         this.environnement=environnement;
         listeObjetVue=new ArrayList<>();
-        numEnv=new SimpleIntegerProperty(environnement.getId());
     }
     @Override
     public void onChanged(Change<? extends ElementMap> change) {
@@ -156,9 +154,6 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                 ObjetVue objetVue=new ObjetVue("Vue/coffreOpen.gif",id);
             }
         }
-    }
-    public IntegerProperty getNumEnv(){
-        return numEnv;
     }
     public void deleteAll(){
         for(int i=0;i<listeObjetVue.size();i++){

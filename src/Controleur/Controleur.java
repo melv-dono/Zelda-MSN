@@ -3,7 +3,7 @@ package Controleur;
 import Modèle.*;
 import Vue.MapReader;
 import Vue.VueLink;
-import Vue.VueSquelette;
+import Vue.VuePerso;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -89,7 +89,7 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-        this.env = new Environnement(Parametre.LARGEUR, Parametre.HAUTEUR,autoIncrementation,nomMapActu);
+        this.env = new Environnement(autoIncrementation,nomMapActu);
         this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
@@ -101,6 +101,7 @@ public class Controleur implements Initializable {
         gestionBouleDeFeu();
         env.chargerTousLesObj();
         miseEnPlaceObjet();
+        env.ajoutGoblalePerso();
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
@@ -124,16 +125,19 @@ public class Controleur implements Initializable {
                 plateau.getChildren().add(l.creeSprite());
             }
             if (p instanceof Squelette) {
-                VueSquelette s = new VueSquelette("Vue/bad_skeleton.gif",p.getId());
-                s.getImgSquelette().translateXProperty().bind(p.getDeplacementLargeurProperty());
-                s.getImgSquelette().translateYProperty().bind(p.getDeplacementHauteurProperty());
-                plateau.getChildren().add(s.getImgSquelette());
+                VuePerso s = new VuePerso("Vue/bad_skeleton.gif",p.getId());
+                ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
+
+
+                plateau.getChildren().add(s.getImg());
             }
         }
+        ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
         ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,env);
         env.getObjEnvAct().addListener(obsObj);
         env.getTheID().addListener(obsEnv);
+        env.getPerso().addListener(obsPerso);
     }
     public void connexion() {
         arrow = new ArrowGestion(env.getLink());
