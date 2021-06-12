@@ -167,7 +167,7 @@ public class Controleur implements Initializable {
                 }
             }
         }
-        l.setEnv(this.env);
+        //l.setEnv(this.env);
         //chargement();
         l.setDeplacementHauteur(352);
         l.setDeplacementLargeur(1224);
@@ -183,7 +183,7 @@ public class Controleur implements Initializable {
                 this.env = e;
             }
         }
-        l.setEnv(this.env);
+        //l.setEnv(this.env);
         //chargement();
         l.setDeplacementHauteur(352);
         l.setDeplacementLargeur(40);
