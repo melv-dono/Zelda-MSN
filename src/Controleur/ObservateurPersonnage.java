@@ -32,7 +32,7 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
                 if(persoAdd instanceof Squelette){
                     ajoutPerso(persoAdd,"Vue/bad_skeleton.gif");
                 }
-            /*    if(persoAdd instanceof Link){
+/*                if(persoAdd instanceof Link){
                     ajoutPerso(persoAdd,"Vue/link_back.gif");
                 }*/
             }

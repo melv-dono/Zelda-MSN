@@ -130,24 +130,6 @@ public class Controleur implements Initializable {
         AnimationGestion anim = new AnimationGestion(l,env);
         env.getLink().animationPropertyProperty().addListener(anim);
         plateau.getChildren().add(l.getImg());
-        /*for (Personnage p : this.env.getPerso()) {
-            if (p instanceof Link) {
-                VueLink l = new VueLink(p.getId(),"Vue/link_front2.gif");
-                l.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
-                l.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
-                ObservateurVueLink o = new ObservateurVueLink(l);
-                env.getLink().orientationProperty().addListener(o);
-                AnimationGestion anim = new AnimationGestion(l,env);
-                ((Link) p).animationPropertyProperty().addListener(anim);
-                plateau.getChildren().add(l.getImg());
-            }
-            if (p instanceof Squelette) {
-                VuePerso s = new VuePerso("Vue/bad_skeleton.gif",p.getId());
-                s.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
-                s.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
-                plateau.getChildren().add(s.getImg());
-            }
-        }*/
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
         ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,env);
         env.getObjEnvAct().addListener(obsObj);

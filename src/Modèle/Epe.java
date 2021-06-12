@@ -16,7 +16,7 @@ public class Epe extends Arme{
 
     @Override
     public double getPointAttaque() {
-        return getPointAttaque();
+        return pointAttaqueProperty.getValue();
     }
 
     public DoubleProperty getPointAttaqueProperty(){
