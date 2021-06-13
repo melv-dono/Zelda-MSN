@@ -194,13 +194,19 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void retirerBouleDeFeu() {
         this.utilisateur.getarmeSecondaire().getBoules().removeIf(BouleDeFeu::seDesintegre);
     }
-/*    public void retirerSquelette(){
-        for(int i=0;i<lesPersos.size();i++){
-            if(this.getPerso().get(i).retirerEnv()==true){
-
+    public void retirerSquelette(){
+        if(lesPersos.size()>0){
+            if(persoMapActu.size()>0){
+                for(int i=0;i<persoMapActu.size();i++){
+                    if(this.getPerso().get(i) instanceof Squelette){
+                        persoMapActu.remove(getPerso().get(i));
+                    }
+                }
             }
+
         }
-    }*/
+
+    }
 
 
     public void cibleTouche() { // Boucle For each ne marche pas
