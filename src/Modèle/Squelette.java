@@ -63,18 +63,22 @@ public class Squelette extends Ennemi{
             orientation = 1;
             this.monter();
             this.gauche();
+            attaquer(this.getEnv());
         }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),getEnv(),orientation)==2){ // 2=NE
             orientation=2;
             this.monter();
             this.droite();
+            attaquer(this.getEnv());
         }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),getEnv(),orientation)==3){ // 3=SE
             orientation=3;
             this.descendre();
             this.droite();
+            attaquer(this.getEnv());
         }else{ // 4=SO
             orientation=4;
             this.gauche();
             this.descendre();
+            attaquer(this.getEnv());
         }
 
     }
