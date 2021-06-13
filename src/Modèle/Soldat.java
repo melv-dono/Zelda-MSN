@@ -1,15 +1,33 @@
 package Modèle;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.HashMap;
 
-public class Breteur extends Ennemi{
+public class Soldat extends Ennemi{
     static int deplacementComplet;
     private int tpsChargement;
+    private IntegerProperty animationProperty;
 
-    public Breteur(String n,Environnement env) {
+
+    public Soldat(String n, Environnement env) {
         super(n,1000,256, env, 100, 15, 5);
         deplacementComplet=0;
-        this.tpsChargement = 30;
+        this.tpsChargement = 60;
+        this.animationProperty = new SimpleIntegerProperty(30);
+    }
+
+    public int getAnimationProperty() {
+        return animationProperty.get();
+    }
+
+    public IntegerProperty animationPropertyProperty() {
+        return animationProperty;
+    }
+
+    public void setAnimationProperty(int animationProperty) {
+        this.animationProperty.set(animationProperty);
     }
 
     /**
@@ -141,14 +159,20 @@ public class Breteur extends Ennemi{
         }
     }
 
+    public void declencherAnimation() {
+        if (this.animationProperty.getValue() != 0) {
+            this.animationProperty.setValue(this.animationProperty.getValue() - 1);
+        }
+        if (this.animationProperty.getValue() == 0) {
+            coupEpe();
+            setAnimationProperty(60);
+        }
+    }
+
     @Override
     public void agir() {
         seDeplacer();
-        if (this.tpsChargement == 0) {
-            coupEpe();
-            this.tpsChargement=30;
-        }
-        this.tpsChargement--;
+        declencherAnimation();
     }
 
 

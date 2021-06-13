@@ -156,7 +156,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     public void creeEnnemi() {
         Squelette s = new Squelette("Squelette", this);
-        Breteur b = new Breteur("Gardes", this);
+        Soldat b = new Soldat("Gardes", this);
         addPerso(s);
         addPerso(b);
     }

@@ -52,11 +52,11 @@ public class Controleur implements Initializable {
      * @param s
      */
 //    private void animation(Squelette s, VueLink vue){
-    private void animation(Squelette s, Timeline gameLoop, VueLink vue){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
+    private void animation(Squelette s, Timeline gameLoop){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
         KeyFrame kf = new KeyFrame(
 				Duration.seconds(0.017),
 				(ev ->{
-                    vue.orientation();
+//                    vue.orientation();
                     this.env.faireUntour();
 				})
 				);
@@ -86,24 +86,28 @@ public class Controleur implements Initializable {
         plateau.setOnKeyReleased(action);
         plateau.setOnKeyPressed(arrow);
         plateau.getChildren().add(menuPause);
-        animation((Squelette) env.getPerso().get(1), gameLoop, (VueLink) this.plateau.lookup("#"+this.env.getLink().getNom()));
+        animation((Squelette) env.getPerso().get(1), gameLoop);
         gameLoop.play();
     }
     public void affichage() {
         for (Personnage p : this.env.getPerso()) {
             if (p instanceof Link) {
-                VueLink l = new VueLink((Link) p);
-                AnimationGestion anim = new AnimationGestion(l);
-                ((Link) p).animationPropertyProperty().addListener(anim);
-                plateau.getChildren().add(l.creeSprite());
+                VueLink l = new VueLink(env.getLink().getId(),"Vue/link_front2.gif");
+                AnimationGestion anim = new AnimationGestion(l,p);
+                l.getImg().translateXProperty().bind(env.getLink().getDeplacementLargeurProperty());
+                l.getImg().translateYProperty().bind(env.getLink().getDeplacementHauteurProperty());
+                env.getLink().animationPropertyProperty().addListener(anim);
+                plateau.getChildren().add(l.getImg());
             }
             if (p instanceof Squelette) {
                 VueSquelette s = new VueSquelette(p,"Vue/bad_skeleton.gif");
                 plateau.getChildren().add(s.getImgSquelette());
             }
-            if (p instanceof Breteur) {
-                VueBreteur b = new VueBreteur(p,"Vue/bad_soldgreen_front1.gif");
-                plateau.getChildren().add(b.getImgBretteur());
+            if (p instanceof Soldat) {
+                VueSoldat b = new VueSoldat(p,"Vue/bad_soldgreen_front1.gif");
+                AnimationGestion anim = new AnimationGestion(b,p);
+                ((Soldat) p).animationPropertyProperty().addListener(anim);
+                plateau.getChildren().add(b.getImgSoldat());
             }
         }
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
