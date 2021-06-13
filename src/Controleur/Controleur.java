@@ -54,7 +54,6 @@ public class Controleur implements Initializable {
 
     /**
      * Rend automatique le déplacement du squelette au sein de l'environnement.
-     * @param s
      */
 //    private void animation(Squelette s, VueLink vue){
     private void animation(Timeline gameLoop, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
@@ -84,7 +83,7 @@ public class Controleur implements Initializable {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
         this.env = new Environnement(autoIncrementation,nomMapActu);
-        this.env.initLink();
+        this.env.init();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
         inventaireSetUp();
@@ -121,7 +120,7 @@ public class Controleur implements Initializable {
         l.getImg().translateYProperty().bind(env.getLink().getDeplacementHauteurProperty());
         ObservateurVueLink o = new ObservateurVueLink(l);
         env.getLink().orientationProperty().addListener(o);
-        AnimationGestion anim = new AnimationGestion(l,env);
+        AnimationGestion anim = new AnimationGestion(l,env.getLink());
         env.getLink().animationPropertyProperty().addListener(anim);
         plateau.getChildren().add(l.getImg());
         ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
@@ -150,10 +149,11 @@ public class Controleur implements Initializable {
         }else if(this.nomMapActu.equals("map2")){
             env.chargerObjMap("map2");
             env.retirerSquelette();
+            env.chargerEnnemiMap("map2");
 
         }else if(this.nomMapActu.equals("map3")){
             env.chargerObjMap("map3");
-            env.chargerEnnemiMap();
+            env.chargerEnnemiMap("map3");
 
         }else if(this.nomMapActu.equals("map4")){
             env.retirerSquelette();

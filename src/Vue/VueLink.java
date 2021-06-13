@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 
-public class VueLink implements VuePerso{
+public class VueLink implements VueAnimation{
 
     private int id;
     private ImageView img;

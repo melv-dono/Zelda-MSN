@@ -11,8 +11,8 @@ public class Soldat extends Ennemi{
     private IntegerProperty animationProperty;
 
 
-    public Soldat(String n, Environnement env) {
-        super(n,1000,256, env, 100, 15, 5);
+    public Soldat(String n, Environnement env, double x, double y, String m) {
+        super(n,x,y, env, 100, 15, 5, m);
         deplacementComplet=0;
         this.tpsChargement = 60;
         this.animationProperty = new SimpleIntegerProperty(30);

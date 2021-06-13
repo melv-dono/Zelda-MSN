@@ -3,7 +3,7 @@ package Vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class VuePerso {
+public class VuePerso implements VueAnimation {
 
     private ImageView img;
     private int id;
@@ -23,5 +23,14 @@ public class VuePerso {
     public int getId(){
         return id;
     }
-    
+
+    @Override
+    public void animation(String direction) {
+
+    }
+
+    @Override
+    public void orientation(String directrion) {
+
+    }
 }

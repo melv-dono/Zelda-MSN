@@ -14,8 +14,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private int width,height; // largeur == width - hauteur == height
     private IntegerProperty id;
 
-    private ArrayList<Personnage>lesPersos;// Représente la liste de tous les personnages présent dans l'environnement.
-    private ObservableList<Personnage> persoMapActu;
+    private ArrayList<Ennemi>lesPersos;// Représente la liste de tous les personnages présent dans l'environnement.
+    private ObservableList<Ennemi> persoMapActu;
 
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
 
@@ -43,7 +43,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         objetEnvironnement=new ArrayList<>();
     }
 
-    public Environnement(int width, int height, int id, String nomMap, Link utilisateur){
+    public Environnement(int width, int height, int id, String nomMap, Link user){
         this.width=width;
         this.height=height;
         this.id=new SimpleIntegerProperty(id);
@@ -52,7 +52,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         this.mapActuelle= new MapModele(nomMap);
         this.decors.add(mapActuelle);
         lesPersos=new ArrayList<>();
-        this.utilisateur=utilisateur;
+        this.user=user;
         objEnvAct=FXCollections.observableArrayList();
     }
 
@@ -74,7 +74,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      * Envoie la liste de tous les personnages de l'environnement.
      * @return liste de personnage
      */
-    public ObservableList<Personnage>getPerso(){ // méthode non utilisé pour l'instant
+    public ObservableList<Ennemi>getPerso(){ // méthode non utilisé pour l'instant
         return persoMapActu;
     }
     /**
@@ -165,7 +165,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     public void init() {
         creationLink();
-        creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
+        //creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
     }
 
     public void creationLink() {
@@ -174,15 +174,15 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         if(id.getValue()==1) {
             this.user = new Link(this, epe, baguette);
         }
-        addPerso(this.user);
+//        addPerso(this.user);
     }
 
-    public void creeEnnemi() {
-        Squelette s = new Squelette("Squelette", this);
-        Soldat b = new Soldat("Gardes", this);
-        addPerso(s);
-        addPerso(b);
-    }
+//    public void creeEnnemi() {
+//        Squelette s = new Squelette(, this);
+//        Soldat b = new Soldat("Gardes", this);
+//        lesPersos.add(s);
+//        lesPersos.add(b);
+//    }
 
     public void faireUntour() {
         this.user.getarmeSecondaire().lancerBouleDeFeu();
@@ -195,9 +195,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
             }
         }
 
-        if(utilisateur.getExp() > 1){
-            utilisateur.setExp(0);
-            utilisateur.niveau().set(utilisateur.getNiveau()+1);
+        if(this.user.getExp() > 1){
+            this.user.setExp(0);
+            this.user.niveau().set(this.user.getNiveau()+1);
         }
 
     }
@@ -226,7 +226,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         if(lesPersos.size()>0){
             if(persoMapActu.size()>0){
                 for(int a=0;a<persoMapActu.size();a++){
-                    for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
+                    for (int i=0; i< this.user.getarmeSecondaire().getBoules().size(); i++) {
                         haut= this.user.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
                         bas= this.user.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
                         gauche= this.user.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
@@ -237,11 +237,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                                 persoMapActu.get(a) instanceof Squelette
                         )
                         {
-                            persoMapActu.get(a).perteDePv(this.utilisateur.getDommageArmeSecondaire());
+                            persoMapActu.get(a).perteDePv(this.user.getDommageArmeSecondaire());
                             if(persoMapActu.get(a).retirerEnv()==true){
                                 break;
                             }
-                            this.utilisateur.getarmeSecondaire().getBoules().remove(this.utilisateur.getarmeSecondaire().getBoules().get(i));
+                            this.user.getarmeSecondaire().getBoules().remove(this.user.getarmeSecondaire().getBoules().get(i));
                         }
                     }
                 }
@@ -295,17 +295,21 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
     }
     public void miseEnPlaceEnnemi(){
-        Squelette squelette=new Squelette(600,600,this);
-        Squelette squelette1=new Squelette(984,600,this);
-        Squelette squelette2=new Squelette(120,600,this);
+        Squelette squelette=new Squelette(600,600,this, "map3");
+        Squelette squelette1=new Squelette(984,600,this, "map3");
+        Squelette squelette2=new Squelette(120,600,this, "map3");
+        Soldat soldat1 = new Soldat("soldat", this, 40, 104, "map2");
         lesPersos.add(squelette);
         lesPersos.add(squelette1);
         lesPersos.add(squelette2);
+        lesPersos.add(soldat1);
     }
-    public void chargerEnnemiMap(){
+    public void chargerEnnemiMap(String nomMap){
         if(lesPersos.size()>0){
             for(int i=0;i<lesPersos.size();i++){
-                persoMapActu.add(lesPersos.get(i));
+                if (lesPersos.get(i).getMapAction() == nomMap) {
+                    persoMapActu.add(lesPersos.get(i));
+                }
             }
         }
 

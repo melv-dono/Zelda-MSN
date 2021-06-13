@@ -1,7 +1,5 @@
 package Modèle;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.beans.property.*;
 
 public class Link extends Personnage{

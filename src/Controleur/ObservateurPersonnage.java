@@ -3,6 +3,7 @@ package Controleur;
 import Modèle.*;
 
 import Vue.VuePerso;
+import Vue.VueSoldat;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
@@ -44,6 +45,15 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             vueSquelette.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
             plateau.getChildren().add(vueSquelette.getImg());
             listePersoObs.add(vueSquelette);
+        }
+        if (p instanceof Soldat) {
+            VueSoldat b = new VueSoldat(p.getId(),"Vue/bad_soldgreen_front1.gif");
+            b.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
+            b.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
+            AnimationGestion anim = new AnimationGestion(b,p);
+            ((Soldat) p).animationPropertyProperty().addListener(anim);
+            plateau.getChildren().add(b.getImg());
+            listePersoObs.add(b);
         }
     }
     public void deletePerso(Personnage p){

@@ -35,7 +35,7 @@ public abstract class Personnage {
         exp=new SimpleDoubleProperty(0);
     }
 
-    public Personnage(String n, int x, int y,Environnement e, double pV, double pA, double pDef){
+    public Personnage(String n, double x, double y,Environnement e, double pV, double pA, double pDef){
         this.nom =n;
         this.id = numId++;
         this.deplacementLargeur = new SimpleDoubleProperty(x);

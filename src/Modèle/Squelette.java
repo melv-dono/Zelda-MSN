@@ -15,12 +15,14 @@ public class Squelette extends Ennemi{
     private int orientation;
 
 
-    public Squelette(int posLarge,int posHaut,Environnement env) {
-        super("squelette",posLarge,posHaut, env, 100, 5, 5);
+    public Squelette(int posLarge,int posHaut,Environnement env, String m) {
+        super("squelette",posLarge,posHaut, env, 100, 5, 5, m);
         orientation=1;
         cpt=0;
         this.mapAction=3;
     }
+
+
 
     /**
      * Déplace le squelette vers le haut
@@ -52,19 +54,20 @@ public class Squelette extends Ennemi{
         this.setDeplacementLargeur(this.getDeplacementLargeur()+1);
     }
 
+
     /**
      * première animation du premier squelette dans la première map qui servira dans la gameloop
      */
-    public void animationSquelette1(Environnement environnement){
-        if (deplacementPossible(getDeplacementHauteur(), getDeplacementLargeur(), environnement, orientation) == 1) { // 1=NO
+    public void agir(){
+        if (deplacementPossible(getDeplacementHauteur(), getDeplacementLargeur(), getEnv(), orientation) == 1) { // 1=NO
             orientation = 1;
             this.monter();
             this.gauche();
-        }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==2){ // 2=NE
+        }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),getEnv(),orientation)==2){ // 2=NE
             orientation=2;
             this.monter();
             this.droite();
-        }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==3){ // 3=SE
+        }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),getEnv(),orientation)==3){ // 3=SE
             orientation=3;
             this.descendre();
             this.droite();

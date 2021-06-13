@@ -1,6 +1,7 @@
 package Controleur;
 
 import Modèle.Personnage;
+import Vue.VueAnimation;
 import Vue.VueLink;
 import Vue.VuePerso;
 import com.sun.prism.image.ViewPort;
@@ -10,10 +11,10 @@ import javafx.beans.value.ObservableValue;
 
 public class AnimationGestion implements ChangeListener<Number> {
 
-    private VuePerso vue;
+    private VueAnimation vue;
     private Personnage perso;
 
-    public AnimationGestion(VuePerso vue, Personnage p) {
+    public AnimationGestion(VueAnimation vue, Personnage p) {
         this.vue = vue;
         perso=p;
     }

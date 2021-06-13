@@ -5,11 +5,11 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 public abstract class Arme {
     private String nom;
-    private DoubleProperty pointAttaqueProperty;
+    private DoubleProperty pointAttaque;
 
     public Arme(String nom, double pointAttaque) {
         this.nom = nom;
-        this.pointAttaque = pointAttaque;
+        this.pointAttaque = new SimpleDoubleProperty(pointAttaque);
     }
 
     public String getNom() {
@@ -17,7 +17,7 @@ public abstract class Arme {
     }
 
     public double getPointAttaque(){
-        return this.pointAttaqueProperty.get();
+        return this.pointAttaque.get();
     }
 
     public DoubleProperty getPointAttaqueProperty() {
