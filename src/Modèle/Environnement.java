@@ -304,6 +304,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                 objEnvAct.add(elMap);
             }
         }
+
+
+
     }
     public void retirerCollision(){
         for(int i=0;i<objEnvAct.size();i++){
