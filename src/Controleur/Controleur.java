@@ -147,8 +147,7 @@ public class Controleur implements Initializable {
     }
     public void miseEnPlaceEnvExt(){
         if(this.nomMapActu.equals("map1")){
-            env.chargerObjMap1();
-            //env.chargerEnnemiMap();
+            env.chargerObjMap("map1");
 
         }else if(this.nomMapActu.equals("map2")){
             env.setUpSecondMap();

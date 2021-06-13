@@ -240,19 +240,21 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     }
     public void chargerTousLesObj(){
-        Potion potion=new Potion(520,608);;
-        Rocher rocher =new Rocher(392,608);
-        Rocher rocher1=new Rocher(72,448);
-        Rocher rocher2=new Rocher(72,416);
-        Rocher rocher3=new Rocher(72,384);
-        Rocher rocher4=new Rocher(72,352);
-        Rocher rocher5=new Rocher(72,320);
-        Pioche pioche=new Pioche(840,160);
-        Arbre arbre=new Arbre(488,160,3);
+        Potion potion=new Potion(520,608,"map1");;
+        Rocher rocher =new Rocher(392,608,"map1");
+        Rocher rocher1=new Rocher(72,448,"map1");
+        Rocher rocher2=new Rocher(72,416,"map1");
+        Rocher rocher3=new Rocher(72,384,"map1");
+        Rocher rocher4=new Rocher(72,352,"map1");
+        Rocher rocher5=new Rocher(72,320,"map1");
+        Pioche pioche=new Pioche(840,160,"map1");
+        Arbre arbre=new Arbre(488,160,3,"map1");
         Key key=new Key(1000,480);
-        PersoNonJouable pnj=new PersoNonJouable(1000,480,key);
+        Coquillage coquillage=new Coquillage("coquillage",1136,64);
+        PersoNonJouable pnj=new PersoNonJouable(1000,480,key,"bob","map1");
+        PersoNonJouable pn=new PersoNonJouable(1136,64,coquillage,"jacob","map3");
         Bouclier bouclier=new Bouclier(200,352);
-        Coffre coffre=new Coffre(bouclier,200,352);
+        Coffre coffre=new Coffre(bouclier,200,352,"map2");
         objetEnvironnement.add(potion);
         objetEnvironnement.add(rocher);
         objetEnvironnement.add(rocher1);
@@ -263,17 +265,19 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         objetEnvironnement.add(pioche);
         objetEnvironnement.add(arbre);
         objetEnvironnement.add(pnj);
+        objetEnvironnement.add(pn);
         objetEnvironnement.add(coffre);
 
     }
-    public void chargerObjMap1(){
-        System.out.println(objetEnvironnement);
-        for(ElementMap elMap: objetEnvironnement){
-            if(!(elMap instanceof Coffre)){
-                objEnvAct.add(elMap);
-                System.out.println("ajout de"+elMap);
+    public void chargerObjMap(String nomMap){
+        if(nomMap=="map1"){
+            for(ElementMap elMap: objetEnvironnement){
+                if(elMap.getMapAction()==nomMap ){
+                    objEnvAct.add(elMap);
+                }
             }
         }
+
     }
     public void setUpSecondMap(){
         for(ElementMap elMap: objetEnvironnement){

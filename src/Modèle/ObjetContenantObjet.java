@@ -3,8 +3,8 @@ package Modèle;
 public class ObjetContenantObjet extends ElementMap{
     private ElementMap objet;
     private boolean canGiveObject;
-    public ObjetContenantObjet(ElementMap obj,double posL,double posH,String nom){
-        super(nom,posL,posH);
+    public ObjetContenantObjet(ElementMap obj,double posL,double posH,String nom,String mapAction){
+        super(nom,posL,posH,mapAction);
         objet=obj;
         canGiveObject=true;
     }

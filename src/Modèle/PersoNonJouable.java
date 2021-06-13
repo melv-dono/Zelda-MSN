@@ -11,8 +11,8 @@ public class PersoNonJouable extends ObjetContenantObjet{
      * @param posLargeur
      * @param posHauteur
      */
-    public PersoNonJouable(double posLargeur, double posHauteur,ElementMap objet) {
-        super(objet, posLargeur, posHauteur,"pnj");
+    public PersoNonJouable(double posLargeur, double posHauteur,ElementMap objet,String s,String mapAction) {
+        super(objet, posLargeur, posHauteur,"pnj",mapAction);
         orientation=new SimpleIntegerProperty(1);
     }
 
