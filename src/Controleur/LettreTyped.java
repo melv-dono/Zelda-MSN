@@ -69,7 +69,6 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 break;
             case A:
                 this.perso.getarmeSecondaire().creeBoule(x,y,o);
-                System.out.println(env.getPersoMapActu());
                 break;
             case R:
                 if(objetEnvironnement.size()>=1){

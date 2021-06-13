@@ -9,8 +9,8 @@ public abstract class Personnage {
     private DoubleProperty deplacementLargeur; // on doit avoir : X >= 0 ET X <= largeur de l'environnement
     private DoubleProperty deplacementHauteur; // on doit avoir : Y >= 0 ET Y <= hauteur de l'environnement
     private Environnement env; // permet de délimiter le personnage dans sur la map et aussi l'interaction avec les autres perso
-    public static double pvActu = 100;
-    private static DoubleProperty pv=new SimpleDoubleProperty(pvActu);
+    private double pvActu;
+    private DoubleProperty pv;
     private DoubleProperty pointAttaque = new SimpleDoubleProperty(0);
     private static DoubleProperty pointDefense = new SimpleDoubleProperty(0);
     private IntegerProperty niveau;
@@ -25,6 +25,8 @@ public abstract class Personnage {
         this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
         this.deplacementHauteur = new SimpleDoubleProperty(32);
         this.env = e;
+        pvActu=100;
+        pv=new SimpleDoubleProperty(pvActu);
         this.orientation = new SimpleStringProperty("descendre");
         //pv=new SimpleDoubleProperty(pV);
         pointAttaque = new SimpleDoubleProperty(pA);
