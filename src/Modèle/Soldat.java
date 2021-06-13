@@ -71,7 +71,7 @@ public class Soldat extends Ennemi{
             if (deplacementComplet % 16 == 0 ) {
                 Coordonnees prochainPas = chemin.get(depart);
 
-                if (prochainPas != null) {
+                if (prochainPas != null && !collisionLink(prochainPas)) {
                     setDeplacementLargeur((prochainPas.getColonne() * Parametre.TUILE_SIZE) + (Parametre.TUILE_SIZE/16));
                     setDeplacementHauteur((prochainPas.getLigne() * Parametre.TUILE_SIZE) + (Parametre.TUILE_SIZE/16));
                 }
@@ -163,6 +163,13 @@ public class Soldat extends Ennemi{
             coupEpe();
             setAnimationProperty(60);
         }
+    }
+
+    public boolean collisionLink(Coordonnees pointeur){
+        int x = (int) getEnv().getLink().getDeplacementLargeur()/32;
+        int y = (int) getEnv().getLink().getDeplacementHauteur()/32;
+        Coordonnees link = new Coordonnees(x,y);
+        return link.isEqual(pointeur) ;
     }
 
     @Override

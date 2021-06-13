@@ -229,7 +229,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
                         if(		(persoMapActu.get(a).getDeplacementHauteur() >= haut && persoMapActu.get(a).getDeplacementHauteur() <= bas) &&
                                 (persoMapActu.get(a).getDeplacementLargeur() >= gauche && persoMapActu.get(a).getDeplacementLargeur() <= droite) &&
-                                persoMapActu.get(a) instanceof Squelette
+                                persoMapActu.get(a) instanceof Ennemi
                         )
                         {
                             persoMapActu.get(a).perteDePv(this.user.getDommageArmeSecondaire());

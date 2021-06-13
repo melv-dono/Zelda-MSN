@@ -78,6 +78,17 @@ public class Link extends Personnage{
         }
     }
 
+    public boolean collisionExterneEnv(double l,double h){
+        for(int i=0;i<getEnv().getObjEnvAct().size();i++){
+            if(getEnv().getObjEnvAct().size()>0){
+                if(getEnv().getObjEnvAct().get(i).getPositionHauteur().getValue()==h && getEnv().getObjEnvAct().get(i).getPositionLargeur().getValue()==l){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /**
      * Déplace Link vers le haut
      * Affiche les collisions si besoin
@@ -196,41 +207,6 @@ public class Link extends Personnage{
         System.out.println("coordonées réels: " + getDeplacementHauteur() + " " + getDeplacementLargeur());
         System.out.println();
     }
-
-//    /**
-//     * Affiche la position de link sur le tableau de donnée.
-//     * @param carte
-//     */
-//    private void posTab(int [][]carte){
-//        int cmptX=-1;
-//        int cmptY;
-//        for(int i=0;i<Parametre.LIGNE;i++){
-//            cmptX++;
-//            cmptY=0;
-//            System.out.print("Ligne"+(cmptX+1)+" : ");
-//            for(int j=0;j<Parametre.COLONNE;j++){
-//                if((getDeplacementHauteur()/Parametre.TUILE_SIZE)==cmptX&&(getDeplacementLargeur()/32)==cmptY){
-//                    System.out.print("*");
-//                }else{
-//                    System.out.print(carte[i][j]);
-//                }
-//                cmptY++;
-//            }
-//            System.out.println();
-//        }
-//        System.out.println("---------");
-//    }
-//
-//    public boolean cibleAtteignable(Personnage perso) {
-//        if(		(this.getDeplacementHauteur()-32<= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()<=this.getDeplacementHauteur()+32) &&
-//                (this.getDeplacementLargeur()-32<= perso.getDeplacementLargeur() && perso.getDeplacementLargeur()<=this.getDeplacementLargeur()+32)
-//        )
-//        {
-//            return true;
-//        }
-//        return false;
-//    }
-//
 
     public boolean cibleSurLaGauche(Personnage perso) {
         if(		(this.getDeplacementHauteur()+Parametre.TUILE_SIZE>= perso.getDeplacementHauteur() && perso.getDeplacementHauteur()>=this.getDeplacementHauteur()) &&
