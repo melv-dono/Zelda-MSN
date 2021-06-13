@@ -246,7 +246,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     }
     public void chargerTousLesObj(){
-        Potion potion=new Potion(520,608,"map1");;
+        Potion potion=new Potion(520,608,"map1");
         Rocher rocher =new Rocher(392,608,"map1");
         Rocher rocher1=new Rocher(72,448,"map1");
         Rocher rocher2=new Rocher(72,416,"map1");
