@@ -126,6 +126,7 @@ public class Squelette extends Personnage{
             }else{
                 cpt=0;
                 e.getLink().decrementerPv(5);
+                //System.out.println(this.getPv());
             }
         }
 

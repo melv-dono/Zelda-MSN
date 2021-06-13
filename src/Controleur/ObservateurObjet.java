@@ -30,7 +30,7 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                 if(objAdded instanceof Potion){
                     ajoutObjet(objAdded,"Vue/inventory_potionblue.gif");
                 }else if(objAdded instanceof Rocher) {
-                    ajoutObjet(objAdded,"Vue/item_stonefence.gif");
+                    ajoutObjet(objAdded,"Vue/item_stonefence.png");
                 }else if(objAdded instanceof Pioche){
                     ajoutObjet(objAdded,"Vue/pioche.png");
                 }else if(objAdded instanceof Arbre){

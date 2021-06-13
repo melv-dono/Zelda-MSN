@@ -19,7 +19,7 @@ public abstract class Arme {
     }
 
     public double getPointAttaque(){
-        return this.pointAttaque;
+        return this.pointAttaqueProperty.get();
     }
 
     public DoubleProperty getPointAttaqueProperty() {

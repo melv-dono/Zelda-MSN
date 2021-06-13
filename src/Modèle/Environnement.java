@@ -254,11 +254,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void chargerTousLesObj(){
         Potion potion=new Potion(520,608);;
         Rocher rocher =new Rocher(392,608);
-        Rocher rocher1=new Rocher(40,448);
-        Rocher rocher2=new Rocher(40,416);
-        Rocher rocher3=new Rocher(40,384);
-        Rocher rocher4=new Rocher(40,352);
-        Rocher rocher5=new Rocher(40,320);
+        Rocher rocher1=new Rocher(72,448);
+        Rocher rocher2=new Rocher(72,416);
+        Rocher rocher3=new Rocher(72,384);
+        Rocher rocher4=new Rocher(72,352);
+        Rocher rocher5=new Rocher(72,320);
         Pioche pioche=new Pioche(840,160);
         Arbre arbre=new Arbre(488,160,3);
         Key key=new Key(1000,480);
