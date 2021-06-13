@@ -254,6 +254,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void chargerTousLesObj(){
         Potion potion=new Potion(520,608);;
         Rocher rocher =new Rocher(392,608);
+        Rocher rocher1=new Rocher(40,448);
+        Rocher rocher2=new Rocher(40,416);
+        Rocher rocher3=new Rocher(40,384);
+        Rocher rocher4=new Rocher(40,352);
+        Rocher rocher5=new Rocher(40,320);
         Pioche pioche=new Pioche(840,160);
         Arbre arbre=new Arbre(488,160,3);
         Key key=new Key(1000,480);
@@ -263,18 +268,23 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         objetEnvironnement.add(potion);
         System.out.println(objetEnvironnement);
         objetEnvironnement.add(rocher);
+        objetEnvironnement.add(rocher1);
+        objetEnvironnement.add(rocher2);
+        objetEnvironnement.add(rocher3);
+        objetEnvironnement.add(rocher4);
+        objetEnvironnement.add(rocher5);
         objetEnvironnement.add(pioche);
         objetEnvironnement.add(arbre);
         objetEnvironnement.add(pnj);
         objetEnvironnement.add(coffre);
-        System.out.println(objetEnvironnement);
-        //objetEnvironnement.addAll(potion,rocher,pioche,arbre,pnj,coffre);
 
     }
     public void chargerObjMap1(){
+        System.out.println(objetEnvironnement);
         for(ElementMap elMap: objetEnvironnement){
             if(!(elMap instanceof Coffre)){
                 objEnvAct.add(elMap);
+                System.out.println("ajout de"+elMap);
             }
         }
     }

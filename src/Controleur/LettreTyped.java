@@ -51,10 +51,10 @@ public class LettreTyped implements EventHandler<KeyEvent> {
         double y = this.perso.getDeplacementHauteur();
         String o = this.perso.getOrientation();
         switch (keyEvent.getCode()) {
-            case F1:
+            case S:
                 menuAide.setVisible(true);
                 break;
-            case F2:
+            case J:
                 menuAide.setVisible(false);
                 break;
             case I:
@@ -80,6 +80,12 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                             }else if(objetEnvironnement.get(i) instanceof Rocher){
                                 if(env.getInventaire().inventairePossede("pioche")){
                                     objetEnvironnement.remove(objetEnvironnement.get(i));
+                                }else{
+                                    Alert alerte=new Alert(Alert.AlertType.INFORMATION);
+                                    alerte.setHeaderText("Link");
+                                    alerte.setGraphic(new ImageView("Vue/linkito.jpg"));
+                                    alerte.setContentText("hum... ce caillou me bloque la route mais il semble être cassable");
+                                    alerte.show();
                                 }
                             }else if(objetEnvironnement.get(i) instanceof Arbre){
                                 if(((Arbre) objetEnvironnement.get(i)).getNbPomme()>0){
@@ -122,7 +128,8 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     Alert alerte=new Alert(Alert.AlertType.INFORMATION);
                                     alerte.setHeaderText("Bob le paysan");
                                     alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
-                                    alerte.setContentText("écoute ... je n'ai plus rien à te donner");
+                                    alerte.setContentText("écoute ... je n'ai plus rien à te donner. Continue ta route, " +
+                                            "au passage tu peux taper dans les arbres pour faire tomber des pommes");
                                     alerte.show();
                                     System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());
                                 }
