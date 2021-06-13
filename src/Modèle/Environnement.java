@@ -309,6 +309,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
             for(int i=0;i<lesPersos.size();i++){
                 if (lesPersos.get(i).getMapAction() == nomMap) {
                     persoMapActu.add(lesPersos.get(i));
+                    System.out.println("rajout");
                 }
             }
         }

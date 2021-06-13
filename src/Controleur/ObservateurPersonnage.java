@@ -29,10 +29,14 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             for(Personnage persoAdd: change.getAddedSubList()){
                 if(persoAdd instanceof Squelette){
                     ajoutPerso(persoAdd,"Vue/bad_skeleton.gif");
+                }else if(persoAdd instanceof Soldat){
+                    ajoutPerso(persoAdd,"Vue/bad_soldgreen_front1.gif");
                 }
             }
             for(Personnage persoDelete: change.getRemoved()){
                 if(persoDelete instanceof Squelette ){
+                    deletePerso(persoDelete);
+                }else if(persoDelete instanceof Soldat){
                     deletePerso(persoDelete);
                 }
             }
