@@ -35,11 +35,11 @@ public abstract class Personnage {
         exp=new SimpleDoubleProperty(0);
     }
 
-    public Personnage(String n, int x, int y,Environnement e, double pV, double pA, double pDef){
+    public Personnage(String n, int large, int hauteur,Environnement e, double pV, double pA, double pDef){
         this.nom =n;
         this.id = numId++;
-        this.deplacementLargeur = new SimpleDoubleProperty(x);
-        this.deplacementHauteur = new SimpleDoubleProperty(y);
+        this.deplacementLargeur = new SimpleDoubleProperty(large);
+        this.deplacementHauteur = new SimpleDoubleProperty(hauteur);
         env=e;
         pv=new SimpleDoubleProperty(pV);
         pointAttaque = new SimpleDoubleProperty(pA);

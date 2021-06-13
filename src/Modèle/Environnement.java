@@ -150,13 +150,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      */
 
     /**
-     * Permet d'ajouter un personnage à la liste de ceux présents dans l'envrionnement.
-     * @param p
-     */
-    public void addPerso(Personnage p){
-        persoMapActu.add(p);
-    }
-    /**
      * Permet de retirer un personnage à la liste de ceux présents dans l'envrionnement.
      * @param p
      */
@@ -281,7 +274,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     }
     public void chargerObjMap1(){
-        System.out.println(objetEnvironnement);
         for(ElementMap elMap: objetEnvironnement){
             if(!(elMap instanceof Coffre)){
                 objEnvAct.add(elMap);
@@ -303,8 +295,10 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
     }
     public void miseEnPlaceEnnemi(){
-        Squelette squelette=new Squelette("squelette",this);
+        Squelette squelette=new Squelette(423,600,this);
+        //Squelette squelette1=new Squelette(600,600,this);
         lesPersos.add(squelette);
+        //lesPersos.add(squelette1);
     }
     public void chargerEnnemiMap(){
         if(lesPersos.size()>0){

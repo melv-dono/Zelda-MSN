@@ -12,8 +12,8 @@ public class Squelette extends Personnage{
     private int cpt;
     private int mapAction;
 
-    public Squelette(String n,Environnement env) {
-        super(n,423,600, env, 100, 5, 5);
+    public Squelette(int posLarge,int posHaut,Environnement env) {
+        super("squelette",posLarge,posHaut, env, 100, 5, 5);
         orientation=1;
         cpt=0;
         this.mapAction=2;

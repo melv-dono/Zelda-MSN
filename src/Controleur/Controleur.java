@@ -64,13 +64,12 @@ public class Controleur implements Initializable {
 				Duration.seconds(0.017),
 				(ev ->{
                     this.env.faireUntour();
+                    // essayer de changer d'endroit ce qui se trouve ci-dessous
                     if(((env.getLink().getDeplacementHauteur()>=320 && env.getLink().getDeplacementHauteur()<=448) && env.getLink().getDeplacementLargeur()==8)){
                         chargerNouvelleMap(m);
-                        System.out.println("autoincre ->"+autoIncrementation);
                     }
                     if((env.getLink().getDeplacementHauteur()>=320 && env.getLink().getDeplacementHauteur()<=448) && env.getLink().getDeplacementLargeur()==1256){
                         chargerAncienneMap(m);
-                        System.out.println("autoincre ->"+autoIncrementation);
                     }
 				})
 				);
@@ -108,15 +107,6 @@ public class Controleur implements Initializable {
         gameLoop.play();
     }
 
-/*    public void chargement(){
-        this.env.init();
-        miseEnPlaceObjet();
-        connexion();
-        gestionBouleDeFeu();
-
-        env.getLink().decrementerPv(1);
-        env.getLink().augmenterPv(1);
-    }*/
 
 
     public void affichage() {
@@ -156,6 +146,9 @@ public class Controleur implements Initializable {
 
         }else if(this.nomMapActu.equals("map2")){
             env.setUpSecondMap();
+
+        }else if(this.nomMapActu.equals("map3")){
+
         }
     }
 
@@ -174,9 +167,9 @@ public class Controleur implements Initializable {
         env.getLink().setDeplacementLargeur(40);
     }
     public void chargementMap(MapReader m){
+        this.env.deleteAllPerso();
         this.env.setId(autoIncrementation);
         nomMapActu = nom + autoIncrementation;
-        this.env.deleteAllPerso();
         this.env.setMapActuelle(nomMapActu);
         env.retirerCollision();
         miseEnPlaceEnvExt();
