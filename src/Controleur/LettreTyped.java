@@ -148,6 +148,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                             alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
                                             alerte.show();
                                             inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
+                                            this.perso.setCasesSansColisionsDe1();
                                         }
 
                                     }

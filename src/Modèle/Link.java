@@ -64,6 +64,10 @@ public class Link extends Personnage{
         this.animationProperty.set(animationProperty);
     }
 
+    public void setCasesSansColisionsDe1(){
+        this.casesSansColisions++;
+    }
+
     public void declencherAnimation() {
         if (this.isMoving && this.animationProperty.getValue() != 0) {
             this.animationProperty.setValue(this.animationProperty.getValue() - 1);
