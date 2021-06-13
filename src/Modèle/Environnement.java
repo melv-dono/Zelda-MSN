@@ -25,6 +25,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
     private Link user;
     private final Inventaire inventaire=new Inventaire();
+    private Odelin boss;
 
     private final ArrayList<ElementMap>elementMap1=new ArrayList<>();
     /**
@@ -112,12 +113,20 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         return null;
     }
 
+    public ArrayList<Ennemi> getLesPersos() {
+        return lesPersos;
+    }
+
     public MapModele getMapActuelle() {
         return mapActuelle;
     }
 
     public Link getLink() {
         return this.user;
+    }
+
+    public Odelin getBoss() {
+        return this.boss;
     }
     public Inventaire getInventaire(){
         return inventaire;
@@ -166,6 +175,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     public void init() {
         creationLink();
+        creationOdelin();
         //creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
     }
 
@@ -178,6 +188,10 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 //        addPerso(this.user);
     }
 
+    public void creationOdelin() {
+        this.boss = new Odelin (400, 500, this, "map5");
+        lesPersos.add(this.boss);
+    }
 
     public void faireUntour() {
         this.user.getarmeSecondaire().lancerBouleDeFeu();
@@ -227,8 +241,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                         gauche= this.user.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
                         droite= this.user.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
 
+                        // Attention les coordonées des perso sont décalés de 1 sur les colonnes
                         if(		(persoMapActu.get(a).getDeplacementHauteur() >= haut && persoMapActu.get(a).getDeplacementHauteur() <= bas) &&
-                                (persoMapActu.get(a).getDeplacementLargeur() >= gauche && persoMapActu.get(a).getDeplacementLargeur() <= droite) &&
+                                (persoMapActu.get(a).getDeplacementLargeur() >= gauche -1 && persoMapActu.get(a).getDeplacementLargeur() <= droite) &&
                                 persoMapActu.get(a) instanceof Ennemi
                         )
                         {
@@ -281,9 +296,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                 objEnvAct.add(elMap);
             }
         }
-
-
-
     }
     public void retirerCollision(){
         for(int i=0;i<objEnvAct.size();i++){
@@ -295,7 +307,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Squelette squelette=new Squelette(600,600,this, "map3");
         Squelette squelette1=new Squelette(984,600,this, "map3");
         Squelette squelette2=new Squelette(120,600,this, "map3");
-        Soldat soldat1 = new Soldat("soldat", this, 40, 104, "map2");
+        Soldat soldat1 = new Soldat(this, 40, 104, "map2");
         lesPersos.add(squelette);
         lesPersos.add(squelette1);
         lesPersos.add(squelette2);

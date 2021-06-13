@@ -7,14 +7,12 @@ import java.util.HashMap;
 
 public class Soldat extends Ennemi{
     static int deplacementComplet;
-    private int tpsChargement;
     private IntegerProperty animationProperty;
 
 
-    public Soldat(String n, Environnement env, double x, double y, String m) {
-        super(n,x,y, env, 100, 15, 5, m);
+    public Soldat(Environnement env, double x, double y, String m) {
+        super("Soldat",x,y, env, 100, 15, 5, m);
         deplacementComplet=0;
-        this.tpsChargement = 60;
         this.animationProperty = new SimpleIntegerProperty(30);
     }
 

@@ -10,7 +10,7 @@ public class Squelette extends Ennemi{
     private int orientation;
 
 
-    public Squelette(int posLarge,int posHaut,Environnement env, String m) {
+    public Squelette(double posLarge,double posHaut,Environnement env, String m) {
         super("squelette",posLarge,posHaut, env, 100, 5, 5, m);
         orientation=1;
         cpt=0;

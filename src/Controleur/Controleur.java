@@ -118,6 +118,7 @@ public class Controleur implements Initializable {
     public void affichage() {
         ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
         env.getPerso().addListener(obsPerso);
+        env.getBoss().getInvocations().addListener(obsPerso);
         VueLink l = new VueLink(env.getLink().getId(), "Vue/images/link/link_front2.gif");
         l.getImg().translateXProperty().bind(env.getLink().getDeplacementLargeurProperty());
         l.getImg().translateYProperty().bind(env.getLink().getDeplacementHauteurProperty());
@@ -146,9 +147,12 @@ public class Controleur implements Initializable {
         ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau);
         this.env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
     }
+
     public void miseEnPlaceEnvExt(){
         if(this.nomMapActu.equals("map1")){
             env.chargerObjMap("map1");
+            env.chargerEnnemiMap("map1");
+
 
         }else if(this.nomMapActu.equals("map2")){
             env.chargerObjMap("map2");

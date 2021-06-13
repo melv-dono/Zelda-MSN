@@ -32,6 +32,9 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
                 }else if(persoAdd instanceof Soldat){
                     ajoutPerso(persoAdd, "Vue/images/ennemis/bad_soldgreen_front1.gif");
                 }
+                else if(persoAdd instanceof Odelin){
+                    ajoutPerso(persoAdd, "Vue/images/ennemis/boss_agahnim.gif");
+                }
             }
             for(Personnage persoDelete: change.getRemoved()){
                 if(persoDelete instanceof Squelette ){
@@ -39,12 +42,15 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
                 }else if(persoDelete instanceof Soldat){
                     deletePerso(persoDelete);
                 }
+                else if(persoDelete instanceof Odelin){
+                    deletePerso(persoDelete);
+                }
+
             }
         }
     }
     public void ajoutPerso(Personnage p, String url) {
         if (p instanceof Squelette) {
-            System.out.println("ok");
             VuePerso vueSquelette = new VuePerso(url, p.getId());
             vueSquelette.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
             vueSquelette.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
@@ -59,6 +65,13 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             ((Soldat) p).animationPropertyProperty().addListener(anim);
             plateau.getChildren().add(b.getImg());
             listePersoObs.add(b);
+        }
+        if (p instanceof Odelin) {
+            VuePerso vueBoss = new VuePerso(url, p.getId());
+            vueBoss.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
+            vueBoss.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
+            plateau.getChildren().add(vueBoss.getImg());
+            listePersoObs.add(vueBoss);
         }
     }
     public void deletePerso(Personnage p){
