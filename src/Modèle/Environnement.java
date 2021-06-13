@@ -246,6 +246,18 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     }
     public void chargerTousLesObj(){
+        try{
+            Key key=new Key(1000,480);
+            if(key.getPositionLargeur().getValue()>1200 || key.getPositionLargeur().getValue()<0 || key.getPositionHauteur().getValue()>1200 ||key.getPositionHauteur().getValue()<0) {
+                throw new NombreInvalide();
+            }
+            PersoNonJouable pnj=new PersoNonJouable(1000,480,key,"bob","map1");
+            objetEnvironnement.add(pnj);
+        }catch (NombreInvalide nombreInvalide){
+            nombreInvalide.getMessage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Potion potion=new Potion(520,608,"map1");;
         Rocher rocher =new Rocher(392,608,"map1");
         Rocher rocher1=new Rocher(72,448,"map1");
@@ -255,9 +267,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Rocher rocher5=new Rocher(72,320,"map1");
         Pioche pioche=new Pioche(840,160,"map1");
         Arbre arbre=new Arbre(488,160,3,"map1");
-        Key key=new Key(1000,480);
         Coquillage coquillage=new Coquillage("coquillage",1160,64);
-        PersoNonJouable pnj=new PersoNonJouable(1000,480,key,"bob","map1");
         PersoNonJouable pn=new PersoNonJouable(1160,64,coquillage,"jacob","map3");
         Bouclier bouclier=new Bouclier(200,352);
         Coffre coffre=new Coffre(bouclier,200,352,"map2");
@@ -270,7 +280,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         objetEnvironnement.add(rocher5);
         objetEnvironnement.add(pioche);
         objetEnvironnement.add(arbre);
-        objetEnvironnement.add(pnj);
         objetEnvironnement.add(pn);
         objetEnvironnement.add(coffre);
 

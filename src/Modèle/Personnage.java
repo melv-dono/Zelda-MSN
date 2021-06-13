@@ -19,7 +19,7 @@ public abstract class Personnage {
     private StringProperty orientation;
 
 
-    public Personnage(String n, Environnement e, double pV, double pA, double pDef) {
+    public Personnage(String n, Environnement e, double pV, double pA, double pDef){
         this.nom =n;
         this.id = numId++;
         this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
@@ -48,7 +48,7 @@ public abstract class Personnage {
         //this.env = new Environnement();
     }
 
-    public abstract void monter();
+    public abstract void monter() throws Exception;
     public abstract void descendre();
     public abstract void gauche();
     public abstract void droite();
@@ -116,7 +116,6 @@ public abstract class Personnage {
         if(this.pv.getValue()>=91){
             this.pv.setValue(100);
         }else{
-            //this.pv.setValue(pv+this.pv.getValue());
             pvActu += pv;
             this.pv.setValue(pvActu);
         }
