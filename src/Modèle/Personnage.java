@@ -132,15 +132,20 @@ public abstract class Personnage {
             if(getPointDefense()<0){
                 this.setPv(getPv()+getPointDefense());
             }
-        }
-        if(this.pv.getValue()<=0){
-            System.out.println("die igo");
         }else{
-            pvActu -= pv;
-            this.pv.setValue(pvActu);
-            System.out.println("pvActu: "+pvActu);
-            //System.out.println(pv);
+            if(this.pv.getValue()<=0){
+                System.out.println("die igo");
+            }else{
+                pvActu -= pv;
+                this.pv.setValue(pvActu);
+                System.out.println("pvActu: "+pvActu);
+                //System.out.println(pv);
+            }
         }
+
+    }
+    public void augmenterDef(double newValue){
+        pointDefense.set(newValue);
     }
 
 
