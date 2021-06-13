@@ -1,11 +1,6 @@
 package Modèle;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.util.Duration;
-import Modèle.Environnement;
 
 public class Squelette extends Ennemi{
     private DoubleProperty xProperty;
@@ -131,7 +126,8 @@ public class Squelette extends Ennemi{
     }
 
     public void attaquer(Environnement e) {
-        if(e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()>-32 && e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()<32&& e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()>-32 && e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()<32 ){
+        if(e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()>-32 && e.getLink().getDeplacementLargeur()-this.getDeplacementLargeur()<32
+                && e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()>-32 && e.getLink().getDeplacementHauteur()-this.getDeplacementHauteur()<32 ){
             if(cpt!=60){
                 cpt++;
             }else{

@@ -9,7 +9,6 @@ public class Epe extends Arme{
 
     public Epe(String nom, double degat) {
         super(nom, degat);
-        //pointAttaqueProperty = new SimpleDoubleProperty(degat);
     }
 
     @Override

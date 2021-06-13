@@ -2,9 +2,6 @@ package Controleur;
 
 import Modèle.Personnage;
 import Vue.VueAnimation;
-import Vue.VueLink;
-import Vue.VuePerso;
-import com.sun.prism.image.ViewPort;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
@@ -33,10 +30,6 @@ public class AnimationGestion implements ChangeListener<Number> {
                     vue.orientation("gauche");
                 }
             }
-//            else {
-//                vue.orientation("descendre");
-//            }
-
         }
         else {
             if (perso.getNom() == "Link") {
@@ -56,7 +49,6 @@ public class AnimationGestion implements ChangeListener<Number> {
                 }
                 else {
                     vue.animation("descendre");
-
                 }
             }
         }

@@ -1,11 +1,7 @@
 package Vue;
 
-import Modèle.Link;
-import Modèle.Personnage;
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
 
 public class VueLink implements VueAnimation{
@@ -14,7 +10,6 @@ public class VueLink implements VueAnimation{
     private ImageView img;
 
     public VueLink(int id,String url){
-        //super(url,id);
         this.id=id;
         this.img=new ImageView(url);
     }

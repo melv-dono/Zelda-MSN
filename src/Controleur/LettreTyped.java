@@ -73,7 +73,12 @@ public class LettreTyped implements EventHandler<KeyEvent> {
             case R:
                 if(objetEnvironnement.size()>=1){
                     for(int i=0;i<objetEnvironnement.size();i++){
-                        if(((objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32 &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32) && objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0) || ((objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32&&objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)&& objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
+                        if(((objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32
+                                &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32)
+                                && objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0)
+                                || ((objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32
+                                &&objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)
+                                &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
                             if(objetEnvironnement.get(i) instanceof ObjetRamassable){
                                 inventaire.addObjet(objetEnvironnement.get(i));
                                 objetEnvironnement.remove(objetEnvironnement.get(i));
@@ -90,19 +95,23 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                             }else if(objetEnvironnement.get(i) instanceof Arbre){
                                 if(((Arbre) objetEnvironnement.get(i)).getNbPomme()>0){
                                     if(objetEnvironnement.get(i).getPositionLargeur().getValue()- perso.getDeplacementLargeur()==32){
-                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()+32, objetEnvironnement.get(i).getPositionHauteur().getValue());
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()+32,
+                                                objetEnvironnement.get(i).getPositionHauteur().getValue());
                                         env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }else if(objetEnvironnement.get(i).getPositionLargeur().getValue()- perso.getDeplacementLargeur()==-32){
-                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()-32, objetEnvironnement.get(i).getPositionHauteur().getValue());
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()-32,
+                                                objetEnvironnement.get(i).getPositionHauteur().getValue());
                                         env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }else if(objetEnvironnement.get(i).getPositionHauteur().getValue()- perso.getDeplacementHauteur()==32){
-                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(), objetEnvironnement.get(i).getPositionHauteur().getValue()+32);
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(),
+                                                objetEnvironnement.get(i).getPositionHauteur().getValue()+32);
                                         env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }else{
-                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(), objetEnvironnement.get(i).getPositionHauteur().getValue()-32);
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(),
+                                                objetEnvironnement.get(i).getPositionHauteur().getValue()-32);
                                         env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }
@@ -163,20 +172,17 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     }
 
                                 }
-                            }else if(objetEnvironnement.get(i) instanceof Coffre){
-                                if(env.getInventaire().inventairePossede("key")){
-                                    if(((Coffre) objetEnvironnement.get(i)).tiensObjet()){
+                            }else if(objetEnvironnement.get(i) instanceof Coffre) {
+                                if (env.getInventaire().inventairePossede("key")) {
+                                    if (((Coffre) objetEnvironnement.get(i)).tiensObjet()) {
                                         inventaire.addObjet(((Coffre) objetEnvironnement.get(i)).donObjet());
-                                        objetEnvironnement.remove(objetEnvironnement.add(new Pomme(800,800)));
-                                    }else{
+                                        objetEnvironnement.remove(objetEnvironnement.add(new Pomme(800, 800)));
+                                    } else {
                                         System.out.println("ce coffre à déjà été ouvert");
                                     }
                                 }
-                            }//else if(objetEnvironnement.get(i) instanceof Bouclier){
-                                //inventaire.addObjet(((Bouclier)objetEnvironnement.get(i)).donObjet());
-                            //}
+                            }
                         }
-
                     }
                 }
                 break;

@@ -66,10 +66,6 @@ public class Soldat extends Ennemi{
         Coordonnees depart = new Coordonnees((int)getDeplacementLargeur()/32, (int) getDeplacementHauteur()/32);
         Coordonnees cible = new Coordonnees(cibleX, cibleY);
 
-
-
-//        System.out.println("Coordonne cible:" + cible);
-//        System.out.println("Coordonne perso:" + depart);
         if (!depart.isEqual(cible)) {
             HashMap<Coordonnees, Coordonnees> chemin = getEnv().bfs(cible);
             if (deplacementComplet % 16 == 0 ) {

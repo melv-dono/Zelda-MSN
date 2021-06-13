@@ -2,7 +2,6 @@ package Controleur;
 
 import Modèle.*;
 
-import Vue.VueLink;
 import Vue.VuePerso;
 import Vue.VueSoldat;
 import javafx.collections.ListChangeListener;

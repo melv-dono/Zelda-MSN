@@ -1,8 +1,6 @@
 package Vue;
 
-import Modèle.Personnage;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class VueSoldat extends VuePerso{
 

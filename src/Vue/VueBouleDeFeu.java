@@ -1,10 +1,7 @@
 package Vue;
 
 import Modèle.BouleDeFeu;
-import Modèle.Personnage;
-import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
 public class VueBouleDeFeu {
 

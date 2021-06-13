@@ -1,7 +1,6 @@
 package Vue;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class VuePnj extends ObjetVue{
     private int orientation;

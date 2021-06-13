@@ -1,9 +1,7 @@
 package Controleur;
 
-import Modèle.Environnement;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.layout.Pane;
 
 public class ObservateurEnvironnement implements ChangeListener<Number> {
     private ObservateurObjet obsObj;

@@ -4,8 +4,6 @@ import Modèle.BouleDeFeu;
 import Vue.VueBouleDeFeu;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class ObservateaurBouleDeFeu implements ListChangeListener<BouleDeFeu> {

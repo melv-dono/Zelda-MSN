@@ -2,9 +2,6 @@ package Modèle;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.util.Duration;
-
-import java.sql.Time;
 
 public class BouleDeFeu {
     static int num = 0;

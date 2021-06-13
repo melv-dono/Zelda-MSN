@@ -1,8 +1,5 @@
 package Modèle;
 
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
 public abstract class Ennemi extends Personnage{
     private String mapAction;
 

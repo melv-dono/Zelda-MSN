@@ -1,10 +1,7 @@
 package Vue;
 
 import Modèle.Personnage;
-import Modèle.Squelette;
-import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
 public class VueSquelette{
 

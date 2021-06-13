@@ -4,8 +4,6 @@ import Modèle.*;
 import Vue.ObjetVue;
 import Vue.VueCoffre;
 import Vue.VuePnj;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;

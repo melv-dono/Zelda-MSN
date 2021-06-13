@@ -34,7 +34,6 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
      * @return tableau 2D de donnée d'une map
      */
     public void chargerTableau() {
-        //File fichier=new File("Modèle/testMap.txt");
         int[] donnee = new int[resolutionEcran];
         BufferedReader br;
         StringTokenizer line;
