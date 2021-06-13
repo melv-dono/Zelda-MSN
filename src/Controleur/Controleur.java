@@ -87,28 +87,35 @@ public class Controleur implements Initializable {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
         this.env = new Environnement(autoIncrementation,nomMapActu);
-        this.env.init();
+        this.env.initLink();
         MapReader m  = new MapReader(map);
         m.chargerMap(env.getMapActuelle().getTableau());
-        InventaireGestion inventaireGestion=new InventaireGestion(listViewInventaire,env);
-        listViewInventaire.setOnMouseClicked(inventaireGestion);
-        listViewInventaire.setItems(env.getInventaire().getListeObjets());
-        env.miseEnPlaceEnnemi();
+        inventaireSetUp();
+        miseEnPlaceElementAll();
         affichage();
         ProgressBarExp.setProgress(0);
         connexion();
         gestionBouleDeFeu();
-        env.chargerTousLesObj();
         miseEnPlaceEnvExt();
-        plateau.setOnKeyReleased(action);
-        plateau.setOnKeyPressed(arrow);
-        plateau.getChildren().add(menuPause);
+        setOn();
         animation(gameLoop, m);
         gameLoop.play();
     }
+    public void setOn(){
+        plateau.setOnKeyReleased(action);
+        plateau.setOnKeyPressed(arrow);
+        plateau.getChildren().add(menuPause);
+    }
 
-
-
+    public void inventaireSetUp(){
+        InventaireGestion inventaireGestion=new InventaireGestion(listViewInventaire,env);
+        listViewInventaire.setOnMouseClicked(inventaireGestion);
+        listViewInventaire.setItems(env.getInventaire().getListeObjets());
+    }
+    public void miseEnPlaceElementAll(){
+        env.miseEnPlaceEnnemi();
+        env.chargerTousLesObj();
+    }
     public void affichage() {
         ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
         env.getPerso().addListener(obsPerso);
@@ -167,9 +174,9 @@ public class Controleur implements Initializable {
         env.getLink().setDeplacementLargeur(40);
     }
     public void chargementMap(MapReader m){
-        this.env.deleteAllPerso();
         this.env.setId(autoIncrementation);
         nomMapActu = nom + autoIncrementation;
+        this.env.deleteAllPerso();
         this.env.setMapActuelle(nomMapActu);
         env.retirerCollision();
         miseEnPlaceEnvExt();

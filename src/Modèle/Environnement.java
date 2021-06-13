@@ -180,16 +180,14 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
 
-    public void init() {
+    public void initLink() {
         if(id.getValue()==1){
             this.utilisateur = new Link(this);
         }
-        /*lesPersos.add(utilisateur);*/
         BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
         Epe epe = new Epe("Excalibur", 10, this.utilisateur);
         this.utilisateur.setArmePrincipale(epe);
         this.utilisateur.setArmeSecondaire(baguette);
-        //creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
     }
 
 
@@ -281,7 +279,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
     }
     public void setUpSecondMap(){
-        System.out.println(objetEnvironnement);
         for(ElementMap elMap: objetEnvironnement){
             if(elMap instanceof Coffre){
                 objEnvAct.add(elMap);
