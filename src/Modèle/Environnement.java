@@ -88,10 +88,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         return null;
     }
 
-    public ObservableList<Personnage> getPersoMapActu() {
-        return persoMapActu;
-    }
-
     /**
      * Envoie le nom de la map sur laquelle se trouve les personnages.
      * @return nom de mapActuelle
@@ -163,21 +159,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
     }
 
-    /**
-     * Permet d'ajouter un décros à la liste de ceux présents dans l'envrionnement.
-     * @param m
-     */
-    public void ajoutDecors(MapModele m) {
-        this.decors.add(m);
-    }
-
-    /**
-     * Permet de retirer un décros à la liste de ceux présents dans l'envrionnement.
-     * @param m
-     */
-    public void retirerDecors(MapModele m) {
-        this.decors.remove(m);
-    }
 
 
     public void initLink() {
@@ -202,11 +183,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                 ((Squelette) p).attaquer(this);
             }
         }
-/*        for(Personnage p: persoMapActu){
-            if(p instanceof Squelette){
-                ((Squelette) p).attaquer(this);
-            }
-        }*/
 
         if(utilisateur.getExp() > 1){
             utilisateur.setExp(0);
@@ -218,6 +194,14 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void retirerBouleDeFeu() {
         this.utilisateur.getarmeSecondaire().getBoules().removeIf(BouleDeFeu::seDesintegre);
     }
+/*    public void retirerSquelette(){
+        for(int i=0;i<lesPersos.size();i++){
+            if(this.getPerso().get(i).retirerEnv()==true){
+
+            }
+        }
+    }*/
+
 
     public void cibleTouche() { // Boucle For each ne marche pas
         double haut, bas, gauche, droite;
@@ -248,9 +232,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
 
 
-      /*  for (Personnage ennemi : persoMapActu) {
-
-        }*/
     }
     public void chargerTousLesObj(){
         Potion potion=new Potion(520,608);;
@@ -267,7 +248,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Bouclier bouclier=new Bouclier(200,352);
         Coffre coffre=new Coffre(bouclier,200,352);
         objetEnvironnement.add(potion);
-        System.out.println(objetEnvironnement);
         objetEnvironnement.add(rocher);
         objetEnvironnement.add(rocher1);
         objetEnvironnement.add(rocher2);
@@ -304,9 +284,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
     public void miseEnPlaceEnnemi(){
         Squelette squelette=new Squelette(600,600,this);
-        //Squelette squelette1=new Squelette(600,600,this);
+        Squelette squelette1=new Squelette(984,600,this);
+        Squelette squelette2=new Squelette(120,600,this);
         lesPersos.add(squelette);
-        //lesPersos.add(squelette1);
+        lesPersos.add(squelette1);
+        lesPersos.add(squelette2);
     }
     public void chargerEnnemiMap(){
         if(lesPersos.size()>0){

@@ -16,7 +16,7 @@ public class Squelette extends Personnage{
         super("squelette",posLarge,posHaut, env, 100, 5, 5);
         orientation=1;
         cpt=0;
-        this.mapAction=2;
+        this.mapAction=3;
     }
 
     /**
@@ -112,7 +112,7 @@ public class Squelette extends Personnage{
         return 0;
     }
     public boolean prochainDepPossible(int depHaut,int depLarge,Environnement environnement){
-        if(depHaut<0 ||depHaut>Parametre.HAUTEUR/32 || depLarge>Parametre.LARGEUR/32 ||depLarge<0 ){
+        if(depHaut<=0 ||depHaut>=Parametre.HAUTEUR/32 || depLarge>=Parametre.LARGEUR/32 ||depLarge<=0 ){
             return false;
         }else if(environnement.getMapActuelle().getTableau()[depHaut][depLarge]>=10){
             return false;
@@ -127,17 +127,14 @@ public class Squelette extends Personnage{
             }else{
                 cpt=0;
                 e.getLink().decrementerPv(5);
-                //System.out.println(this.getPv());
             }
         }
 
     }
-    public void squeletteEstMort(){
-        if(this.pv()<=0){
-            System.out.println("squelette en pls");
+    public boolean squeMort(){
+        if(this.pv()>0){
+            return false;
         }
-    }
-    public int getMapAction(){
-        return mapAction;
+        return true;
     }
 }

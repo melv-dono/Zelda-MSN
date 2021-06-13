@@ -11,7 +11,7 @@ public abstract class Personnage {
     private Environnement env; // permet de délimiter le personnage dans sur la map et aussi l'interaction avec les autres perso
     private double pvActu;
     private DoubleProperty pv;
-    private DoubleProperty pointAttaque = new SimpleDoubleProperty(0);
+    private DoubleProperty pointAttaque;
     private static DoubleProperty pointDefense = new SimpleDoubleProperty(0);
     private IntegerProperty niveau;
     private DoubleProperty exp; // Compteur allant de 0 à 100
