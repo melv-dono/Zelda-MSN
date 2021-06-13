@@ -228,23 +228,30 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     public void cibleTouche() { // Boucle For each ne marche pas
         double haut, bas, gauche, droite;
-        for (Personnage ennemi : persoMapActu) {
-            for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
-                haut= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
-                bas= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
-                gauche= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
-                droite= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
+        if(persoMapActu.size()>0){
+            for(int a=0;a<persoMapActu.size();a++){
+                for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
+                    haut= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
+                    bas= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
+                    gauche= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
+                    droite= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
 
-                if(		(ennemi.getDeplacementHauteur() >= haut && ennemi.getDeplacementHauteur() <= bas) &&
-                        (ennemi.getDeplacementLargeur() >= gauche && ennemi.getDeplacementLargeur() <= droite) &&
-                        ennemi instanceof Squelette
-                )
-                {
-                    ennemi.perteDePv(this.utilisateur.getDommageArmeSecondaire());
-                    this.utilisateur.getarmeSecondaire().getBoules().remove(this.utilisateur.getarmeSecondaire().getBoules().get(i));
+                    if(		(persoMapActu.get(a).getDeplacementHauteur() >= haut && persoMapActu.get(a).getDeplacementHauteur() <= bas) &&
+                            (persoMapActu.get(a).getDeplacementLargeur() >= gauche && persoMapActu.get(a).getDeplacementLargeur() <= droite) &&
+                            persoMapActu.get(a) instanceof Squelette
+                    )
+                    {
+                        persoMapActu.get(a).perteDePv(this.utilisateur.getDommageArmeSecondaire());
+                        persoMapActu.get(a).retirerEnv();
+                        this.utilisateur.getarmeSecondaire().getBoules().remove(this.utilisateur.getarmeSecondaire().getBoules().get(i));
+                    }
                 }
             }
         }
+
+      /*  for (Personnage ennemi : persoMapActu) {
+
+        }*/
     }
     public void chargerTousLesObj(){
         Potion potion=new Potion(520,608);;

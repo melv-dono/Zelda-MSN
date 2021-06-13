@@ -130,6 +130,11 @@ public class Squelette extends Personnage{
         }
 
     }
+    public void squeletteEstMort(){
+        if(this.pv()<=0){
+            System.out.println("squelette en pls");
+        }
+    }
     public int getMapAction(){
         return mapAction;
     }

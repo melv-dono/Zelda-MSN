@@ -127,7 +127,7 @@ public abstract class Personnage {
      * @param pv
      */
     public void decrementerPv(double pv){
-        if(this.pv.getValue()<0){
+        if(this.pv.getValue()<=0){
             System.out.println("die igo");
         }else{
             pvActu -= pv;
@@ -294,6 +294,13 @@ public abstract class Personnage {
         else {
             System.out.println("Defense trop fort aucun dégat");
         }
+    }
+    public void retirerEnv(){
+        if(this.pv.getValue()<=0){
+            env.deletePerso(this);
+            //return true;
+        }
+        //return false;
     }
 
     public boolean collisionExterneEnv(double l,double h){

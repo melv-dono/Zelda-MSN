@@ -265,29 +265,40 @@ public class Link extends Personnage{
     }
 
     public void coupEpe() {
-        for (Personnage p : this.getEnv().getPerso()) {
-            if (p instanceof Squelette && this.getOrientation() =="monter") {
-                if (cibleEnHaut(p)) {
-                    p.perteDePv(getDommageArmePrincipale());
+        if(this.getEnv().getPerso().size()>0){
+            for(int i=0;i<this.getEnv().getPerso().size();i++ ){
+                if (getEnv().getPerso().get(i) instanceof Squelette && this.getOrientation() =="monter") {
+                    if (cibleEnHaut(getEnv().getPerso().get(i))) {
+                        getEnv().getPerso().get(i).perteDePv(getDommageArmePrincipale());
+                        getEnv().getPerso().get(i).retirerEnv();
+                    }
                 }
-            }
-            if (p instanceof Squelette && this.getOrientation() =="descendre") {
-                if (cibleEnBas(p)) {
-                    p.perteDePv(getDommageArmePrincipale());
+                if (getEnv().getPerso().get(i) instanceof Squelette && this.getOrientation() =="descendre") {
+                    if (cibleEnBas(getEnv().getPerso().get(i))) {
+                        getEnv().getPerso().get(i).perteDePv(getDommageArmePrincipale());
+                        getEnv().getPerso().get(i).retirerEnv();
+                    }
                 }
-            }
-            if (p instanceof Squelette && this.getOrientation() =="gauche") {
+                if (getEnv().getPerso().get(i) instanceof Squelette && this.getOrientation() =="gauche") {
 
-                if (cibleSurLaGauche(p)) {
-                    p.perteDePv(getDommageArmePrincipale());
+                    if (cibleSurLaGauche(getEnv().getPerso().get(i))) {
+                        getEnv().getPerso().get(i).perteDePv(getDommageArmePrincipale());
+                        getEnv().getPerso().get(i).retirerEnv();
+                    }
+                }
+                if (getEnv().getPerso().get(i) instanceof Squelette && this.getOrientation() =="droite") {
+                    if (cibleSurLaDroite(getEnv().getPerso().get(i))) {
+                        getEnv().getPerso().get(i).perteDePv(getDommageArmePrincipale());
+                        getEnv().getPerso().get(i).retirerEnv();
+                    }
                 }
             }
-            if (p instanceof Squelette && this.getOrientation() =="droite") {
-                if (cibleSurLaDroite(p)) {
-                    p.perteDePv(getDommageArmePrincipale());
-                }
-            }
+
         }
+
+   /*     for (Personnage p : this.getEnv().getPerso()) {
+
+        }*/
     }
 
 }
