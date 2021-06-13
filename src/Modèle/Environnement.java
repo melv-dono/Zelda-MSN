@@ -199,13 +199,14 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         for (Personnage p : this.persoMapActu) {
             if (p instanceof Squelette) {
                 ((Squelette)p).animationSquelette1(this);
-            }
-        }
-        for(Personnage p: persoMapActu){
-            if(p instanceof Squelette){
                 ((Squelette) p).attaquer(this);
             }
         }
+/*        for(Personnage p: persoMapActu){
+            if(p instanceof Squelette){
+                ((Squelette) p).attaquer(this);
+            }
+        }*/
 
         if(utilisateur.getExp() > 1){
             utilisateur.setExp(0);
@@ -302,7 +303,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
     }
     public void miseEnPlaceEnnemi(){
-        Squelette squelette=new Squelette(423,600,this);
+        Squelette squelette=new Squelette(600,600,this);
         //Squelette squelette1=new Squelette(600,600,this);
         lesPersos.add(squelette);
         //lesPersos.add(squelette1);

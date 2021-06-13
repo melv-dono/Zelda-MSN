@@ -49,7 +49,6 @@ public class Controleur implements Initializable {
     private Environnement env;
     private ArrowGestion arrow;
     private LettreTyped action;
-    //private ArrayList<Environnement> listeEnv=new ArrayList<>();
     private int autoIncrementation = 1;
     private String nom = "map";
     private String nomMapActu = nom + autoIncrementation;
@@ -149,12 +148,13 @@ public class Controleur implements Initializable {
     public void miseEnPlaceEnvExt(){
         if(this.nomMapActu.equals("map1")){
             env.chargerObjMap1();
-            env.chargerEnnemiMap();
+            //env.chargerEnnemiMap();
 
         }else if(this.nomMapActu.equals("map2")){
             env.setUpSecondMap();
 
         }else if(this.nomMapActu.equals("map3")){
+            env.chargerEnnemiMap();
 
         }
     }
