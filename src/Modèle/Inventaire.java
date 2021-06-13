@@ -26,9 +26,6 @@ public class Inventaire {
         }
 
     }
-    public void removeObjet(ElementMap obj){
-        listeObjets.remove(obj.toString());
-    }
 
     private boolean restePlaceInventaire(){
         int placeUse=0;

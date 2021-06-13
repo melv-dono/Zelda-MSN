@@ -9,7 +9,7 @@ public class Rocher extends ElementMap {
      * @param posLargeur
      * @param posHauteur
      */
-    public Rocher( double posLargeur, double posHauteur,String mapAction) {
+    public Rocher( double posLargeur, double posHauteur,String mapAction) throws Exception{
         super("rocher", posLargeur, posHauteur,mapAction);
     }
 }

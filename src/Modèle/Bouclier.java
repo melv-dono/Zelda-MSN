@@ -8,7 +8,7 @@ public class Bouclier extends ElementMap{
     private DoubleProperty pointDefProperty;
     private boolean hold;
 
-    public Bouclier(double posLarge,double posHaut){
+    public Bouclier(double posLarge,double posHaut)throws Exception{
         super("bouclier",posLarge,posHaut);
         pointDef=100;
         hold=false;
