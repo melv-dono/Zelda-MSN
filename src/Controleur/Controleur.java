@@ -1,8 +1,7 @@
 package Controleur;
 
 import Modèle.*;
-import Vue.MapReader;
-import Vue.VueLink;
+import Vue.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -55,7 +54,7 @@ public class Controleur implements Initializable {
 
     /**
      * Rend automatique le déplacement du squelette au sein de l'environnement.
-     * @param
+     * @param s
      */
 //    private void animation(Squelette s, VueLink vue){
     private void animation(Timeline gameLoop, MapReader m){ //L'animation du suqellete marche plus vu qu'il est considéré comme un perso
@@ -72,7 +71,6 @@ public class Controleur implements Initializable {
                     }
 				})
 				);
-
 		gameLoop.getKeyFrames().add(kf);
 	}
 

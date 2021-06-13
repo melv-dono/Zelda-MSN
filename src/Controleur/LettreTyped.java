@@ -68,7 +68,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 this.perso.setMoving(true);
                 break;
             case A:
-                this.perso.getarmeSecondaire().creeBoule(x,y,o);
+                this.perso.getarmeSecondaire().creeBoule(x, y, o);
                 break;
             case R:
                 if(objetEnvironnement.size()>=1){

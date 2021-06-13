@@ -5,7 +5,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Queue;
 
 public class Environnement { // Toutes les méthodes de cette classe ne sont pas encore utilisé dans le code
     private int width,height; // largeur == width - hauteur == height
@@ -13,14 +16,14 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     private ArrayList<Personnage>lesPersos;// Représente la liste de tous les personnages présent dans l'environnement.
     private ObservableList<Personnage> persoMapActu;
-    
+
     private ArrayList<MapModele> decors; // Permet de faire l'historique de tous les éléments de décors présents au sein de l'environnement.
 
     private ArrayList<ElementMap> objetEnvironnement; // Liste de tous les objets qui seront ramassable,trouvable dans un coffre ou donné par un PNJ
     private ObservableList<ElementMap>objEnvAct; // <liste des objets de la map où on se trouve
 
     private MapModele mapActuelle; // La mapActuelle contient les données concernant la map courante sur laquelle se tient le perso c'est à dire celle du TilePane.
-    private Link utilisateur;
+    private Link user;
     private final Inventaire inventaire=new Inventaire();
 
     private final ArrayList<ElementMap>elementMap1=new ArrayList<>();
@@ -87,7 +90,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
         return null;
     }
-
     /**
      * Envoie le nom de la map sur laquelle se trouve les personnages.
      * @return nom de mapActuelle
@@ -114,7 +116,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
     public Link getLink() {
-        return this.utilisateur;
+        return this.user;
     }
     public Inventaire getInventaire(){
         return inventaire;
@@ -161,26 +163,35 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
 
 
-    public void initLink() {
-        if(id.getValue()==1){
-            this.utilisateur = new Link(this);
-        }
-        BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
-        Epe epe = new Epe("Excalibur", 10, this.utilisateur);
-        this.utilisateur.setArmePrincipale(epe);
-        this.utilisateur.setArmeSecondaire(baguette);
+    public void init() {
+        creationLink();
+        creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
     }
 
+    public void creationLink() {
+        BaguetteMagique baguette = new BaguetteMagique("Elder Wand", 30);
+        Epe epe = new Epe("Excalibur", 10);
+        if(id.getValue()==1) {
+            this.user = new Link(this, epe, baguette);
+        }
+        addPerso(this.user);
+    }
+
+    public void creeEnnemi() {
+        Squelette s = new Squelette("Squelette", this);
+        Soldat b = new Soldat("Gardes", this);
+        addPerso(s);
+        addPerso(b);
+    }
 
     public void faireUntour() {
-        this.utilisateur.getarmeSecondaire().lancerBouleDeFeu();
-        this.utilisateur.declencherAnimation();
+        this.user.getarmeSecondaire().lancerBouleDeFeu();
+        this.user.declencherAnimation();
         cibleTouche();
         retirerBouleDeFeu();
         for (Personnage p : this.persoMapActu) {
-            if (p instanceof Squelette) {
-                ((Squelette)p).animationSquelette1(this);
-                ((Squelette) p).attaquer(this);
+            if (p instanceof Ennemi) {
+                ((Ennemi)p).agir();
             }
         }
 
@@ -192,7 +203,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
     public void retirerBouleDeFeu() {
-        this.utilisateur.getarmeSecondaire().getBoules().removeIf(BouleDeFeu::seDesintegre);
+        this.user.getarmeSecondaire().getBoules().removeIf(BouleDeFeu::seDesintegre);
     }
     public void retirerSquelette(){
         if(lesPersos.size()>0){
@@ -216,10 +227,10 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
             if(persoMapActu.size()>0){
                 for(int a=0;a<persoMapActu.size();a++){
                     for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
-                        haut= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
-                        bas= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
-                        gauche= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
-                        droite= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
+                        haut= this.user.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
+                        bas= this.user.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
+                        gauche= this.user.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
+                        droite= this.user.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
 
                         if(		(persoMapActu.get(a).getDeplacementHauteur() >= haut && persoMapActu.get(a).getDeplacementHauteur() <= bas) &&
                                 (persoMapActu.get(a).getDeplacementLargeur() >= gauche && persoMapActu.get(a).getDeplacementLargeur() <= droite) &&
@@ -236,8 +247,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                 }
             }
         }
-
-
     }
     public void chargerTousLesObj(){
         Potion potion=new Potion(520,608,"map1");;
@@ -320,5 +329,35 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         return taille;
     }
 
+    public HashMap<Coordonnees, Coordonnees> bfs(Coordonnees depart) {
+        Queue<Coordonnees> frontiere = new ArrayDeque<Coordonnees>();
+        ArrayList<Coordonnees> marquer = new ArrayList<Coordonnees>();
+//        Coordonnees.setTree(depart);
+        frontiere.add(depart);
+        HashMap<Coordonnees, Coordonnees> antecedent =new HashMap<Coordonnees, Coordonnees>();
+        antecedent.put(depart, null);
+        marquer.add(depart);
+
+        while (!frontiere.isEmpty()) {
+            Coordonnees pointCourant = frontiere.poll();
+//            pointCourant.marked();
+
+//            if (pointCourant.isEqual(arrive)) {
+//                System.out.println("Trouvé");
+//                return antecedent;
+//            }
+
+
+                for (Coordonnees voisins : pointCourant.voisins()) {
+                    if ( !marquer.contains(voisins)  && this.mapActuelle.getTableau()[voisins.getLigne()][voisins.getColonne()]==1) {
+                        frontiere.add(voisins);
+//                        lien.put(voisins, pointCourant);
+                        antecedent.put(voisins, pointCourant);
+                        marquer.add(voisins);
+                    }
+                }
+            }
+        return antecedent;
+    }
 
 }

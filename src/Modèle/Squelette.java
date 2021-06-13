@@ -7,10 +7,13 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.util.Duration;
 import Modèle.Environnement;
 
-public class Squelette extends Personnage{
-    private int orientation;
+public class Squelette extends Ennemi{
+    private DoubleProperty xProperty;
+    private DoubleProperty yProperty;
     private int cpt;
     private int mapAction;
+    private int orientation;
+
 
     public Squelette(int posLarge,int posHaut,Environnement env) {
         super("squelette",posLarge,posHaut, env, 100, 5, 5);

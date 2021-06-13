@@ -35,11 +35,11 @@ public abstract class Personnage {
         exp=new SimpleDoubleProperty(0);
     }
 
-    public Personnage(String n, int large, int hauteur,Environnement e, double pV, double pA, double pDef){
+    public Personnage(String n, int x, int y,Environnement e, double pV, double pA, double pDef){
         this.nom =n;
         this.id = numId++;
-        this.deplacementLargeur = new SimpleDoubleProperty(large);
-        this.deplacementHauteur = new SimpleDoubleProperty(hauteur);
+        this.deplacementLargeur = new SimpleDoubleProperty(x);
+        this.deplacementHauteur = new SimpleDoubleProperty(y);
         env=e;
         pv=new SimpleDoubleProperty(pV);
         pointAttaque = new SimpleDoubleProperty(pA);
@@ -136,8 +136,6 @@ public abstract class Personnage {
             //System.out.println(pv);
         }
     }
-
-
     /**
      * Envoie la colonne sur laquelle se trouve le personnage.
      * @return l'abscisse du personnage
@@ -310,7 +308,6 @@ public abstract class Personnage {
                     return false;
                 }
             }
-
         }
         return true;
     }

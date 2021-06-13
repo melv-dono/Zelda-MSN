@@ -6,24 +6,28 @@ import javafx.beans.property.*;
 
 public class Link extends Personnage{
 
-    private Arme armePrincipale;
+    private String orientation;
+
+    private Epe armePrincipale;
     private BaguetteMagique armeSecondaire;
     private boolean isMoving; // Dit si le perso est en cours d'animation ou pas
     private IntegerProperty animationProperty;
     private int casesSansColisions = 3; //on le met à 4 quand link aura la flute
 
-    public Link(Environnement e) {
-        super("Link", e, 100, 0, 0);
+    public Link(Environnement env, Epe e, BaguetteMagique b) {
+        super("Link", env, 100, 10, 0);
         //this.orientation.equals("descendre");
         this.isMoving = false;
         this.animationProperty = new SimpleIntegerProperty(Parametre.ATTAQUE_ANIMATION);
+        this.armePrincipale = e;
+        this.armeSecondaire = b;
     }
 
     /**
      * Méthode qui retourne l'arme actuelle du personnage Link
      * @return
      */
-    public Arme getArmePrincipale() {
+    public Epe getArmePrincipale() {
         return armePrincipale;
     }
 
@@ -35,7 +39,7 @@ public class Link extends Personnage{
         return armeSecondaire;
     }
 
-    public int getAnimation() {
+    public int getAnimationProperty() {
         return animationProperty.get();
     }
 
@@ -54,12 +58,6 @@ public class Link extends Personnage{
     public double getDommageArmeSecondaire() {
         return this.getPointAttaque() + this.getarmeSecondaire().getPointAttaque();
     }
-
-    public void setArmePrincipale(Arme armePrincipale) {
-        this.armePrincipale = armePrincipale;
-    }
-
-    public void setArmeSecondaire(BaguetteMagique b) {this.armeSecondaire = b;}
 
     public void setMoving(boolean moving) {
         isMoving = moving;
@@ -301,12 +299,7 @@ public class Link extends Personnage{
                     }
                 }
             }
-
         }
-
-   /*     for (Personnage p : this.getEnv().getPerso()) {
-
-        }*/
     }
 
 }
