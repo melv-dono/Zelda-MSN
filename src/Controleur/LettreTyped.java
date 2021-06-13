@@ -88,7 +88,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                 }else{
                                     Alert alerte=new Alert(Alert.AlertType.INFORMATION);
                                     alerte.setHeaderText("Link");
-                                    alerte.setGraphic(new ImageView("Vue/linkito.jpg"));
+                                    alerte.setGraphic(new ImageView("Vue/images/link/linkito.jpg"));
                                     alerte.setContentText("hum... ce caillou me bloque la route mais il semble être cassable");
                                     alerte.show();
                                 }
@@ -131,7 +131,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                         Alert alerte=new Alert(Alert.AlertType.INFORMATION);
                                         alerte.setHeaderText("Bob le paysan");
                                         alerte.setContentText("salut prends donc cette clé elle te sera utile");
-                                        alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                        alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
                                         alerte.show();
                                         inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
                                     }else if(objetEnvironnement.get(i).getMapAction()=="map3"){
@@ -139,13 +139,13 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                             Alert alerte=new Alert(Alert.AlertType.INFORMATION);
                                             alerte.setHeaderText("Jacob le paysan");
                                             alerte.setContentText("stp aide moi à me débarasser des squelettes en échange je te donnerai un objet spéciale");
-                                            alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                            alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
                                             alerte.show();
                                         }else{
                                             Alert alerte=new Alert(Alert.AlertType.INFORMATION);
                                             alerte.setHeaderText("Jacob le paysan");
                                             alerte.setContentText("Merci prends donc ça");
-                                            alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                            alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
                                             alerte.show();
                                             inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
                                             this.perso.setCasesSansColisionsDe1();
@@ -157,7 +157,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     if(objetEnvironnement.get(i).getMapAction()=="map1"){
                                         Alert alerte=new Alert(Alert.AlertType.INFORMATION);
                                         alerte.setHeaderText("Bob le paysan");
-                                        alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                        alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
                                         alerte.setContentText("écoute ... je n'ai plus rien à te donner. Continue ta route, " +
                                                 "au passage tu peux taper dans les arbres pour faire tomber des pommes");
                                         alerte.show();
@@ -165,7 +165,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     }else if(objetEnvironnement.get(i).getMapAction()=="map3"){
                                         Alert alerte=new Alert(Alert.AlertType.INFORMATION);
                                         alerte.setHeaderText("Jacob le paysan");
-                                        alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                        alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
                                         alerte.setContentText("satané squelette");
                                         alerte.show();
                                         System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());

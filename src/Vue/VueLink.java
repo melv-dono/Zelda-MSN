@@ -21,16 +21,16 @@ public class VueLink implements VueAnimation{
 
     public void animation(String direction) {
         if (direction == "gauche") {
-            setImg("Vue/link_swing8.gif");
+            setImg("Vue/images/link/link_swing8.gif");
         }
         if (direction == "droite") {
-            setImg("Vue/link_swing4.gif");
+            setImg("Vue/images/link/link_swing4.gif");
         }
         if (direction == "monter") {
-            setImg("Vue/link_swing5.gif");
+            setImg("Vue/images/link/link_swing5.gif");
         }
         if (direction == "descendre") {
-            setImg("Vue/link_swing.gif");
+            setImg("Vue/images/link/link_swing.gif");
         }
     }
 
@@ -38,19 +38,19 @@ public class VueLink implements VueAnimation{
     public void orientation(String direction){
         switch (direction){
             case "monter" :
-                setImg("Vue/link_back.gif");
+                setImg("Vue/images/link/link_back.gif");
                 break;
 
             case "descendre" :
-                setImg("Vue/link_front2.gif");
+                setImg("Vue/images/link/link_front2.gif");
                 break;
 
             case "gauche" :
-                setImg("Vue/link_left.gif");
+                setImg("Vue/images/link/link_left.gif");
                 break;
 
             case "droite" :
-                setImg("Vue/link_right.gif");
+                setImg("Vue/images/link/link_right.gif");
                 break;
         }
     }

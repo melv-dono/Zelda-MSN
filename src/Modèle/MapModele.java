@@ -41,7 +41,7 @@ public class MapModele { // on associera à chaque map un id qui nous permettra 
         int largeur=0;
         try {
 
-            br = new BufferedReader(new FileReader("src/Modèle/"+this.nomMap+".txt"));
+            br = new BufferedReader(new FileReader("src/Modèle/cartes/"+this.nomMap+".txt"));
             String ligneLue = "";
 
             do {

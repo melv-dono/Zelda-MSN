@@ -28,9 +28,9 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
         while(change.next()){
             for(Personnage persoAdd: change.getAddedSubList()){
                 if(persoAdd instanceof Squelette){
-                    ajoutPerso(persoAdd,"Vue/bad_skeleton.gif");
+                    ajoutPerso(persoAdd, "Vue/images/ennemis/bad_skeleton.gif");
                 }else if(persoAdd instanceof Soldat){
-                    ajoutPerso(persoAdd,"Vue/bad_soldgreen_front1.gif");
+                    ajoutPerso(persoAdd, "Vue/images/ennemis/bad_soldgreen_front1.gif");
                 }
             }
             for(Personnage persoDelete: change.getRemoved()){
@@ -52,7 +52,7 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             listePersoObs.add(vueSquelette);
         }
         if (p instanceof Soldat) {
-            VueSoldat b = new VueSoldat(p.getId(),"Vue/bad_soldgreen_front1.gif");
+            VueSoldat b = new VueSoldat(p.getId(), "Vue/images/ennemis/bad_soldgreen_front1.gif");
             b.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
             b.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
             AnimationGestion anim = new AnimationGestion(b,p);

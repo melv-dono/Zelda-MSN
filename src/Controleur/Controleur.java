@@ -118,7 +118,7 @@ public class Controleur implements Initializable {
     public void affichage() {
         ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
         env.getPerso().addListener(obsPerso);
-        VueLink l = new VueLink(env.getLink().getId(),"Vue/link_front2.gif");
+        VueLink l = new VueLink(env.getLink().getId(), "Vue/images/link/link_front2.gif");
         l.getImg().translateXProperty().bind(env.getLink().getDeplacementLargeurProperty());
         l.getImg().translateYProperty().bind(env.getLink().getDeplacementHauteurProperty());
         ObservateurVueLink o = new ObservateurVueLink(l);

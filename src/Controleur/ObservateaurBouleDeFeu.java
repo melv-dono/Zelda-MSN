@@ -28,7 +28,7 @@ public class ObservateaurBouleDeFeu implements ListChangeListener<BouleDeFeu> {
     }
 
     public void affichageBoule(BouleDeFeu b) {
-        VueBouleDeFeu vue = new VueBouleDeFeu(b,"Vue/item_bomb_boom1.gif");
+        VueBouleDeFeu vue = new VueBouleDeFeu(b, "Vue/images/item_bomb_boom1.gif");
         this.plateau.getChildren().add(vue.getBouleImg());
     }
 

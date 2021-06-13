@@ -6,10 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 
-
-import java.io.*;
-import java.util.ArrayList;
-
 public class MapReader {
     @FXML
     private TilePane map;
@@ -23,7 +19,7 @@ public class MapReader {
      * @param coordoneesCarte
      */
     public void chargerMap(int[][] coordoneesCarte){
-        Image tileset = new Image("Vue/Tuile.png");
+        Image tileset = new Image("Vue/images/Tuile.png");
         ImageView image;
 
         for (int i = 0; i< Parametre.LIGNE; i++){

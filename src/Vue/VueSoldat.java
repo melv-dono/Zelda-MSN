@@ -9,10 +9,10 @@ public class VueSoldat extends VuePerso{
     }
 
     public void animation(String direction) {
-        getImg().setImage(new Image("Vue/bad_greensold_swing1.gif"));
+        getImg().setImage(new Image("Vue/images/ennemis/bad_greensold_swing1.gif"));
     }
 
-    public void orientation(String direction) {getImg().setImage(new Image("Vue/bad_soldgreen_front1.gif"));
+    public void orientation(String direction) {getImg().setImage(new Image("Vue/images/ennemis/bad_soldgreen_front1.gif"));
     }
 
 }

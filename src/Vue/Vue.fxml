@@ -15,32 +15,32 @@
                <children>
                   <ImageView fx:id="coeur1" fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@heartC.png" />
+                        <Image url="@images/heartC.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="coeur2" fitHeight="29.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@heartC.png" />
+                        <Image url="@images/heartC.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="coeur3" fitHeight="29.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@heartC.png" />
+                        <Image url="@images/heartC.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="coeur4" fitHeight="29.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@heartC.png" />
+                        <Image url="@images/heartC.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="coeur5" fitHeight="29.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@heartC.png" />
+                        <Image url="@images/heartC.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="bouclier" fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@bouclier.png" />
+                        <Image url="@images/objets/bouclier.png" />
                      </image>
                   </ImageView>
                </children>

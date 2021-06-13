@@ -31,23 +31,23 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
         while(change.next())
             for(ElementMap objAdded:change.getAddedSubList()){
                 if(objAdded instanceof Potion){
-                    ajoutObjet(objAdded,"Vue/inventory_potionblue.gif");
+                    ajoutObjet(objAdded, "Vue/images/objets/inventory_potionblue.gif");
                 }else if(objAdded instanceof Rocher) {
-                    ajoutObjet(objAdded,"Vue/item_stonefence.png");
+                    ajoutObjet(objAdded, "Vue/images/objets/item_stonefence.png");
                 }else if(objAdded instanceof Pioche){
-                    ajoutObjet(objAdded,"Vue/pioche.png");
+                    ajoutObjet(objAdded, "Vue/images/objets/pioche.png");
                 }else if(objAdded instanceof Arbre){
-                    ajoutObjet(objAdded,"Vue/liltree.gif");
+                    ajoutObjet(objAdded, "Vue/images/objets/liltree.gif");
                 }else if(objAdded instanceof Pomme){
-                    ajoutObjet(objAdded,"Vue/pomme.gif");
+                    ajoutObjet(objAdded, "Vue/images/objets/pomme.gif");
                 }else if(objAdded instanceof PersoNonJouable){
-                    ajoutObjet(objAdded,"Vue/pnjFace.png");
+                    ajoutObjet(objAdded, "Vue/images/pnj/pnjFace.png");
                 }else if(objAdded instanceof Key){
-                    ajoutObjet(objAdded,"Vue/keyTile.png");
+                    ajoutObjet(objAdded, "Vue/images/objets/keyTile.png");
                 }else if(objAdded instanceof Coffre){
-                    ajoutObjet(objAdded,"Vue/coffre.gif");
+                    ajoutObjet(objAdded, "Vue/images/objets/coffre.gif");
                 }else if(objAdded instanceof Bouclier){
-                    ajoutObjet(objAdded,"Vue/bouclier.png");
+                    ajoutObjet(objAdded, "Vue/images/objets/bouclier.png");
                 }
             }
             for(ElementMap objRemoved: change.getRemoved()){
@@ -75,7 +75,7 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                     if(((Coffre) objChange).tiensObjet()==false ){
                         for(ObjetVue objVue:listeObjetVue){
                             if(objChange.getId()==objVue.getId()){
-                                objVue.setImg("Vue/coffreOpen.gif");
+                                objVue.setImg("Vue/images/objets/coffreOpen.gif");
                             }
                         }
                     }

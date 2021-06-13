@@ -12,13 +12,13 @@ public class VuePnj extends ObjetVue{
     public void setOrientation(int orientation) {
         this.orientation = orientation;
         if(this.orientation==1){
-            super.getImg().setImage(new Image("Vue/pnjFace.png"));
+            super.getImg().setImage(new Image("Vue/images/pnj/pnjFace.png"));
         }else if(this.orientation==2){
-            super.getImg().setImage(new Image("Vue/pnj-back.png"));
+            super.getImg().setImage(new Image("Vue/images/pnj/pnj-back.png"));
         }else if(this.orientation==3){
-            super.getImg().setImage(new Image("Vue/pnj-right.png"));
+            super.getImg().setImage(new Image("Vue/images/pnj/pnj-right.png"));
         }else{
-            super.getImg().setImage(new Image("Vue/pnj-left.png"));
+            super.getImg().setImage(new Image("Vue/images/pnj/pnj-left.png"));
         }
     }
 }
