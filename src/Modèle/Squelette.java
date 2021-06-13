@@ -16,7 +16,7 @@ public class Squelette extends Personnage{
         super("squelette",posLarge,posHaut, env, 100, 5, 5);
         orientation=1;
         cpt=0;
-        this.mapAction=2;
+        this.mapAction=3;
     }
 
     /**
@@ -53,25 +53,24 @@ public class Squelette extends Personnage{
      * première animation du premier squelette dans la première map qui servira dans la gameloop
      */
     public void animationSquelette1(Environnement environnement){
-        if(this.getEnv().getNomMapCourante().equals("map1")) {
-            if (deplacementPossible(getDeplacementHauteur(), getDeplacementLargeur(), environnement, orientation) == 1) { // 1=NO
-                orientation = 1;
-                this.monter();
-                this.gauche();
-            }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==2){ // 2=NE
-                orientation=2;
-                this.monter();
-                this.droite();
-            }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==3){ // 3=SE
-                orientation=3;
-                this.descendre();
-                this.droite();
-            }else{ // 4=SO
-                orientation=4;
-                this.gauche();
-                this.descendre();
-            }
+        if (deplacementPossible(getDeplacementHauteur(), getDeplacementLargeur(), environnement, orientation) == 1) { // 1=NO
+            orientation = 1;
+            this.monter();
+            this.gauche();
+        }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==2){ // 2=NE
+            orientation=2;
+            this.monter();
+            this.droite();
+        }else if(deplacementPossible(getDeplacementHauteur(),getDeplacementLargeur(),environnement,orientation)==3){ // 3=SE
+            orientation=3;
+            this.descendre();
+            this.droite();
+        }else{ // 4=SO
+            orientation=4;
+            this.gauche();
+            this.descendre();
         }
+
     }
     public int deplacementPossible(double coordHaut,double coordLarge,Environnement environnement,int orientationActuelle){
         if(orientationActuelle==1){
@@ -113,7 +112,9 @@ public class Squelette extends Personnage{
         return 0;
     }
     public boolean prochainDepPossible(int depHaut,int depLarge,Environnement environnement){
-        if(environnement.getMapActuelle().getTableau()[depHaut][depLarge]>=10){
+        if(depHaut<=0 ||depHaut>=Parametre.HAUTEUR/32 || depLarge>=Parametre.LARGEUR/32 ||depLarge<=0 ){
+            return false;
+        }else if(environnement.getMapActuelle().getTableau()[depHaut][depLarge]>=10){
             return false;
         }
         return true;
@@ -126,17 +127,14 @@ public class Squelette extends Personnage{
             }else{
                 cpt=0;
                 e.getLink().decrementerPv(5);
-                //System.out.println(this.getPv());
             }
         }
 
     }
-    public void squeletteEstMort(){
-        if(this.pv()<=0){
-            System.out.println("squelette en pls");
+    public boolean squeMort(){
+        if(this.pv()>0){
+            return false;
         }
-    }
-    public int getMapAction(){
-        return mapAction;
+        return true;
     }
 }

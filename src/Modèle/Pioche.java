@@ -7,7 +7,7 @@ public class Pioche extends ObjetRamassable{
      * @param posLargeur
      * @param posHauteur
      */
-    public Pioche(double posLargeur, double posHauteur) {
-        super("pioche", posLargeur, posHauteur);
+    public Pioche(double posLargeur, double posHauteur,String mapAction) {
+        super("pioche", posLargeur, posHauteur,mapAction);
     }
 }

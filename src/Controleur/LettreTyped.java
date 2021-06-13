@@ -107,7 +107,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }
                                 }
-                            }else if(objetEnvironnement.get(i) instanceof PersoNonJouable){
+                            }else if(objetEnvironnement.get(i) instanceof PersoNonJouable ){
                                 if(objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==32){
                                     ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(4);
                                 }else if(objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==-32){
@@ -118,20 +118,50 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                     ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(1);
                                 }
                                 if(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet()){
-                                    Alert alerte=new Alert(Alert.AlertType.INFORMATION);
-                                    alerte.setHeaderText("Bob le paysan");
-                                    alerte.setContentText("salut prends donc cette clé elle te sera utile");
-                                    alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
-                                    alerte.show();
-                                    inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
+                                    if(objetEnvironnement.get(i).getMapAction()=="map1"){
+                                        Alert alerte=new Alert(Alert.AlertType.INFORMATION);
+                                        alerte.setHeaderText("Bob le paysan");
+                                        alerte.setContentText("salut prends donc cette clé elle te sera utile");
+                                        alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                        alerte.show();
+                                        inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
+                                    }else if(objetEnvironnement.get(i).getMapAction()=="map3"){
+                                        if(env.taillePersoMapActu()>0){
+                                            Alert alerte=new Alert(Alert.AlertType.INFORMATION);
+                                            alerte.setHeaderText("Jacob le paysan");
+                                            alerte.setContentText("stp aide moi à me débarasser des squelettes en échange je te donnerai un objet spéciale");
+                                            alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                            alerte.show();
+                                        }else{
+                                            Alert alerte=new Alert(Alert.AlertType.INFORMATION);
+                                            alerte.setHeaderText("Jacob le paysan");
+                                            alerte.setContentText("Merci prends donc ça");
+                                            alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                            alerte.show();
+                                            inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
+                                        }
+
+                                    }
+
                                 }else{
-                                    Alert alerte=new Alert(Alert.AlertType.INFORMATION);
-                                    alerte.setHeaderText("Bob le paysan");
-                                    alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
-                                    alerte.setContentText("écoute ... je n'ai plus rien à te donner. Continue ta route, " +
-                                            "au passage tu peux taper dans les arbres pour faire tomber des pommes");
-                                    alerte.show();
-                                    System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());
+                                    if(objetEnvironnement.get(i).getMapAction()=="map1"){
+                                        Alert alerte=new Alert(Alert.AlertType.INFORMATION);
+                                        alerte.setHeaderText("Bob le paysan");
+                                        alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                        alerte.setContentText("écoute ... je n'ai plus rien à te donner. Continue ta route, " +
+                                                "au passage tu peux taper dans les arbres pour faire tomber des pommes");
+                                        alerte.show();
+                                        System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());
+                                    }else if(objetEnvironnement.get(i).getMapAction()=="map3"){
+                                        Alert alerte=new Alert(Alert.AlertType.INFORMATION);
+                                        alerte.setHeaderText("Jacob le paysan");
+                                        alerte.setGraphic(new ImageView("Vue/paysan.jpg"));
+                                        alerte.setContentText("satané squelette");
+                                        alerte.show();
+                                        System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());
+
+                                    }
+
                                 }
                             }else if(objetEnvironnement.get(i) instanceof Coffre){
                                 if(env.getInventaire().inventairePossede("key")){

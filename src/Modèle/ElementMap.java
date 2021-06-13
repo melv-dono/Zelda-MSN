@@ -14,11 +14,22 @@ public abstract class ElementMap {
     private DoubleProperty positionHauteur;
     private int id;
     private boolean interaction;
+    private String mapAction;
+
     static int num=0;
 
     /**
      * CONSTRUCTEUR
      */
+    public ElementMap(String nom, double posLargeur, double posHauteur,String mapAction){
+        this.nom=nom;
+        positionLargeur=new SimpleDoubleProperty(posLargeur);
+        positionHauteur=new SimpleDoubleProperty(posHauteur);
+        interaction=false;
+        this.mapAction=mapAction;
+        id=num;
+        num++;
+    }
     public ElementMap(String nom, double posLargeur, double posHauteur){
         this.nom=nom;
         positionLargeur=new SimpleDoubleProperty(posLargeur);
@@ -77,5 +88,7 @@ public abstract class ElementMap {
     }
 
 
-    //public abstract ElementMap donObjet();
+    public String getMapAction(){
+        return mapAction;
+    }
 }

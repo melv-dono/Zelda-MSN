@@ -13,14 +13,12 @@ import java.util.ArrayList;
 public class ObservateurPersonnage implements ListChangeListener<Personnage> {
     @FXML
     private Pane plateau;
-    private Environnement environnement;
-    private ArrayList<VuePerso> listePerso;
+    private ArrayList<VuePerso> listePersoObs;
     private Link link;
 
     public ObservateurPersonnage(Pane pane, Environnement environnement){
-        plateau=pane;
-        this.environnement=environnement;
-        listePerso=new ArrayList<>();
+        plateau=pane;;
+        listePersoObs =new ArrayList<>();
         link= environnement.getLink();
     }
 
@@ -47,18 +45,20 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             vueSquelette.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
             vueSquelette.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());
             plateau.getChildren().add(vueSquelette.getImg());
-            listePerso.add(vueSquelette);
+            listePersoObs.add(vueSquelette);
         }
     }
     public void deletePerso(Personnage p){
-        for(int i=0;i<listePerso.size();i++){
-            if(listePerso.get(i).getId()==p.getId()){
-                plateau.getChildren().remove(listePerso.get(i).getImg());
-                listePerso.remove(listePerso.get(i));
-                //environnement.getLink().setExp(environnement.getLink().getExp()+1);
-                i--;
+        if(listePersoObs.size()>0){
+            for(int i = 0; i< listePersoObs.size(); i++){
+                if(listePersoObs.get(i).getId()==p.getId()){
+                    plateau.getChildren().remove(listePersoObs.get(i).getImg());
+                    listePersoObs.remove(listePersoObs.get(i));
+                    i--;
+                }
             }
         }
+
     }
 
 }
