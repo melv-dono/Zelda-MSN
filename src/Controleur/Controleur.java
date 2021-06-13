@@ -141,9 +141,6 @@ public class Controleur implements Initializable {
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);
         env.getLink().pvProperty().addListener(apparitionCoeur);
-        ObservateurBouclier affichageBouclier = new ObservateurBouclier(map,env,bouclier);
-        //env.getObjEnvAct().addListener(affichageBouclier);
-        //env.getInventaire().getListeObjets().addListener(affichageBouclier);
 
     }
     public void gestionBouleDeFeu() {

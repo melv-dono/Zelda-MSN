@@ -299,13 +299,13 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         lesPersos.add(squelette);
         lesPersos.add(squelette1);
         lesPersos.add(squelette2);
+        lesPersos.add(soldat1);
     }
     public void chargerEnnemiMap(String nomMap){
         if(lesPersos.size()>0){
             for(int i=0;i<lesPersos.size();i++){
                 if (lesPersos.get(i).getMapAction() == nomMap) {
                     persoMapActu.add(lesPersos.get(i));
-                    System.out.println("rajout");
                 }
             }
         }
