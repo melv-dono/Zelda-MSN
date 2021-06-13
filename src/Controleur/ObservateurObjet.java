@@ -8,7 +8,9 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+
 
 import java.util.ArrayList;
 
@@ -17,11 +19,14 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
     private Pane plateau;
     private Environnement environnement;
     private ArrayList<ObjetVue>listeObjetVue;
+    @FXML
+    private ImageView bouclier;
 
-    public ObservateurObjet(Pane pane, Environnement environnement){
+    public ObservateurObjet(Pane pane, Environnement environnement, ImageView bouclier){
         plateau=pane;
         this.environnement=environnement;
         listeObjetVue=new ArrayList<>();
+        this.bouclier=bouclier;
     }
     @Override
     public void onChanged(Change<? extends ElementMap> change) {
@@ -43,6 +48,8 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                     ajoutObjet(objAdded,"Vue/keyTile.png");
                 }else if(objAdded instanceof Coffre){
                     ajoutObjet(objAdded,"Vue/coffre.gif");
+                }else if(objAdded instanceof Bouclier){
+                    ajoutObjet(objAdded,"Vue/bouclier.png");
                 }
             }
             for(ElementMap objRemoved: change.getRemoved()){
@@ -60,6 +67,8 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
                 }else if(objRemoved instanceof Pomme){
                     retirerObjet(objRemoved);
                 }else if(objRemoved instanceof Key){
+                    retirerObjet(objRemoved);
+                }else if(objRemoved instanceof Bouclier){
                     retirerObjet(objRemoved);
                 }
             }
@@ -101,12 +110,19 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
             vueArbre.getImg().translateYProperty().bind(obj.getPositionHauteur());
             plateau.getChildren().add(vueArbre.getImg());
             listeObjetVue.add(vueArbre);
-        }else if(obj instanceof Pomme){
-            ObjetVue vuePomme=new ObjetVue(url,obj.getId());
+        }else if(obj instanceof Pomme) {
+            ObjetVue vuePomme = new ObjetVue(url, obj.getId());
             vuePomme.getImg().translateXProperty().bind(obj.getPositionLargeur());
             vuePomme.getImg().translateYProperty().bind(obj.getPositionHauteur());
             plateau.getChildren().add(vuePomme.getImg());
             listeObjetVue.add(vuePomme);
+
+        }else if(obj instanceof Bouclier) {
+            ObjetVue vueBouclier = new ObjetVue(url, obj.getId());
+            vueBouclier.getImg().translateXProperty().bind(obj.getPositionLargeur());
+            vueBouclier.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            plateau.getChildren().add(vueBouclier.getImg());
+            listeObjetVue.add(vueBouclier);
 
         }else if(obj instanceof PersoNonJouable){
             VuePnj vuePnj=new VuePnj(url,obj.getId());

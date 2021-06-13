@@ -11,8 +11,8 @@ public abstract class Personnage {
     private Environnement env; // permet de délimiter le personnage dans sur la map et aussi l'interaction avec les autres perso
     private double pvActu;
     private DoubleProperty pv;
-    private DoubleProperty pointAttaque = new SimpleDoubleProperty(0);
-    private static DoubleProperty pointDefense = new SimpleDoubleProperty(0);
+    private DoubleProperty pointAttaque;
+    private DoubleProperty pointDefense;
     private IntegerProperty niveau;
     private DoubleProperty exp; // Compteur allant de 0 à 100
     private static int numId=0; // permet d'auto incrémenter l'attribut id pour chaque personnage que l'on crée
@@ -69,7 +69,7 @@ public abstract class Personnage {
         return pointDefense.get();
     }
 
-    public static DoubleProperty getPointDefenseProperty() {
+    public DoubleProperty getPointDefenseProperty() {
         return pointDefense;
     }
 
@@ -127,6 +127,12 @@ public abstract class Personnage {
      * @param pv
      */
     public void decrementerPv(double pv){
+        if (this.getPointDefense()>0){
+            this.setPointDefense(this.getPointDefense()-pv);
+            if(getPointDefense()<0){
+                this.setPv(getPv()+getPointDefense());
+            }
+        }
         if(this.pv.getValue()<=0){
             System.out.println("die igo");
         }else{

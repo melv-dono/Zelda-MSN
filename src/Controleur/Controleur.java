@@ -5,6 +5,7 @@ import Vue.MapReader;
 import Vue.VueLink;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.InvalidationListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -23,6 +24,8 @@ public class Controleur implements Initializable {
 
     @FXML
     private ImageView coeur1, coeur2, coeur3, coeur4, coeur5;
+    @FXML
+    private ImageView bouclier;
     @FXML
     private Label labelNiveau;
     @FXML
@@ -100,6 +103,7 @@ public class Controleur implements Initializable {
         setOn();
         animation(gameLoop, m);
         gameLoop.play();
+        this.bouclier.setVisible(false);
     }
     public void setOn(){
         plateau.setOnKeyReleased(action);
@@ -108,7 +112,7 @@ public class Controleur implements Initializable {
     }
 
     public void inventaireSetUp(){
-        InventaireGestion inventaireGestion=new InventaireGestion(listViewInventaire,env);
+        InventaireGestion inventaireGestion=new InventaireGestion(listViewInventaire,env,bouclier);
         listViewInventaire.setOnMouseClicked(inventaireGestion);
         listViewInventaire.setItems(env.getInventaire().getListeObjets());
     }
@@ -127,7 +131,7 @@ public class Controleur implements Initializable {
         AnimationGestion anim = new AnimationGestion(l,env);
         env.getLink().animationPropertyProperty().addListener(anim);
         plateau.getChildren().add(l.getImg());
-        ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
+        ObservateurObjet obsObj=new ObservateurObjet(plateau,env,bouclier);
         ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,obsPerso);
         env.getObjEnvAct().addListener(obsObj);
         env.getTheID().addListener(obsEnv);
@@ -141,6 +145,10 @@ public class Controleur implements Initializable {
         labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);
         env.getLink().pvProperty().addListener(apparitionCoeur);
+        ObservateurBouclier affichageBouclier = new ObservateurBouclier(map,env,bouclier);
+        //env.getObjEnvAct().addListener(affichageBouclier);
+        //env.getInventaire().getListeObjets().addListener(affichageBouclier);
+
     }
     public void gestionBouleDeFeu() {
         ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau);

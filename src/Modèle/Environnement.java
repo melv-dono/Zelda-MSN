@@ -123,6 +123,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public Inventaire getInventaire(){
         return inventaire;
     }
+
+    public ArrayList<ElementMap> getObjetEnvironnement() {
+        return objetEnvironnement;
+    }
+
     public ObservableList<ElementMap> getObjEnvAct(){
         return objEnvAct;
     }
@@ -264,7 +269,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Key key=new Key(1000,480);
         PersoNonJouable pnj=new PersoNonJouable(1000,480,key);
         Bouclier bouclier=new Bouclier(200,352);
+
         Coffre coffre=new Coffre(bouclier,200,352);
+
         objetEnvironnement.add(potion);
         System.out.println(objetEnvironnement);
         objetEnvironnement.add(rocher);
@@ -277,7 +284,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         objetEnvironnement.add(arbre);
         objetEnvironnement.add(pnj);
         objetEnvironnement.add(coffre);
-
     }
     public void chargerObjMap1(){
         System.out.println(objetEnvironnement);
