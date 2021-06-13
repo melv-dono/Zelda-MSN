@@ -2,7 +2,7 @@ package Modèle;
 
 public class Arbre extends ElementMap {
     private int nbPomme;
-    public Arbre(double posL,double posH,int nbPomme,String mapAction){
+    public Arbre(double posL,double posH,int nbPomme,String mapAction) throws Exception{
         super("arbre",posL,posH,mapAction);
         this.nbPomme=nbPomme;
     }

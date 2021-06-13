@@ -8,7 +8,7 @@ public class Coquillage extends ObjetRamassable{
      * @param posLargeur
      * @param posHauteur
      */
-    public Coquillage(String nom, double posLargeur, double posHauteur) {
+    public Coquillage(String nom, double posLargeur, double posHauteur)throws Exception {
         super(nom, posLargeur, posHauteur);
     }
 }
