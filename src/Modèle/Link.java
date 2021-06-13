@@ -270,26 +270,34 @@ public class Link extends Personnage{
                 if (getEnv().getPerso().get(i) instanceof Squelette && this.getOrientation() =="monter") {
                     if (cibleEnHaut(getEnv().getPerso().get(i))) {
                         getEnv().getPerso().get(i).perteDePv(getDommageArmePrincipale());
-                        getEnv().getPerso().get(i).retirerEnv();
+                        if(getEnv().getPerso().get(i).retirerEnv()){
+                            i--;
+                        }
                     }
                 }
                 if (getEnv().getPerso().get(i) instanceof Squelette && this.getOrientation() =="descendre") {
                     if (cibleEnBas(getEnv().getPerso().get(i))) {
                         getEnv().getPerso().get(i).perteDePv(getDommageArmePrincipale());
-                        getEnv().getPerso().get(i).retirerEnv();
+                        if(getEnv().getPerso().get(i).retirerEnv()){
+                            i--;
+                        }
                     }
                 }
                 if (getEnv().getPerso().get(i) instanceof Squelette && this.getOrientation() =="gauche") {
 
                     if (cibleSurLaGauche(getEnv().getPerso().get(i))) {
                         getEnv().getPerso().get(i).perteDePv(getDommageArmePrincipale());
-                        getEnv().getPerso().get(i).retirerEnv();
+                        if(getEnv().getPerso().get(i).retirerEnv()){
+                            i--;
+                        }
                     }
                 }
                 if (getEnv().getPerso().get(i) instanceof Squelette && this.getOrientation() =="droite") {
                     if (cibleSurLaDroite(getEnv().getPerso().get(i))) {
                         getEnv().getPerso().get(i).perteDePv(getDommageArmePrincipale());
-                        getEnv().getPerso().get(i).retirerEnv();
+                        if(getEnv().getPerso().get(i).retirerEnv()){
+                            i--;
+                        }
                     }
                 }
             }

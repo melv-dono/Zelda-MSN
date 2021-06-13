@@ -295,12 +295,12 @@ public abstract class Personnage {
             System.out.println("Defense trop fort aucun dégat");
         }
     }
-    public void retirerEnv(){
+    public boolean retirerEnv(){
         if(this.pv.getValue()<=0){
             env.deletePerso(this);
-            //return true;
+            return true;
         }
-        //return false;
+        return false;
     }
 
     public boolean collisionExterneEnv(double l,double h){

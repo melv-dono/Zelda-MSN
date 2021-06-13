@@ -162,6 +162,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      */
     public void deletePerso(Personnage p){ // méthode non utilisé pour l'instant
         persoMapActu.remove(p);
+        lesPersos.remove(p);
     }
     public void deleteAllPerso(){
         for (int i = 0; i< persoMapActu.size(); i++){
@@ -228,26 +229,32 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     public void cibleTouche() { // Boucle For each ne marche pas
         double haut, bas, gauche, droite;
-        if(persoMapActu.size()>0){
-            for(int a=0;a<persoMapActu.size();a++){
-                for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
-                    haut= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
-                    bas= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
-                    gauche= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
-                    droite= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
 
-                    if(		(persoMapActu.get(a).getDeplacementHauteur() >= haut && persoMapActu.get(a).getDeplacementHauteur() <= bas) &&
-                            (persoMapActu.get(a).getDeplacementLargeur() >= gauche && persoMapActu.get(a).getDeplacementLargeur() <= droite) &&
-                            persoMapActu.get(a) instanceof Squelette
-                    )
-                    {
-                        persoMapActu.get(a).perteDePv(this.utilisateur.getDommageArmeSecondaire());
-                        persoMapActu.get(a).retirerEnv();
-                        this.utilisateur.getarmeSecondaire().getBoules().remove(this.utilisateur.getarmeSecondaire().getBoules().get(i));
+        if(lesPersos.size()>0){
+            if(persoMapActu.size()>0){
+                for(int a=0;a<persoMapActu.size();a++){
+                    for (int i=0; i< this.utilisateur.getarmeSecondaire().getBoules().size(); i++) {
+                        haut= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
+                        bas= this.utilisateur.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
+                        gauche= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
+                        droite= this.utilisateur.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
+
+                        if(		(persoMapActu.get(a).getDeplacementHauteur() >= haut && persoMapActu.get(a).getDeplacementHauteur() <= bas) &&
+                                (persoMapActu.get(a).getDeplacementLargeur() >= gauche && persoMapActu.get(a).getDeplacementLargeur() <= droite) &&
+                                persoMapActu.get(a) instanceof Squelette
+                        )
+                        {
+                            persoMapActu.get(a).perteDePv(this.utilisateur.getDommageArmeSecondaire());
+                            if(persoMapActu.get(a).retirerEnv()==true){
+                                break;
+                            }
+                            this.utilisateur.getarmeSecondaire().getBoules().remove(this.utilisateur.getarmeSecondaire().getBoules().get(i));
+                        }
                     }
                 }
             }
         }
+
 
       /*  for (Personnage ennemi : persoMapActu) {
 
