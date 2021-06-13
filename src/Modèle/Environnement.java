@@ -250,9 +250,9 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         Pioche pioche=new Pioche(840,160,"map1");
         Arbre arbre=new Arbre(488,160,3,"map1");
         Key key=new Key(1000,480);
-        Coquillage coquillage=new Coquillage("coquillage",1136,64);
+        Coquillage coquillage=new Coquillage("coquillage",1160,64);
         PersoNonJouable pnj=new PersoNonJouable(1000,480,key,"bob","map1");
-        PersoNonJouable pn=new PersoNonJouable(1136,64,coquillage,"jacob","map3");
+        PersoNonJouable pn=new PersoNonJouable(1160,64,coquillage,"jacob","map3");
         Bouclier bouclier=new Bouclier(200,352);
         Coffre coffre=new Coffre(bouclier,200,352,"map2");
         objetEnvironnement.add(potion);
@@ -279,13 +279,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
 
     }
-/*    public void setUpSecondMap(){
-        for(ElementMap elMap: objetEnvironnement){
-            if(elMap instanceof Coffre){
-                objEnvAct.add(elMap);
-            }
-        }
-    }*/
     public void retirerCollision(){
         for(int i=0;i<objEnvAct.size();i++){
             objEnvAct.remove(objEnvAct.get(i));
@@ -318,6 +311,13 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
      */
     public double nbElementExt(){
         return objetEnvironnement.size();
+    }
+    public int taillePersoMapActu(){
+        int taille=0;
+        for(Personnage p:persoMapActu){
+            taille++;
+        }
+        return taille;
     }
 
 
