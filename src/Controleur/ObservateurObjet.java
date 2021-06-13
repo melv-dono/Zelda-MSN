@@ -142,13 +142,6 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
             }
         }
     }
-    public void changerVue(int id){
-        for(ObjetVue o:listeObjetVue){
-            if(o.getId()==id){
-                ObjetVue objetVue=new ObjetVue("Vue/coffreOpen.gif",id);
-            }
-        }
-    }
     public void deleteAll(){
         for(int i=0;i<listeObjetVue.size();i++){
             plateau.getChildren().remove(listeObjetVue.get(i).getImg());

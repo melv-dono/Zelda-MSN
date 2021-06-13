@@ -55,7 +55,6 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             if(listePerso.get(i).getId()==p.getId()){
                 plateau.getChildren().remove(listePerso.get(i).getImg());
                 listePerso.remove(listePerso.get(i));
-                environnement.deletePerso(p);
                 i--;
             }
         }
