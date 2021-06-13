@@ -12,7 +12,7 @@ public abstract class Personnage {
     private double pvActu;
     private DoubleProperty pv;
     private DoubleProperty pointAttaque;
-    private static DoubleProperty pointDefense = new SimpleDoubleProperty(0);
+    private DoubleProperty pointDefense;
     private IntegerProperty niveau;
     private DoubleProperty exp; // Compteur allant de 0 à 100
     private static int numId=0; // permet d'auto incrémenter l'attribut id pour chaque personnage que l'on crée
@@ -69,7 +69,7 @@ public abstract class Personnage {
         return pointDefense.get();
     }
 
-    public static DoubleProperty getPointDefenseProperty() {
+    public DoubleProperty getPointDefenseProperty() {
         return pointDefense;
     }
 
@@ -127,14 +127,25 @@ public abstract class Personnage {
      * @param pv
      */
     public void decrementerPv(double pv){
-        if(this.pv.getValue()<=0){
-            System.out.println("die igo");
+        if (this.getPointDefense()>0){
+            this.setPointDefense(this.getPointDefense()-pv);
+            if(getPointDefense()<0){
+                this.setPv(getPv()+getPointDefense());
+            }
         }else{
-            pvActu -= pv;
-            this.pv.setValue(pvActu);
-            System.out.println("pvActu: "+pvActu);
-            //System.out.println(pv);
+            if(this.pv.getValue()<=0){
+                System.out.println("die igo");
+            }else{
+                pvActu -= pv;
+                this.pv.setValue(pvActu);
+                System.out.println("pvActu: "+pvActu);
+                //System.out.println(pv);
+            }
         }
+
+    }
+    public void augmenterDef(double newValue){
+        pointDefense.set(newValue);
     }
     /**
      * Envoie la colonne sur laquelle se trouve le personnage.

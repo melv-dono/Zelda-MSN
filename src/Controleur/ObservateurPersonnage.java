@@ -2,6 +2,7 @@ package Controleur;
 
 import Modèle.*;
 
+import Vue.VueLink;
 import Vue.VuePerso;
 import Vue.VueSoldat;
 import javafx.collections.ListChangeListener;
@@ -44,6 +45,7 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
     }
     public void ajoutPerso(Personnage p, String url) {
         if (p instanceof Squelette) {
+            System.out.println("ok");
             VuePerso vueSquelette = new VuePerso(url, p.getId());
             vueSquelette.getImg().translateXProperty().bind(p.getDeplacementLargeurProperty());
             vueSquelette.getImg().translateYProperty().bind(p.getDeplacementHauteurProperty());

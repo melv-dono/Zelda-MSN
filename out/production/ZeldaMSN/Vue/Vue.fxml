@@ -38,6 +38,11 @@
                         <Image url="@heartC.png" />
                      </image>
                   </ImageView>
+                  <ImageView fx:id="bouclier" fitHeight="29.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@bouclier.png" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
             </children>

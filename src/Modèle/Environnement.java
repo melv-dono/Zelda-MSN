@@ -90,6 +90,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         }
         return null;
     }
+
     /**
      * Envoie le nom de la map sur laquelle se trouve les personnages.
      * @return nom de mapActuelle
@@ -177,12 +178,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 //        addPerso(this.user);
     }
 
-//    public void creeEnnemi() {
-//        Squelette s = new Squelette(, this);
-//        Soldat b = new Soldat("Gardes", this);
-//        lesPersos.add(s);
-//        lesPersos.add(b);
-//    }
 
     public void faireUntour() {
         this.user.getarmeSecondaire().lancerBouleDeFeu();
@@ -247,6 +242,8 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                 }
             }
         }
+
+
     }
     public void chargerTousLesObj(){
         Potion potion=new Potion(520,608,"map1");;
@@ -302,7 +299,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
         lesPersos.add(squelette);
         lesPersos.add(squelette1);
         lesPersos.add(squelette2);
-        lesPersos.add(soldat1);
     }
     public void chargerEnnemiMap(String nomMap){
         if(lesPersos.size()>0){
