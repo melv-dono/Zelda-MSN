@@ -1,5 +1,6 @@
-package Controleur;
+package Controleur.GestionaireObjet;
 
+import Controleur.GestionairePersonnage.OrientationPnj;
 import Modèle.*;
 import Vue.ObjetVue;
 import Vue.VueCoffre;

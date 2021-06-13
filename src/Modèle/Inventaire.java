@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 
 public class Inventaire {
     private ObservableList<String> listeObjets=FXCollections.observableArrayList();
-    private int tailleInventaire=15;
 
     public ObservableList<String> getListeObjets(){
         return listeObjets;

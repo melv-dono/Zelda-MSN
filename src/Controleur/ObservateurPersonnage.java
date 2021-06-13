@@ -1,5 +1,6 @@
 package Controleur;
 
+import Controleur.GestionairePersonnage.AnimationGestion;
 import Modèle.*;
 
 import Vue.VuePerso;

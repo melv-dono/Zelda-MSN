@@ -1,4 +1,4 @@
-package Controleur;
+package Controleur.GestionairePersonnage;
 
 import Modèle.Personnage;
 import Vue.VueAnimation;

@@ -1,4 +1,4 @@
-package Controleur;
+package Controleur.clavier;
 
 import Modèle.Link;
 import javafx.event.EventHandler;

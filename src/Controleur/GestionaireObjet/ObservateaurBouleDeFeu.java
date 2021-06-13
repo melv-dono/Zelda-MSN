@@ -1,4 +1,4 @@
-package Controleur;
+package Controleur.GestionaireObjet;
 
 import Modèle.BouleDeFeu;
 import Vue.VueBouleDeFeu;

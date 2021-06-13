@@ -1,5 +1,7 @@
-package Controleur;
+package Controleur.GestionairePersonnage;
 
+import Controleur.GestionaireObjet.ObservateurObjet;
+import Controleur.ObservateurPersonnage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 

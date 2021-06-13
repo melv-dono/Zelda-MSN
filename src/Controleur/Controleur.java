@@ -1,5 +1,13 @@
 package Controleur;
 
+import Controleur.GestionaireObjet.GestionCoeur;
+import Controleur.GestionaireObjet.ObservateaurBouleDeFeu;
+import Controleur.GestionaireObjet.ObservateurObjet;
+import Controleur.GestionairePersonnage.AnimationGestion;
+import Controleur.GestionairePersonnage.ObservateurEnvironnement;
+import Controleur.GestionairePersonnage.ObservateurVueLink;
+import Controleur.clavier.ArrowGestion;
+import Controleur.clavier.LettreTyped;
 import Modèle.*;
 import Vue.*;
 import javafx.animation.KeyFrame;
@@ -165,6 +173,9 @@ public class Controleur implements Initializable {
 
         }else if(this.nomMapActu.equals("map4")){
             env.retirerSquelette();
+        }
+        else if(this.nomMapActu.equals("map6")){
+            env.chargerEnnemiMap("map6");
         }
     }
 

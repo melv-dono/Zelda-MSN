@@ -1,4 +1,4 @@
-package Controleur;
+package Controleur.GestionairePersonnage;
 
 import Vue.VueLink;
 import javafx.beans.value.ChangeListener;

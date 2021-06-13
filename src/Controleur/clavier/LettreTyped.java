@@ -1,4 +1,4 @@
-package Controleur;
+package Controleur.clavier;
 
 import Modèle.*;
 import javafx.animation.Timeline;
@@ -37,7 +37,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
         menuAide=vb2;
         plateau=map;
         menuPause.setVisible(false);
-        menuAide.setVisible(false);
+        menuAide.setVisible(true);
         this.gameloop = t;
         objetEnvironnement=environnement.getObjEnvAct();
         inventaire=environnement.getInventaire();

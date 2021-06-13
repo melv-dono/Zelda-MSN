@@ -1,4 +1,4 @@
-package Controleur;
+package Controleur.GestionaireObjet;
 
 import Modèle.Environnement;
 import javafx.beans.value.ChangeListener;

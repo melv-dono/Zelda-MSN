@@ -215,6 +215,8 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Label text="Touche &quot;j&quot; pour quitter le menu d'aide " />
+            <Label text="Touche &quot;s&quot; pour accéder à ce menu" />
          </children>
       </VBox>
    </right>

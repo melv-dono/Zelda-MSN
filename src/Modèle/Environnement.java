@@ -189,7 +189,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     }
 
     public void creationOdelin() {
-        this.boss = new Odelin (400, 500, this, "map5");
+        this.boss = new Odelin (400, 500, this, "map6");
         lesPersos.add(this.boss);
     }
 
