@@ -150,10 +150,11 @@ public class Controleur implements Initializable {
             env.chargerObjMap("map1");
 
         }else if(this.nomMapActu.equals("map2")){
-            env.setUpSecondMap();
+            env.chargerObjMap("map2");
             env.retirerSquelette();
 
         }else if(this.nomMapActu.equals("map3")){
+            env.chargerObjMap("map3");
             env.chargerEnnemiMap();
 
         }else if(this.nomMapActu.equals("map4")){

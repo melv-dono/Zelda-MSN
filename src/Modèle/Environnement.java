@@ -270,22 +270,22 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
     }
     public void chargerObjMap(String nomMap){
-        if(nomMap=="map1"){
-            for(ElementMap elMap: objetEnvironnement){
-                if(elMap.getMapAction()==nomMap ){
-                    objEnvAct.add(elMap);
-                }
+        for(ElementMap elMap: objetEnvironnement){
+            if(elMap.getMapAction()==nomMap ){
+                objEnvAct.add(elMap);
             }
         }
 
+
+
     }
-    public void setUpSecondMap(){
+/*    public void setUpSecondMap(){
         for(ElementMap elMap: objetEnvironnement){
             if(elMap instanceof Coffre){
                 objEnvAct.add(elMap);
             }
         }
-    }
+    }*/
     public void retirerCollision(){
         for(int i=0;i<objEnvAct.size();i++){
             objEnvAct.remove(objEnvAct.get(i));
