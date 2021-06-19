@@ -86,11 +86,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                 if(env.getInventaire().inventairePossede("pioche")){
                                     objetEnvironnement.remove(objetEnvironnement.get(i));
                                 }else{
-                                    Alert alerte=new Alert(Alert.AlertType.INFORMATION);
-                                    alerte.setHeaderText("Link");
-                                    alerte.setGraphic(new ImageView("Vue/images/link/linkito.jpg"));
-                                    alerte.setContentText("hum... ce caillou me bloque la route mais il semble être cassable");
-                                    alerte.show();
+                                    alertInfo("Link","Vue/images/link/linkito.jpg","hum... ce caillou me bloque la route mais il semble être cassable");
                                 }
                             }else if(objetEnvironnement.get(i) instanceof Arbre){
                                 if(((Arbre) objetEnvironnement.get(i)).getNbPomme()>0){
@@ -128,25 +124,13 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                 }
                                 if(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet()){
                                     if(objetEnvironnement.get(i).getMapAction()=="map1"){
-                                        Alert alerte=new Alert(Alert.AlertType.INFORMATION);
-                                        alerte.setHeaderText("Bob le paysan");
-                                        alerte.setContentText("salut prends donc cette clé elle te sera utile");
-                                        alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
-                                        alerte.show();
+                                        alertInfo("Bob le paysan","Vue/images/pnj/paysan.jpg","salut prends donc cette clé elle te sera utile");
                                         inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
                                     }else if(objetEnvironnement.get(i).getMapAction()=="map3"){
                                         if(env.taillePersoMapActu()>0){
-                                            Alert alerte=new Alert(Alert.AlertType.INFORMATION);
-                                            alerte.setHeaderText("Jacob le paysan");
-                                            alerte.setContentText("stp aide moi à me débarasser des squelettes en échange je te donnerai un objet spéciale");
-                                            alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
-                                            alerte.show();
+                                            alertInfo("Jacob le paysan","Vue/images/pnj/paysan.jpg","stp aide moi à me débarasser des squelettes en échange je te donnerai un objet spéciale");
                                         }else{
-                                            Alert alerte=new Alert(Alert.AlertType.INFORMATION);
-                                            alerte.setHeaderText("Jacob le paysan");
-                                            alerte.setContentText("Merci prends donc ça");
-                                            alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
-                                            alerte.show();
+                                            alertInfo("Jacob le Paysan","Vue/images/pnj/paysan.jpg","Merci prends donc ça");
                                             inventaire.addObjet(((PersoNonJouable) objetEnvironnement.get(i)).donObjet());
                                             this.perso.setCasesSansColisionsDe1();
                                         }
@@ -155,20 +139,9 @@ public class LettreTyped implements EventHandler<KeyEvent> {
 
                                 }else{
                                     if(objetEnvironnement.get(i).getMapAction()=="map1"){
-                                        Alert alerte=new Alert(Alert.AlertType.INFORMATION);
-                                        alerte.setHeaderText("Bob le paysan");
-                                        alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
-                                        alerte.setContentText("écoute ... je n'ai plus rien à te donner. Continue ta route, " +
-                                                "au passage tu peux taper dans les arbres pour faire tomber des pommes");
-                                        alerte.show();
-                                        System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());
+                                        alertInfo("Bob le paysan","Vue/images/pnj/paysan.jpg","je n'ai plus rien à te donner, tape dans les arbres si tu veux des pommes");
                                     }else if(objetEnvironnement.get(i).getMapAction()=="map3"){
-                                        Alert alerte=new Alert(Alert.AlertType.INFORMATION);
-                                        alerte.setHeaderText("Jacob le paysan");
-                                        alerte.setGraphic(new ImageView("Vue/images/pnj/paysan.jpg"));
-                                        alerte.setContentText("satané squelette");
-                                        alerte.show();
-                                        System.out.println(((PersoNonJouable) objetEnvironnement.get(i)).tiensObjet());
+                                        alertInfo("Jacob le paysan","Vue/images/pnj/paysan.jpg","satané squelette");
 
                                     }
 
@@ -187,15 +160,18 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                     }
                 }
                 break;
-            case P:
-                perso.decrementerPv(10);
-            break;
-            case O:
-                perso.augmenterPv(10);
-            break;
             default:
                 break;
         }
+    }
+
+
+    private void alertInfo(String nom,String url,String txt){
+        Alert alerte=new Alert(Alert.AlertType.INFORMATION);
+        alerte.setHeaderText(nom);
+        alerte.setGraphic(new ImageView(url));
+        alerte.setContentText(txt);
+        alerte.show();
     }
 
 }

@@ -8,7 +8,7 @@ public class LinkTest {
     @Test
     public void deplacementTest() throws Exception {
         Environnement env = new Environnement(1,"map1");
-        Personnage pers = new Personnage("perso1", env, 100, 20, 0) {
+        Personnage pers = new Personnage("perso1", env,  20, 0) {
             @Override
             public void monter() {
                 setDeplacementHauteur(getDeplacementHauteur() - Parametre.TUILE_SIZE);

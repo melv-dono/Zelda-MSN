@@ -21,12 +21,4 @@ public class Bouclier extends ElementMap{
             hold=false;
         }
     }
-
-    public double getPointDef() {
-        return pointDefProperty.get();
-    }
-
-    public DoubleProperty getPointDefProperty() {
-        return pointDefProperty;
-    }
 }

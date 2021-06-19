@@ -8,5 +8,7 @@ public abstract class ObjetSoin extends ObjetRamassable{
     }
     public ObjetSoin(String nom,int pt,double posL,double posH ){
         super(nom,posL,posH);
+        pointRegeneration=pt;
     }
+
 }

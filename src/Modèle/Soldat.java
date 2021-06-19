@@ -16,9 +16,6 @@ public class Soldat extends Ennemi{
         this.animationProperty = new SimpleIntegerProperty(30);
     }
 
-    public int getAnimationProperty() {
-        return animationProperty.get();
-    }
 
     public IntegerProperty animationPropertyProperty() {
         return animationProperty;
@@ -80,9 +77,6 @@ public class Soldat extends Ennemi{
             }
             deplacementComplet++;
         }
-
-//        Coordonnees prochaineCase = chemin.get(depart);
-//        System.out.println(prochaineCase);
     }
 
     public boolean cibleSurLaGauche(Personnage perso) {

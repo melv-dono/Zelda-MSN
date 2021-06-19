@@ -3,10 +3,7 @@ package Modèle;
 import javafx.beans.property.DoubleProperty;
 
 public class Squelette extends Ennemi{
-    private DoubleProperty xProperty;
-    private DoubleProperty yProperty;
     private int cpt;
-    private int mapAction;
     private int orientation;
 
 
@@ -14,7 +11,6 @@ public class Squelette extends Ennemi{
         super("squelette",posLarge,posHaut, env, 100, 5, 5, m);
         orientation=1;
         cpt=0;
-        this.mapAction=3;
     }
 
 
@@ -136,11 +132,5 @@ public class Squelette extends Ennemi{
             }
         }
 
-    }
-    public boolean squeMort(){
-        if(this.pv()>0){
-            return false;
-        }
-        return true;
     }
 }

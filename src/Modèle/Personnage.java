@@ -19,7 +19,7 @@ public abstract class Personnage {
     private StringProperty orientation;
 
 
-    public Personnage(String n, Environnement e, double pV, double pA, double pDef){
+    public Personnage(String n, Environnement e, double pA, double pDef){
         this.nom =n;
         this.id = numId++;
         this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
@@ -28,7 +28,6 @@ public abstract class Personnage {
         pvActu=100;
         pv=new SimpleDoubleProperty(pvActu);
         this.orientation = new SimpleStringProperty("descendre");
-        //pv=new SimpleDoubleProperty(pV);
         pointAttaque = new SimpleDoubleProperty(pA);
         pointDefense = new SimpleDoubleProperty(pDef);
         niveau=new SimpleIntegerProperty(1);
@@ -45,7 +44,6 @@ public abstract class Personnage {
         pointAttaque = new SimpleDoubleProperty(pA);
         pointDefense = new SimpleDoubleProperty(pDef);
         this.orientation = new SimpleStringProperty("descendre");
-        //this.env = new Environnement();
     }
 
     public abstract void monter() throws Exception;
@@ -93,10 +91,6 @@ public abstract class Personnage {
         return niveau.get();
     }
 
-    public IntegerProperty niveauProperty() {
-        return niveau;
-    }
-
     /**
      * Méthode pour changer l'orientation du personnage
      * @param orientation
@@ -138,7 +132,6 @@ public abstract class Personnage {
                 pvActu -= pv;
                 this.pv.setValue(pvActu);
                 System.out.println("pvActu: "+pvActu);
-                //System.out.println(pv);
             }
         }
 
@@ -190,11 +183,6 @@ public abstract class Personnage {
      */
     public final double getExp(){return exp.getValue();}
 
-    /**
-     * Envoie la property de exp
-     * @return une property
-     */
-    public final DoubleProperty exp(){return exp;}
 
     /**
      * Envoie l'environnement dans lequel se trouve le personnage.
@@ -281,16 +269,9 @@ public abstract class Personnage {
         }
     }
 
-    public void setPointAttaque(double pointAttaque) {
-        this.pointAttaque.set(pointAttaque);
-    }
 
     public void setPointDefense(double pointDefense) {
         this.pointDefense.set(pointDefense);
-    }
-
-    public void setEnv(Environnement env) {
-        this.env = env;
     }
 
     public void perteDePv(double degat) {
