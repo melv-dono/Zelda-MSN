@@ -24,28 +24,9 @@ public class Coordonnees {
         return colonne;
     }
 
-    public void setColonne(int colonne) {
-        this.colonne = colonne;
-    }
 
     public int getLigne() {
         return ligne;
-    }
-
-    public static void setTree(Coordonnees c) {
-        tree.add(c);
-    }
-
-    public void setLigne(int ligne) {
-        this.ligne = ligne;
-    }
-
-    public void marked() {
-        this.isMarked = true;
-    }
-
-    public boolean isMarked() {
-        return this.isMarked;
     }
 
     public boolean isEqual(Coordonnees c) {
@@ -63,58 +44,22 @@ public class Coordonnees {
     public ArrayList<Coordonnees> voisins() {
         Coordonnees haut, bas ,gauche, droite;
         ArrayList<Coordonnees> voisins = new ArrayList<Coordonnees>();
-        boolean dejaAjouter = false; //Permet de vérifier si le point n'existe pas déjà dans la liste
 
         if (this.ligne -1 >= 0) { // Vérifie que les Coordonneesdonnées du point ne sortent pas de la bordure
             haut = new Coordonnees(this.colonne, this.ligne-1);
             voisins.add(haut);
-//            for (Coordonnees c : tree ) { // Regarde sur le graphe si le point n'existe pas déjà
-//                if (haut.isEqual(c)) {
-//                    voisins.add(c);
-//                    dejaAjouter = true;
-//                }
-//            }
-//            if (!dejaAjouter) { // Cas ou il s'agit d'un nouveau point
-//                voisins.add(haut);
-//                tree.add(haut);
-//            }
-//            dejaAjouter =false;
 
         }
 
         if (this.colonne+1 < Parametre.COLONNE) {
             droite = new Coordonnees(this.colonne+1, this.ligne);
             voisins.add(droite);
-//
-//            for (Coordonnees c : tree ) {
-//                if (droite.isEqual(c)) {
-//                    voisins.add(c);
-//                    dejaAjouter = true;
-//                }
-//            }
-//            if (!dejaAjouter) {
-//                voisins.add(droite);
-//                tree.add(droite);
-//            }
-//            dejaAjouter =false;
 
         }
 
         if (this.ligne+1 < Parametre.LIGNE) {
             bas = new Coordonnees(this.colonne, this.ligne+1);
             voisins.add(bas);
-//
-//            for (Coordonnees c : tree ) {
-//                if (bas.isEqual(c)) {
-//                    voisins.add(c);
-//                    dejaAjouter = true;
-//                }
-//            }
-//            if (!dejaAjouter) {
-//                voisins.add(bas);
-//                tree.add(bas);
-//            }
-//            dejaAjouter =false;
 
         }
 
@@ -122,19 +67,8 @@ public class Coordonnees {
             gauche = new Coordonnees(this.colonne-1, this.ligne);
             voisins.add(gauche);
 
-//            for (Coordonnees c : tree ) {
-//                if (gauche.isEqual(c)) {
-//                    voisins.add(c);
-//                    dejaAjouter = true;
-//                }
-//            }
-//            if (!dejaAjouter) {
-//                voisins.add(gauche);
-//                tree.add(gauche);
-//            }
         }
 
-//        System.out.println(voisins.size());
         return voisins;
 
     }

@@ -23,9 +23,6 @@ public class InventaireGestion implements EventHandler<MouseEvent> {
         env=e;
         this.bouclier=b;
     }
-    public void ajoutPotion(ElementMap obj){
-        inventaire.addObjet(obj);
-    }
     @Override
     public void handle(MouseEvent mouseEvent) {
         if(inventaire.getTailleInventaire()>=1){
@@ -42,9 +39,6 @@ public class InventaireGestion implements EventHandler<MouseEvent> {
                 env.getLink().augmenterDef(50);
                 inventaire.deleteObjetString("bouclier");
                 bouclier.setVisible(true);
-                for(int i=0; i< inventaire.getTailleInventaire(); i++){
-
-                }
             }else{
                 System.out.println("Controleur.InventaireGestion.RAAAAAAAAAAAAAAAAA");
             }

@@ -3,9 +3,6 @@ package Modèle;
 public abstract class Ennemi extends Personnage{
     private String mapAction;
 
-    public Ennemi(String n, int x,int y,Environnement e, double pV, double pA, double pDef) {
-        super(n,x,y,e,pV,pA,pDef);
-    }
 
     public Ennemi(String n, double x, double y,Environnement e, double pV, double pA, double pDef, String m){
         super(n,x,y,e,pV,pA,pDef);

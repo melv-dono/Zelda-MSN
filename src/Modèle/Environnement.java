@@ -78,40 +78,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public ObservableList<Ennemi>getPerso(){ // méthode non utilisé pour l'instant
         return persoMapActu;
     }
-    /**
-     * Renvoie le personnage dont l'id correspond à celui rentré en paramètre.
-     * @param id
-     * @return un personnage précis
-     */
-    public Personnage getPersonnage(int id){ // méthode non utilisé pour l'instant
-        for(Personnage p: persoMapActu){
-            if(p.getId()==id){
-                return p;
-            }
-        }
-        return null;
-    }
 
-    /**
-     * Envoie le nom de la map sur laquelle se trouve les personnages.
-     * @return nom de mapActuelle
-     */
-    public String getNomMapCourante() {
-        return this.mapActuelle.getNomMap();
-    }
-    /**
-     * Envoie les données (tableau de chiffre) d'un élément du décors de l'envrionnement.
-     * @param nomDecors
-     * @return un tableau de donnée précis
-     */
-    public int[][] getCoordonneDecors(String nomDecors) { // renvoie null dans le cas ou le tableau n'existe pas
-        for (MapModele m : this.decors) {
-            if (nomDecors.equals(m.getNomMap())) {
-                return m.getTableau();
-            }
-        }
-        return null;
-    }
 
     public ArrayList<Ennemi> getLesPersos() {
         return lesPersos;
@@ -342,9 +309,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     /**
      * FONCTIONS
      */
-    public double nbElementExt(){
-        return objetEnvironnement.size();
-    }
+
     public int taillePersoMapActu(){
         int taille=0;
         for(Personnage p:persoMapActu){
@@ -356,7 +321,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public HashMap<Coordonnees, Coordonnees> bfs(Coordonnees depart) {
         Queue<Coordonnees> frontiere = new ArrayDeque<Coordonnees>();
         ArrayList<Coordonnees> marquer = new ArrayList<Coordonnees>();
-//        Coordonnees.setTree(depart);
         frontiere.add(depart);
         HashMap<Coordonnees, Coordonnees> antecedent =new HashMap<Coordonnees, Coordonnees>();
         antecedent.put(depart, null);
@@ -364,23 +328,14 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
         while (!frontiere.isEmpty()) {
             Coordonnees pointCourant = frontiere.poll();
-//            pointCourant.marked();
-
-//            if (pointCourant.isEqual(arrive)) {
-//                System.out.println("Trouvé");
-//                return antecedent;
-//            }
-
-
-                for (Coordonnees voisins : pointCourant.voisins()) {
-                    if ( !marquer.contains(voisins)  && this.mapActuelle.getTableau()[voisins.getLigne()][voisins.getColonne()]==1) {
-                        frontiere.add(voisins);
-//                        lien.put(voisins, pointCourant);
-                        antecedent.put(voisins, pointCourant);
-                        marquer.add(voisins);
-                    }
+            for (Coordonnees voisins : pointCourant.voisins()) {
+                if ( !marquer.contains(voisins)  && this.mapActuelle.getTableau()[voisins.getLigne()][voisins.getColonne()]==1) {
+                    frontiere.add(voisins);
+                    antecedent.put(voisins, pointCourant);
+                    marquer.add(voisins);
                 }
             }
+        }
         return antecedent;
     }
 

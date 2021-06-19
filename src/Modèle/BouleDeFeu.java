@@ -72,9 +72,6 @@ public class BouleDeFeu {
         }
     }
 
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
 
     public void gauche() {
         setX(this.xProperty.getValue() - 1);

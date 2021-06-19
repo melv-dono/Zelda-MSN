@@ -60,4 +60,5 @@ public class VueLink implements VueAnimation{
     public void setImg(String url){
         this.img.setImage(new Image(url));
     }
+
 }
