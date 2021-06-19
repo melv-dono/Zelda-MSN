@@ -6,8 +6,6 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 public class BaguetteMagique extends Arme{
-    private String nom;
-    private double pointAttaque;
     private ObservableList<BouleDeFeu> boules;
 
     public BaguetteMagique(String nom, double pointAttaque) {
@@ -20,11 +18,6 @@ public class BaguetteMagique extends Arme{
         return boules;
     }
 
-    public void retirerBoule(BouleDeFeu bouleDeFeu) {
-        if (boules.contains(bouleDeFeu)) {
-            boules.remove(bouleDeFeu);
-        }
-    }
 
     public void creeBoule(double x, double y, String o) {
         BouleDeFeu b = new BouleDeFeu(x, y, o);

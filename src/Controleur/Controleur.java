@@ -135,10 +135,11 @@ public class Controleur implements Initializable {
         AnimationGestion anim = new AnimationGestion(l,env.getLink());
         env.getLink().animationPropertyProperty().addListener(anim);
         plateau.getChildren().add(l.getImg());
-        ObservateurObjet obsObj=new ObservateurObjet(plateau,env,bouclier);
+        ObservateurObjet obsObj=new ObservateurObjet(plateau,env);
         ObservateurEnvironnement obsEnv=new ObservateurEnvironnement(obsObj,obsPerso);
         env.getObjEnvAct().addListener(obsObj);
         env.getTheID().addListener(obsEnv);
+
     }
     public void connexion() {
         arrow = new ArrowGestion(env.getLink());
@@ -152,8 +153,8 @@ public class Controleur implements Initializable {
 
     }
     public void gestionBouleDeFeu() {
-        ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau);
-        this.env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
+        ObservateaurBouleDeFeu obs1 = new ObservateaurBouleDeFeu(plateau,env);
+        env.getLink().getarmeSecondaire().getBoules().addListener(obs1);
     }
 
     public void miseEnPlaceEnvExt(){

@@ -18,14 +18,10 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
     private Pane plateau;
     private Environnement environnement;
     private ArrayList<ObjetVue>listeObjetVue;
-    @FXML
-    private ImageView bouclier;
-
-    public ObservateurObjet(Pane pane, Environnement environnement, ImageView bouclier){
+    public ObservateurObjet(Pane pane, Environnement environnement){
         plateau=pane;
         this.environnement=environnement;
         listeObjetVue=new ArrayList<>();
-        this.bouclier=bouclier;
     }
     @Override
     public void onChanged(Change<? extends ElementMap> change) {

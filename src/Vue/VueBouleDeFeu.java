@@ -7,17 +7,17 @@ public class VueBouleDeFeu {
 
     private ImageView bouleImg;
 
-    private BouleDeFeu b;
+    private String idBoule;
 
-    public VueBouleDeFeu(BouleDeFeu boule,String url){
-        this.b= boule;
+    public VueBouleDeFeu(String id,String url){
         bouleImg=new ImageView(url);
-        bouleImg.translateXProperty().bind(b.xPropertyProperty());
-        bouleImg.translateYProperty().bind(b.yPropertyProperty());
-        bouleImg.setId(String.valueOf(b.getId()));
+        idBoule=id;
     }
     public ImageView getBouleImg(){
         return bouleImg;
+    }
+    public String getIdBoule(){
+        return idBoule;
     }
 
 
