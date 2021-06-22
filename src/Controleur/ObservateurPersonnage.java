@@ -1,10 +1,15 @@
 package Controleur;
 
 import Controleur.GestionairePersonnage.AnimationGestion;
-import Modèle.*;
 
-import Vue.VuePerso;
-import Vue.VueSoldat;
+import Modèle.Env.Environnement;
+import Modèle.Item.Personnage;
+import Modèle.Perso.Link;
+import Modèle.Perso.Odelin;
+import Modèle.Perso.Soldat;
+import Modèle.Perso.Squelette;
+import Vue.Perso.VuePerso;
+import Vue.Perso.VueSoldat;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;

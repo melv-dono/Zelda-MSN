@@ -1,7 +1,10 @@
 package Modèle;
 
-import com.sun.source.tree.AssertTree;
-import org.junit.Test;
+import Modèle.Env.Environnement;
+import Modèle.Item.Personnage;
+import Modèle.Utils.Parametre;
+import org.junit.jupiter.api.Test;
+//import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkTest {

@@ -1,6 +1,6 @@
 package Controleur.GestionairePersonnage;
 
-import Vue.VueLink;
+import Vue.Perso.VueLink;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 

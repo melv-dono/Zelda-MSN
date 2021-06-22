@@ -1,6 +1,17 @@
 package Controleur.clavier;
 
-import Modèle.*;
+import Modèle.Env.Arbre;
+import Modèle.Env.ElementMap;
+import Modèle.Env.Environnement;
+import Modèle.Item.Coffre;
+import Modèle.Item.Inventaire;
+import Modèle.Item.ObjetRamassable;
+import Modèle.Item.Pomme;
+import Modèle.Env.Rocher;
+import Modèle.Perso.Link;
+import Modèle.Perso.PersoNonJouable;
+import Modèle.Utils.Coordonnees;
+import Modèle.Utils.Parametre;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -10,6 +21,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+
+import java.lang.reflect.Parameter;
 
 public class LettreTyped implements EventHandler<KeyEvent> {
 
@@ -42,7 +57,6 @@ public class LettreTyped implements EventHandler<KeyEvent> {
         objetEnvironnement=environnement.getObjEnvAct();
         inventaire=environnement.getInventaire();
         env=environnement;
-
     }
 
     @Override
@@ -116,7 +130,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }
                                 }
-                            }else if(objetEnvironnement.get(i) instanceof PersoNonJouable ){
+                            }else if(objetEnvironnement.get(i) instanceof PersoNonJouable){
                                 if(objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==32){
                                     ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(4);
                                 }else if(objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==-32){
@@ -189,12 +203,98 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 break;
             case P:
                 perso.decrementerPv(10);
-            break;
+                break;
             case O:
                 perso.augmenterPv(10);
-            break;
+                break;
+            case M:
+                encerclement(6);
+                break;
+            case N:
+                encerclement2(6);
+                break;
+            case L:
+                encerclement3(6);
+                break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * Give every neighbours by bounding box
+     * @param rayon
+     */
+    public void encerclement(double rayon) {
+        Coordonnees pers = new Coordonnees((int)perso.getDeplacementLargeur()/32, (int)perso.getDeplacementHauteur()/32);
+        Coordonnees point;
+        int top, bottom, left, right;
+        top = (int) Math.floor(perso.getDeplacementHauteur()/32 - rayon);
+        bottom = (int) Math.floor(perso.getDeplacementHauteur()/32 + rayon);
+        left = (int) Math.ceil(perso.getDeplacementLargeur()/32 - rayon);
+        right = (int) Math.ceil(perso.getDeplacementLargeur()/32 + rayon);
+
+        for (int y=top; y<=bottom; y++) {
+            for (int x = left; x<= right; x++) {
+                point = new Coordonnees(x,y);
+                if (point.isInside(rayon, pers)) {
+                    Circle m = new Circle(point.getColonne()*32, point.getLigne()*32, 3);
+                    m.setFill(Color.RED);
+                    plateau.getChildren().add(m);
+                }
+            }
+        }
+    }
+
+    /**
+     * Give every neighbours by bounding circle
+     * @param rayon
+     */
+    public void encerclement2(double rayon) {
+        Coordonnees pers = new Coordonnees((int)perso.getDeplacementLargeur()/32, (int)perso.getDeplacementHauteur()/32);
+        Coordonnees point;
+        int top, bottom, left, right;
+        top = (int) (perso.getDeplacementHauteur()/32 - rayon);
+        bottom = (int) (perso.getDeplacementHauteur()/32 + rayon);
+
+        for (int y=top; y<=bottom; y++) {
+            int dy = (y - (int) (perso.getDeplacementHauteur()/32));
+            double dx = Math.sqrt(rayon*rayon - dy*dy);
+            left = (int) Math.ceil(perso.getDeplacementLargeur()/32 - dx);
+            right = (int) Math.floor(perso.getDeplacementLargeur()/32 + dx);
+            for (int x = left; x<= right; x++) {
+                point = new Coordonnees(x,y);
+                Circle m = new Circle(point.getColonne()*32, point.getLigne()*32, 3);
+                m.setFill(Color.BLUE);
+                plateau.getChildren().add(m);
+            }
+        }
+    }
+
+    /**
+     * Give farest neighbours by bounding circle
+     * @param rayon
+     */
+    public void encerclement3(double rayon) {
+        Coordonnees pers = new Coordonnees((int)perso.getDeplacementLargeur()/32, (int)perso.getDeplacementHauteur()/32);
+        Coordonnees point;
+        int top, bottom, left, right;
+        top = (int) Math.ceil(perso.getDeplacementHauteur()/32 - rayon);
+        bottom = (int) Math.floor(perso.getDeplacementHauteur()/32 + rayon);
+
+        for (int y=top; y<=bottom; y++) {
+            int dy = (y - (int) (perso.getDeplacementHauteur()/32));
+            int dx = (int) (Math.floor(Math.sqrt(rayon*rayon - dy*dy)));
+            left = pers.getColonne() - dx;
+            right = pers.getColonne() + dx;
+            point = new Coordonnees(left,y);
+            Circle m = new Circle(point.getColonne()*32, point.getLigne()*32, 3);
+            m.setFill(Color.GREEN);
+            plateau.getChildren().add(m);
+            point = new Coordonnees(right,y);
+            Circle n = new Circle(point.getColonne()*32, point.getLigne()*32, 3);
+            n.setFill(Color.GREEN);
+            plateau.getChildren().add(n);
         }
     }
 

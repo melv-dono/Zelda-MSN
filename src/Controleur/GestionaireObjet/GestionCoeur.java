@@ -1,6 +1,6 @@
 package Controleur.GestionaireObjet;
 
-import Modèle.Environnement;
+import Modèle.Env.Environnement;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.ImageView;

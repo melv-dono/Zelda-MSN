@@ -1,5 +1,5 @@
 package Vue;
-import Modèle.Parametre;
+import Modèle.Utils.Parametre;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;

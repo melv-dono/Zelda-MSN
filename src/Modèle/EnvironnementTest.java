@@ -1,18 +1,22 @@
 package Modèle;
 
-import com.sun.source.tree.AssertTree;
-import org.junit.Before;
-import org.junit.Test;
+import Modèle.Env.Arbre;
+import Modèle.Env.ElementMap;
+import Modèle.Item.Pioche;
+import Modèle.Item.Potion;
+import Modèle.Env.Rocher;
+import org.junit.jupiter.api.Test;
+//import org.junit.Before;
+//import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.function.BooleanSupplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EnvironnementTest {
     private ArrayList<ElementMap> objetEnvironnement = new ArrayList<>();
 
-    @Before
+//    @Before
     public void init() throws Exception {
         Pioche pioche=new Pioche(840,160,"map1");
         Potion potion=new Potion(520,608,"map1");

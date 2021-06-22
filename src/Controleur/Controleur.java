@@ -8,8 +8,9 @@ import Controleur.GestionairePersonnage.ObservateurEnvironnement;
 import Controleur.GestionairePersonnage.ObservateurVueLink;
 import Controleur.clavier.ArrowGestion;
 import Controleur.clavier.LettreTyped;
-import Modèle.*;
+import Modèle.Env.Environnement;
 import Vue.*;
+import Vue.Perso.VueLink;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -125,7 +126,7 @@ public class Controleur implements Initializable {
     }
     public void affichage() {
         ObservateurPersonnage obsPerso=new ObservateurPersonnage(plateau,env);
-        env.getPerso().addListener(obsPerso);
+        env.getEnnemiMap().addListener(obsPerso);
         env.getBoss().getInvocations().addListener(obsPerso);
         VueLink l = new VueLink(env.getLink().getId(), "Vue/images/link/link_front2.gif");
         l.getImg().translateXProperty().bind(env.getLink().getDeplacementLargeurProperty());
@@ -146,7 +147,7 @@ public class Controleur implements Initializable {
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         this.ptAtt.textProperty().bind((env.getLink().getPointAttaqueProperty().add(env.getLink().getArmePrincipale().getPointAttaqueProperty()).asString()));
         this.ptDef.textProperty().bind(env.getLink().getPointDefenseProperty().asString());
-        labelNiveau.textProperty().bind(env.getLink().niveau().asString());
+        this.labelNiveau.textProperty().bind(env.getLink().niveau().asString());
         GestionCoeur apparitionCoeur=new GestionCoeur(coeur1,coeur2,coeur3,coeur4,coeur5,env);
         env.getLink().pvProperty().addListener(apparitionCoeur);
 

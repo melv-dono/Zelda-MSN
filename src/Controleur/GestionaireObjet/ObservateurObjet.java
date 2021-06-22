@@ -1,10 +1,16 @@
 package Controleur.GestionaireObjet;
 
 import Controleur.GestionairePersonnage.OrientationPnj;
-import Modèle.*;
-import Vue.ObjetVue;
-import Vue.VueCoffre;
-import Vue.VuePnj;
+import Modèle.Env.Arbre;
+import Modèle.Env.ElementMap;
+import Modèle.Env.Environnement;
+import Modèle.Env.Rocher;
+import Modèle.Item.*;
+import Modèle.Perso.PersoNonJouable;
+import Modèle.Protection.Bouclier;
+import Vue.Item.ObjetVue;
+import Vue.Item.VueCoffre;
+import Vue.Perso.VuePnj;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;

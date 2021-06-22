@@ -1,6 +1,6 @@
 package Controleur.GestionairePersonnage;
 
-import Vue.VuePnj;
+import Vue.Perso.VuePnj;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 

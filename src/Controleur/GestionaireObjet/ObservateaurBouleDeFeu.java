@@ -1,7 +1,7 @@
 package Controleur.GestionaireObjet;
 
-import Modèle.BouleDeFeu;
-import Vue.VueBouleDeFeu;
+import Modèle.Arme.BouleDeFeu;
+import Vue.Item.VueBouleDeFeu;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;

@@ -1,6 +1,6 @@
 package Controleur.GestionairePersonnage;
 
-import Modèle.Personnage;
+import Modèle.Item.Personnage;
 import Vue.VueAnimation;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
