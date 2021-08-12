@@ -1,8 +1,13 @@
-package Modèle;
+package Modèle.perso;
 
+import Modèle.Environnement;
+import Modèle.Objet.arme.BaguetteMagique;
+import Modèle.Objet.arme.Epe;
+import Modèle.Parametre;
+import Modèle.perso.ennemi.Squelette;
 import javafx.beans.property.*;
 
-public class Link extends Personnage{
+public class Link extends Personnage {
 
 
     private Epe armePrincipale;

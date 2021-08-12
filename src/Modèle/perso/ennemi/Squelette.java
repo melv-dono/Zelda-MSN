@@ -1,13 +1,15 @@
-package Modèle;
+package Modèle.perso.ennemi;
 
-import javafx.beans.property.DoubleProperty;
+import Modèle.Environnement;
+import Modèle.Parametre;
+import Modèle.perso.ennemi.Ennemi;
 
-public class Squelette extends Ennemi{
+public class Squelette extends Ennemi {
     private int cpt;
     private int orientation;
 
 
-    public Squelette(double posLarge,double posHaut,Environnement env, String m) {
+    public Squelette(double posLarge, double posHaut, Environnement env, String m) {
         super("squelette",posLarge,posHaut, env, 100, 5, 5, m);
         orientation=1;
         cpt=0;
@@ -113,7 +115,7 @@ public class Squelette extends Ennemi{
         return 0;
     }
     public boolean prochainDepPossible(int depHaut,int depLarge,Environnement environnement){
-        if(depHaut<=0 ||depHaut>=Parametre.HAUTEUR/32 || depLarge>=Parametre.LARGEUR/32 ||depLarge<=0 ){
+        if(depHaut<=0 ||depHaut>= Parametre.HAUTEUR/32 || depLarge>=Parametre.LARGEUR/32 ||depLarge<=0 ){
             return false;
         }else if(environnement.getMapActuelle().getTableau()[depHaut][depLarge]>=10){
             return false;

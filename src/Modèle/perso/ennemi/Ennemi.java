@@ -1,10 +1,13 @@
-package Modèle;
+package Modèle.perso.ennemi;
 
-public abstract class Ennemi extends Personnage{
+import Modèle.Environnement;
+import Modèle.perso.Personnage;
+
+public abstract class Ennemi extends Personnage {
     private String mapAction;
 
 
-    public Ennemi(String n, double x, double y,Environnement e, double pV, double pA, double pDef, String m){
+    public Ennemi(String n, double x, double y, Environnement e, double pV, double pA, double pDef, String m){
         super(n,x,y,e,pV,pA,pDef);
         this.mapAction = m;
     }

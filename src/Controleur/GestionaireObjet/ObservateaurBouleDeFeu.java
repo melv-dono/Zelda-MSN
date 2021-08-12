@@ -1,6 +1,6 @@
 package Controleur.GestionaireObjet;
 
-import Modèle.BouleDeFeu;
+import Modèle.Objet.arme.BouleDeFeu;
 import Modèle.Environnement;
 import Vue.VueBouleDeFeu;
 import javafx.collections.ListChangeListener;

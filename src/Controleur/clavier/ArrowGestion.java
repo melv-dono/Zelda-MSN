@@ -1,12 +1,12 @@
 package Controleur.clavier;
 
-import Modèle.Link;
+import Modèle.perso.Link;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 
 /*
- * Cette classe est un gestionnaire d'éveènement permettant de gerer des évènements via le clavier.
+ * Cette classe est un gestionnaire d'évènement permettant de gerer des évènements via le clavier.
  * Chaque déplacement change les coordonnées du personnage dans le modèle et cela se répercute dans la vue.
  */
 
@@ -23,7 +23,6 @@ public class ArrowGestion implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
-        // Attention les coordonnées des y sont inversés.
         switch (keyEvent.getCode()) {
             case UP:
                 if(orientation!=1){ // bouge sur toi même monte

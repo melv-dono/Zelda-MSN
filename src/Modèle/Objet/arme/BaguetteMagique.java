@@ -1,11 +1,9 @@
-package Modèle;
+package Modèle.Objet.arme;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
-public class BaguetteMagique extends Arme{
+public class BaguetteMagique extends Arme {
     private ObservableList<BouleDeFeu> boules;
 
     public BaguetteMagique(String nom, double pointAttaque) {

@@ -1,11 +1,13 @@
-package Modèle;
+package Modèle.perso.ennemi;
 
+import Modèle.Environnement;
+import Modèle.perso.ennemi.Ennemi;
+import Modèle.perso.ennemi.Soldat;
+import Modèle.perso.ennemi.Squelette;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
-public class Odelin extends Ennemi  {
+public class Odelin extends Ennemi {
 
     static int nbrInvocation =10;
     private int chargementAttaque;

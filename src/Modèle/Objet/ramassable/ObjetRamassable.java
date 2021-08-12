@@ -1,4 +1,6 @@
-package Modèle;
+package Modèle.Objet.ramassable;
+
+import Modèle.ElementMap;
 
 public class ObjetRamassable extends ElementMap {
 

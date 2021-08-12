@@ -1,4 +1,4 @@
-package Modèle;
+package Modèle.Objet.arme;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;

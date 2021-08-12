@@ -1,5 +1,6 @@
-package Modèle;
+package Modèle.perso;
 
+import Modèle.Environnement;
 import javafx.beans.property.*;
 
 // Attention il faut mettre un invariant pour que les pv ne puissent dépasser les pv max

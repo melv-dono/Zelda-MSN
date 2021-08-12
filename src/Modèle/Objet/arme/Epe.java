@@ -1,9 +1,10 @@
-package Modèle;
+package Modèle.Objet.arme;
 
+import Modèle.Objet.arme.Arme;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
-public class Epe extends Arme{
+public class Epe extends Arme {
     private String nom;
     private DoubleProperty pointAttaqueProperty = new SimpleDoubleProperty(10);
 

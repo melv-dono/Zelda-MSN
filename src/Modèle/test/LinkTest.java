@@ -1,6 +1,8 @@
-package Modèle;
+package Modèle.test;
 
-import com.sun.source.tree.AssertTree;
+import Modèle.Environnement;
+import Modèle.Parametre;
+import Modèle.perso.Personnage;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

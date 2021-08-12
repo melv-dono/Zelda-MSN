@@ -2,12 +2,20 @@ package Controleur.GestionaireObjet;
 
 import Controleur.GestionairePersonnage.OrientationPnj;
 import Modèle.*;
+import Modèle.Objet.objExt.Arbre;
+import Modèle.Objet.arme.Bouclier;
+import Modèle.Objet.objExt.Coffre;
+import Modèle.Objet.objExt.Rocher;
+import Modèle.Objet.ramassable.Key;
+import Modèle.Objet.ramassable.Pioche;
+import Modèle.Objet.ramassable.Pomme;
+import Modèle.Objet.ramassable.Potion;
+import Modèle.perso.PersoNonJouable;
 import Vue.ObjetVue;
 import Vue.VueCoffre;
 import Vue.VuePnj;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 

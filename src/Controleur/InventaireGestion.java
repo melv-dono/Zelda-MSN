@@ -1,12 +1,9 @@
 package Controleur;
 
-import Modèle.Bouclier;
 import Modèle.Environnement;
 import Modèle.Inventaire;
-import Modèle.ElementMap;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 

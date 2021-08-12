@@ -1,5 +1,23 @@
 package Modèle;
 
+import Modèle.Objet.Coquillage;
+import Modèle.Objet.objExt.Arbre;
+import Modèle.Objet.arme.BaguetteMagique;
+import Modèle.Objet.arme.Bouclier;
+import Modèle.Objet.arme.BouleDeFeu;
+import Modèle.Objet.arme.Epe;
+import Modèle.Objet.objExt.Coffre;
+import Modèle.Objet.objExt.Rocher;
+import Modèle.Objet.ramassable.Key;
+import Modèle.Objet.ramassable.Pioche;
+import Modèle.Objet.ramassable.Potion;
+import Modèle.perso.PersoNonJouable;
+import Modèle.perso.Personnage;
+import Modèle.perso.ennemi.Ennemi;
+import Modèle.perso.Link;
+import Modèle.perso.ennemi.Odelin;
+import Modèle.perso.ennemi.Soldat;
+import Modèle.perso.ennemi.Squelette;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;

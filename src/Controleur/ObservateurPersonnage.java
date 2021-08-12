@@ -3,6 +3,11 @@ package Controleur;
 import Controleur.GestionairePersonnage.AnimationGestion;
 import Modèle.*;
 
+import Modèle.perso.Link;
+import Modèle.perso.Personnage;
+import Modèle.perso.ennemi.Odelin;
+import Modèle.perso.ennemi.Soldat;
+import Modèle.perso.ennemi.Squelette;
 import Vue.VuePerso;
 import Vue.VueSoldat;
 import javafx.collections.ListChangeListener;

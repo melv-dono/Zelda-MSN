@@ -143,7 +143,7 @@ public class Controleur implements Initializable {
     }
     public void connexion() {
         arrow = new ArrowGestion(env.getLink());
-        action = new LettreTyped(menuPause,plateau,gameLoop,env,menuAide);
+        action = new LettreTyped(menuPause,env,menuAide);
         this.ptVie.textProperty().bind(env.getLink().pvProperty().asString());
         this.ptAtt.textProperty().bind((env.getLink().getPointAttaqueProperty().add(env.getLink().getArmePrincipale().getPointAttaqueProperty()).asString()));
         this.ptDef.textProperty().bind(env.getLink().getPointDefenseProperty().asString());

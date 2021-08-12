@@ -1,11 +1,16 @@
-package Modèle;
+package Modèle.perso.ennemi;
 
+import Modèle.Coordonnees;
+import Modèle.Environnement;
+import Modèle.Parametre;
+import Modèle.perso.Personnage;
+import Modèle.perso.Link;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.HashMap;
 
-public class Soldat extends Ennemi{
+public class Soldat extends Ennemi {
     static int deplacementComplet;
     private IntegerProperty animationProperty;
 
@@ -29,7 +34,7 @@ public class Soldat extends Ennemi{
      * Déplace le squelette vers le haut
      */
     public void monter(){
-        this.setDeplacementHauteur(this.getDeplacementHauteur()-Parametre.PAS);
+        this.setDeplacementHauteur(this.getDeplacementHauteur()- Parametre.PAS);
     }
 
     /**

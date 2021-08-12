@@ -1,6 +1,8 @@
-package Modèle;
+package Modèle.Objet.ramassable;
 
-public class Pioche extends ObjetRamassable{
+import Modèle.Objet.ramassable.ObjetRamassable;
+
+public class Pioche extends ObjetRamassable {
     /**
      * CONSTRUCTEUR
      *

@@ -1,6 +1,8 @@
-package Modèle;
+package Modèle.Objet;
 
-public class Coquillage extends ObjetRamassable{
+import Modèle.Objet.ramassable.ObjetRamassable;
+
+public class Coquillage extends ObjetRamassable {
     /**
      * CONSTRUCTEUR
      *

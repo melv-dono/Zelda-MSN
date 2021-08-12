@@ -1,6 +1,5 @@
 package Vue;
 
-import Modèle.BouleDeFeu;
 import javafx.scene.image.ImageView;
 
 public class VueBouleDeFeu {

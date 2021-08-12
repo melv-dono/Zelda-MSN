@@ -1,6 +1,8 @@
-package Modèle;
+package Modèle.Objet.ramassable;
 
-public abstract class ObjetSoin extends ObjetRamassable{
+import Modèle.Objet.ramassable.ObjetRamassable;
+
+public abstract class ObjetSoin extends ObjetRamassable {
     private int pointRegeneration;
     public ObjetSoin(int pt,double posL,double posH,String nom,String mapAction){
         super(nom,posL,posH,mapAction);

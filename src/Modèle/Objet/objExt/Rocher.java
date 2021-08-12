@@ -1,4 +1,6 @@
-package Modèle;
+package Modèle.Objet.objExt;
+
+import Modèle.ElementMap;
 
 public class Rocher extends ElementMap {
 

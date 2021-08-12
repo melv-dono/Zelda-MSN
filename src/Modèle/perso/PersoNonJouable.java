@@ -1,9 +1,11 @@
-package Modèle;
+package Modèle.perso;
 
+import Modèle.ElementMap;
+import Modèle.Objet.ObjetContenantObjet;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class PersoNonJouable extends ObjetContenantObjet{
+public class PersoNonJouable extends ObjetContenantObjet {
     private IntegerProperty orientation;
     /**
      * CONSTRUCTEUR
@@ -11,7 +13,7 @@ public class PersoNonJouable extends ObjetContenantObjet{
      * @param posLargeur
      * @param posHauteur
      */
-    public PersoNonJouable(double posLargeur, double posHauteur,ElementMap objet,String s,String mapAction) {
+    public PersoNonJouable(double posLargeur, double posHauteur, ElementMap objet, String s, String mapAction) {
         super(objet, posLargeur, posHauteur,"pnj",mapAction);
         orientation=new SimpleIntegerProperty(1);
     }

@@ -1,5 +1,6 @@
-package Modèle;
+package Modèle.Objet.arme;
 
+import Modèle.Parametre;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -52,7 +53,7 @@ public class BouleDeFeu {
         if (n<0) {
             this.xProperty.setValue(0);
         }
-        else if (n>Parametre.LARGEUR) {
+        else if (n> Parametre.LARGEUR) {
             this.xProperty.setValue(Parametre.LARGEUR);
         }
         else {

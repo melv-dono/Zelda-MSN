@@ -1,11 +1,14 @@
-package Modèle;
+package Modèle.test;
 
-import com.sun.source.tree.AssertTree;
+import Modèle.ElementMap;
+import Modèle.Objet.objExt.Arbre;
+import Modèle.Objet.objExt.Rocher;
+import Modèle.Objet.ramassable.Pioche;
+import Modèle.Objet.ramassable.Potion;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.function.BooleanSupplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
