@@ -160,7 +160,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void init() {
         creationLink();
         creationOdelin();
-        //creeEnnemi(); // Attention je l'ai mis dès le début uniquement car je suis sur la map de base
     }
 
     /**
@@ -193,12 +192,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
                 ((Ennemi)p).agir();
             }
         }
-
-//        if(this.user.getExp() > 1){
-//            this.user.setExp(0);
-//            this.user.niveau().set(this.user.getNiveau()+1);
-//        }
-
     }
 
     /**
@@ -225,24 +218,18 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
 
     public void cibleTouche() { // Boucle For each ne marche pas
-        double haut, bas, gauche, droite;
 
         if(lesPersos.size()>0){
             if(persoMapActu.size()>0){
                 for(int a=0;a<persoMapActu.size();a++){
                     for (int i=0; i< this.user.getarmeSecondaire().getBoules().size(); i++) {
-                        haut= this.user.getarmeSecondaire().getBoules().get(i).getyProperty()-16;
-                        bas= this.user.getarmeSecondaire().getBoules().get(i).getyProperty()+16;
-                        gauche= this.user.getarmeSecondaire().getBoules().get(i).getxProperty()-5;
-                        droite= this.user.getarmeSecondaire().getBoules().get(i).getxProperty()+5;
-
+                        Coordonnees centre = this.user.getarmeSecondaire().getBoules().get(i).getCoor();
+                        BouleDeFeu boule = this.user.getarmeSecondaire().getBoules().get(i);
                         // Attention les coordonées des perso sont décalés de 1 sur les colonnes
-                        if(		(persoMapActu.get(a).getDeplacementHauteur() >= haut && persoMapActu.get(a).getDeplacementHauteur() <= bas) &&
-                                (persoMapActu.get(a).getDeplacementLargeur() >= gauche -1 && persoMapActu.get(a).getDeplacementLargeur() <= droite)
-                        )
+                        if(persoMapActu.get(a).getCoor().isInside(1, centre))
                         {
                             persoMapActu.get(a).perteDePv(this.user.getDommageArmeSecondaire());
-                            this.user.getarmeSecondaire().getBoules().remove(this.user.getarmeSecondaire().getBoules().get(i));
+                            this.user.getarmeSecondaire().getBoules().remove(boule);
                             if(persoMapActu.get(a).retirerEnv()){
                                 break;
                             }
@@ -257,7 +244,7 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public void chargerTousLesObj(){
         try{
             Key key=new Key(1000,480);
-            if(key.getPositionLargeur().getValue()>1200 || key.getPositionLargeur().getValue()<0 || key.getPositionHauteur().getValue()>1200 ||key.getPositionHauteur().getValue()<0) {
+            if(key.positionL().getValue()>1200 || key.positionL().getValue()<0 || key.positionH().getValue()>1200 ||key.positionH().getValue()<0) {
                 throw new NombreInvalide();
             }
             Potion potion=new Potion(520,608,"map1");;
@@ -350,7 +337,6 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
     public HashMap<Coordonnees, Coordonnees> bfs(Coordonnees depart) {
         Queue<Coordonnees> frontiere = new ArrayDeque<Coordonnees>();
         ArrayList<Coordonnees> marquer = new ArrayList<Coordonnees>();
-//        Coordonnees.setTree(depart);
         frontiere.add(depart);
         HashMap<Coordonnees, Coordonnees> antecedent =new HashMap<Coordonnees, Coordonnees>();
         antecedent.put(depart, null);
@@ -358,18 +344,11 @@ public class Environnement { // Toutes les méthodes de cette classe ne sont pas
 
         while (!frontiere.isEmpty()) {
             Coordonnees pointCourant = frontiere.poll();
-//            pointCourant.marked();
-
-//            if (pointCourant.isEqual(arrive)) {
-//                System.out.println("Trouvé");
-//                return antecedent;
-//            }
 
 
                 for (Coordonnees voisins : pointCourant.voisins()) {
                     if ( !marquer.contains(voisins)  && this.mapActuelle.getTableau()[voisins.getLigne()][voisins.getColonne()]==1) {
                         frontiere.add(voisins);
-//                        lien.put(voisins, pointCourant);
                         antecedent.put(voisins, pointCourant);
                         marquer.add(voisins);
                     }

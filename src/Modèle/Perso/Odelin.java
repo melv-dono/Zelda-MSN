@@ -35,13 +35,6 @@ public class Odelin extends Ennemi {
             }
             nbrInvocation--;
         }
-
-//        for (int i=0; i<5; i++) {
-//            Squelette sqt = new Squelette(getDeplacementLargeur(), getDeplacementHauteur(), getEnv(), getMapAction());
-//            invocations.add(sqt);
-//            Soldat sdt = new Soldat(getEnv(), getDeplacementLargeur(), getDeplacementHauteur(), getMapAction());
-//            invocations.add(sdt);
-//        }
     }
 
 

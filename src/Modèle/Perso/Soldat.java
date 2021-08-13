@@ -84,9 +84,6 @@ public class Soldat extends Ennemi {
             }
             deplacementComplet++;
         }
-
-//        Coordonnees prochaineCase = chemin.get(depart);
-//        System.out.println(prochaineCase);
     }
 
     public boolean cibleSurLaGauche(Personnage perso) {

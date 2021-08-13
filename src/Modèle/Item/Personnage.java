@@ -1,6 +1,8 @@
 package Modèle.Item;
 
 import Modèle.Env.Environnement;
+import Modèle.Utils.Coordonnees;
+import Modèle.Utils.Parametre;
 import javafx.beans.property.*;
 
 // Attention il faut mettre un invariant pour que les pv ne puissent dépasser les pv max
@@ -9,6 +11,7 @@ public abstract class Personnage {
     private int id; // numéro unique pour chaque personnage
     private DoubleProperty deplacementLargeur; // on doit avoir : X >= 0 ET X <= largeur de l'environnement
     private DoubleProperty deplacementHauteur; // on doit avoir : Y >= 0 ET Y <= hauteur de l'environnement
+    private Coordonnees position; // Position sur le quadrillage
     private Environnement env; // permet de délimiter le personnage dans sur la map et aussi l'interaction avec les autres perso
     private double pvActu;
     private DoubleProperty pv;
@@ -25,6 +28,7 @@ public abstract class Personnage {
         this.id = numId++;
         this.deplacementLargeur = new SimpleDoubleProperty(520); // 544
         this.deplacementHauteur = new SimpleDoubleProperty(32);
+//        this.position = new Coordonnees((int) (this.deplacementHauteur.getValue() / Parametre.TUILE_SIZE), (int) (this.deplacementLargeur.getValue()/ Parametre.TUILE_SIZE));
         this.env = e;
         pvActu=100;
         pv=new SimpleDoubleProperty(pvActu);
@@ -203,6 +207,17 @@ public abstract class Personnage {
      */
     public Environnement getEnv() {
         return env;
+    }
+
+    /**
+     * Renvoit les coorodnnées du perso sur le tableau de donnee.
+     * @return Emplacement du personnage
+     */
+    public Coordonnees getCoor() {
+        int x = (int) (deplacementLargeur.getValue()/32) ;
+        int y = (int) (deplacementHauteur.getValue()/32);
+        Coordonnees c = new Coordonnees(x,y);
+        return c;
     }
 
     /**

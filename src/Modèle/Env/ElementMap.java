@@ -48,10 +48,10 @@ public abstract class ElementMap {
     public String getNom(){
         return nom;
     }
-    public DoubleProperty getPositionLargeur(){
+    public DoubleProperty positionL(){
         return positionLargeur;
     }
-    public DoubleProperty getPositionHauteur(){
+    public DoubleProperty positionH(){
         return positionHauteur;
     }
     /**

@@ -139,10 +139,4 @@ public class Squelette extends Ennemi {
         }
 
     }
-    public boolean squeMort(){
-        if(this.pv()>0){
-            return false;
-        }
-        return true;
-    }
 }

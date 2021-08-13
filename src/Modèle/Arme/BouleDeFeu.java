@@ -1,5 +1,6 @@
 package Modèle.Arme;
 
+import Modèle.Utils.Coordonnees;
 import Modèle.Utils.Parametre;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -47,6 +48,17 @@ public class BouleDeFeu {
 
     public DoubleProperty yPropertyProperty() {
         return yProperty;
+    }
+
+    /**
+     * Renvoit les coorodnnées du perso sur le tableau de donnee.
+     * @return Emplacement du personnage
+     */
+    public Coordonnees getCoor() {
+        int x = (int) (xProperty.getValue()/32) ;
+        int y = (int) (yProperty.getValue()/32);
+        Coordonnees c = new Coordonnees(x,y);
+        return c;
     }
 
     public void setX(double n) {

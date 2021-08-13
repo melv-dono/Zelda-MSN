@@ -11,7 +11,6 @@ import Modèle.Env.Rocher;
 import Modèle.Perso.Link;
 import Modèle.Perso.PersoNonJouable;
 import Modèle.Utils.Coordonnees;
-import Modèle.Utils.Parametre;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -23,8 +22,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-import java.lang.reflect.Parameter;
 
 public class LettreTyped implements EventHandler<KeyEvent> {
 
@@ -87,12 +84,12 @@ public class LettreTyped implements EventHandler<KeyEvent> {
             case R:
                 if(objetEnvironnement.size()>=1){
                     for(int i=0;i<objetEnvironnement.size();i++){
-                        if(((objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()>=-32
-                                &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()<=32)
-                                && objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==0)
-                                || ((objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()<=32
-                                &&objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()>=-32)
-                                &&objetEnvironnement.get(i).getPositionHauteur().getValue()-perso.getDeplacementHauteur()==0) ){
+                        if(((objetEnvironnement.get(i).positionH().getValue()-perso.getDeplacementHauteur()>=-32
+                                &&objetEnvironnement.get(i).positionH().getValue()-perso.getDeplacementHauteur()<=32)
+                                && objetEnvironnement.get(i).positionL().getValue()-perso.getDeplacementLargeur()==0)
+                                || ((objetEnvironnement.get(i).positionL().getValue()-perso.getDeplacementLargeur()<=32
+                                &&objetEnvironnement.get(i).positionL().getValue()-perso.getDeplacementLargeur()>=-32)
+                                &&objetEnvironnement.get(i).positionH().getValue()-perso.getDeplacementHauteur()==0) ){
                             if(objetEnvironnement.get(i) instanceof ObjetRamassable){
                                 inventaire.addObjet(objetEnvironnement.get(i));
                                 objetEnvironnement.remove(objetEnvironnement.get(i));
@@ -108,34 +105,34 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                                 }
                             }else if(objetEnvironnement.get(i) instanceof Arbre){
                                 if(((Arbre) objetEnvironnement.get(i)).getNbPomme()>0){
-                                    if(objetEnvironnement.get(i).getPositionLargeur().getValue()- perso.getDeplacementLargeur()==32){
-                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()+32,
-                                                objetEnvironnement.get(i).getPositionHauteur().getValue());
+                                    if(objetEnvironnement.get(i).positionL().getValue()- perso.getDeplacementLargeur()==32){
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).positionL().getValue()+32,
+                                                objetEnvironnement.get(i).positionH().getValue());
                                         env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
-                                    }else if(objetEnvironnement.get(i).getPositionLargeur().getValue()- perso.getDeplacementLargeur()==-32){
-                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue()-32,
-                                                objetEnvironnement.get(i).getPositionHauteur().getValue());
+                                    }else if(objetEnvironnement.get(i).positionL().getValue()- perso.getDeplacementLargeur()==-32){
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).positionL().getValue()-32,
+                                                objetEnvironnement.get(i).positionH().getValue());
                                         env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
-                                    }else if(objetEnvironnement.get(i).getPositionHauteur().getValue()- perso.getDeplacementHauteur()==32){
-                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(),
-                                                objetEnvironnement.get(i).getPositionHauteur().getValue()+32);
+                                    }else if(objetEnvironnement.get(i).positionH().getValue()- perso.getDeplacementHauteur()==32){
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).positionL().getValue(),
+                                                objetEnvironnement.get(i).positionH().getValue()+32);
                                         env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }else{
-                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).getPositionLargeur().getValue(),
-                                                objetEnvironnement.get(i).getPositionHauteur().getValue()-32);
+                                        Pomme pomme=new Pomme(objetEnvironnement.get(i).positionL().getValue(),
+                                                objetEnvironnement.get(i).positionH().getValue()-32);
                                         env.getObjEnvAct().add(pomme);
                                         ((Arbre) objetEnvironnement.get(i)).retirerPomme();
                                     }
                                 }
                             }else if(objetEnvironnement.get(i) instanceof PersoNonJouable){
-                                if(objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==32){
+                                if(objetEnvironnement.get(i).positionL().getValue()-perso.getDeplacementLargeur()==32){
                                     ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(4);
-                                }else if(objetEnvironnement.get(i).getPositionLargeur().getValue()-perso.getDeplacementLargeur()==-32){
+                                }else if(objetEnvironnement.get(i).positionL().getValue()-perso.getDeplacementLargeur()==-32){
                                     ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(3);
-                                }else if(objetEnvironnement.get(i).getPositionHauteur().getValue()- perso.getDeplacementHauteur()==32){
+                                }else if(objetEnvironnement.get(i).positionH().getValue()- perso.getDeplacementHauteur()==32){
                                     ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(2);
                                 }else{
                                     ((PersoNonJouable) objetEnvironnement.get(i)).setOrientation(1);
@@ -208,13 +205,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
                 perso.augmenterPv(10);
                 break;
             case M:
-                encerclement(6);
-                break;
-            case N:
-                encerclement2(6);
-                break;
-            case L:
-                encerclement3(6);
+                encerclement(2);
                 break;
             default:
                 break;
@@ -226,7 +217,7 @@ public class LettreTyped implements EventHandler<KeyEvent> {
      * @param rayon
      */
     public void encerclement(double rayon) {
-        Coordonnees pers = new Coordonnees((int)perso.getDeplacementLargeur()/32, (int)perso.getDeplacementHauteur()/32);
+        Coordonnees pers = perso.getCoor();
         Coordonnees point;
         int top, bottom, left, right;
         top = (int) Math.floor(perso.getDeplacementHauteur()/32 - rayon);
@@ -245,57 +236,4 @@ public class LettreTyped implements EventHandler<KeyEvent> {
             }
         }
     }
-
-    /**
-     * Give every neighbours by bounding circle
-     * @param rayon
-     */
-    public void encerclement2(double rayon) {
-        Coordonnees pers = new Coordonnees((int)perso.getDeplacementLargeur()/32, (int)perso.getDeplacementHauteur()/32);
-        Coordonnees point;
-        int top, bottom, left, right;
-        top = (int) (perso.getDeplacementHauteur()/32 - rayon);
-        bottom = (int) (perso.getDeplacementHauteur()/32 + rayon);
-
-        for (int y=top; y<=bottom; y++) {
-            int dy = (y - (int) (perso.getDeplacementHauteur()/32));
-            double dx = Math.sqrt(rayon*rayon - dy*dy);
-            left = (int) Math.ceil(perso.getDeplacementLargeur()/32 - dx);
-            right = (int) Math.floor(perso.getDeplacementLargeur()/32 + dx);
-            for (int x = left; x<= right; x++) {
-                point = new Coordonnees(x,y);
-                Circle m = new Circle(point.getColonne()*32, point.getLigne()*32, 3);
-                m.setFill(Color.BLUE);
-                plateau.getChildren().add(m);
-            }
-        }
-    }
-
-    /**
-     * Give farest neighbours by bounding circle
-     * @param rayon
-     */
-    public void encerclement3(double rayon) {
-        Coordonnees pers = new Coordonnees((int)perso.getDeplacementLargeur()/32, (int)perso.getDeplacementHauteur()/32);
-        Coordonnees point;
-        int top, bottom, left, right;
-        top = (int) Math.ceil(perso.getDeplacementHauteur()/32 - rayon);
-        bottom = (int) Math.floor(perso.getDeplacementHauteur()/32 + rayon);
-
-        for (int y=top; y<=bottom; y++) {
-            int dy = (y - (int) (perso.getDeplacementHauteur()/32));
-            int dx = (int) (Math.floor(Math.sqrt(rayon*rayon - dy*dy)));
-            left = pers.getColonne() - dx;
-            right = pers.getColonne() + dx;
-            point = new Coordonnees(left,y);
-            Circle m = new Circle(point.getColonne()*32, point.getLigne()*32, 3);
-            m.setFill(Color.GREEN);
-            plateau.getChildren().add(m);
-            point = new Coordonnees(right,y);
-            Circle n = new Circle(point.getColonne()*32, point.getLigne()*32, 3);
-            n.setFill(Color.GREEN);
-            plateau.getChildren().add(n);
-        }
-    }
-
 }

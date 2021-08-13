@@ -93,60 +93,60 @@ public class ObservateurObjet implements ListChangeListener<ElementMap> {
     public void ajoutObjet(ElementMap obj, String url){
         if(obj instanceof Potion) {
             ObjetVue vuePotion=new ObjetVue(url,obj.getId());
-            vuePotion.getImg().translateXProperty().bind(obj.getPositionLargeur());
-            vuePotion.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            vuePotion.getImg().translateXProperty().bind(obj.positionL());
+            vuePotion.getImg().translateYProperty().bind(obj.positionH());
             plateau.getChildren().add(vuePotion.getImg());
             listeObjetVue.add(vuePotion);
         }else if(obj instanceof Rocher) {
             ObjetVue vueRocher=new ObjetVue(url, obj.getId());
-            vueRocher.getImg().translateXProperty().bind(obj.getPositionLargeur());
-            vueRocher.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            vueRocher.getImg().translateXProperty().bind(obj.positionL());
+            vueRocher.getImg().translateYProperty().bind(obj.positionH());
             plateau.getChildren().add(vueRocher.getImg());
             listeObjetVue.add(vueRocher);
         }else if(obj instanceof Pioche){
             ObjetVue vuePioche=new ObjetVue(url,obj.getId());
-            vuePioche.getImg().translateXProperty().bind(obj.getPositionLargeur());
-            vuePioche.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            vuePioche.getImg().translateXProperty().bind(obj.positionL());
+            vuePioche.getImg().translateYProperty().bind(obj.positionH());
             plateau.getChildren().add(vuePioche.getImg());
             listeObjetVue.add(vuePioche);
         }else if(obj instanceof Arbre){
             ObjetVue vueArbre=new ObjetVue(url, obj.getId());
-            vueArbre.getImg().translateXProperty().bind(obj.getPositionLargeur());
-            vueArbre.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            vueArbre.getImg().translateXProperty().bind(obj.positionL());
+            vueArbre.getImg().translateYProperty().bind(obj.positionH());
             plateau.getChildren().add(vueArbre.getImg());
             listeObjetVue.add(vueArbre);
         }else if(obj instanceof Pomme) {
             ObjetVue vuePomme = new ObjetVue(url, obj.getId());
-            vuePomme.getImg().translateXProperty().bind(obj.getPositionLargeur());
-            vuePomme.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            vuePomme.getImg().translateXProperty().bind(obj.positionL());
+            vuePomme.getImg().translateYProperty().bind(obj.positionH());
             plateau.getChildren().add(vuePomme.getImg());
             listeObjetVue.add(vuePomme);
 
         }else if(obj instanceof Bouclier) {
             ObjetVue vueBouclier = new ObjetVue(url, obj.getId());
-            vueBouclier.getImg().translateXProperty().bind(obj.getPositionLargeur());
-            vueBouclier.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            vueBouclier.getImg().translateXProperty().bind(obj.positionL());
+            vueBouclier.getImg().translateYProperty().bind(obj.positionH());
             plateau.getChildren().add(vueBouclier.getImg());
             listeObjetVue.add(vueBouclier);
 
         }else if(obj instanceof PersoNonJouable){
             VuePnj vuePnj=new VuePnj(url,obj.getId());
-            vuePnj.getImg().translateXProperty().bind(obj.getPositionLargeur());
-            vuePnj.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            vuePnj.getImg().translateXProperty().bind(obj.positionL());
+            vuePnj.getImg().translateYProperty().bind(obj.positionH());
             plateau.getChildren().add(vuePnj.getImg());
             OrientationPnj orientationPnj=new OrientationPnj(vuePnj);
             ((PersoNonJouable) obj).getOrientation().addListener(orientationPnj);
             listeObjetVue.add(vuePnj);
         }else if(obj instanceof Key){
             ObjetVue vueKey=new ObjetVue(url, obj.getId());
-            vueKey.getImg().translateXProperty().bind(obj.getPositionLargeur());
-            vueKey.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            vueKey.getImg().translateXProperty().bind(obj.positionL());
+            vueKey.getImg().translateYProperty().bind(obj.positionH());
             plateau.getChildren().add(vueKey.getImg());
             listeObjetVue.add(vueKey);
         }else if(obj instanceof Coffre){
             VueCoffre vueCoffre=new VueCoffre(url, obj.getId());
-            vueCoffre.getImg().translateXProperty().bind(obj.getPositionLargeur());
-            vueCoffre.getImg().translateYProperty().bind(obj.getPositionHauteur());
+            vueCoffre.getImg().translateXProperty().bind(obj.positionL());
+            vueCoffre.getImg().translateYProperty().bind(obj.positionH());
             plateau.getChildren().add(vueCoffre.getImg());
             listeObjetVue.add(vueCoffre);
         }
